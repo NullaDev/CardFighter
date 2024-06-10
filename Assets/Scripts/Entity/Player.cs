@@ -5,15 +5,10 @@ namespace Entity
 {
     public class Player: EntityBase
     {
-        public int Cost;
-        public int MaxCost;
-        
-        public Player(int hp, int maxCost) : base(hp)
+        public Player(int hp) : base(hp)
         {
-            this.MaxCost = maxCost;
-            this.Cost = 1;
         }
-        
+
         public override void Hurt(EntityBase source, int value, Map map)
         {
             this.HP -= value;

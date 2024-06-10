@@ -22,7 +22,7 @@ namespace Fighting
 
         public void InitializePlayer(PlayerData data, int pos)
         {
-            Player player = new Player(data.MaxHP, data.MaxCost);
+            Player player = new Player(data.MaxHP);
             this.ListEntities[pos] = player;
         }
 

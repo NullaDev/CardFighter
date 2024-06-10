@@ -6,7 +6,7 @@ namespace Data
 {
     public class PlayerData : MonoBehaviour
     {
-        private static PlayerData Instance;
+        public static PlayerData Instance;
 
         public PlayerClass PlayerClass;
         public Deck DefaultDeck;

@@ -1,18 +1,21 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
-public class CardPrototype : MonoBehaviour
+namespace Card
 {
-    // Start is called before the first frame update
-    void Start()
+    public class CardPrototype
     {
+        public string ID;
+        public string Name;
+        public string Desc;
+        public int Cost;
+        public List<string> Effects;
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public static CardPrototype CreateFromJson(string jsonString)
+        {
+            Debug.Log(jsonString);
+            return JsonUtility.FromJson<CardPrototype>(jsonString);
+        }
     }
 }

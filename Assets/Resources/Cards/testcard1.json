@@ -1,0 +1,7 @@
+﻿{
+  "ID": "punch",
+  "Name": "Punch",
+  "Desc": "给你一拳",
+  "Cost": 1,
+  "Effects": []
+}
