@@ -1,17 +1,19 @@
 ﻿using System;
 using Data;
 using Entity;
+using GameLogic;
 
-namespace Fighting
+namespace FightingControl
 {
     public class Map
     {
         public int Size;
         public EntityBase[] ListEntities;
 
-        public Map(int size)
+        public Map(StageConfig config, PlayerData pData)
         {
-            SetSize(size);
+            this.SetSize(config.Size);
+            this.InitializePlayer(pData, config.PlayerSpawnPos);
         }
 
         public void SetSize(int size)

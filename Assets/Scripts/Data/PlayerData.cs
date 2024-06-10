@@ -42,5 +42,15 @@ namespace Data
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        
+        private void LoadFromFile()
+        {
+            // TODO parse local json
+        }
+    
+        private void SaveToFile()
+        {
+            // TODO write to local json
+        }
     }
 }
