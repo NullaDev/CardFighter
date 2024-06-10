@@ -11,7 +11,6 @@ namespace FightingControl
     public class Fighting : MonoBehaviour
     {
         public Map Map;
-        public MapRender MapRender;
         
         public int CurrentCost;
         public int MaxCost;
@@ -19,15 +18,19 @@ namespace FightingControl
 
         void Start()
         {
-            var playerData = GetComponent<PlayerData>();
-            this.CurrentDeck = playerData.DefaultDeck.CardList;
+            var playerData = PlayerData.Instance;
+            // this.CurrentDeck = playerData.DefaultDeck.CardList;
             this.MaxCost = playerData.MaxCost;
             this.CurrentCost = 1;
 
             // TODO remove hard code
             var stage = Resources.Load<TextAsset>("Stages/teststage");
             var config = StageConfig.CreateFromJson(stage.text);
+            Debug.Log(config);
             this.Map = new Map(config, playerData);
+
+            var mapRender = GetComponent<MapRender>();
+            mapRender.Render(this.Map.Size);
         }
 
         void Update()
