@@ -31,6 +31,9 @@ namespace FightingControl
 
             var mapRender = GetComponent<MapRender>();
             mapRender.Render(this.Map.Size);
+            
+            var entityRender = GetComponent<EntityRender>();
+            entityRender.Render(this.Map.ListEntities);
         }
 
         void Update()
