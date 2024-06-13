@@ -7,11 +7,13 @@ namespace FightingControl
 {
     public class Map
     {
+        private StageConfig _config;
         public int Size;
         public EntityBase[] ListEntities;
 
         public Map(StageConfig config, PlayerData pData)
         {
+            this._config = config;
             this.SetSize(config.Size);
             this.InitializePlayer(pData, config.PlayerSpawnPos);
         }
@@ -33,29 +35,34 @@ namespace FightingControl
             return Array.Find(this.ListEntities, obj => obj is Player) as Player;
         }
 
-        public Boolean AddEntityToList(EntityBase entity, int pos)
+        public bool AddEntityToMap(EntityBase entity, int pos)
         {
             if (this.ListEntities[pos] == null)
             {
                 this.ListEntities[pos] = entity;
                 return true;
             }
-            else
-            {
-                // TODO
-                return false;
-            }
+            return false;
         }
 
-        public Boolean RemoveEntityFromList(EntityBase entity)
+        public bool RemoveEntityFromMap(EntityBase entity)
         {
-            int index = Array.IndexOf(this.ListEntities, entity);
+            var index = Array.IndexOf(this.ListEntities, entity);
             if (index >= 0)
             {
                 this.ListEntities[index] = null;
                 return true;
             }
             return false;
+        }
+
+        public void SpawnMobsAtTurn(int turn)
+        {
+            this._config.Mobs.RemoveAll(
+                mob => 
+                    mob.AppearTurn >= turn && 
+                    this.AddEntityToMap(mob.ToEnemyEntity(), mob.AppearPos)
+                );
         }
     }
 }

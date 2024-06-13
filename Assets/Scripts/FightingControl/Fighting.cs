@@ -11,6 +11,8 @@ namespace FightingControl
     public class Fighting : MonoBehaviour
     {
         public Map Map;
+
+        public int CurrentTurn;
         
         public int CurrentCost;
         public int MaxCost;
@@ -18,19 +20,21 @@ namespace FightingControl
 
         void Start()
         {
+            this.CurrentCost = 0;
+            
             var playerData = PlayerData.Instance;
             // this.CurrentDeck = playerData.DefaultDeck.CardList;
             this.MaxCost = playerData.MaxCost;
             this.CurrentCost = 1;
 
-            // TODO remove hard code
+            // TODO remove hard code of loading stage
             var stage = Resources.Load<TextAsset>("Stages/teststage");
             var config = StageConfig.CreateFromJson(stage.text);
             Debug.Log(config);
             this.Map = new Map(config, playerData);
 
             var mapRender = GetComponent<MapRender>();
-            mapRender.Render(this.Map.Size);
+            mapRender.Render(this.Map);
             
             var entityRender = GetComponent<EntityRender>();
             entityRender.Render(this.Map.ListEntities);
@@ -39,6 +43,12 @@ namespace FightingControl
         void Update()
         {
         
+        }
+
+        public void SettleTurn()
+        {
+            this.CurrentTurn += 1;
+            this.Map.SpawnMobsAtTurn(CurrentTurn);
         }
     }
 }

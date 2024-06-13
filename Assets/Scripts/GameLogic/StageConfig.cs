@@ -10,7 +10,7 @@ namespace GameLogic
         public string Name;
         public int Size;
         public int PlayerSpawnPos;
-        public List<string> Mobs;
+        public List<EnemyConfig> Mobs;
         
         public static StageConfig CreateFromJson(string jsonString)
         {

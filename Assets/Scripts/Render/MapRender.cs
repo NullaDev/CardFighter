@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using FightingControl;
 using UnityEngine;
 
 namespace Render
@@ -6,6 +8,8 @@ namespace Render
     {
         public GameObject FloorPrefab;
         public GameObject FloorGrid;
+
+        private List<GameObject> _listFloors = new();
 
         void Start()
         {
@@ -17,11 +21,18 @@ namespace Render
         
         }
 
-        public void Render(int size)
+        public void Render(Map map)
         {
-            for (int i = 0; i < size; i++)
+            if (_listFloors.Count != map.Size)
             {
-                GameObject.Instantiate(FloorPrefab, FloorGrid.transform);
+                foreach (var floor in _listFloors)
+                {
+                    GameObject.Destroy(floor);
+                }
+                for (var i = 0; i < map.Size; i++)
+                {
+                    GameObject.Instantiate(FloorPrefab, FloorGrid.transform);
+                }
             }
         }
     }

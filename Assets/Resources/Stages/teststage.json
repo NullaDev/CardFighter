@@ -1,7 +1,22 @@
 ﻿{
-  "ID": "punch",
-  "Name": "Punch",
+  "ID": "test_stage",
+  "Name": "Test Stage",
   "Size": 7,
   "PlayerSpawnPos": 1,
-  "Mobs": []
+  "Mobs": [
+    {
+      "AppearTurn": 1,
+      "AppearPos": 3,
+      "Name": "mob1",
+      "Img": "mob",
+      "HP": 5
+    },
+    {
+      "AppearTurn": 2,
+      "AppearPos": 4,
+      "Name": "mob2",
+      "Img": "mob",
+      "HP": 5
+    }
+  ]
 }

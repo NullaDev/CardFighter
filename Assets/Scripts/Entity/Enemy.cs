@@ -14,7 +14,7 @@ namespace Entity
             this.HP -= value;
             if (this.HP <= 0)
             {
-                map.RemoveEntityFromList(this);
+                map.RemoveEntityFromMap(this);
                 // TODO
             }
         }
