@@ -16,6 +16,7 @@ namespace FightingControl
             this._config = config;
             this.SetSize(config.Size);
             this.InitializePlayer(pData, config.PlayerSpawnPos);
+            this.SpawnMobsAtTurn(0);
         }
 
         public void SetSize(int size)
@@ -30,9 +31,14 @@ namespace FightingControl
             this.ListEntities[pos] = player;
         }
 
-        public Player GetPlayerFromList()
+        public Player GetPlayerFromMap()
         {
             return Array.Find(this.ListEntities, obj => obj is Player) as Player;
+        }
+        
+        public int GetPlayerIndex()
+        {
+            return Array.FindIndex(this.ListEntities, entity => entity is Player);
         }
 
         public bool AddEntityToMap(EntityBase entity, int pos)
@@ -40,6 +46,10 @@ namespace FightingControl
             if (this.ListEntities[pos] == null)
             {
                 this.ListEntities[pos] = entity;
+                if (entity is Enemy)
+                {
+                    entity.Facing = FacingHelper.GetFacing(GetPlayerIndex() - pos);
+                }
                 return true;
             }
             return false;

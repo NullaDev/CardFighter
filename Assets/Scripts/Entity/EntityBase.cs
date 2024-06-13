@@ -1,5 +1,6 @@
 ﻿using Card;
 using FightingControl;
+using GameLogic;
 
 namespace Entity
 {
@@ -7,6 +8,8 @@ namespace Entity
     {
         public int HP;
         public int MaxHP;
+
+        public EntityFacing Facing = EntityFacing.DEFAULT;
 
         public EntityBase(int hp)
         {
