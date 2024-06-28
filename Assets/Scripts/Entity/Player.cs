@@ -1,12 +1,42 @@
-﻿using Card;
+﻿using System;
+using Card;
 using FightingControl;
 
 namespace Entity
 {
     public class Player: EntityBase
     {
-        public Player(int hp) : base(hp)
+        private int _coin;  //持有金币数
+        public event Action<int> OnCoinCountChanged;
+        public Player(int hp, int initCoins = 0) : base(hp)
         {
+            _coin = initCoins;
+        }
+
+        public int GetCurrentCoins()
+        {
+            return _coin;
+        }
+
+        public void AddCoins(int coinNumber)
+        {
+            _coin += coinNumber;
+            OnCoinCountChanged?.Invoke(_coin);
+        }
+
+        public bool LoseCoins(int coinNumber)
+        {
+            if (_coin >= coinNumber)
+            {
+                _coin -= coinNumber;
+                OnCoinCountChanged?.Invoke(_coin);
+            }
+            else  //TODO 等待应用场景
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public override void Hurt(EntityBase source, int value, Map map)
@@ -22,6 +52,5 @@ namespace Entity
         {
             // TODO
         }
-        
     }
 }
