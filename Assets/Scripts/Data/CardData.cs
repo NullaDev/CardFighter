@@ -21,13 +21,13 @@ namespace Data
 
         void Start()
         {
-            Debug.Log("Loaded card number:" + this.CardList.Count);
+            Debug.Log("Loading cards, total number:" + this.CardList.Count);
             foreach (var card in this.CardList)
             {
                 Debug.Log("name:" + card.Name);
             }
             OriginalScale = transform.localScale;
-            OriginalColor = transform.Find("CardBorder").GetComponent<SpriteRenderer>().color;
+            // OriginalColor = transform.Find("CardBorder").GetComponent<SpriteRenderer>().color;
         }
 
         void Update()

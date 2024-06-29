@@ -8,6 +8,8 @@ namespace Entity
     {
         public int HP;
         public int MaxHP;
+        public string Name = "";
+        public string TextureName = "";
 
         public EntityFacing Facing = EntityFacing.DEFAULT;
 

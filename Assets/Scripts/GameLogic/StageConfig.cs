@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Card;
 using UnityEngine;
+using Newtonsoft.Json;
 
 namespace GameLogic
 {
@@ -14,7 +15,7 @@ namespace GameLogic
         
         public static StageConfig CreateFromJson(string jsonString)
         {
-            return JsonUtility.FromJson<StageConfig>(jsonString);
+            return JsonConvert.DeserializeObject<StageConfig>(jsonString);
         }
     }
     

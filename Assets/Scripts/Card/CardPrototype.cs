@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Card
@@ -14,8 +15,7 @@ namespace Card
         
         public static CardPrototype CreateFromJson(string jsonString)
         {
-            Debug.Log(jsonString);
-            return JsonUtility.FromJson<CardPrototype>(jsonString);
+            return JsonConvert.DeserializeObject<CardPrototype>(jsonString);
         }
     }
 }

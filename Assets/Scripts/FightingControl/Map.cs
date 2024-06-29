@@ -2,6 +2,7 @@
 using Data;
 using Entity;
 using GameLogic;
+using UnityEngine;
 
 namespace FightingControl
 {
@@ -70,7 +71,7 @@ namespace FightingControl
         {
             this._config.Mobs.RemoveAll(
                 mob => 
-                    mob.AppearTurn >= turn && 
+                    mob.AppearTurn <= turn && 
                     this.AddEntityToMap(mob.ToEnemyEntity(), mob.AppearPos)
                 );
         }

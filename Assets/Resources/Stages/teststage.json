@@ -5,17 +5,17 @@
   "PlayerSpawnPos": 1,
   "Mobs": [
     {
-      "AppearTurn": 1,
+      "AppearTurn": 0,
       "AppearPos": 3,
       "Name": "mob1",
-      "Img": "mob",
+      "TextureName": "mob1",
       "HP": 5
     },
     {
-      "AppearTurn": 2,
+      "AppearTurn": 1,
       "AppearPos": 4,
       "Name": "mob2",
-      "Img": "mob",
+      "TextureName": "mob2",
       "HP": 5
     }
   ]

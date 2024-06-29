@@ -11,6 +11,7 @@ namespace FightingControl
     public class Fighting : MonoBehaviour
     {
         public Map Map;
+        public MapRender MapRender;
 
         public int CurrentTurn;
         
@@ -30,14 +31,13 @@ namespace FightingControl
             // TODO remove hard code of loading stage
             var stage = Resources.Load<TextAsset>("Stages/teststage");
             var config = StageConfig.CreateFromJson(stage.text);
-            Debug.Log(config);
+            Debug.Log("Loading stage config:" + stage.text);
+            Debug.Log("Mob number:" + config.Mobs.Count);
             this.Map = new Map(config, playerData);
 
-            var mapRender = GetComponent<MapRender>();
-            mapRender.Render(this.Map);
-            
-            var entityRender = GetComponent<EntityRender>();
-            entityRender.Render(this.Map.ListEntities);
+            MapRender = GetComponent<MapRender>();
+            MapRender.RenderMap(this.Map);
+            MapRender.RenderEntities(this.Map);
         }
 
         void Update()
