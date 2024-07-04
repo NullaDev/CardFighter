@@ -4,7 +4,7 @@ using Entity;
 using GameLogic;
 using UnityEngine;
 
-namespace FightingControl
+namespace Fighting
 {
     public class Map
     {
@@ -28,7 +28,7 @@ namespace FightingControl
 
         public void InitializePlayer(PlayerData data, int pos)
         {
-            Player player = new Player(data.MaxHP);
+            Player player = new Player(data.maxHP);
             this.ListEntities[pos] = player;
         }
 

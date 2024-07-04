@@ -1,5 +1,5 @@
 ﻿using Card;
-using FightingControl;
+using Fighting;
 using GameLogic;
 
 namespace Entity

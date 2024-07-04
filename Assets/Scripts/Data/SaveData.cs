@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Data
 {
+    // This script manages the "global" information of the player, such as class unlocks.
     public class SaveData : MonoBehaviour
     {
         public static SaveData Instance;

@@ -1,9 +1,11 @@
 using Card;
 using GameLogic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Data
 {
+    // This script manages the player's "in-game" information, such as deck, hp and gold.
     public class PlayerData : MonoBehaviour
     {
         public static PlayerData Instance;
@@ -12,8 +14,10 @@ namespace Data
         public Deck DefaultDeck;
         
         public int HP;
-        public int MaxHP;
-        public int MaxCost;
+        public int maxHP;
+        public int maxCost;
+
+        public int gold;
 
         void Start()
         {
@@ -38,8 +42,8 @@ namespace Data
             
             // TODO remove hard code
             this.PlayerClass = PlayerClass.FIGHTER;
-            this.MaxHP = this.HP = 10;
-            this.MaxCost = 5;
+            this.maxHP = this.HP = 10;
+            this.maxCost = 5;
         }
         
         private void LoadFromFile()
