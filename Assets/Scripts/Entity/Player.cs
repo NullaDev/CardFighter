@@ -7,6 +7,7 @@ namespace Entity
     {
         public Player(int hp) : base(hp)
         {
+            this.TextureName = "Arts/player";
         }
 
         public override void Hurt(EntityBase source, int value, Map map)

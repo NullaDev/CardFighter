@@ -52,7 +52,7 @@ namespace Render
             {
                 if (map.ListEntities[i] != null)
                 {
-                    _listEntities[i].GetComponent<EntityRender>().Render(map.ListEntities[i]);
+                    _listEntities[i].GetComponent<EntityRender>().RenderEntity(map.ListEntities[i]);
                 }
                 else
                 {

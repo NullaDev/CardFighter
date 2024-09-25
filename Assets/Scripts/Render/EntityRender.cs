@@ -1,4 +1,5 @@
 using Entity;
+using GameLogic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,54 +7,62 @@ namespace Render
 {
     public class EntityRender : MonoBehaviour
     {
-        public Image entityImage;
-        public Image HPBack;
-        public Image HPFront;
-        public Text HPText;
+        private Image _entityImage;
+        private Image _hpBack;
+        private Image _hpFront;
+        private Text _hpText;
         
         void Awake()
         {
-            entityImage = transform.Find("EntityImage").GetComponent<Image>();
+            _entityImage = transform.Find("EntityImage").GetComponent<Image>();
 
-            var HPBar = transform.Find("HPBar").gameObject;
-            if (HPBar != null)
+            var hpBar = transform.Find("HPBar").gameObject;
+            if (hpBar != null)
             {
-                HPBack = HPBar.transform.Find("HPBack").GetComponent<Image>();
-                HPFront = HPBar.transform.Find("HPFront").GetComponent<Image>();
-                HPText = HPBar.transform.Find("HPText").GetComponent<Text>();
+                _hpBack = hpBar.transform.Find("HPBack").GetComponent<Image>();
+                _hpFront = hpBar.transform.Find("HPFront").GetComponent<Image>();
+                _hpText = hpBar.transform.Find("HPText").GetComponent<Text>();
             }
         }
 
         public void RenderEmpty()
         {
-            entityImage.enabled = false;
-            HPBack.enabled = false;
-            HPFront.enabled = false;
-            HPText.enabled = false;
+            _entityImage.enabled = false;
+            _hpBack.enabled = false;
+            _hpFront.enabled = false;
+            _hpText.enabled = false;
         }
 
-        public void Render(EntityBase entity)
+        public void RenderEntity(EntityBase entity)
         {
-            entityImage.enabled = true;
+            _entityImage.enabled = true;
 
             if (entity.TextureName != "")
             {
                 var sprite = Resources.Load<Sprite>(entity.TextureName);
-                entityImage.sprite = sprite;
+                _entityImage.sprite = sprite;
+                if (entity.Facing == EntityFacing.LEFT)
+                {
+                    _entityImage.transform.localScale = new Vector3(-1f, 1f, 1f);;
+                }
+                else
+                {
+                    _entityImage.transform.localScale = new Vector3(1f, 1f, 1f);;
+                }
             }
 
-            RenderHPBar(entity);
+            RenderHpBar(entity);
         }
         
-        public void RenderHPBar(EntityBase entity)
+        public void RenderHpBar(EntityBase entity)
         {
-            HPBack.enabled = true;
-            HPFront.enabled = true;
-            HPText.enabled = true;
+            _hpBack.enabled = true;
+            _hpFront.enabled = true;
+            _hpText.enabled = true;
             
-            HPText.text = entity.HP + "/" + entity.MaxHP;
-            var newWidth = HPBack.rectTransform.rect.width * entity.HP / entity.MaxHP;
-            HPFront.rectTransform.sizeDelta = new Vector2(newWidth, HPFront.rectTransform.sizeDelta.y);
+            _hpText.text = entity.HP + "/" + entity.MaxHP;
+            var newWidth = _hpBack.rectTransform.rect.width * entity.HP / entity.MaxHP;
+            _hpFront.rectTransform.sizeDelta = new Vector2(newWidth, _hpFront.rectTransform.sizeDelta.y);
         }
     }
 }
