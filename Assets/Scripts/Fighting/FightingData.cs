@@ -16,7 +16,7 @@ namespace Fighting
         {
             FightingData fightingData = new();
             fightingData.CurrentCost = 1;
-            fightingData.MaxCost = playerData.maxCost;
+            fightingData.MaxCost = playerData.MaxCost;
             // fightingData.CurrentDeck = playerData.DefaultDeck.CardList;
             return fightingData;
         }

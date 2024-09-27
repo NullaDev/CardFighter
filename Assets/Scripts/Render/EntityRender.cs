@@ -54,7 +54,7 @@ namespace Render
             RenderHpBar(entity);
         }
         
-        public void RenderHpBar(EntityBase entity)
+        private void RenderHpBar(EntityBase entity)
         {
             _hpBack.enabled = true;
             _hpFront.enabled = true;

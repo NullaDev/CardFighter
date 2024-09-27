@@ -13,6 +13,11 @@ namespace Card
             this.PlayerClass = playerClass;
         }
 
+        public void AddPrototype(CardPrototype prototype)
+        {
+            this.CardList.Add(new CardInstance(prototype));
+        }
+
         public static Deck FromFile()
         {
             // TODO parse json

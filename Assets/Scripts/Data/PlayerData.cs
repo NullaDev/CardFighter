@@ -10,14 +10,13 @@ namespace Data
     {
         public static PlayerData Instance;
 
-        public PlayerClass PlayerClass;
-        public Deck DefaultDeck;
-        
-        public int HP;
-        public int maxHP;
-        public int maxCost;
+        public PlayerClass PlayerClass { get; set; }
+        public int Hp { get; set; }
+        public int MaxHp { get; set; }
+        public int MaxCost { get; set; }
 
-        public int gold;
+        public int InGameGold { get; set; }
+        public Deck DefaultDeck;
 
         void Start()
         {
@@ -39,11 +38,6 @@ namespace Data
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            
-            // TODO remove hard code
-            this.PlayerClass = PlayerClass.FIGHTER;
-            this.maxHP = this.HP = 10;
-            this.maxCost = 5;
         }
         
         private void LoadFromFile()

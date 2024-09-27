@@ -1,3 +1,4 @@
+using Card;
 using Data;
 using GameLogic;
 using Render;
@@ -7,13 +8,23 @@ namespace Fighting
 {
     public class FightingControl : MonoBehaviour
     {
-        public GameObject Render;
+        public GameObject render;
         private Map _map;
         private FightingData _fightingData;
 
         void Start()
         {
             var playerData = PlayerData.Instance;
+                        
+            // TODO remove hard code
+            playerData.PlayerClass = PlayerClass.FIGHTER;
+            playerData.MaxHp = playerData.Hp = 10;
+            playerData.MaxCost = 5;
+            
+            playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("move"));
+            playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("punch"));
+            playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("turn_back"));
+            
             this._fightingData = FightingData.FromPlayerData(playerData);
 
             // TODO remove hard code of loading stage
@@ -23,10 +34,10 @@ namespace Fighting
             Debug.Log("Mob number:" + config.Mobs.Count);
             this._map = new Map(config, playerData);
             
-            var uiRender = Render.GetComponent<UIRender>();
+            var uiRender = render.GetComponent<UIRender>();
             uiRender.RenderTurn(0);
 
-            var mapRender = Render.GetComponent<MapRender>();
+            var mapRender = render.GetComponent<MapRender>();
             mapRender.RenderMap(this._map);
             mapRender.RenderEntities(this._map);
         }
@@ -41,11 +52,17 @@ namespace Fighting
             this._fightingData.CurrentTurn += 1;
             this._map.SpawnMobsAtTurn(this._fightingData.CurrentTurn);
             
-            var uiRender = Render.GetComponent<UIRender>();
+            var uiRender = render.GetComponent<UIRender>();
             uiRender.RenderTurn(this._fightingData.CurrentTurn);
             
-            var mapRender = Render.GetComponent<MapRender>();
+            var mapRender = render.GetComponent<MapRender>();
             mapRender.RenderEntities(this._map);
+        }
+
+        public void PlayerUseCard(CardInstance card)
+        {
+            card.Effects.ForEach(effect=>effect(this._map));
+            NextTurn();
         }
 
         public void PlayerTurnBack()
@@ -59,7 +76,7 @@ namespace Fighting
         {
             var playerData = PlayerData.Instance;
             var player = this._map.GetPlayerFromMap();
-            playerData.HP = player.HP;
+            playerData.Hp = player.HP;
         }
     }
 }

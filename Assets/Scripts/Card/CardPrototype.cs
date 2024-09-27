@@ -7,15 +7,18 @@ namespace Card
 {
     public class CardPrototype
     {
-        public string ID;
-        public string Name;
-        public string Desc;
-        public int Cost;
-        public List<string> Effects;
+        public string ID { get; set; }
+        public string Name { get; set; }
+        public string Desc { get; set; }
+        public int Cost { get; set; }
+        public List<CardBehavior> Behaviors;
         
         public static CardPrototype CreateFromJson(string jsonString)
         {
-            return JsonConvert.DeserializeObject<CardPrototype>(jsonString);
+            var settings = new JsonSerializerSettings();
+            settings.Converters.Add(new BehaviorConverter());
+            
+            return JsonConvert.DeserializeObject<CardPrototype>(jsonString, settings);
         }
     }
 }
