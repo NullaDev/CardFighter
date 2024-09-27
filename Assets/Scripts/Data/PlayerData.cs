@@ -13,6 +13,7 @@ namespace Data
         public PlayerClass PlayerClass { get; set; }
         public int Hp { get; set; }
         public int MaxHp { get; set; }
+        public int InitialCost { get; set; }
         public int MaxCost { get; set; }
 
         public int InGameGold { get; set; }

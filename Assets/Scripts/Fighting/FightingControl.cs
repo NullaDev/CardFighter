@@ -19,8 +19,10 @@ namespace Fighting
             // TODO remove hard code
             playerData.PlayerClass = PlayerClass.FIGHTER;
             playerData.MaxHp = playerData.Hp = 10;
+            playerData.InitialCost = 1;
             playerData.MaxCost = 5;
-            
+
+            playerData.DefaultDeck = new Deck(playerData.PlayerClass);
             playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("move"));
             playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("punch"));
             playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("turn_back"));

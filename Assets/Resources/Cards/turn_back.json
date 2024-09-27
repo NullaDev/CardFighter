@@ -3,7 +3,7 @@
   "Name": "转身",
   "Desc": "反转玩家当前方向",
   "Cost": 0,
-  "Effects": [
+  "Behaviors": [
     { "Type": "turn_back" }
   ]
 }

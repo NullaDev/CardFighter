@@ -4,11 +4,11 @@ namespace GameLogic
 {
     public class EnemyConfig
     {
-        public int AppearTurn;
-        public int AppearPos;
-        public string Name;
-        public string TextureName;
-        public int HP;
+        public int AppearTurn { get; set; }
+        public int AppearPos { get; set; }
+        public string Name { get; set; }
+        public string TextureName { get; set; }
+        public int HP { get; set; }
 
         public Enemy ToEnemyEntity()
         {

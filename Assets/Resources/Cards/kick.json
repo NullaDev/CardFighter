@@ -3,7 +3,7 @@
   "Name": "踹你一脚",
   "Desc": "对1格内的敌人造成2点伤害，并击飞最多1格",
   "Cost": 2,
-  "Effects": [
+  "Behaviors": [
     { "Type": "damage", "Value": 2, "RangeMin": 1, "RangeMax": 1, "Aoe": false, "KnockBack": 1 }
   ]
 }

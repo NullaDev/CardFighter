@@ -52,7 +52,7 @@ namespace Data
 
         public CardPrototype Find(string cardName)
         {
-            return this.CardList.Find(c => c.Name.Equals(cardName));
+            return this.CardList.Find(c => c.ID.Equals(cardName));
         }
     }
 }

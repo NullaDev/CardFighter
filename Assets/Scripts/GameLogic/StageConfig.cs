@@ -7,10 +7,10 @@ namespace GameLogic
 {
     public class StageConfig
     {
-        public string ID;
-        public string Name;
-        public int Size;
-        public int PlayerSpawnPos;
+        public string ID { get; set; }
+        public string Name { get; set; }
+        public int Size { get; set; }
+        public int PlayerSpawnPos { get; set; }
         public List<EnemyConfig> Mobs;
         
         public static StageConfig CreateFromJson(string jsonString)

@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using UnityEngine;
 
 namespace Card
 {
@@ -15,8 +16,7 @@ namespace Card
         {
             var jsonObject = JObject.Load(reader);
             var type = jsonObject["Type"]?.ToString();
-
-            CardBehavior effect = type switch
+            CardBehavior behavior = type switch
             {
                 "damage" => new DamageBehavior(),
                 "turn_back" => new TurnBackBehavior(),
@@ -24,8 +24,8 @@ namespace Card
                 _ => throw new Exception("Unknown effect type")
             };
 
-            serializer.Populate(jsonObject.CreateReader(), effect);
-            return effect;
+            serializer.Populate(jsonObject.CreateReader(), behavior);
+            return behavior;
         }
 
         public override bool CanConvert(Type objectType)

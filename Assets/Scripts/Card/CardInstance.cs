@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fighting;
+using UnityEngine;
 
 namespace Card
 {
@@ -14,7 +15,6 @@ namespace Card
 
         public CardInstance(CardPrototype prototype)
         {
-            CardPrototype prototype1;
             this._prototype = prototype;
             this.CurrentCost = this._prototype.Cost;
             prototype.Behaviors.ForEach(b=>this.Effects.Add(b.Execute()));

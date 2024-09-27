@@ -3,7 +3,7 @@
   "Name": "前进",
   "Desc": "前进1格",
   "Cost": 1,
-  "Effects": [
+  "Behaviors": [
     { "Type": "move_forward", "Value": 1 }
   ]
 }
