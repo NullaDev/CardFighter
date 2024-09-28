@@ -16,7 +16,7 @@ namespace Fighting
         {
             var playerData = PlayerData.Instance;
                         
-            // TODO remove hard code
+            // TODO remove hard code of initializing player data
             playerData.PlayerClass = PlayerClass.FIGHTER;
             playerData.MaxHp = playerData.Hp = 10;
             playerData.InitialCost = 1;
@@ -38,10 +38,14 @@ namespace Fighting
             
             var uiRender = render.GetComponent<UIRender>();
             uiRender.RenderTurn(0);
+            uiRender.RenderCost(this._fightingData.CurrentCost, this._fightingData.MaxCost);
 
             var mapRender = render.GetComponent<MapRender>();
             mapRender.RenderMap(this._map);
             mapRender.RenderEntities(this._map);
+
+            var playerCardsRender = render.GetComponent<PlayerCardsRender>();
+            playerCardsRender.RenderCards(this._fightingData.CurrentDeck);
         }
 
         void Update()
@@ -54,8 +58,11 @@ namespace Fighting
             this._fightingData.CurrentTurn += 1;
             this._map.SpawnMobsAtTurn(this._fightingData.CurrentTurn);
             
+            this._fightingData.AddCost(1);
+            
             var uiRender = render.GetComponent<UIRender>();
             uiRender.RenderTurn(this._fightingData.CurrentTurn);
+            uiRender.RenderCost(this._fightingData.CurrentCost, this._fightingData.MaxCost);
             
             var mapRender = render.GetComponent<MapRender>();
             mapRender.RenderEntities(this._map);
@@ -64,13 +71,7 @@ namespace Fighting
         public void PlayerUseCard(CardInstance card)
         {
             card.Effects.ForEach(effect=>effect(this._map));
-            NextTurn();
-        }
-
-        public void PlayerTurnBack()
-        {
-            var player = this._map.GetPlayerFromMap();
-            player.Facing = player.Facing == EntityFacing.LEFT ? EntityFacing.RIGHT : EntityFacing.LEFT;
+            this._fightingData.CurrentCost -= card.CurrentCost;
             NextTurn();
         }
         

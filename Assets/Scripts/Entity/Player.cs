@@ -18,11 +18,6 @@ namespace Entity
                 // TODO
             }
         }
-
-        public override void UseCard(CardInstance card, Map map)
-        {
-            // TODO
-        }
         
     }
 }

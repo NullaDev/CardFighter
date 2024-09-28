@@ -1,6 +1,7 @@
 ﻿{
   "ID": "punch",
   "Name": "给你一拳",
+  "TextureName": "Arts/Cards/card1",
   "Desc": "对1格内的敌人造成1点伤害",
   "Cost": 1,
   "Behaviors": [

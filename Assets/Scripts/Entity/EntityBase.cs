@@ -19,7 +19,5 @@ namespace Entity
         }
 
         public abstract void Hurt(EntityBase source, int value, Map map);
-        
-        public abstract void UseCard(CardInstance card, Map map);
     }
 }

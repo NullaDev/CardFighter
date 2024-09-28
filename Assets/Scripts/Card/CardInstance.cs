@@ -7,7 +7,7 @@ namespace Card
 {
     public class CardInstance
     {
-        private readonly CardPrototype _prototype;
+        public readonly CardPrototype Prototype;
         public readonly List<Action<Map>> Effects = new();
         
         public int CurrentCost;
@@ -15,8 +15,8 @@ namespace Card
 
         public CardInstance(CardPrototype prototype)
         {
-            this._prototype = prototype;
-            this.CurrentCost = this._prototype.Cost;
+            this.Prototype = prototype;
+            this.CurrentCost = this.Prototype.Cost;
             prototype.Behaviors.ForEach(b=>this.Effects.Add(b.Execute()));
         }
     }

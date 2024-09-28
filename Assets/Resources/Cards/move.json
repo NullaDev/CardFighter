@@ -1,6 +1,7 @@
 ﻿{
   "ID": "move",
   "Name": "前进",
+  "TextureName": "",
   "Desc": "前进1格",
   "Cost": 1,
   "Behaviors": [

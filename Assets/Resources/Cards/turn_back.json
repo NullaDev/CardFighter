@@ -1,6 +1,7 @@
 ﻿{
   "ID": "turn_back",
   "Name": "转身",
+  "TextureName": "",
   "Desc": "反转玩家当前方向",
   "Cost": 0,
   "Behaviors": [

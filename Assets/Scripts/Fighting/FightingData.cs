@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Card;
 using Data;
 
@@ -19,6 +20,11 @@ namespace Fighting
             fightingData.MaxCost = playerData.MaxCost;
             fightingData.CurrentDeck = playerData.DefaultDeck.CardList;
             return fightingData;
+        }
+
+        public void AddCost(int value)
+        {
+            this.CurrentCost = Math.Min(this.CurrentCost+value, this.MaxCost);
         }
 
     }
