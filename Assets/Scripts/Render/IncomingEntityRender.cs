@@ -29,7 +29,7 @@ namespace Render
 
             if (entity.TextureName != "")
             {
-                var sprite = Resources.Load<Sprite>(entity.TextureName);
+                var sprite = Resources.Load<Sprite>("Arts/Entities/" + entity.TextureName);
                 _entityImage.sprite = sprite;
             }
         }
