@@ -8,7 +8,7 @@ namespace Card
     public class CardInstance
     {
         public readonly CardPrototype Prototype;
-        public readonly List<Action<Map>> Effects = new();
+        public readonly List<Action<FightingControl>> Effects = new();
         
         public int CurrentCost;
         public List<Action<CardInstance>> Buffs = new();

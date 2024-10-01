@@ -1,4 +1,6 @@
-﻿using Entity;
+﻿using System;
+using Entity;
+using Random = UnityEngine.Random;
 
 namespace GameLogic
 {
@@ -6,6 +8,7 @@ namespace GameLogic
     {
         public int AppearTurn { get; set; }
         public int AppearPos { get; set; }
+        public string AppearFacing { get; set; }
         public string Name { get; set; }
         public string TextureName { get; set; }
         public int HP { get; set; }
@@ -15,7 +18,14 @@ namespace GameLogic
             return new Enemy(HP)
             {
                 Name = Name,
-                TextureName = TextureName
+                TextureName = "Arts/Entities/" + TextureName,
+                Facing = AppearFacing switch
+                {
+                    "right" => EntityFacing.RIGHT,
+                    "left" => EntityFacing.LEFT,
+                    "random" => Random.Range(0, 2) == 0 ? EntityFacing.RIGHT : EntityFacing.LEFT,
+                    _ => throw new Exception("Unknown direction")
+                }
             };
         }
     }

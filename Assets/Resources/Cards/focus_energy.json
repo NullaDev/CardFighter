@@ -1,0 +1,10 @@
+﻿{
+  "ID": "focus_energy",
+  "Name": "聚气",
+  "TextureName": "",
+  "Desc": "回复1点能量",
+  "Cost": 0,
+  "Behaviors": [
+    { "Type": "add_cost", "Value": 1 }
+  ]
+}

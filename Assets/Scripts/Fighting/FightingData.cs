@@ -22,7 +22,7 @@ namespace Fighting
             return fightingData;
         }
 
-        public void AddCost(int value)
+        public void TryAddCost(int value)
         {
             this.CurrentCost = Math.Min(this.CurrentCost+value, this.MaxCost);
         }

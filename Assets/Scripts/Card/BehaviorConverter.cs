@@ -21,6 +21,7 @@ namespace Card
                 "damage" => new DamageBehavior(),
                 "turn_back" => new TurnBackBehavior(),
                 "move_forward" => new MoveForwardBehavior(),
+                "add_cost" => new AddCostBehavior(),
                 _ => throw new Exception("Unknown effect type")
             };
 

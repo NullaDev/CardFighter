@@ -3,19 +3,30 @@
   "Name": "Test Stage",
   "Size": 7,
   "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "left",
   "Mobs": [
     {
       "AppearTurn": 0,
       "AppearPos": 3,
+      "AppearFacing": "left",
       "Name": "mob1",
-      "TextureName": "mob1",
+      "TextureName": "enemy",
       "HP": 5
     },
     {
-      "AppearTurn": 1,
+      "AppearTurn": 2,
       "AppearPos": 4,
+      "AppearFacing": "left",
       "Name": "mob2",
-      "TextureName": "mob2",
+      "TextureName": "enemy1",
+      "HP": 5
+    },
+    {
+      "AppearTurn": 4,
+      "AppearPos": 2,
+      "AppearFacing": "right",
+      "Name": "mob3",
+      "TextureName": "enemy2",
       "HP": 5
     }
   ]

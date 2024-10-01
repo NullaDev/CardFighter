@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Data;
 using Entity;
 using GameLogic;
-using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Fighting
 {
@@ -16,7 +18,7 @@ namespace Fighting
         {
             this._config = config;
             this.SetSize(config.Size);
-            this.InitializePlayer(pData, config.PlayerSpawnPos);
+            this.InitializePlayer(pData, config.PlayerSpawnPos, config.PlayerSpawnFacing);
             this.SpawnMobsAtTurn(0);
         }
 
@@ -26,9 +28,16 @@ namespace Fighting
             this.ListEntities = new EntityBase[size];
         }
 
-        public void InitializePlayer(PlayerData data, int pos)
+        public void InitializePlayer(PlayerData data, int pos, string direc)
         {
-            Player player = new Player(data.MaxHp);
+            var player = new Player(data.MaxHp);
+            player.Facing = direc switch
+            {
+                "right" => EntityFacing.RIGHT,
+                "left" => EntityFacing.LEFT,
+                "random" => Random.Range(0, 2) == 0 ? EntityFacing.RIGHT : EntityFacing.LEFT,
+                _ => throw new Exception("Unknown direction")
+            };
             this.ListEntities[pos] = player;
         }
 
@@ -69,11 +78,31 @@ namespace Fighting
 
         public void SpawnMobsAtTurn(int turn)
         {
+            var mobsToSpawn = this._config.Mobs
+                .Where(mob => mob.AppearTurn <= turn)
+                .GroupBy(mob => mob.AppearPos)
+                .Select(group => group.First())
+                .ToList();
+            
             this._config.Mobs.RemoveAll(
                 mob => 
-                    mob.AppearTurn <= turn && 
+                    mobsToSpawn.Contains(mob) && 
                     this.AddEntityToMap(mob.ToEnemyEntity(), mob.AppearPos)
                 );
+        }
+
+        public EnemyConfig[] GetIncomingEntities(int turn)
+        {
+            var ie = new EnemyConfig[this.Size];
+            this._config.Mobs
+                .Where(m => m.AppearTurn <= turn + 1)
+                .GroupBy(mob => mob.AppearPos)
+                .Select(group => group.First())
+                .ToList()
+                .ForEach(
+                    m=>ie[m.AppearPos]=m
+                );
+            return ie;
         }
     }
 }

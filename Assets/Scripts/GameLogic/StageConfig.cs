@@ -11,6 +11,7 @@ namespace GameLogic
         public string Name { get; set; }
         public int Size { get; set; }
         public int PlayerSpawnPos { get; set; }
+        public string PlayerSpawnFacing { get; set; }
         public List<EnemyConfig> Mobs;
         
         public static StageConfig CreateFromJson(string jsonString)

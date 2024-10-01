@@ -1,22 +1,24 @@
 ﻿using System;
 using Fighting;
 using GameLogic;
+using UnityEngine;
 
 namespace Card
 {
     public abstract class CardBehavior
     {
         public string Type { get; set; }
-        public abstract Action<Map> Execute();
+        public abstract Action<FightingControl> Execute();
     }
     
     public class MoveForwardBehavior : CardBehavior
     {
         public int Value { get; set; }
-        public override Action<Map> Execute()
+        public override Action<FightingControl> Execute()
         {
-            return map =>
+            return fc =>
             {
+                var map = fc.Map;
                 var player = map.GetPlayerFromMap();
                 var playerPos = map.GetPlayerIndex();
 
@@ -26,11 +28,12 @@ namespace Card
 
                 while (stepsTaken < Value)
                 {
-                    if (playerNewPos <= 0 || playerNewPos >= map.Size-1 || map.ListEntities[playerNewPos+moveStep] != null)
+                    var tempPos = playerNewPos + moveStep;
+                    if (tempPos < 0 || tempPos > map.Size-1 || map.ListEntities[tempPos] != null)
                     {
                         break;
                     }
-                    playerNewPos += moveStep;
+                    playerNewPos = tempPos;
                     stepsTaken++;
                 }
 
@@ -45,10 +48,11 @@ namespace Card
     
     public class TurnBackBehavior : CardBehavior
     {
-        public override Action<Map> Execute()
+        public override Action<FightingControl> Execute()
         {
-            return map =>
+            return fc =>
             {
+                var map = fc.Map;
                 var player = map.GetPlayerFromMap();
                 player.Facing = player.Facing == EntityFacing.LEFT ? EntityFacing.RIGHT : EntityFacing.LEFT;
             };
@@ -62,15 +66,16 @@ namespace Card
         public int RangeMax { get; set; }
         public bool Aoe { get; set; }
         public int KnockBack { get; set; }
-        public override Action<Map> Execute()
+        public override Action<FightingControl> Execute()
         {
-            return map =>
+            return fc =>
             {
+                var map = fc.Map;
                 var player = map.GetPlayerFromMap();
                 var playerPos = map.GetPlayerIndex();
                 
-                var minPos = player.Facing == EntityFacing.LEFT ? playerPos + RangeMin : playerPos - RangeMin;
-                var maxPos = player.Facing == EntityFacing.LEFT ? playerPos + RangeMax : playerPos - RangeMax;
+                var minPos = player.Facing == EntityFacing.RIGHT ? playerPos + RangeMin : playerPos - RangeMin;
+                var maxPos = player.Facing == EntityFacing.RIGHT ? playerPos + RangeMax : playerPos - RangeMax;
                 
                 minPos = Math.Clamp(minPos, 0, map.Size - 1);
                 maxPos = Math.Clamp(maxPos, 0, map.Size - 1);
@@ -109,6 +114,18 @@ namespace Card
                     if (curPos==maxPos) break;
                     curPos += direc;
                 }
+            };
+        }
+    }
+    
+    public class AddCostBehavior : CardBehavior
+    {
+        public int Value { get; set; }
+        public override Action<FightingControl> Execute()
+        {
+            return fc =>
+            {
+                fc.FightingData.TryAddCost(Value);
             };
         }
     }
