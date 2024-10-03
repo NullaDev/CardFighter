@@ -4,30 +4,36 @@
   "Size": 7,
   "PlayerSpawnPos": 1,
   "PlayerSpawnFacing": "left",
-  "Mobs": [
+  "Entities": [
     {
+      "Type": "passive",
       "AppearTurn": 0,
       "AppearPos": 3,
-      "AppearFacing": "left",
-      "Name": "mob1",
-      "TextureName": "enemy",
+      "Name": "bucket1",
+      "TextureName": "bucket",
       "HP": 5
     },
     {
+      "Type": "simple_enemy",
       "AppearTurn": 2,
       "AppearPos": 4,
       "AppearFacing": "left",
-      "Name": "mob2",
+      "Name": "mob1",
       "TextureName": "enemy1",
-      "HP": 5
+      "HP": 5,
+      "Card": "punch"
     },
     {
+      "Type": "elite_enemy",
       "AppearTurn": 4,
       "AppearPos": 2,
       "AppearFacing": "right",
-      "Name": "mob3",
+      "Name": "mob2",
       "TextureName": "enemy2",
-      "HP": 5
+      "HP": 5,
+      "Cards": [
+        "punch", "kick"
+      ]
     }
   ]
 }

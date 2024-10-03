@@ -13,7 +13,7 @@ namespace Card
     
     public class MoveForwardBehavior : CardBehavior
     {
-        public int Value { get; set; }
+        public int Value { get; set; } = 1;
         public override Action<FightingControl> Execute()
         {
             return fc =>
@@ -64,8 +64,8 @@ namespace Card
         public int Value { get; set; }
         public int RangeMin { get; set; }
         public int RangeMax { get; set; }
-        public bool Aoe { get; set; }
-        public int KnockBack { get; set; }
+        public bool Aoe { get; set; } = false;
+        public int KnockBack { get; set; } = 0;
         public override Action<FightingControl> Execute()
         {
             return fc =>

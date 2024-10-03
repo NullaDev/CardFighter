@@ -1,10 +1,12 @@
-﻿using Card;
+﻿using System.Collections.Generic;
+using Card;
 using Fighting;
 
 namespace Entity
 {
-    public class Enemy: EntityBase
+    public abstract class Enemy: EntityBase
     {
+        public CardInstance NextTurnCard;
         public Enemy(int hp) : base(hp)
         {
         }
@@ -15,13 +17,35 @@ namespace Entity
             if (this.HP <= 0)
             {
                 map.RemoveEntityFromMap(this);
-                // TODO
             }
         }
 
-        public void UseCard(CardInstance card, Map map)
+        public abstract void ThinkingNextTurnCard(Map map);
+    }
+
+    public class SimpleEnemy : Enemy
+    {
+        public CardInstance HeldCard;
+        public SimpleEnemy(int hp) : base(hp)
         {
-            // TODO
+        }
+
+        public override void ThinkingNextTurnCard(Map map)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+    
+    public class EliteEnemy : Enemy
+    {
+        public List<CardInstance> HeldCards;
+        public EliteEnemy(int hp) : base(hp)
+        {
+        }
+
+        public override void ThinkingNextTurnCard(Map map)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

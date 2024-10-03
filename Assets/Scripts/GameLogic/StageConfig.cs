@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Card;
 using UnityEngine;
 using Newtonsoft.Json;
 
@@ -12,11 +11,14 @@ namespace GameLogic
         public int Size { get; set; }
         public int PlayerSpawnPos { get; set; }
         public string PlayerSpawnFacing { get; set; }
-        public List<EnemyConfig> Mobs;
+        public List<EntityConfig> Entities;
         
         public static StageConfig CreateFromJson(string jsonString)
         {
-            return JsonConvert.DeserializeObject<StageConfig>(jsonString);
+            var settings = new JsonSerializerSettings();
+            settings.Converters.Add(new EntityConverter());
+            
+            return JsonConvert.DeserializeObject<StageConfig>(jsonString, settings);
         }
     }
     

@@ -78,23 +78,23 @@ namespace Fighting
 
         public void SpawnMobsAtTurn(int turn)
         {
-            var mobsToSpawn = this._config.Mobs
+            var mobsToSpawn = this._config.Entities
                 .Where(mob => mob.AppearTurn <= turn)
                 .GroupBy(mob => mob.AppearPos)
                 .Select(group => group.First())
                 .ToList();
             
-            this._config.Mobs.RemoveAll(
-                mob => 
-                    mobsToSpawn.Contains(mob) && 
-                    this.AddEntityToMap(mob.ToEnemyEntity(), mob.AppearPos)
+            this._config.Entities.RemoveAll(
+                entity => 
+                    mobsToSpawn.Contains(entity) && 
+                    this.AddEntityToMap(entity.GenEntity(), entity.AppearPos)
                 );
         }
 
-        public EnemyConfig[] GetIncomingEntities(int turn)
+        public EntityConfig[] GetIncomingEntities(int turn)
         {
-            var ie = new EnemyConfig[this.Size];
-            this._config.Mobs
+            var ie = new EntityConfig[this.Size];
+            this._config.Entities
                 .Where(m => m.AppearTurn <= turn + 1)
                 .GroupBy(mob => mob.AppearPos)
                 .Select(group => group.First())

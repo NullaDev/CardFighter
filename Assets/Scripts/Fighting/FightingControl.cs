@@ -37,7 +37,7 @@ namespace Fighting
             var stage = Resources.Load<TextAsset>("Stages/teststage");
             var config = StageConfig.CreateFromJson(stage.text);
             Debug.Log("Loading stage config:" + stage.text);
-            Debug.Log("Mob number:" + config.Mobs.Count);
+            Debug.Log("Total entity number:" + config.Entities.Count);
             this.Map = new Map(config, playerData);
             
             var uiRender = render.GetComponent<UIRender>();

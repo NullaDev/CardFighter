@@ -22,7 +22,7 @@ namespace Render
             _downArrow.enabled = false;
         }
 
-        public void RenderEntity(EnemyConfig entity)
+        public void RenderEntity(EntityConfig entity)
         {
             _entityImage.enabled = true;
             _downArrow.enabled = true;
