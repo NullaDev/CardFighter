@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Entity;
 using Fighting;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace Card
     public class CardInstance
     {
         public readonly CardPrototype Prototype;
-        public readonly List<Action<FightingControl>> Effects = new();
+        public readonly List<Action<FightingControl, EntityBase>> Effects = new();
         
         public int CurrentCost;
         public List<Action<CardInstance>> Buffs = new();

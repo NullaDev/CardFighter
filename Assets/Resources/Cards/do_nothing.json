@@ -1,0 +1,10 @@
+﻿{
+  "ID": "do_nothing",
+  "Name": "什么也不做",
+  "TextureName": "",
+  "Desc": "什么也不做。",
+  "Cost": 0,
+  "Behaviors": [
+
+  ]
+}

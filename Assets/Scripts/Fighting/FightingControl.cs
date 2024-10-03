@@ -1,5 +1,6 @@
 using Card;
 using Data;
+using Entity;
 using GameLogic;
 using Render;
 using UnityEngine;
@@ -34,23 +35,13 @@ namespace Fighting
             this.FightingData = FightingData.FromPlayerData(playerData);
 
             // TODO remove hard code of loading stage
-            var stage = Resources.Load<TextAsset>("Stages/teststage");
+            var stage = Resources.Load<TextAsset>("Stages/tutorial1");
             var config = StageConfig.CreateFromJson(stage.text);
             Debug.Log("Loading stage config:" + stage.text);
             Debug.Log("Total entity number:" + config.Entities.Count);
             this.Map = new Map(config, playerData);
-            
-            var uiRender = render.GetComponent<UIRender>();
-            uiRender.RenderTurn(0);
-            uiRender.RenderCost(this.FightingData.CurrentCost, this.FightingData.MaxCost);
 
-            var mapRender = render.GetComponent<MapRender>();
-            mapRender.RenderMap(this.Map);
-            mapRender.RenderEntities(this.Map);
-            mapRender.RenderIncomingEntities(this.Map, this.FightingData.CurrentTurn);
-
-            var playerCardsRender = render.GetComponent<PlayerCardsRender>();
-            playerCardsRender.RenderCards(this.FightingData.CurrentDeck);
+            Rerender();
         }
 
         void Update()
@@ -58,20 +49,19 @@ namespace Fighting
         
         }
 
-        public void NextTurn()
+        void Rerender()
         {
-            this.FightingData.CurrentTurn += 1;
-            this.Map.SpawnMobsAtTurn(this.FightingData.CurrentTurn);
-            
-            this.FightingData.TryAddCost(1);
-            
-            var uiRender = render.GetComponent<UIRender>();
-            uiRender.RenderTurn(this.FightingData.CurrentTurn);
+            var uiRender = this.render.GetComponent<UIRender>();
+            uiRender.RenderTurn(0);
             uiRender.RenderCost(this.FightingData.CurrentCost, this.FightingData.MaxCost);
-            
-            var mapRender = render.GetComponent<MapRender>();
+
+            var mapRender = this.render.GetComponent<MapRender>();
+            mapRender.RenderMap(this.Map);
             mapRender.RenderEntities(this.Map);
             mapRender.RenderIncomingEntities(this.Map, this.FightingData.CurrentTurn);
+
+            var playerCardsRender = this.render.GetComponent<PlayerCardsRender>();
+            playerCardsRender.RenderCards(this.FightingData.CurrentDeck);
         }
 
         public void PlayerUseCard(CardInstance card)
@@ -79,8 +69,44 @@ namespace Fighting
             if (this.FightingData.CurrentCost < card.CurrentCost) return;
             
             this.FightingData.CurrentCost -= card.CurrentCost;
-            card.Effects.ForEach(effect=>effect(this));
+            card.Effects.ForEach(effect=>effect(this, this.Map.GetPlayerFromMap()));
+            EndTurn();
+        }
+
+        public void EndTurn()
+        {
             NextTurn();
+
+            var enemyRemain = false;
+            for (var i = 0; i < this.Map.Size; i++)
+            {
+                var entity = this.Map.ListEntities[i];
+                if (entity is Enemy enemy)
+                {
+                    enemy.NextTurnCard?.Effects.ForEach(effect=>effect(this, enemy));
+                    enemyRemain = true;
+                }
+            }
+
+            if (!enemyRemain)
+            {
+                if (!this.Map.AnyIncomingEnemyRemain())
+                {
+                    Debug.Log("win");
+                    //TODO win
+                }
+            }
+            
+            this.Map.EntitiesThink();
+            Rerender();
+        }
+        
+        public void NextTurn()
+        {
+            this.FightingData.CurrentTurn += 1;
+            this.Map.SpawnEntitiesAtTurn(this.FightingData.CurrentTurn);
+            
+            this.FightingData.TryAddCost(1);
         }
         
         public void UpdatePlayerData()

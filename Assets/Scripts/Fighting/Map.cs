@@ -4,6 +4,7 @@ using System.Linq;
 using Data;
 using Entity;
 using GameLogic;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Fighting
@@ -19,7 +20,8 @@ namespace Fighting
             this._config = config;
             this.SetSize(config.Size);
             this.InitializePlayer(pData, config.PlayerSpawnPos, config.PlayerSpawnFacing);
-            this.SpawnMobsAtTurn(0);
+            this.SpawnEntitiesAtTurn(0);
+            this.EntitiesThink();
         }
 
         public void SetSize(int size)
@@ -48,7 +50,12 @@ namespace Fighting
         
         public int GetPlayerIndex()
         {
-            return Array.FindIndex(this.ListEntities, entity => entity is Player);
+            return Array.FindIndex(this.ListEntities, e => e is Player);
+        }
+        
+        public int GetEntityIndex(EntityBase entity)
+        {
+            return Array.FindIndex(this.ListEntities, e => e == entity);
         }
 
         public bool AddEntityToMap(EntityBase entity, int pos)
@@ -56,9 +63,9 @@ namespace Fighting
             if (this.ListEntities[pos] == null)
             {
                 this.ListEntities[pos] = entity;
-                if (entity is Enemy)
+                if (entity is Enemy { Facing: EntityFacing.DEFAULT } enemy)
                 {
-                    entity.Facing = FacingHelper.GetFacing(GetPlayerIndex() - pos);
+                    enemy.Facing = FacingHelper.GetFacing(GetPlayerIndex() - pos);
                 }
                 return true;
             }
@@ -76,7 +83,7 @@ namespace Fighting
             return false;
         }
 
-        public void SpawnMobsAtTurn(int turn)
+        public void SpawnEntitiesAtTurn(int turn)
         {
             var mobsToSpawn = this._config.Entities
                 .Where(mob => mob.AppearTurn <= turn)
@@ -103,6 +110,23 @@ namespace Fighting
                     m=>ie[m.AppearPos]=m
                 );
             return ie;
+        }
+        
+        public void EntitiesThink()
+        {
+            for (var i = 0; i < this.Size; i++)
+            {
+                var entity = this.ListEntities[i];
+                if (entity is Enemy enemy)
+                {
+                    enemy.NextTurnCard = enemy.ThinkNextTurnCard(this);
+                }
+            }
+        }
+
+        public bool AnyIncomingEnemyRemain()
+        {
+            return this._config.Entities.Any(e=>e.Type is "simple_enemy" or "elite_enemy");
         }
     }
 }

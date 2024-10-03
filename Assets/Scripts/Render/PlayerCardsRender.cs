@@ -19,7 +19,7 @@ namespace Render
             {
                 GameObject.Destroy(card);
             }
-            _listCards = new();
+            _listCards.Clear();
             
             foreach (var cardInstance in playerCardsList)
             {
@@ -29,7 +29,7 @@ namespace Render
                 var cardInteract = card.GetComponent<CardInteract>();
                 cardInteract.CardInstance = cardInstance;
                 
-                _listCards.Append(card);
+                _listCards.Add(card);
             }
         }
     }

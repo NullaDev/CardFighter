@@ -1,4 +1,5 @@
 ﻿using System;
+using Entity;
 using Fighting;
 using GameLogic;
 using UnityEngine;
@@ -8,39 +9,38 @@ namespace Card
     public abstract class CardBehavior
     {
         public string Type { get; set; }
-        public abstract Action<FightingControl> Execute();
+        public abstract Action<FightingControl, EntityBase> Execute();
     }
     
     public class MoveForwardBehavior : CardBehavior
     {
         public int Value { get; set; } = 1;
-        public override Action<FightingControl> Execute()
+        public override Action<FightingControl, EntityBase> Execute()
         {
-            return fc =>
+            return (fc, user) =>
             {
                 var map = fc.Map;
-                var player = map.GetPlayerFromMap();
-                var playerPos = map.GetPlayerIndex();
+                var pos = map.GetEntityIndex(user);
 
-                var playerNewPos = playerPos;
-                var moveStep = player.Facing == EntityFacing.LEFT ? -1 : 1;
+                var newPos = pos;
+                var moveStep = user.Facing == EntityFacing.LEFT ? -1 : 1;
                 var stepsTaken = 0;
 
                 while (stepsTaken < Value)
                 {
-                    var tempPos = playerNewPos + moveStep;
+                    var tempPos = newPos + moveStep;
                     if (tempPos < 0 || tempPos > map.Size-1 || map.ListEntities[tempPos] != null)
                     {
                         break;
                     }
-                    playerNewPos = tempPos;
+                    newPos = tempPos;
                     stepsTaken++;
                 }
 
-                if (playerPos != playerNewPos)
+                if (pos != newPos)
                 {
-                    map.ListEntities[playerNewPos] = player;
-                    map.ListEntities[playerPos] = null;
+                    map.ListEntities[newPos] = user;
+                    map.ListEntities[pos] = null;
                 }
             };
         }
@@ -48,13 +48,11 @@ namespace Card
     
     public class TurnBackBehavior : CardBehavior
     {
-        public override Action<FightingControl> Execute()
+        public override Action<FightingControl, EntityBase> Execute()
         {
-            return fc =>
+            return (fc, user) =>
             {
-                var map = fc.Map;
-                var player = map.GetPlayerFromMap();
-                player.Facing = player.Facing == EntityFacing.LEFT ? EntityFacing.RIGHT : EntityFacing.LEFT;
+                user.Facing = user.Facing == EntityFacing.LEFT ? EntityFacing.RIGHT : EntityFacing.LEFT;
             };
         }
     }
@@ -66,16 +64,15 @@ namespace Card
         public int RangeMax { get; set; }
         public bool Aoe { get; set; } = false;
         public int KnockBack { get; set; } = 0;
-        public override Action<FightingControl> Execute()
+        public override Action<FightingControl, EntityBase> Execute()
         {
-            return fc =>
+            return (fc, user) =>
             {
                 var map = fc.Map;
-                var player = map.GetPlayerFromMap();
-                var playerPos = map.GetPlayerIndex();
+                var pos = map.GetEntityIndex(user);
                 
-                var minPos = player.Facing == EntityFacing.RIGHT ? playerPos + RangeMin : playerPos - RangeMin;
-                var maxPos = player.Facing == EntityFacing.RIGHT ? playerPos + RangeMax : playerPos - RangeMax;
+                var minPos = user.Facing == EntityFacing.RIGHT ? pos + RangeMin : pos - RangeMin;
+                var maxPos = user.Facing == EntityFacing.RIGHT ? pos + RangeMax : pos - RangeMax;
                 
                 minPos = Math.Clamp(minPos, 0, map.Size - 1);
                 maxPos = Math.Clamp(maxPos, 0, map.Size - 1);
@@ -84,15 +81,15 @@ namespace Card
                 var direc = minPos >= maxPos ? -1 : 1;
                 while (true)
                 {
-                    if (curPos != playerPos && map.ListEntities[curPos] != null)
+                    if (curPos != pos && map.ListEntities[curPos] != null)
                     {
-                        map.ListEntities[curPos].Hurt(player, Value, map);
+                        map.ListEntities[curPos].Hurt(user, Value, map);
 
                         if (map.ListEntities[curPos] != null && KnockBack>0)
                         {
                             var enemyNewPos = curPos;
                             var stepsTaken = 0;
-                            var moveStep = Math.Sign(curPos-playerPos);
+                            var moveStep = Math.Sign(curPos-pos);
                             while (stepsTaken < KnockBack)
                             {
                                 if (enemyNewPos <= 0 || enemyNewPos >= map.Size-1 || map.ListEntities[enemyNewPos+moveStep] != null)
@@ -121,9 +118,9 @@ namespace Card
     public class AddCostBehavior : CardBehavior
     {
         public int Value { get; set; }
-        public override Action<FightingControl> Execute()
+        public override Action<FightingControl, EntityBase> Execute()
         {
-            return fc =>
+            return (fc, user) =>
             {
                 fc.FightingData.TryAddCost(Value);
             };

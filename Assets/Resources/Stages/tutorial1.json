@@ -1,0 +1,29 @@
+﻿{
+  "ID": "tutorial1",
+  "Name": "Tutorial1",
+  "Size": 3,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "left",
+  "Entities": [
+    {
+      "Type": "simple_enemy",
+      "AppearTurn": 0,
+      "AppearPos": 2,
+      "AppearFacing": "auto",
+      "Name": "mob1",
+      "TextureName": "enemy1",
+      "HP": 3,
+      "Card": "punch"
+    },
+    {
+      "Type": "simple_enemy",
+      "AppearTurn": 1,
+      "AppearPos": 1,
+      "AppearFacing": "right",
+      "Name": "mob2",
+      "TextureName": "enemy2",
+      "HP": 3,
+      "Card": "punch"
+    }
+  ]
+}

@@ -14,7 +14,6 @@ namespace GameLogic
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            Debug.Log("hello");
             var jsonObject = JObject.Load(reader);
             var type = jsonObject["Type"]?.ToString();
             EntityConfig entity = type switch
