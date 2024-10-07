@@ -52,7 +52,7 @@ namespace Fighting
         void Rerender()
         {
             var uiRender = this.render.GetComponent<UIRender>();
-            uiRender.RenderTurn(0);
+            uiRender.RenderTurn(this.FightingData.CurrentTurn);
             uiRender.RenderCost(this.FightingData.CurrentCost, this.FightingData.MaxCost);
 
             var mapRender = this.render.GetComponent<MapRender>();
