@@ -19,7 +19,7 @@ namespace Card
         {
             return (fc, user) =>
             {
-                var map = fc.Map;
+                var map = fc.BattleField;
                 var pos = map.GetEntityIndex(user);
 
                 var newPos = pos;
@@ -68,7 +68,7 @@ namespace Card
         {
             return (fc, user) =>
             {
-                var map = fc.Map;
+                var map = fc.BattleField;
                 var pos = map.GetEntityIndex(user);
                 
                 var minPos = user.Facing == EntityFacing.RIGHT ? pos + RangeMin : pos - RangeMin;

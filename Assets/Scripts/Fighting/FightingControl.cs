@@ -10,7 +10,7 @@ namespace Fighting
     public class FightingControl : MonoBehaviour
     {
         public GameObject render;
-        public Map Map { get; private set; }
+        public BattleField BattleField { get; private set; }
         public FightingData FightingData { get; private set; }
 
         void Start()
@@ -39,7 +39,7 @@ namespace Fighting
             var config = StageConfig.CreateFromJson(stage.text);
             Debug.Log("Loading stage config:" + stage.text);
             Debug.Log("Total entity number:" + config.Entities.Count);
-            this.Map = new Map(config, playerData);
+            this.BattleField = new BattleField(config, playerData);
 
             Rerender();
         }
@@ -56,9 +56,9 @@ namespace Fighting
             uiRender.RenderCost(this.FightingData.CurrentCost, this.FightingData.MaxCost);
 
             var mapRender = this.render.GetComponent<MapRender>();
-            mapRender.RenderMap(this.Map);
-            mapRender.RenderEntities(this.Map);
-            mapRender.RenderIncomingEntities(this.Map, this.FightingData.CurrentTurn);
+            mapRender.RenderMap(this.BattleField);
+            mapRender.RenderEntities(this.BattleField);
+            mapRender.RenderIncomingEntities(this.BattleField, this.FightingData.CurrentTurn);
 
             var playerCardsRender = this.render.GetComponent<PlayerCardsRender>();
             playerCardsRender.RenderCards(this.FightingData.CurrentDeck);
@@ -69,7 +69,7 @@ namespace Fighting
             if (this.FightingData.CurrentCost < card.CurrentCost) return;
             
             this.FightingData.CurrentCost -= card.CurrentCost;
-            card.Effects.ForEach(effect=>effect(this, this.Map.GetPlayerFromMap()));
+            card.Effects.ForEach(effect=>effect(this, this.BattleField.GetPlayerFromMap()));
             EndTurn();
         }
 
@@ -78,9 +78,9 @@ namespace Fighting
             NextTurn();
 
             var enemyRemain = false;
-            for (var i = 0; i < this.Map.Size; i++)
+            for (var i = 0; i < this.BattleField.Size; i++)
             {
-                var entity = this.Map.ListEntities[i];
+                var entity = this.BattleField.ListEntities[i];
                 if (entity is Enemy enemy)
                 {
                     enemy.NextTurnCard?.Effects.ForEach(effect=>effect(this, enemy));
@@ -90,21 +90,21 @@ namespace Fighting
 
             if (!enemyRemain)
             {
-                if (!this.Map.AnyIncomingEnemyRemain())
+                if (!this.BattleField.AnyIncomingEnemyRemain())
                 {
                     Debug.Log("win");
                     //TODO win
                 }
             }
             
-            this.Map.EntitiesThink();
+            this.BattleField.EntitiesThink();
             Rerender();
         }
         
         public void NextTurn()
         {
             this.FightingData.CurrentTurn += 1;
-            this.Map.SpawnEntitiesAtTurn(this.FightingData.CurrentTurn);
+            this.BattleField.SpawnEntitiesAtTurn(this.FightingData.CurrentTurn);
             
             this.FightingData.TryAddCost(1);
         }
@@ -112,7 +112,7 @@ namespace Fighting
         public void UpdatePlayerData()
         {
             var playerData = PlayerData.Instance;
-            var player = this.Map.GetPlayerFromMap();
+            var player = this.BattleField.GetPlayerFromMap();
             playerData.Hp = player.HP;
         }
     }

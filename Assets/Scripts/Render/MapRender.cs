@@ -18,44 +18,44 @@ namespace Render
         private GameObject[] _listEntities = {};
         private GameObject[] _listIncomingEntities = {};
 
-        public void RenderMap(Map map)
+        public void RenderMap(BattleField battleField)
         {
-            if (_listFloors.Length != map.Size)
+            if (_listFloors.Length != battleField.Size)
             {
                 foreach (var floor in _listFloors)
                 {
                     GameObject.Destroy(floor);
                 }
 
-                _listFloors = new GameObject[map.Size];
-                for (var i = 0; i < map.Size; i++)
+                _listFloors = new GameObject[battleField.Size];
+                for (var i = 0; i < battleField.Size; i++)
                 {
                     _listFloors[i] = GameObject.Instantiate(FloorPrefab, FloorGrid.transform);
                 }
             }
         }
 
-        public void RenderEntities(Map map)
+        public void RenderEntities(BattleField battleField)
         {
-            if (_listEntities.Length != map.Size)
+            if (_listEntities.Length != battleField.Size)
             {
                 foreach (var entity in _listEntities)
                 {
                     GameObject.Destroy(entity);
                 }
                 
-                _listEntities = new GameObject[map.Size];
-                for (var i = 0; i < map.Size; i++)
+                _listEntities = new GameObject[battleField.Size];
+                for (var i = 0; i < battleField.Size; i++)
                 {
                     var entity = GameObject.Instantiate(EntityPrefab, EntityGrid.transform);
                     _listEntities[i] = entity;
                 }
             }
-            for (var i = 0; i < map.Size; i++)
+            for (var i = 0; i < battleField.Size; i++)
             {
-                if (map.ListEntities[i] != null)
+                if (battleField.ListEntities[i] != null)
                 {
-                    _listEntities[i].GetComponent<EntityRender>().RenderEntity(map.ListEntities[i]);
+                    _listEntities[i].GetComponent<EntityRender>().RenderEntity(battleField.ListEntities[i]);
                 }
                 else
                 {
@@ -64,24 +64,24 @@ namespace Render
             }
         }
 
-        public void RenderIncomingEntities(Map map, int turn)
+        public void RenderIncomingEntities(BattleField battleField, int turn)
         {
-            var entityList = map.GetIncomingEntities(turn);
-            if (_listIncomingEntities.Length != map.Size)
+            var entityList = battleField.GetIncomingEntities(turn);
+            if (_listIncomingEntities.Length != battleField.Size)
             {
                 foreach (var entity in _listIncomingEntities)
                 {
                     GameObject.Destroy(entity);
                 }
                 
-                _listIncomingEntities = new GameObject[map.Size];
-                for (var i = 0; i < map.Size; i++)
+                _listIncomingEntities = new GameObject[battleField.Size];
+                for (var i = 0; i < battleField.Size; i++)
                 {
                     var entity = GameObject.Instantiate(IncomingEntityPrefab, IncomingEntityGrid.transform);
                     _listIncomingEntities[i] = entity;
                 }
             }
-            for (var i = 0; i < map.Size; i++)
+            for (var i = 0; i < battleField.Size; i++)
             {
                 if (entityList[i] != null)
                 {

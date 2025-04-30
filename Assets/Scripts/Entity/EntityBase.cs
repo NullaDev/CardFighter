@@ -18,6 +18,6 @@ namespace Entity
             this.HP = this.MaxHP = hp;
         }
 
-        public abstract void Hurt(EntityBase source, int value, Map map);
+        public abstract void Hurt(EntityBase source, int value, BattleField battleField);
     }
 }

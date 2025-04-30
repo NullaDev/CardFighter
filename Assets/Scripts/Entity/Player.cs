@@ -10,7 +10,7 @@ namespace Entity
             this.TextureName = "Arts/Entities/player";
         }
 
-        public override void Hurt(EntityBase source, int value, Map map)
+        public override void Hurt(EntityBase source, int value, BattleField battleField)
         {
             this.HP -= value;
             if (this.HP <= 0)

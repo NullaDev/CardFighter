@@ -11,21 +11,21 @@ namespace Entity
 {
     public abstract class Enemy: EntityBase
     {
-        public CardInstance NextTurnCard;
+        public CardInstance NextTurnCard = null;
         public Enemy(int hp) : base(hp)
         {
         }
 
-        public override void Hurt(EntityBase source, int value, Map map)
+        public override void Hurt(EntityBase source, int value, BattleField battleField)
         {
             this.HP -= value;
             if (this.HP <= 0)
             {
-                map.RemoveEntityFromMap(this);
+                battleField.RemoveEntityFromMap(this);
             }
         }
 
-        public abstract CardInstance ThinkNextTurnCard(Map map);
+        public abstract CardInstance ThinkNextTurnCard(BattleField battleField);
     }
 
     public class SimpleEnemy : Enemy
@@ -35,22 +35,22 @@ namespace Entity
         {
         }
 
-        public override CardInstance ThinkNextTurnCard(Map map)
+        public override CardInstance ThinkNextTurnCard(BattleField battleField)
         {
             var dmg = this.HeldCard.Behaviors.OfType<DamageBehavior>().FirstOrDefault();
             if (dmg == null)
                 return new CardInstance(CardData.Instance.Find("do_nothing"));
             
-            var selfPos = map.GetEntityIndex(this);
-            var playerPos = map.GetPlayerIndex();
+            var selfPos = battleField.GetEntityIndex(this);
+            var playerPos = battleField.GetPlayerIndex();
             var rangeMin = dmg.RangeMin;
             var rangeMax = dmg.RangeMax;
             var direction = this.Facing == EntityFacing.RIGHT ? 1 : -1;
                 
             var minPos = selfPos + rangeMin * direction;
             var maxPos = selfPos + rangeMax * direction;
-            minPos = Math.Clamp(minPos, 0, map.Size - 1);
-            maxPos = Math.Clamp(maxPos, 0, map.Size - 1);
+            minPos = Math.Clamp(minPos, 0, battleField.Size - 1);
+            maxPos = Math.Clamp(maxPos, 0, battleField.Size - 1);
 
             var minAttackPos = Math.Min(minPos, maxPos);
             var maxAttackPos = Math.Max(minPos, maxPos);
@@ -63,14 +63,14 @@ namespace Entity
             {
                 return new CardInstance(CardData.Instance.Find("turn_back"));
             }
-            if (this.Facing == EntityFacing.RIGHT && selfPos == map.Size-1)
+            if (this.Facing == EntityFacing.RIGHT && selfPos == battleField.Size-1)
             {
                 return new CardInstance(CardData.Instance.Find("turn_back"));
             }
                 
             var distance = playerPos <= minAttackPos? minAttackPos - playerPos : playerPos - maxAttackPos;
-            minAttackPos = Math.Clamp(minAttackPos + direction, 0, map.Size - 1);
-            maxAttackPos = Math.Clamp(maxAttackPos + direction, 0, map.Size - 1);
+            minAttackPos = Math.Clamp(minAttackPos + direction, 0, battleField.Size - 1);
+            maxAttackPos = Math.Clamp(maxAttackPos + direction, 0, battleField.Size - 1);
             var newDistance = playerPos <= minAttackPos? minAttackPos - playerPos : playerPos - maxAttackPos;
 
             if (newDistance < distance)
@@ -92,7 +92,7 @@ namespace Entity
         {
         }
 
-        public override CardInstance ThinkNextTurnCard(Map map)
+        public override CardInstance ThinkNextTurnCard(BattleField battleField)
         {
             throw new System.NotImplementedException();
         }

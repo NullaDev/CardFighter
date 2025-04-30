@@ -26,6 +26,10 @@ namespace Render
                 var sprite = Resources.Load<Sprite>(card.Prototype.TextureName);
                 _cardImage.sprite = sprite;
             }
+            else
+            {
+                _cardImage.sprite = null;
+            }
             _cardCost.text = card.CurrentCost.ToString();
             _cardTitle.text = card.Prototype.Name;
             _cardDesc.text = card.Prototype.Desc;

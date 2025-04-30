@@ -9,13 +9,13 @@ using Random = UnityEngine.Random;
 
 namespace Fighting
 {
-    public class Map
+    public class BattleField
     {
         private StageConfig _config;
         public int Size;
         public EntityBase[] ListEntities;
 
-        public Map(StageConfig config, PlayerData pData)
+        public BattleField(StageConfig config, PlayerData pData)
         {
             this._config = config;
             this.SetSize(config.Size);

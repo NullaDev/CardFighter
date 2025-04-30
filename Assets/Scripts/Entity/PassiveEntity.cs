@@ -8,12 +8,12 @@ namespace Entity
         {
         }
 
-        public override void Hurt(EntityBase source, int value, Map map)
+        public override void Hurt(EntityBase source, int value, BattleField battleField)
         {
             this.HP -= value;
             if (this.HP <= 0)
             {
-                map.RemoveEntityFromMap(this);
+                battleField.RemoveEntityFromMap(this);
             }
         }
         

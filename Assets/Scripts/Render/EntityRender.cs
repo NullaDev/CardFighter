@@ -1,16 +1,22 @@
+using System;
+using Card;
 using Entity;
 using GameLogic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Render
 {
-    public class EntityRender : MonoBehaviour
+    public class EntityRender : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         private Image _entityImage;
         private Image _hpBack;
         private Image _hpFront;
         private Text _hpText;
+        private GameObject _thinking;
+
+        private CardInstance _cardToUse = null;
         
         void Awake()
         {
@@ -23,6 +29,9 @@ namespace Render
                 _hpFront = hpBar.transform.Find("HPFront").GetComponent<Image>();
                 _hpText = hpBar.transform.Find("HPText").GetComponent<Text>();
             }
+
+            _thinking = transform.Find("Thinking").gameObject;
+            _thinking.SetActive(false);
         }
 
         public void RenderEmpty()
@@ -52,6 +61,15 @@ namespace Render
             }
 
             RenderHpBar(entity);
+
+            if (entity is Enemy enemy)
+            {
+                if (enemy.NextTurnCard != null)
+                {
+                    Console.WriteLine(enemy.NextTurnCard.Prototype.Name);
+                    this._cardToUse = enemy.NextTurnCard;
+                }
+            }
         }
         
         private void RenderHpBar(EntityBase entity)
@@ -63,6 +81,20 @@ namespace Render
             _hpText.text = entity.HP + "/" + entity.MaxHP;
             var newWidth = _hpBack.rectTransform.rect.width * entity.HP / entity.MaxHP;
             _hpFront.rectTransform.sizeDelta = new Vector2(newWidth, _hpFront.rectTransform.sizeDelta.y);
+        }
+        
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            if (this._cardToUse == null) return;
+            _thinking.SetActive(true);
+            
+            var render = _thinking.transform.Find("CardNoInteract").GetComponent<CardRender>();
+            render.RenderCard(this._cardToUse);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            _thinking.SetActive(false);
         }
     }
 }
