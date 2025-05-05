@@ -1,7 +1,7 @@
 ﻿{
   "ID": "focus_energy",
   "Name": "聚气",
-  "TextureName": "",
+  "TextureName": "Arts/Cards/focus_energy",
   "Desc": "回复1点能量",
   "Cost": 0,
   "Behaviors": [

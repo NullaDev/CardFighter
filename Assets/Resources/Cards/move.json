@@ -1,7 +1,7 @@
 ﻿{
   "ID": "move",
   "Name": "前进",
-  "TextureName": "",
+  "TextureName": "Arts/Cards/forward",
   "Desc": "前进1格",
   "Cost": 1,
   "Behaviors": [

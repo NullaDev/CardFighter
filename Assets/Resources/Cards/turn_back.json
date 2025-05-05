@@ -1,7 +1,7 @@
 ﻿{
   "ID": "turn_back",
   "Name": "转身",
-  "TextureName": "",
+  "TextureName": "Arts/Cards/turn_back",
   "Desc": "反转玩家当前方向",
   "Cost": 0,
   "Behaviors": [
