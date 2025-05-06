@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Card;
 using GameLogic;
 using UnityEngine;
@@ -15,9 +16,12 @@ namespace Data
         public int MaxHp { get; set; }
         public int InitialCost { get; set; }
         public int MaxCost { get; set; }
-
         public int InGameGold { get; set; }
+
+        public readonly List<CardPrototype> ListCard = new();
         public Deck DefaultDeck;
+
+        public string currentStage = "";
 
         void Start()
         {

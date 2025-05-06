@@ -37,11 +37,18 @@ namespace RogueMap
         public readonly Random Random;
         public readonly List<MapNode>[] AllNodes;
         public readonly List<MapEdge> AllEdges = new();
+        
+        public int PlayerCurrentLayer = 0;
+        public MapNode PlayerCurrentNode = null;
 
         private RogueMap(int layer, int? seed=null)
         {
             this.Random = seed.HasValue ? new Random(seed.Value) : new Random();
             this.AllNodes = new List<MapNode>[layer];
+            foreach (var l in Enumerable.Range(0, layer))
+            {
+                AllNodes[l] = new List<MapNode>();
+            }
         }
 
         public int GetLayer()
@@ -75,18 +82,18 @@ namespace RogueMap
             {
                 var node = new MapNode(NodeType.BOSS);
                 node.PosX = .5F;
-                node.PosY = 1F;
+                node.PosY = this.GetLayer() / (this.GetLayer() + 1F);
                 this.AllNodes[layer].Add(node);
                 return;
             }
 
-            var thisLayerNodeNum = layer == 0? 1: Random.Next(2, Math.Clamp(2 * this.AllNodes[layer - 1].Count - 1, 2, 7));
-            foreach (var _ in Enumerable.Range(0, thisLayerNodeNum))
+            var thisLayerNodeNum = layer == 0? 1: Random.Next(2, Math.Clamp(2 * this.AllNodes[layer - 1].Count, 3, 6));
+            foreach (var idx in Enumerable.Range(0, thisLayerNodeNum))
             {
                 var legalTypes = this.LegalTypesAtLayer(layer);
                 var node = new MapNode(legalTypes[Random.Next(legalTypes.Count)], difficulty:layer/3);
-                node.PosX = 1 / (thisLayerNodeNum + 1F);
-                node.PosY = layer / (this.GetLayer() - 1F);
+                node.PosX = (idx + 1F) / (thisLayerNodeNum + 1F);
+                node.PosY = (layer + 1F) / (this.GetLayer() + 1F);
                 this.AllNodes[layer].Add(node);
             }
         }

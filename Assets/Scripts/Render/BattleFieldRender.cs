@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Render
 {
-    public class MapRender : MonoBehaviour
+    public class BattleFieldRender : MonoBehaviour
     {
         public GameObject FloorPrefab;
         public GameObject FloorGrid;
@@ -18,7 +18,7 @@ namespace Render
         private GameObject[] _listEntities = {};
         private GameObject[] _listIncomingEntities = {};
 
-        public void RenderMap(BattleField battleField)
+        public void RenderBattleField(BattleField battleField)
         {
             if (_listFloors.Length != battleField.Size)
             {
