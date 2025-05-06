@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Render
 {
-    public class PlayerCardsRender: MonoBehaviour
+    public class DeckRender: MonoBehaviour
     {
         public GameObject CardPrefab;
         public GameObject CardGrid;

@@ -60,7 +60,7 @@ namespace Fighting
             mapRender.RenderEntities(this.BattleField);
             mapRender.RenderIncomingEntities(this.BattleField, this.FightingData.CurrentTurn);
 
-            var playerCardsRender = this.render.GetComponent<PlayerCardsRender>();
+            var playerCardsRender = this.render.GetComponent<DeckRender>();
             playerCardsRender.RenderCards(this.FightingData.CurrentDeck);
         }
 
