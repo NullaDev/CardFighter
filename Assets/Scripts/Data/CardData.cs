@@ -37,8 +37,9 @@ namespace Data
             }
 
             Instance = this;
-            LoadFromFile();
             DontDestroyOnLoad(gameObject);
+            
+            LoadFromFile();
         }
 
         private void LoadFromFile()

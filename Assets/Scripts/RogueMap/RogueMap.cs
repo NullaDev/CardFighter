@@ -38,22 +38,30 @@ namespace RogueMap
         public readonly List<MapNode>[] AllNodes;
         public readonly List<MapEdge> AllEdges = new();
         
-        public int PlayerCurrentLayer = 0;
+        public int PlayerCurrentLayer = -1;
         public MapNode PlayerCurrentNode = null;
 
         private RogueMap(int layer, int? seed=null)
         {
             this.Random = seed.HasValue ? new Random(seed.Value) : new Random();
             this.AllNodes = new List<MapNode>[layer];
-            foreach (var l in Enumerable.Range(0, layer))
-            {
-                AllNodes[l] = new List<MapNode>();
-            }
+            Enumerable.Range(0, layer).ToList().ForEach(l => AllNodes[l] = new List<MapNode>());
         }
 
         public int GetLayer()
         {
             return AllNodes.Length;
+        }
+
+        public MapNode GetStartNode()
+        {
+            return this.AllNodes[0].First();
+        }
+
+        public void SetPlayerNode(MapNode node)
+        {
+            this.PlayerCurrentNode = node;
+            this.PlayerCurrentLayer = Enumerable.Range(0, this.GetLayer()).FirstOrDefault(l => AllNodes[l].Contains(node));
         }
 
         private List<NodeType> LegalTypesAtLayer(int layer)
@@ -104,7 +112,6 @@ namespace RogueMap
             {
                 var connectedLowerNodes = new HashSet<MapNode>();
 
-                // 每个上层节点连接到最接近的下层节点
                 foreach (var upper in this.AllNodes[layer])
                 {
                     var closest = this.AllNodes[layer - 1].OrderBy(lower => Math.Abs(lower.PosX - upper.PosX)).First();
@@ -112,7 +119,6 @@ namespace RogueMap
                     connectedLowerNodes.Add(closest);
                 }
 
-                // 每个没有连接的下层节点连接到最接近的上层节点
                 foreach (var lower in this.AllNodes[layer - 1])
                 {
                     if (!connectedLowerNodes.Contains(lower))
@@ -127,10 +133,7 @@ namespace RogueMap
         public static RogueMap GenerateRandomMap(int layer)
         {
             var map = new RogueMap(layer);
-            foreach (var l in Enumerable.Range(0, layer))
-            {
-                map.GenerateNodesAtLayer(l);
-            }
+            Enumerable.Range(0, layer).ToList().ForEach(map.GenerateNodesAtLayer);
             map.GenerateEdges();
             return map;
         }

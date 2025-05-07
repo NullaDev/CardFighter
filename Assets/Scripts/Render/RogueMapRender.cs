@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using RogueMap;
 using UnityEngine;
 using UnityEngine.UI;
@@ -64,7 +65,10 @@ namespace Render
                 foreach (var node in lineNode)
                 {
                     var nodeEntity = GameObject.Instantiate(NodePrefab, NodeContainer.transform);
-                    _listNodes[node] =nodeEntity;
+                    _listNodes[node] = nodeEntity;
+
+                    var nodeInteract = nodeEntity.GetComponent<NodeInteract>();
+                    nodeInteract.Node = node;
 
                     var nodeText = nodeEntity.transform.Find("NodeText").GetComponent<Text>();;
                     nodeText.text = node.Type switch
@@ -94,6 +98,33 @@ namespace Render
                 var lineObj = DrawLine(point1, point2, EdgeContainer.transform, Color.white);
                 _listEdges.Add(lineObj);
             }
+
+            ReRenderAccordingToPlayerPos(map);
         }
+
+        public void ReRenderAccordingToPlayerPos(RogueMap.RogueMap map)
+        {
+            foreach (var (node, nodeEntity) in this._listNodes)
+            {
+                var bg = nodeEntity.transform.Find("NodeBG").GetComponent<Image>();
+                if (map.PlayerCurrentNode == null)
+                {
+                    bg.color = node == map.GetStartNode() ? Color.red : Color.gray;
+                }
+                else if (node == map.PlayerCurrentNode)
+                {
+                    bg.color = Color.red;
+                }
+                else if (map.AllEdges.Any(edge => edge.From == map.PlayerCurrentNode && edge.To == node))
+                {
+                    bg.color = Color.green;
+                }
+                else
+                {
+                    bg.color = Color.gray;
+                }
+            }
+        }
+
     }
 }
