@@ -13,35 +13,27 @@ namespace Render
         public GameObject NodePrefab;
         public GameObject NodeContainer;
         public GameObject EdgeContainer;
-
-        private Random _random = new Random(19260817);
         
-        private Dictionary<MapNode, GameObject> _listNodes = new();
-        private List<GameObject> _listEdges = new();
+        private readonly Dictionary<MapNode, GameObject> _listNodes = new();
+        private readonly List<GameObject> _listEdges = new();
         
         public static GameObject DrawLine(Vector3 start, Vector3 end, Transform parent, Color color, float thickness = 5f)
         {
-            GameObject lineObj = new GameObject("UILine", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+            var lineObj = new GameObject("UILine", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
             lineObj.transform.SetParent(parent, false);
 
-            RectTransform rectTransform = lineObj.GetComponent<RectTransform>();
-            Image image = lineObj.GetComponent<Image>();
+            var rectTransform = lineObj.GetComponent<RectTransform>();
+            var image = lineObj.GetComponent<Image>();
             image.color = color;
 
-            // 计算中点和方向
-            Vector2 start2D = new Vector2(start.x, start.y);
-            Vector2 end2D = new Vector2(end.x, end.y);
-            Vector2 dir = end2D - start2D;
-            Vector2 midpoint = (start2D + end2D) / 2f;
+            var start2D = new Vector2(start.x, start.y);
+            var end2D = new Vector2(end.x, end.y);
+            var dir = end2D - start2D;
+            var midpoint = (start2D + end2D) / 2f;
 
-            // 设置位置
             rectTransform.position = midpoint;
-
-            // 设置旋转
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             rectTransform.rotation = Quaternion.Euler(0, 0, angle);
-
-            // 设置宽度（长度）和高度（粗细）
             rectTransform.sizeDelta = new Vector2(dir.magnitude, thickness);
 
             return lineObj;
@@ -59,7 +51,8 @@ namespace Render
             }
             _listNodes.Clear();
             _listEdges.Clear();
-
+            
+            var random = new Random(19260817);
             foreach (var lineNode in map.AllNodes)
             {
                 foreach (var node in lineNode)
@@ -83,8 +76,8 @@ namespace Render
                     
                     var width = NodeContainer.GetComponent<RectTransform>().rect.width;
                     var height = NodeContainer.GetComponent<RectTransform>().rect.height;
-                    var x = (float)(node.PosX + 0.04 * _random.NextDouble() - 0.02) * width;
-                    var y = (float)(node.PosY + 0.04 * _random.NextDouble() - 0.02) * height;
+                    var x = (float)(node.PosX + 0.04 * random.NextDouble() - 0.02) * width;
+                    var y = (float)(node.PosY + 0.04 * random.NextDouble() - 0.02) * height;
                     
                     var buttonRect = nodeEntity.GetComponent<RectTransform>();
                     buttonRect.anchoredPosition = new Vector2(x, y);
@@ -99,10 +92,10 @@ namespace Render
                 _listEdges.Add(lineObj);
             }
 
-            ReRenderAccordingToPlayerPos(map);
+            RerenderAccordingToPlayerPos(map);
         }
 
-        public void ReRenderAccordingToPlayerPos(RogueMap.RogueMap map)
+        public void RerenderAccordingToPlayerPos(RogueMap.RogueMap map)
         {
             foreach (var (node, nodeEntity) in this._listNodes)
             {

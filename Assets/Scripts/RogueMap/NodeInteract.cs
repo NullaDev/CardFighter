@@ -15,7 +15,7 @@ namespace RogueMap
             mapControl.Map.SetPlayerNode(this.Node);
 
             var mapRender = GameObject.Find("Render").GetComponent<RogueMapRender>();
-            mapRender.ReRenderAccordingToPlayerPos(mapControl.Map);
+            mapRender.RerenderAccordingToPlayerPos(mapControl.Map);
 
             var playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
             var stageData = GameObject.Find("StageData").GetComponent<StageData>();
@@ -24,7 +24,23 @@ namespace RogueMap
                 playerData.CurrentStage = stageData.GetNormalStage(this.Node.LayerDifficulty);
                 SceneManager.LoadScene("Fighting");
             }
-            
+            else if (this.Node.Type == NodeType.ELITE_FIGHT)
+            {
+                playerData.CurrentStage = stageData.GetEliteStage(this.Node.LayerDifficulty);
+                SceneManager.LoadScene("Fighting");
+            }
+            else if (this.Node.Type == NodeType.BOSS)
+            {
+                //TODO
+            }
+            else if (this.Node.Type == NodeType.EVENT)
+            {
+                //TODO
+            }
+            else if (this.Node.Type == NodeType.REST)
+            {
+                //TODO
+            }
         }
         
     }

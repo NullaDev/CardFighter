@@ -11,7 +11,7 @@ namespace Render
         public GameObject CardPrefab;
         public GameObject CardGrid;
 
-        private List<GameObject> _listCards = new();
+        private readonly List<GameObject> _listCards = new();
 
         public void RenderCards(List<CardInstance> playerCardsList)
         {

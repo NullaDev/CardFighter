@@ -4,6 +4,7 @@ using Entity;
 using GameLogic;
 using Render;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Fighting
 {
@@ -88,7 +89,7 @@ namespace Fighting
                 if (!this.BattleField.AnyIncomingEnemyRemain())
                 {
                     Debug.Log("win");
-                    //TODO win
+                    SceneManager.LoadScene("RogueMap");
                 }
             }
             
