@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Fighting.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/RogueMap.unity
+    guid: bbd3410d58ebd1f4fbcf7636ab9eeaf5
   m_configObjects: {}
