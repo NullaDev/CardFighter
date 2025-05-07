@@ -21,7 +21,7 @@ namespace Data
         public readonly List<CardPrototype> ListCard = new();
         public Deck DefaultDeck;
 
-        public string currentStage = "";
+        public StageConfig CurrentStage = null;
 
         void Start()
         {

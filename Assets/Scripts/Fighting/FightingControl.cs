@@ -33,13 +33,8 @@ namespace Fighting
             playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("spear"));
             
             this.FightingData = FightingData.FromPlayerData(playerData);
-
-            // TODO remove hard code of loading stage
-            var stage = Resources.Load<TextAsset>("Stages/tutorial1");
-            var config = StageConfig.CreateFromJson(stage.text);
-            Debug.Log("Loading stage config:" + stage.text);
-            Debug.Log("Total entity number:" + config.Entities.Count);
-            this.BattleField = new BattleField(config, playerData);
+            
+            this.BattleField = new BattleField(playerData.CurrentStage, playerData);
 
             Rerender();
         }

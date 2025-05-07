@@ -16,14 +16,14 @@ namespace RogueMap
     public class MapNode
     {
         public readonly NodeType Type;
-        public readonly int Difficulty;
+        public readonly int LayerDifficulty;
         public float PosX;
         public float PosY;
 
-        public MapNode(NodeType type, int difficulty=-1)
+        public MapNode(NodeType type, int layerDifficulty=-1)
         {
             this.Type = type;
-            this.Difficulty = difficulty;
+            this.LayerDifficulty = layerDifficulty;
         }
     }
     public class MapEdge
@@ -99,7 +99,7 @@ namespace RogueMap
             foreach (var idx in Enumerable.Range(0, thisLayerNodeNum))
             {
                 var legalTypes = this.LegalTypesAtLayer(layer);
-                var node = new MapNode(legalTypes[Random.Next(legalTypes.Count)], difficulty:layer/3);
+                var node = new MapNode(legalTypes[Random.Next(legalTypes.Count)], layer);
                 node.PosX = (idx + 1F) / (thisLayerNodeNum + 1F);
                 node.PosY = (layer + 1F) / (this.GetLayer() + 1F);
                 this.AllNodes[layer].Add(node);

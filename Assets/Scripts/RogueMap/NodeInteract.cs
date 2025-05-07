@@ -2,6 +2,7 @@
 using Render;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 namespace RogueMap
 {
@@ -15,10 +16,15 @@ namespace RogueMap
 
             var mapRender = GameObject.Find("Render").GetComponent<RogueMapRender>();
             mapRender.ReRenderAccordingToPlayerPos(mapControl.Map);
-            
+
             var playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
-            // TODO
-            playerData.currentStage = Node.Type.ToString();
+            var stageData = GameObject.Find("StageData").GetComponent<StageData>();
+            if (this.Node.Type == NodeType.FIGHT)
+            {
+                playerData.CurrentStage = stageData.GetNormalStage(this.Node.LayerDifficulty);
+                SceneManager.LoadScene("Fighting");
+            }
+            
         }
         
     }
