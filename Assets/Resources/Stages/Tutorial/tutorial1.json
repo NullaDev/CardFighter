@@ -1,7 +1,7 @@
 ﻿{
   "ID": "tutorial1",
   "Name": "Tutorial1",
-  "Type": "Fight",
+  "Type": "Test",
   "Difficulty": -1,
   "Size": 3,
   "PlayerSpawnPos": 1,

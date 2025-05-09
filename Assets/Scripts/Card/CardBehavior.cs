@@ -127,4 +127,16 @@ namespace Card
         }
     }
     
+    public class ObserveBehavior : CardBehavior
+    {
+        public int Value { get; set; }
+        public override Action<FightingControl, EntityBase> Execute()
+        {
+            return (fc, user) =>
+            {
+                user.AddOrUpdateBuff(new EntityBuff(EntityBuffNames.Insight, Value));
+            };
+        }
+    }
+    
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using Data;
 using Entity;
 using GameLogic;
+using JetBrains.Annotations;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,7 +14,7 @@ namespace Fighting
     {
         private StageConfig _config;
         public int Size;
-        public EntityBase[] ListEntities;
+        [ItemCanBeNull] public EntityBase[] ListEntities;
 
         public BattleField(StageConfig config, PlayerData pData)
         {

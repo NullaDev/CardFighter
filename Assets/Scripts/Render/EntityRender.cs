@@ -1,6 +1,7 @@
 using System;
 using Card;
 using Entity;
+using Fighting;
 using GameLogic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -86,6 +87,11 @@ namespace Render
         public void OnPointerEnter(PointerEventData eventData)
         {
             if (this._cardToUse == null) return;
+            
+            var map = GameObject.Find("FightingControl").GetComponent<FightingControl>().BattleField;
+            var player = map.GetPlayerFromMap();
+            if (!player.HasBuff(EntityBuffNames.Insight)) return;
+            
             _thinking.SetActive(true);
             
             var render = _thinking.transform.Find("CardNoInteract").GetComponent<CardRender>();

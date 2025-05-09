@@ -22,6 +22,7 @@ namespace Card
                 "turn_back" => new TurnBackBehavior(),
                 "move_forward" => new MoveForwardBehavior(),
                 "add_cost" => new AddCostBehavior(),
+                "observe" => new ObserveBehavior(),
                 _ => throw new Exception("Unknown effect type")
             };
 

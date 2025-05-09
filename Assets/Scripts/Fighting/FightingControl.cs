@@ -17,22 +17,6 @@ namespace Fighting
         void Start()
         {
             var playerData = PlayerData.Instance;
-                        
-            // TODO remove hard code of initializing player data
-            playerData.PlayerClass = PlayerClass.FIGHTER;
-            playerData.MaxHp = playerData.Hp = 10;
-            playerData.InitialCost = 1;
-            playerData.MaxCost = 5;
-
-            playerData.DefaultDeck = new Deck(playerData.PlayerClass);
-            playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("move"));
-            playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("turn_back"));
-            playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("punch"));
-            playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("focus_energy"));
-            
-            playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("kick"));
-            playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("spear"));
-            
             this.FightingData = FightingData.FromPlayerData(playerData);
             
             this.BattleField = new BattleField(playerData.CurrentStage, playerData);
@@ -74,15 +58,26 @@ namespace Fighting
             NextTurn();
 
             var enemyRemain = false;
+            var listEntitiesSnapshot = (EntityBase[])this.BattleField.ListEntities.Clone();
             for (var i = 0; i < this.BattleField.Size; i++)
             {
-                var entity = this.BattleField.ListEntities[i];
+                var entity = listEntitiesSnapshot[i];
+                if (entity == null || entity.IsDead)
+                    continue;
+                
                 if (entity is Enemy enemy)
                 {
                     enemy.NextTurnCard?.Effects.ForEach(effect=>effect(this, enemy));
                     enemyRemain = true;
                 }
+
+                if (entity is not Player)
+                {
+                    entity.UpdateBuffs();
+                }
             }
+            
+            this.BattleField.GetPlayerFromMap().UpdateBuffs();
 
             if (!enemyRemain)
             {

@@ -8,10 +8,12 @@ namespace Data
     {
         public static StageData Instance;
         
-        private const string StageFolder = "Stages/";
+        private const string StageFolderRoot = "Stages/";
+        public static string[] SubFolders = {"Tutorial", "Fight", "Elite"};
 
         public readonly Dictionary<int, List<StageConfig>> NormalStages = new();
         public readonly Dictionary<int, List<StageConfig>> EliteStages = new();
+        public readonly List<StageConfig> TestStages = new();
         
         void Start()
         {
@@ -38,16 +40,35 @@ namespace Data
         
         private void LoadFromFile()
         {
-            var stageList = Resources.LoadAll<TextAsset>(StageFolder);
-            foreach (var stageTxt in stageList)
+            foreach (var subFolder in SubFolders)
             {
-                var config = StageConfig.CreateFromJson(stageTxt.text);
-                var difficulty = config.Difficulty;
-                if (!NormalStages.ContainsKey(difficulty))
+                var fullPath = StageFolderRoot + subFolder;
+                var stageList = Resources.LoadAll<TextAsset>(fullPath);
+                foreach (var stageTxt in stageList)
                 {
-                    NormalStages[difficulty] = new List<StageConfig>();
+                    var config = StageConfig.CreateFromJson(stageTxt.text);
+                    var difficulty = config.Difficulty;
+                    switch (config.Type)
+                    {
+                        case "Fight":
+                            if (!NormalStages.ContainsKey(difficulty))
+                            {
+                                NormalStages[difficulty] = new List<StageConfig>();
+                            }
+                            NormalStages[difficulty].Add(config);
+                            break;
+                        case "Elite":
+                            if (!EliteStages.ContainsKey(difficulty))
+                            {
+                                EliteStages[difficulty] = new List<StageConfig>();
+                            }
+                            EliteStages[difficulty].Add(config);
+                            break;
+                        default:
+                            TestStages.Add(config);
+                            break;
+                    }
                 }
-                NormalStages[difficulty].Add(config);
             }
         }
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Card;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,7 +11,8 @@ namespace Data
     {
         public static CardData Instance;
 
-        private const string CardFolder = "Cards/";
+        private const string CardFolderRoot = "Cards/";
+        public static string[] SubFolders = {"Basic", "Attack", "Test"};
         private List<CardPrototype> CardList = new();
 
         void Start()
@@ -44,10 +45,14 @@ namespace Data
 
         private void LoadFromFile()
         {
-            var cardList = Resources.LoadAll<TextAsset>(CardFolder);
-            foreach (var card in cardList)
+            foreach (var subFolder in SubFolders)
             {
-                this.CardList.Add(CardPrototype.CreateFromJson(card.text));
+                var fullPath = CardFolderRoot + subFolder;
+                var cardList = Resources.LoadAll<TextAsset>(fullPath);
+                foreach (var card in cardList)
+                {
+                    this.CardList.Add(CardPrototype.CreateFromJson(card.text));
+                }            
             }
         }
 

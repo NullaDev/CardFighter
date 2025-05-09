@@ -1,0 +1,10 @@
+﻿{
+  "ID": "kick",
+  "Name": "踹你一脚",
+  "TextureName": "Arts/Cards/kick",
+  "Desc": "对1格内的敌人造成1点伤害，并击飞最多1格",
+  "Cost": 2,
+  "Behaviors": [
+    { "Type": "damage", "Value": 1, "RangeMin": 1, "RangeMax": 1, "KnockBack": 1 }
+  ]
+}

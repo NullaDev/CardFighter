@@ -1,0 +1,10 @@
+﻿{
+  "ID": "bite",
+  "Name": "咬你一口",
+  "TextureName": "Arts/Cards/bite",
+  "Desc": "对1格内的敌人造成1点伤害",
+  "Cost": 1,
+  "Behaviors": [
+    { "Type": "damage", "Value": 1, "RangeMin": 1, "RangeMax": 1}
+  ]
+}

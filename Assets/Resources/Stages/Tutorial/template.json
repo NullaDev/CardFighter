@@ -1,8 +1,8 @@
 ﻿{
-  "ID": "test_stage",
-  "Name": "Test Stage",
-  "Type": "Fight",
-  "Difficulty": 0,
+  "ID": "template",
+  "Name": "格式模板",
+  "Type": "Test",
+  "Difficulty": -1,
   "Size": 7,
   "PlayerSpawnPos": 1,
   "PlayerSpawnFacing": "left",

@@ -21,6 +21,7 @@ namespace Entity
             this.HP -= value;
             if (this.HP <= 0)
             {
+                this.IsDead = true;
                 battleField.RemoveEntityFromMap(this);
             }
         }
@@ -67,21 +68,38 @@ namespace Entity
             {
                 return new CardInstance(CardData.Instance.Find("turn_back"));
             }
-                
+            
             var distance = playerPos <= minAttackPos? minAttackPos - playerPos : playerPos - maxAttackPos;
-            minAttackPos = Math.Clamp(minAttackPos + direction, 0, battleField.Size - 1);
-            maxAttackPos = Math.Clamp(maxAttackPos + direction, 0, battleField.Size - 1);
-            var newDistance = playerPos <= minAttackPos? minAttackPos - playerPos : playerPos - maxAttackPos;
+            var newMin = Math.Clamp(minAttackPos + direction, 0, battleField.Size - 1);
+            var newMax = Math.Clamp(maxAttackPos + direction, 0, battleField.Size - 1);
+            var newDistance = playerPos <= newMin? newMin - playerPos : playerPos - newMax;
 
             if (newDistance < distance)
             {
-                return new CardInstance(CardData.Instance.Find("move"));
+                var nextPos = selfPos + direction;
+                if (nextPos >= 0 && nextPos < battleField.Size && battleField.ListEntities[nextPos] == null)
+                {
+                    return new CardInstance(CardData.Instance.Find("move"));
+                }
+                else
+                {
+                    var willHurtAllies = false;
+                    for (var i = minAttackPos; i <= maxAttackPos; i++)
+                    {
+                        var entity = battleField.ListEntities[i];
+                        if (entity is Enemy && entity != this)
+                        {
+                            willHurtAllies = true;
+                            break;
+                        }
+                    }
+                    return willHurtAllies ? new CardInstance(CardData.Instance.Find("do_nothing")) : new CardInstance(this.HeldCard);
+                }
             }
             else
             {
                 return new CardInstance(CardData.Instance.Find("turn_back"));
             }
-
         }
     }
     
