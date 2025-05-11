@@ -3,27 +3,27 @@
   "Name": "Tutorial1",
   "Type": "Test",
   "Difficulty": -1,
-  "Size": 3,
+  "Size": 4,
   "PlayerSpawnPos": 1,
   "PlayerSpawnFacing": "left",
   "Entities": [
     {
       "Type": "simple_enemy",
       "AppearTurn": 0,
-      "AppearPos": 2,
+      "AppearPos": 3,
       "AppearFacing": "auto",
       "Name": "mob1",
-      "TextureName": "enemy1",
+      "TextureName": "robber",
       "HP": 3,
       "Card": "punch"
     },
     {
       "Type": "simple_enemy",
-      "AppearTurn": 1,
+      "AppearTurn": 2,
       "AppearPos": 1,
       "AppearFacing": "right",
       "Name": "mob2",
-      "TextureName": "enemy2",
+      "TextureName": "robber",
       "HP": 3,
       "Card": "punch"
     }

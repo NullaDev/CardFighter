@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using Card;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,7 +11,7 @@ namespace Data
         public static CardData Instance;
 
         private const string CardFolderRoot = "Cards/";
-        public static string[] SubFolders = {"Basic", "Attack", "Test"};
+        public static string[] SubFolders = {"Generic", "Attack", "Test"};
         private List<CardPrototype> CardList = new();
 
         void Start()

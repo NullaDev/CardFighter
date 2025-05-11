@@ -11,9 +11,12 @@
     {
         public static EntityFacing GetFacing(int vec)
         {
-            if (vec > 0) return EntityFacing.RIGHT;
-            if (vec < 0) return EntityFacing.LEFT;
-            return EntityFacing.DEFAULT;
+            return vec switch
+            {
+                > 0 => EntityFacing.RIGHT,
+                < 0 => EntityFacing.LEFT,
+                _ => EntityFacing.DEFAULT
+            };
         }
     }
 }

@@ -26,7 +26,7 @@ namespace GameLogic
             playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("broadsword"));
             
             var stageData = GameObject.Find("StageData").GetComponent<StageData>();
-            playerData.CurrentStage = stageData.TestStages.Find(s=>s.ID.Equals("two_wolf_0"));
+            playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("tutorial1"));
             
             SceneManager.LoadScene("Fighting");
         }

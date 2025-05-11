@@ -85,7 +85,7 @@ namespace Render
             {
                 if (entityList[i] != null)
                 {
-                    _listIncomingEntities[i].GetComponent<IncomingEntityRender>().RenderEntity(entityList[i]);
+                    _listIncomingEntities[i].GetComponent<IncomingEntityRender>().RenderEntity(entityList[i], battleField);
                 }
                 else
                 {

@@ -4,10 +4,25 @@ using System.Linq;
 using Data;
 using Entity;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace GameLogic
 {
+    public interface IHasFacing
+    {
+        string AppearFacing { get; set; }
+
+        static EntityFacing ParseFacing(string facing)
+        {
+            return facing switch
+            {
+                "right" => EntityFacing.RIGHT,
+                "left" => EntityFacing.LEFT,
+                "auto" => EntityFacing.DEFAULT,
+                _ => throw new Exception("Unknown direction")
+            };
+        }
+    }
+    
     public abstract class EntityConfig
     {
         public string Type { get; set; }
@@ -33,7 +48,7 @@ namespace GameLogic
         }
     }
     
-    public class SimpleEnemyConfig : EntityConfig
+    public class SimpleEnemyConfig : EntityConfig, IHasFacing
     {
         public string AppearFacing { get; set; } = "auto";
         public string Card { get; set; }
@@ -44,20 +59,13 @@ namespace GameLogic
             {
                 Name = Name,
                 TextureName = "Arts/Entities/" + TextureName,
-                Facing = AppearFacing switch
-                {
-                    "right" => EntityFacing.RIGHT,
-                    "left" => EntityFacing.LEFT,
-                    "random" => Random.Range(0, 2) == 0 ? EntityFacing.RIGHT : EntityFacing.LEFT,
-                    "auto" => EntityFacing.DEFAULT,
-                    _ => throw new Exception("Unknown direction")
-                },
+                Facing = IHasFacing.ParseFacing(this.AppearFacing),
                 HeldCard = CardData.Instance.Find(Card)
             };
         }
     }
 
-    public class EliteEntityConfig : EntityConfig
+    public class EliteEntityConfig : EntityConfig, IHasFacing
     {
         public string AppearFacing { get; set; } = "auto";
         public List<string> Cards { get; set; }
@@ -68,14 +76,7 @@ namespace GameLogic
             {
                 Name = Name,
                 TextureName = "Arts/Entities/" + TextureName,
-                Facing = AppearFacing switch
-                {
-                    "right" => EntityFacing.RIGHT,
-                    "left" => EntityFacing.LEFT,
-                    "random" => Random.Range(0, 2) == 0 ? EntityFacing.RIGHT : EntityFacing.LEFT,
-                    "auto" => EntityFacing.DEFAULT,
-                    _ => throw new Exception("Unknown direction")
-                },
+                Facing = IHasFacing.ParseFacing(this.AppearFacing),
                 HeldCards = Cards.Select(card => CardData.Instance.Find(card)).ToList()
             };
         }

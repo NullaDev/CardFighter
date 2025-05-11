@@ -13,7 +13,7 @@ namespace Data
 
         public readonly Dictionary<int, List<StageConfig>> NormalStages = new();
         public readonly Dictionary<int, List<StageConfig>> EliteStages = new();
-        public readonly List<StageConfig> TestStages = new();
+        public readonly List<StageConfig> MiscStages = new();
         
         void Start()
         {
@@ -65,7 +65,7 @@ namespace Data
                             EliteStages[difficulty].Add(config);
                             break;
                         default:
-                            TestStages.Add(config);
+                            MiscStages.Add(config);
                             break;
                     }
                 }

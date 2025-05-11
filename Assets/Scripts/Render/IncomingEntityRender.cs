@@ -1,4 +1,6 @@
-﻿using Entity;
+﻿using System;
+using Entity;
+using Fighting;
 using GameLogic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,7 +24,7 @@ namespace Render
             _downArrow.enabled = false;
         }
 
-        public void RenderEntity(EntityConfig entity)
+        public void RenderEntity(EntityConfig entity, BattleField map)
         {
             _entityImage.enabled = true;
             _downArrow.enabled = true;
@@ -30,6 +32,27 @@ namespace Render
             if (entity.TextureName != "")
             {
                 var sprite = Resources.Load<Sprite>("Arts/Entities/" + entity.TextureName);
+                if (entity is IHasFacing facingEntity)
+                {
+                    var facing = IHasFacing.ParseFacing(facingEntity.AppearFacing);
+                    if (facing == EntityFacing.DEFAULT)
+                    {
+                        facing = FacingHelper.GetFacing(entity.AppearPos - map.GetPlayerIndex());
+                    }
+                    
+                    switch (facing)
+                    {
+                        case EntityFacing.LEFT:
+                            _entityImage.transform.localScale = new Vector3(-1f, 1f, 1f);;
+                            break;
+                        case EntityFacing.RIGHT:
+                        case EntityFacing.DEFAULT:
+                            _entityImage.transform.localScale = new Vector3(1f, 1f, 1f);;
+                            break;
+                        default:
+                            throw new NotImplementedException();
+                    }
+                }
                 _entityImage.sprite = sprite;
             }
         }

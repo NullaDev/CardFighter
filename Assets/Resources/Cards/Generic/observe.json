@@ -2,9 +2,9 @@
   "ID": "observe",
   "Name": "观察",
   "TextureName": "Arts/Cards/observe",
-  "Desc": "在3回合内，可以观察敌方行动。",
+  "Desc": "在5回合内，可以观察敌方行动。",
   "Cost": 1,
   "Behaviors": [
-    { "Type": "observe", "Value": 3 }
+    { "Type": "observe", "Value": 5 }
   ]
 }
