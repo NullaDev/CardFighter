@@ -1,11 +1,12 @@
 ﻿{
-  "ID": "spear",
-  "Name": "捅你一枪",
+  "ID": "turn_back_spear",
+  "Name": "回马枪",
   "Class": "generic",
   "TextureName": "Arts/Cards/spear",
-  "Desc": "对2格内的所有敌人造成2点伤害",
+  "Desc": "回头，然后对2格内的所有敌人造成2点伤害",
   "Cost": 2,
   "Behaviors": [
+    { "Type": "turn_back" },
     { "Type": "damage", "Value": 2, "RangeMin": 1, "RangeMax": 2, "Aoe": true}
   ]
 }

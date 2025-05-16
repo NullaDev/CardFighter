@@ -11,7 +11,7 @@ namespace Data
         public static CardData Instance;
 
         private const string CardFolderRoot = "Cards/";
-        public static string[] SubFolders = {"Generic", "Attack", "Test"};
+        public static string[] SubFolders = {"Generic", "Attack", "RU", "Test"};
         private List<CardPrototype> CardList = new();
 
         void Start()

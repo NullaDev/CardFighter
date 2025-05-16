@@ -6,7 +6,7 @@ namespace GameLogic
     {
         public string Name { get; set; }
         public int Duration { get; set; }
-        public Dictionary<string, object> Parameters { get; private set; } = new();
+        public Dictionary<string, object> Parameters { get; set; } = new();
 
         public EntityBuff(string name, int duration)
         {

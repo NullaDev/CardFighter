@@ -10,7 +10,7 @@ namespace GameLogic
         public void DirectEnterTestStage()
         {
             var playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
-            playerData.PlayerClass = PlayerClass.FIGHTER;
+            playerData.PlayerClass = PlayerClass.RU;
             playerData.MaxHp = playerData.Hp = 10;
             playerData.InitialCost = 1;
             playerData.MaxCost = 5;
@@ -24,9 +24,10 @@ namespace GameLogic
             playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("punch"));
             playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("kick"));
             playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("broadsword"));
+            playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("rites"));
             
             var stageData = GameObject.Find("StageData").GetComponent<StageData>();
-            playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("tutorial1"));
+            playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("dummy"));
             
             SceneManager.LoadScene("Fighting");
         }

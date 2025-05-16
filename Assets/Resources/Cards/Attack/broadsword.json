@@ -1,6 +1,7 @@
 ﻿{
   "ID": "broadsword",
   "Name": "砍你一刀",
+  "Class": "generic",
   "TextureName": "Arts/Cards/broadsword",
   "Desc": "对1格内的敌人造成2点伤害",
   "Cost": 1,

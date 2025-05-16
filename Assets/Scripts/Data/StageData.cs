@@ -9,7 +9,7 @@ namespace Data
         public static StageData Instance;
         
         private const string StageFolderRoot = "Stages/";
-        public static string[] SubFolders = {"Tutorial", "Fight", "Elite"};
+        public static string[] SubFolders = {"Tutorial", "Fight", "Elite", "Test"};
 
         public readonly Dictionary<int, List<StageConfig>> NormalStages = new();
         public readonly Dictionary<int, List<StageConfig>> EliteStages = new();

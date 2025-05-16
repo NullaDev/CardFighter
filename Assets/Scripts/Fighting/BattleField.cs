@@ -112,6 +112,33 @@ namespace Fighting
                 );
             return ie;
         }
+
+        public bool TryKnockBackEntity(int index, int knockBack)
+        {
+            if (index < 0 || index >= this.Size || ListEntities[index] == null)
+                return false;
+
+            var curPos = index;
+            var direction = Math.Sign(knockBack);
+            var steps = Math.Abs(knockBack);
+            var moved = false;
+
+            for (var i = 0; i < steps; i++)
+            {
+                var nextPos = curPos + direction;
+                if (nextPos < 0 || nextPos >= this.Size || ListEntities[nextPos] != null)
+                {
+                    break;
+                }
+
+                ListEntities[nextPos] = ListEntities[curPos];
+                ListEntities[curPos] = null;
+                curPos = nextPos;
+                moved = true;
+            }
+
+            return moved;
+        }
         
         public void EntitiesThink()
         {

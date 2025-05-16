@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Entity;
 using Fighting;
 using GameLogic;
@@ -64,6 +65,7 @@ namespace Card
         public int RangeMax { get; set; }
         public bool Aoe { get; set; } = false;
         public int KnockBack { get; set; } = 0;
+        public List<string> Tags { get; set; } = new();
         public override Action<FightingControl, EntityBase> Execute()
         {
             return (fc, user) =>
@@ -76,39 +78,30 @@ namespace Card
                 
                 minPos = Math.Clamp(minPos, 0, map.Size - 1);
                 maxPos = Math.Clamp(maxPos, 0, map.Size - 1);
+                
+                var localTags = new List<string>(this.Tags);
+                localTags.Add(this.RangeMin<=1? DamageTypeNames.Melee:DamageTypeNames.Ranged);
 
                 var curPos = minPos;
                 var direc = minPos >= maxPos ? -1 : 1;
+                var entitySnapshot = (EntityBase[])map.ListEntities.Clone();
                 while (true)
                 {
-                    if (curPos != pos && map.ListEntities[curPos] != null)
+                    if (curPos != pos && entitySnapshot[curPos] != null)
                     {
-                        map.ListEntities[curPos].Hurt(user, Value, map);
-
-                        if (map.ListEntities[curPos] != null && KnockBack>0)
+                        var target = entitySnapshot[curPos];
+                        if (target != null)
                         {
-                            var enemyNewPos = curPos;
-                            var stepsTaken = 0;
-                            var moveStep = Math.Sign(curPos-pos);
-                            while (stepsTaken < KnockBack)
+                            user.DoDamageTo(target, Value, map, localTags);
+                            if (!target.IsDead && KnockBack > 0)
                             {
-                                if (enemyNewPos <= 0 || enemyNewPos >= map.Size-1 || map.ListEntities[enemyNewPos+moveStep] != null)
-                                {
-                                    break;
-                                }
-                                enemyNewPos += moveStep;
-                                stepsTaken++;
+                                var moveStep = Math.Sign(curPos - pos) * KnockBack;
+                                map.TryKnockBackEntity(curPos, moveStep);
                             }
-                            if (curPos != enemyNewPos)
-                            {
-                                map.ListEntities[enemyNewPos] = map.ListEntities[curPos];
-                                map.ListEntities[curPos] = null;
-                            }
+                            if (!Aoe) break;
                         }
-                        
-                        if (!Aoe) break;
                     }
-                    if (curPos==maxPos) break;
+                    if (curPos == maxPos) break;
                     curPos += direc;
                 }
             };
@@ -127,14 +120,18 @@ namespace Card
         }
     }
     
-    public class ObserveBehavior : CardBehavior
+    public class AddBuffBehavior : CardBehavior
     {
-        public int Value { get; set; }
+        public string BuffName { get; set; }
+        public int Turn { get; set; }
+        public Dictionary<string, object> Parameters { get; set; } = new();
         public override Action<FightingControl, EntityBase> Execute()
         {
             return (fc, user) =>
             {
-                user.AddOrUpdateBuff(new EntityBuff(EntityBuffNames.Insight, Value));
+                var buff = new EntityBuff(BuffName, Turn);
+                buff.Parameters = Parameters;
+                user.AddOrUpdateBuff(buff);
             };
         }
     }

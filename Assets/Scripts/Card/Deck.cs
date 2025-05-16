@@ -21,7 +21,7 @@ namespace Card
         public static Deck FromFile()
         {
             // TODO parse json
-            return new Deck(PlayerClass.FIGHTER);
+            return new Deck(PlayerClass.RU);
         }
 
         public static void ToFile()

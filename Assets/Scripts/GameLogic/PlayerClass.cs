@@ -2,8 +2,15 @@
 {
     public enum PlayerClass
     {
-        FIGHTER,
-        ARCHER,
-        THIEF
+        RU,
+        DAO,
+        MO,
+        FA,
+        MING,
+        BING,
+        NONG,
+        YINYANG,
+        ZONGHENG,
+        GENERIC
     }
 }

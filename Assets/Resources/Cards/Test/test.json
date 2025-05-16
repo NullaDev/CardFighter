@@ -1,6 +1,7 @@
 ﻿{
   "ID": "test",
   "Name": "测试",
+  "Class": "generic",
   "TextureName": "",
   "Desc": "这张卡没什么用，但是会消耗3点费用。",
   "Cost": 3,

@@ -1,0 +1,21 @@
+﻿{
+  "ID": "dummy",
+  "Name": "Dummy",
+  "Type": "Test",
+  "Difficulty": -1,
+  "Size": 3,
+  "PlayerSpawnPos": 0,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    {
+      "Type": "simple_enemy",
+      "AppearTurn": 0,
+      "AppearPos": 2,
+      "AppearFacing": "auto",
+      "Name": "mob1",
+      "TextureName": "robber",
+      "HP": 30,
+      "Card": "do_nothing"
+    }
+  ]
+}

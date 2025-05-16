@@ -1,6 +1,7 @@
 ﻿{
   "ID": "do_nothing",
   "Name": "什么也不做",
+  "Class": "generic",
   "TextureName": "Arts/Cards/do_nothing",
   "Desc": "什么也不做。",
   "Cost": 0,
