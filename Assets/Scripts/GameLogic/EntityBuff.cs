@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace GameLogic
 {
@@ -22,9 +23,18 @@ namespace GameLogic
         
         public T GetParam<T>(string key, T defaultValue = default)
         {
-            if (Parameters.TryGetValue(key, out var value) && value is T tValue)
+            if (Parameters.TryGetValue(key, out var value))
             {
-                return tValue;
+                try
+                {
+                    if (value is T tValue)
+                        return tValue;
+                    return (T)Convert.ChangeType(value, typeof(T));
+                }
+                catch
+                {
+                    return defaultValue;
+                }
             }
             return defaultValue;
         }

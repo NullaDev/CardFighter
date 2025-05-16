@@ -90,7 +90,7 @@ namespace Render
             
             var map = GameObject.Find("FightingControl").GetComponent<FightingControl>().BattleField;
             var player = map.GetPlayerFromMap();
-            if (!player.HasBuff(EntityBuffNames.Insight)) return;
+            if (!player.HasBuff(EntityBuffManager.Insight)) return;
             
             _thinking.SetActive(true);
             

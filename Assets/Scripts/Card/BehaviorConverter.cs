@@ -23,6 +23,8 @@ namespace Card
                 "move_forward" => new MoveForwardBehavior(),
                 "add_cost" => new AddCostBehavior(),
                 "add_buff" => new AddBuffBehavior(),
+                "force_turn" => new ForceTurnBehavior(),
+                "force_move" => new ForceMoveBehavior(),
                 _ => throw new Exception("Unknown effect type")
             };
 

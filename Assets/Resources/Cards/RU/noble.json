@@ -1,0 +1,16 @@
+﻿{
+  "ID": "noble",
+  "Name": "君子",
+  "Class": "ru",
+  "TextureName": "Arts/Cards/RU/noble",
+  "Desc": "造成伤害+1，可无限叠加。",
+  "Cost": 1,
+  "Behaviors": [
+    {
+      "Type": "add_buff",
+      "BuffName": "noble",
+      "Turn": -1,
+      "Parameters": {"noble_value": 1}
+    }
+  ]
+}

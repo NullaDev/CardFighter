@@ -6,10 +6,6 @@
   "Desc": "切换至状态「礼」。",
   "Cost": 1,
   "Behaviors": [
-    {
-      "Type": "add_buff",
-      "BuffName": "rites",
-      "Turn": -1
-    }
+    { "Type": "add_buff", "BuffName": "rites", "Turn": -1 }
   ]
 }

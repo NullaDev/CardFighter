@@ -96,7 +96,7 @@ namespace Card
                             if (!target.IsDead && KnockBack > 0)
                             {
                                 var moveStep = Math.Sign(curPos - pos) * KnockBack;
-                                map.TryKnockBackEntity(curPos, moveStep);
+                                map.TryMoveEntity(curPos, moveStep);
                             }
                             if (!Aoe) break;
                         }
@@ -130,8 +130,92 @@ namespace Card
             return (fc, user) =>
             {
                 var buff = new EntityBuff(BuffName, Turn);
-                buff.Parameters = Parameters;
+                buff.Parameters = new Dictionary<string, object>(Parameters);
                 user.AddOrUpdateBuff(buff);
+            };
+        }
+    }
+    
+    public class ForceTurnBehavior : CardBehavior
+    {
+        public int RangeMin { get; set; }
+        public int RangeMax { get; set; }
+        public bool Aoe { get; set; } = false;
+
+        public override Action<FightingControl, EntityBase> Execute()
+        {
+            return (fc, user) =>
+            {
+                var map = fc.BattleField;
+                var pos = map.GetEntityIndex(user);
+
+                var minPos = user.Facing == EntityFacing.RIGHT ? pos + RangeMin : pos - RangeMin;
+                var maxPos = user.Facing == EntityFacing.RIGHT ? pos + RangeMax : pos - RangeMax;
+
+                minPos = Math.Clamp(minPos, 0, map.Size - 1);
+                maxPos = Math.Clamp(maxPos, 0, map.Size - 1);
+
+                var curPos = minPos;
+                var direc = minPos >= maxPos ? -1 : 1;
+                var entitySnapshot = (EntityBase[])map.ListEntities.Clone();
+
+                while (true)
+                {
+                    if (curPos != pos && entitySnapshot[curPos] != null)
+                    {
+                        var target = entitySnapshot[curPos];
+                        if (target != null)
+                        {
+                            target.Facing = target.Facing == EntityFacing.LEFT ? EntityFacing.RIGHT : EntityFacing.LEFT;
+                            if (!Aoe) break;
+                        }
+                    }
+                    if (curPos == maxPos) break;
+                    curPos += direc;
+                }
+            };
+        }
+    }
+    
+    public class ForceMoveBehavior : CardBehavior
+    {
+        public int Value { get; set; } = 1; // Positive -> push, negative -> pull
+        public int RangeMin { get; set; }
+        public int RangeMax { get; set; }
+        public bool Aoe { get; set; } = false;
+
+        public override Action<FightingControl, EntityBase> Execute()
+        {
+            return (fc, user) =>
+            {
+                var map = fc.BattleField;
+                var pos = map.GetEntityIndex(user);
+
+                var minPos = user.Facing == EntityFacing.RIGHT ? pos + RangeMin : pos - RangeMin;
+                var maxPos = user.Facing == EntityFacing.RIGHT ? pos + RangeMax : pos - RangeMax;
+
+                minPos = Math.Clamp(minPos, 0, map.Size - 1);
+                maxPos = Math.Clamp(maxPos, 0, map.Size - 1);
+
+                var curPos = minPos;
+                var direc = minPos >= maxPos ? -1 : 1;
+                var entitySnapshot = (EntityBase[])map.ListEntities.Clone();
+
+                while (true)
+                {
+                    if (curPos != pos && entitySnapshot[curPos] != null)
+                    {
+                        var target = entitySnapshot[curPos];
+                        if (target != null)
+                        {
+                            var direction = Math.Sign(curPos - pos) * (Value > 0 ? 1 : -1);
+                            map.TryMoveEntity(curPos, direction * Math.Abs(Value));
+                            if (!Aoe) break;
+                        }
+                    }
+                    if (curPos == maxPos) break;
+                    curPos += direc;
+                }
             };
         }
     }

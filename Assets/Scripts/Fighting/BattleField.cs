@@ -113,14 +113,14 @@ namespace Fighting
             return ie;
         }
 
-        public bool TryKnockBackEntity(int index, int knockBack)
+        public bool TryMoveEntity(int index, int moveStep)
         {
             if (index < 0 || index >= this.Size || ListEntities[index] == null)
                 return false;
 
             var curPos = index;
-            var direction = Math.Sign(knockBack);
-            var steps = Math.Abs(knockBack);
+            var direction = Math.Sign(moveStep);
+            var steps = Math.Abs(moveStep);
             var moved = false;
 
             for (var i = 0; i < steps; i++)

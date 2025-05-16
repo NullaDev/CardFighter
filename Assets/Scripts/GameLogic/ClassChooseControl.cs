@@ -23,7 +23,7 @@ namespace GameLogic
             
             playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("punch"));
             playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("kick"));
-            playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("broadsword"));
+            playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("noble"));
             playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("rites"));
             
             var stageData = GameObject.Find("StageData").GetComponent<StageData>();

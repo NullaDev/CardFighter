@@ -6,10 +6,6 @@
   "Desc": "在5回合内，可以观察敌方行动。",
   "Cost": 1,
   "Behaviors": [
-    { 
-      "Type": "add_buff", 
-      "BuffName": "insight",
-      "Turn": 5
-    }
+    { "Type": "add_buff", "BuffName": "insight", "Turn": 5 }
   ]
 }
