@@ -2,9 +2,8 @@ using System.Collections.Generic;
 using Card;
 using GameLogic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Data
+namespace Registry
 {
     // This script manages the player's "in-game" information, such as deck, hp and gold.
     public class PlayerData : MonoBehaviour

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Data
+namespace Registry
 {
     // This script manages the "global" information of the player, such as class unlocks.
     public class SaveData : MonoBehaviour

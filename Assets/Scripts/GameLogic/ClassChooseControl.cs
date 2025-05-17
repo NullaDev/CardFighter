@@ -1,5 +1,5 @@
 ﻿using Card;
-using Data;
+using Registry;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +7,11 @@ namespace GameLogic
 {
     public class ClassChooseControl: MonoBehaviour
     {
+        private void Awake()
+        {
+            StaticDataManager.LoadAll();
+        }
+        
         public void DirectEnterTestStage()
         {
             var playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
@@ -16,17 +21,17 @@ namespace GameLogic
             playerData.MaxCost = 5;
 
             playerData.DefaultDeck = new Deck(playerData.PlayerClass);
-            playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("move"));
-            playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("turn_back"));
-            playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("focus_energy"));
-            playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("observe"));
+            playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("move"));
+            playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("turn_back"));
+            playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("focus_energy"));
+            playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("observe"));
             
-            playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("punch"));
-            playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("kick"));
-            playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("noble"));
-            playerData.DefaultDeck.AddPrototype(CardData.Instance.Find("rites"));
+            playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("punch"));
+            playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("kick"));
+            playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("noble"));
+            playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("rites"));
             
-            var stageData = GameObject.Find("StageData").GetComponent<StageData>();
+            var stageData = StaticDataManager.StageDataManager;
             playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("dummy"));
             
             SceneManager.LoadScene("Fighting");

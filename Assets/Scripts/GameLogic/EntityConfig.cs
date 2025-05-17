@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Data;
 using Entity;
+using Registry;
 using UnityEngine;
 
 namespace GameLogic
@@ -60,7 +60,7 @@ namespace GameLogic
                 Name = Name,
                 TextureName = "Arts/Entities/" + TextureName,
                 Facing = IHasFacing.ParseFacing(this.AppearFacing),
-                HeldCard = CardData.Instance.Find(Card)
+                HeldCard = StaticDataManager.CardDataManager.Find(Card)
             };
         }
     }
@@ -77,7 +77,7 @@ namespace GameLogic
                 Name = Name,
                 TextureName = "Arts/Entities/" + TextureName,
                 Facing = IHasFacing.ParseFacing(this.AppearFacing),
-                HeldCards = Cards.Select(card => CardData.Instance.Find(card)).ToList()
+                HeldCards = Cards.Select(card => StaticDataManager.CardDataManager.Find(card)).ToList()
             };
         }
     }

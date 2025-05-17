@@ -2,12 +2,12 @@
 using GameLogic;
 using UnityEngine;
 
-namespace Data
+namespace Registry
 {
-    public class StageData : MonoBehaviour
+    public class StageDataManager
     {
-        public static StageData Instance;
-        
+        private bool _hasLoaded = false;
+
         private const string StageFolderRoot = "Stages/";
         public static string[] SubFolders = {"Tutorial", "Fight", "Elite", "Test"};
 
@@ -24,22 +24,10 @@ namespace Data
             }
         }
         
-        private void Awake()
+        public void LoadFromFile()
         {
-            if (Instance != null && Instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            
-            LoadFromFile();
-        }
-        
-        private void LoadFromFile()
-        {
+            if (_hasLoaded) return;
+            this._hasLoaded = true;
             foreach (var subFolder in SubFolders)
             {
                 var fullPath = StageFolderRoot + subFolder;

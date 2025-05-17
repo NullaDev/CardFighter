@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Card;
-using Data;
 using Fighting;
 using GameLogic;
+using Registry;
 using UnityEngine;
 
 namespace Entity
@@ -40,7 +40,7 @@ namespace Entity
         {
             var dmg = this.HeldCard.Behaviors.OfType<DamageBehavior>().FirstOrDefault();
             if (dmg == null)
-                return new CardInstance(CardData.Instance.Find("do_nothing"));
+                return new CardInstance(CommonCards.DoNothing);
             
             var selfPos = battleField.GetEntityIndex(this);
             var playerPos = battleField.GetPlayerIndex();
@@ -62,11 +62,11 @@ namespace Entity
 
             if (this.Facing == EntityFacing.LEFT && selfPos == 0)
             {
-                return new CardInstance(CardData.Instance.Find("turn_back"));
+                return new CardInstance(CommonCards.TurnBack);
             }
             if (this.Facing == EntityFacing.RIGHT && selfPos == battleField.Size-1)
             {
-                return new CardInstance(CardData.Instance.Find("turn_back"));
+                return new CardInstance(CommonCards.TurnBack);
             }
             
             var distance = playerPos <= minAttackPos? minAttackPos - playerPos : playerPos - maxAttackPos;
@@ -79,7 +79,7 @@ namespace Entity
                 var nextPos = selfPos + direction;
                 if (nextPos >= 0 && nextPos < battleField.Size && battleField.ListEntities[nextPos] == null)
                 {
-                    return new CardInstance(CardData.Instance.Find("move"));
+                    return new CardInstance(CommonCards.Move1);
                 }
                 else
                 {
@@ -93,12 +93,12 @@ namespace Entity
                             break;
                         }
                     }
-                    return willHurtAllies ? new CardInstance(CardData.Instance.Find("do_nothing")) : new CardInstance(this.HeldCard);
+                    return willHurtAllies ? new CardInstance(CommonCards.DoNothing) : new CardInstance(this.HeldCard);
                 }
             }
             else
             {
-                return new CardInstance(CardData.Instance.Find("turn_back"));
+                return new CardInstance(CommonCards.TurnBack);
             }
         }
     }

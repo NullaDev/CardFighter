@@ -1,4 +1,4 @@
-﻿using Data;
+﻿using Registry;
 using Render;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -18,7 +18,7 @@ namespace RogueMap
             mapRender.RerenderAccordingToPlayerPos(mapControl.Map);
 
             var playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
-            var stageData = GameObject.Find("StageData").GetComponent<StageData>();
+            var stageData = StaticDataManager.StageDataManager;
             if (this.Node.Type == NodeType.FIGHT)
             {
                 playerData.CurrentStage = stageData.GetNormalStage(this.Node.LayerDifficulty);

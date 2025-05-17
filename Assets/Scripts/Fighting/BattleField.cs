@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Data;
 using Entity;
 using GameLogic;
 using JetBrains.Annotations;
+using Registry;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

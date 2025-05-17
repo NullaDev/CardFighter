@@ -1,7 +1,7 @@
 using Card;
-using Data;
 using Entity;
 using GameLogic;
+using Registry;
 using Render;
 using UnityEngine;
 using UnityEngine.SceneManagement;

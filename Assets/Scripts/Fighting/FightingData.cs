@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Card;
-using Data;
+using Registry;
 
 namespace Fighting
 {
