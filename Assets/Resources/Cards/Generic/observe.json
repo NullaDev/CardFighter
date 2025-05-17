@@ -3,7 +3,7 @@
   "Name": "观察",
   "Class": "generic",
   "TextureName": "Arts/Cards/observe",
-  "Desc": "在5回合内，可以观察敌方行动。",
+  "Desc": "在5回合内，可以预知敌方行动。",
   "Cost": 1,
   "Behaviors": [
     { "Type": "add_buff", "BuffName": "insight", "Turn": 5 }

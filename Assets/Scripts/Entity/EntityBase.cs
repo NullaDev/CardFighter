@@ -82,7 +82,7 @@ namespace Entity
         {
             foreach (var conflictingBuff in from @group in EntityBuffManager.BuffConflictGroups where @group.Contains(newBuff.Name) select Buffs.FirstOrDefault(b => @group.Contains(b.Name)) into conflictingBuff where conflictingBuff != null select conflictingBuff)
             {
-                Buffs.Remove(conflictingBuff);
+                if (conflictingBuff.Name != newBuff.Name) Buffs.Remove(conflictingBuff);
             }
             
             var existing = Buffs.FirstOrDefault(b => b.Name == newBuff.Name);

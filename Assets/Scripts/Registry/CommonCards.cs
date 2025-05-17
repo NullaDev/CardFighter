@@ -1,4 +1,5 @@
 ﻿using Card;
+using Registry.Data;
 
 namespace Registry
 {

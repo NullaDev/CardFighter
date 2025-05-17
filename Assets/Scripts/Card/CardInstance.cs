@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Entity;
 using Fighting;
+using Registry.Data;
 using UnityEngine;
 
 namespace Card

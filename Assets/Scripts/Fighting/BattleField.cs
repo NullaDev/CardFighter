@@ -5,6 +5,7 @@ using Entity;
 using GameLogic;
 using JetBrains.Annotations;
 using Registry;
+using Registry.Data;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

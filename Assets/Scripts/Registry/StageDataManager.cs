@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using GameLogic;
+using Registry.Data;
 using UnityEngine;
 
 namespace Registry
@@ -15,13 +16,20 @@ namespace Registry
         public readonly Dictionary<int, List<StageConfig>> EliteStages = new();
         public readonly List<StageConfig> MiscStages = new();
         
-        void Start()
+        public void DebugLoadedStageInfo()
         {
             Debug.Log("Loading stages...");
+            Debug.Log("Normal stages:");
             foreach (var (difficulty, stages) in this.NormalStages)
             {
                 Debug.Log("difficulty: " + difficulty + ", stage num: " + stages.Count);
             }
+            Debug.Log("Elite stages:");
+            foreach (var (difficulty, stages) in this.EliteStages)
+            {
+                Debug.Log("difficulty: " + difficulty + ", stage num: " + stages.Count);
+            }
+
         }
         
         public void LoadFromFile()
@@ -58,6 +66,8 @@ namespace Registry
                     }
                 }
             }
+
+            DebugLoadedStageInfo();
         }
 
         public StageConfig GetNormalStage(int layer)

@@ -1,0 +1,8 @@
+﻿{
+  "ID": "rites",
+  "Name": "「礼」",
+  "TextureName": "Arts/Cards/RU/rites",
+  "Positive": true,
+  "EffectText": "对面朝你的敌人造成伤害+2，否则不造成伤害。",
+  "ExtraText": "非礼勿视，非礼勿动。"
+}

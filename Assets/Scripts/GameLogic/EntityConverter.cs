@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Registry.Data;
 using UnityEngine;
 
 namespace GameLogic

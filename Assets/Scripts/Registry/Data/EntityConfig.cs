@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Entity;
-using Registry;
-using UnityEngine;
+using GameLogic;
 
-namespace GameLogic
+namespace Registry.Data
 {
     public interface IHasFacing
     {

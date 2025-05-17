@@ -36,6 +36,7 @@ namespace Fighting
             uiRender.RenderCost(this.FightingData.CurrentCost, this.FightingData.MaxCost);
 
             var mapRender = this.render.GetComponent<BattleFieldRender>();
+            mapRender.RenderBuff(this.BattleField);
             mapRender.RenderBattleField(this.BattleField);
             mapRender.RenderEntities(this.BattleField);
             mapRender.RenderIncomingEntities(this.BattleField, this.FightingData.CurrentTurn);

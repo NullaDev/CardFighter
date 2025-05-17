@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
+using GameLogic;
 using Newtonsoft.Json;
 
-namespace GameLogic
+namespace Registry.Data
 {
     public class StageConfig
     {

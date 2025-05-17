@@ -2,6 +2,7 @@
 using Entity;
 using Fighting;
 using GameLogic;
+using Registry.Data;
 using UnityEngine;
 using UnityEngine.UI;
 

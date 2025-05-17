@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using GameLogic;
+using Registry.Data;
 
 namespace Card
 {

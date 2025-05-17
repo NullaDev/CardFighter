@@ -1,9 +1,9 @@
 using System.Collections.Generic;
+using Card;
 using GameLogic;
 using Newtonsoft.Json;
-using UnityEngine;
 
-namespace Card
+namespace Registry.Data
 {
     public class CardPrototype
     {

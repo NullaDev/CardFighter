@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Card;
 using GameLogic;
+using Registry.Data;
 using UnityEngine;
 
 namespace Registry

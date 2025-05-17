@@ -7,6 +7,9 @@ namespace Render
 {
     public class BattleFieldRender : MonoBehaviour
     {
+        public GameObject BuffPrefab;
+        public GameObject BuffGrid;
+        
         public GameObject FloorPrefab;
         public GameObject FloorGrid;
         public GameObject EntityPrefab;
@@ -14,9 +17,28 @@ namespace Render
         public GameObject IncomingEntityPrefab;
         public GameObject IncomingEntityGrid;
 
+        private List<GameObject> _listBuffs = new();
         private GameObject[] _listFloors = {};
         private GameObject[] _listEntities = {};
         private GameObject[] _listIncomingEntities = {};
+
+        public void RenderBuff(BattleField battleField)
+        {
+            foreach (var buff in _listBuffs)
+            {
+                GameObject.Destroy(buff);
+            }
+            _listBuffs.Clear();
+            
+            var player = battleField.GetPlayerFromMap();
+            foreach (var playerBuff in player.Buffs)
+            {
+                var buff = GameObject.Instantiate(BuffPrefab, BuffGrid.transform);
+                var buffRender = buff.GetComponent<BuffRender>();
+                buffRender.RenderBuff(playerBuff);
+                _listBuffs.Add(buff);
+            }
+        }
 
         public void RenderBattleField(BattleField battleField)
         {

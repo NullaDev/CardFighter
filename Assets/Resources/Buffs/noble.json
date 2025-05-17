@@ -1,0 +1,8 @@
+﻿{
+  "ID": "noble",
+  "Name": "君子不重则不威",
+  "TextureName": "Arts/Cards/RU/noble",
+  "Positive": true,
+  "EffectText": "造成的任意伤害增加（{noble_value}）点。",
+  "ExtraText": "\"君子下手不重就树立不了威信。\""
+}

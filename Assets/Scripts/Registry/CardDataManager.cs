@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Card;
+using Registry.Data;
 using UnityEngine;
 
 namespace Registry
@@ -32,8 +33,10 @@ namespace Registry
                 foreach (var card in cardList)
                 {
                     this._listCards.Add(CardPrototype.CreateFromJson(card.text));
-                }            
+                }
             }
+
+            DebugLoadedCardInfo();
         }
 
         public CardPrototype Find(string cardName)
