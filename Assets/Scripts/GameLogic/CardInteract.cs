@@ -10,7 +10,7 @@ namespace GameLogic
         public CardInstance CardInstance;
         public void OnPointerEnter(PointerEventData eventData)
         {
-            transform.localScale = new Vector3(1.5F, 1.5F, 1);
+            transform.localScale = new Vector3(1.1F, 1.1F, 1);
         }
 
         public void OnPointerExit(PointerEventData eventData)

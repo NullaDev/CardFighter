@@ -1,0 +1,8 @@
+﻿{
+  "ID": "charioteering",
+  "Name": "「御」",
+  "TextureName": "Arts/Cards/RU/charioteering",
+  "Positive": true,
+  "EffectText": "前进距离+1，转身消耗+1。",
+  "ExtraText": "吾执御矣。"
+}

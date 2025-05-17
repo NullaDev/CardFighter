@@ -1,6 +1,5 @@
 using Card;
 using Entity;
-using GameLogic;
 using Registry;
 using Render;
 using UnityEngine;
@@ -20,7 +19,9 @@ namespace Fighting
             this.FightingData = FightingData.FromPlayerData(playerData);
             
             this.BattleField = new BattleField(playerData.CurrentStage, playerData);
-
+            this.BattleField.SpawnEntitiesAtTurn(0);
+            EntitiesThink();
+            
             Rerender();
         }
 
@@ -42,7 +43,7 @@ namespace Fighting
             mapRender.RenderIncomingEntities(this.BattleField, this.FightingData.CurrentTurn);
 
             var playerCardsRender = this.render.GetComponent<DeckRender>();
-            playerCardsRender.RenderCards(this.FightingData.CurrentDeck);
+            playerCardsRender.RenderCards(this.FightingData.AvailableCards);
         }
 
         public void PlayerUseCard(CardInstance card)
@@ -57,7 +58,20 @@ namespace Fighting
         public void EndTurn()
         {
             NextTurn();
+            ResolveEntityActions();
+            UpdatePlayerStatus();
+            EntitiesThink();
+            Rerender();
+        }
+        
+        public void NextTurn()
+        {
+            this.FightingData.CurrentTurn += 1;
+            this.BattleField.SpawnEntitiesAtTurn(this.FightingData.CurrentTurn);
+        }
 
+        public void ResolveEntityActions()
+        {
             var enemyRemain = false;
             var listEntitiesSnapshot = (EntityBase[])this.BattleField.ListEntities.Clone();
             for (var i = 0; i < this.BattleField.Size; i++)
@@ -77,28 +91,31 @@ namespace Fighting
                     entity.UpdateBuffs();
                 }
             }
-            
-            this.BattleField.GetPlayerFromMap().UpdateBuffs();
-
-            if (!enemyRemain)
+            if (!enemyRemain && !this.BattleField.AnyIncomingEnemyRemain())
             {
-                if (!this.BattleField.AnyIncomingEnemyRemain())
-                {
-                    Debug.Log("win");
-                    SceneManager.LoadScene("RogueMap");
-                }
+                Debug.Log("win");
+                SceneManager.LoadScene("RogueMap");
             }
-            
-            this.BattleField.EntitiesThink();
-            Rerender();
+        }
+
+        public void UpdatePlayerStatus()
+        {
+            var player = this.BattleField.GetPlayerFromMap();
+            player.UpdateBuffs();
+            this.FightingData.UpdatePlayerDeck(player);
+            this.FightingData.TryAddCost(1);
         }
         
-        public void NextTurn()
+        public void EntitiesThink()
         {
-            this.FightingData.CurrentTurn += 1;
-            this.BattleField.SpawnEntitiesAtTurn(this.FightingData.CurrentTurn);
-            
-            this.FightingData.TryAddCost(1);
+            for (var i = 0; i < this.BattleField.Size; i++)
+            {
+                var entity = this.BattleField.ListEntities[i];
+                if (entity is Enemy enemy)
+                {
+                    enemy.NextTurnCard = enemy.ThinkNextTurnCard(this.BattleField);
+                }
+            }
         }
         
         public void UpdatePlayerData()

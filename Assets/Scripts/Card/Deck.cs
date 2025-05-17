@@ -7,7 +7,7 @@ namespace Card
     public class Deck
     {
         public readonly PlayerClass PlayerClass;
-        public readonly List<CardInstance> CardList = new();
+        public readonly List<CardPrototype> CardList = new();
 
         public Deck(PlayerClass playerClass)
         {
@@ -16,7 +16,7 @@ namespace Card
 
         public void AddPrototype(CardPrototype prototype)
         {
-            this.CardList.Add(new CardInstance(prototype));
+            this.CardList.Add(prototype);
         }
 
         public static Deck FromFile()

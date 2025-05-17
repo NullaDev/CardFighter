@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Card;
 using Fighting;
 using GameLogic;
 using UnityEngine;
@@ -59,6 +57,18 @@ namespace Entity
                             multipleModifier *= 0;
                         }
                     }
+                }
+                else if (this.HasBuff(EntityBuffManager.Archery))
+                {
+                    multipleModifier *= 0;
+                }
+            }
+
+            if (damageTags.Contains(DamageTypeNames.Ranged))
+            {
+                if (this.HasBuff(EntityBuffManager.Archery))
+                {
+                    additiveModifier += 2;
                 }
             }
 

@@ -22,8 +22,6 @@ namespace Fighting
             this._config = config;
             this.SetSize(config.Size);
             this.InitializePlayer(pData, config.PlayerSpawnPos, config.PlayerSpawnFacing);
-            this.SpawnEntitiesAtTurn(0);
-            this.EntitiesThink();
         }
 
         public void SetSize(int size)
@@ -139,18 +137,6 @@ namespace Fighting
             }
 
             return moved;
-        }
-        
-        public void EntitiesThink()
-        {
-            for (var i = 0; i < this.Size; i++)
-            {
-                var entity = this.ListEntities[i];
-                if (entity is Enemy enemy)
-                {
-                    enemy.NextTurnCard = enemy.ThinkNextTurnCard(this);
-                }
-            }
         }
 
         public bool AnyIncomingEnemyRemain()

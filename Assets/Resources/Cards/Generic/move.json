@@ -2,7 +2,7 @@
   "ID": "move",
   "Name": "前进",
   "Class": "generic",
-  "TextureName": "Arts/Cards/forward",
+  "TextureName": "Arts/Cards/Generic/move",
   "Desc": "前进1格",
   "Cost": 1,
   "Behaviors": [

@@ -1,0 +1,8 @@
+﻿{
+  "ID": "archery",
+  "Name": "「射」",
+  "TextureName": "Arts/Cards/RU/archery",
+  "Positive": true,
+  "EffectText": "远程攻击造成伤害+2，近战攻击不造成伤害。",
+  "ExtraText": "君子无所争，必也射乎！"
+}

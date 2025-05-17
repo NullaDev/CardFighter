@@ -1,0 +1,11 @@
+﻿{
+  "ID": "u_turn",
+  "Name": "调头",
+  "Class": "ru",
+  "TextureName": "Arts/Cards/RU/u_turn",
+  "Desc": "反转玩家当前方向",
+  "Cost": 1,
+  "Behaviors": [
+    { "Type": "turn_back" }
+  ]
+}

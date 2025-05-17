@@ -3,14 +3,14 @@
   "Name": "Dummy",
   "Type": "Test",
   "Difficulty": -1,
-  "Size": 3,
-  "PlayerSpawnPos": 0,
+  "Size": 7,
+  "PlayerSpawnPos": 1,
   "PlayerSpawnFacing": "right",
   "Entities": [
     {
       "Type": "simple_enemy",
       "AppearTurn": 0,
-      "AppearPos": 2,
+      "AppearPos": 5,
       "AppearFacing": "auto",
       "Name": "mob1",
       "TextureName": "robber",

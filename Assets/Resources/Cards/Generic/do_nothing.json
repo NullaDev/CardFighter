@@ -1,8 +1,8 @@
 ﻿{
   "ID": "do_nothing",
-  "Name": "什么也不做",
+  "Name": "发呆",
   "Class": "generic",
-  "TextureName": "Arts/Cards/do_nothing",
+  "TextureName": "Arts/Cards/Generic/do_nothing",
   "Desc": "什么也不做。",
   "Cost": 0,
   "Behaviors": [

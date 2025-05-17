@@ -3,7 +3,7 @@
   "Name": "礼",
   "Class": "ru",
   "TextureName": "Arts/Cards/RU/rites",
-  "Desc": "切换至状态「礼」。",
+  "Desc": "切换当前六艺状态至「礼」。",
   "Cost": 1,
   "Behaviors": [
     { "Type": "add_buff", "BuffName": "rites", "Turn": -1 }

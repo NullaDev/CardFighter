@@ -2,7 +2,7 @@
   "ID": "spear",
   "Name": "捅你一枪",
   "Class": "generic",
-  "TextureName": "Arts/Cards/spear",
+  "TextureName": "Arts/Cards/Attack/spear",
   "Desc": "对2格内的所有敌人造成2点伤害",
   "Cost": 2,
   "Behaviors": [

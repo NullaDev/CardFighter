@@ -27,9 +27,9 @@ namespace GameLogic
             playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("observe"));
             
             playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("punch"));
-            playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("kick"));
-            playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("noble"));
-            playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("rites"));
+            playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("bow"));
+            playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("archery"));
+            playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("charioteering"));
             
             var stageData = StaticDataManager.StageDataManager;
             playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("dummy"));
