@@ -14,19 +14,31 @@ namespace GameLogic
             Rites, Music, Archery, Charioteering, Calligraphy, Mathematics
         };
         
-        public static readonly Dictionary<string, List<string>> StackableBuffs = new()
+        public static readonly Dictionary<string, HashSet<string>> StackableBuffs = new()
         {
-            { Noble , new List<string> { NobleValue } }
+            { Rites , new HashSet<string> { RitesPositiveValue, RitesNegativeValue } },
+            { Archery , new HashSet<string> { ArcheryPositiveValue, ArcheryNegativeValue } },
+            { Charioteering , new HashSet<string> { CharioteeringValue} },
+            { Mathematics , new HashSet<string> { MathematicsPositiveValue, MathematicsNegativeValue} },
+
+            { Noble , new HashSet<string> { NobleValue } }
         };
         
         public const string Insight = "insight";
         
         public const string Rites = "rites";
+            public const string RitesPositiveValue = "rites_positive_value";
+            public const string RitesNegativeValue = "rites_negative_value";
         public const string Music = "music";
         public const string Archery = "archery";
+            public const string ArcheryPositiveValue = "archery_positive_value";
+            public const string ArcheryNegativeValue = "archery_negative_value";
         public const string Charioteering = "charioteering";
+            public const string CharioteeringValue = "charioteering_value";
         public const string Calligraphy = "calligraphy";
         public const string Mathematics = "mathematics";
+            public const string MathematicsPositiveValue = "mathematics_positive_value";
+            public const string MathematicsNegativeValue = "mathematics_negative_value";
         
         public const string Noble = "noble";
         public const string NobleValue = "noble_value";

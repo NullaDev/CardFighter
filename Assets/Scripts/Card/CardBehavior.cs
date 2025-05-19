@@ -80,7 +80,7 @@ namespace Card
                 maxPos = Math.Clamp(maxPos, 0, map.Size - 1);
                 
                 var localTags = new List<string>(this.Tags);
-                localTags.Add(this.RangeMin<=1? DamageTypeNames.Melee:DamageTypeNames.Ranged);
+                localTags.Add(this.RangeMax<=2? DamageTypeNames.Melee:DamageTypeNames.Ranged);
 
                 var curPos = minPos;
                 var direc = minPos >= maxPos ? -1 : 1;

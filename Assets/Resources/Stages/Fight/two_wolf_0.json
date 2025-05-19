@@ -22,7 +22,7 @@
       "AppearFacing": "right",
       "Name": "狼1",
       "TextureName": "wolf",
-      "HP": 2,
+      "HP": 3,
       "Card": "bite"
     },
     {
@@ -32,7 +32,7 @@
       "AppearFacing": "left",
       "Name": "狼2",
       "TextureName": "wolf",
-      "HP": 2,
+      "HP": 3,
       "Card": "bite"
     }
   ]

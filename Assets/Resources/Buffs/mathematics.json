@@ -1,0 +1,8 @@
+﻿{
+  "ID": "mathematics",
+  "Name": "演算",
+  "TextureName": "Arts/Cards/RU/mathematics",
+  "Positive": true,
+  "EffectText": "你具有洞察时受到的任何伤害减少{mathematics_positive_value}点，否则增加{mathematics_negative_value}点。",
+  "ExtraText": "数罔不备。"
+}

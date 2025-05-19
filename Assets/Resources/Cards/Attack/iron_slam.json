@@ -1,0 +1,11 @@
+﻿{
+  "ID": "iron_slam",
+  "Name": "铁山靠",
+  "Class": "generic",
+  "TextureName": "Arts/Cards/Attack/iron_slam",
+  "Desc": "对1格内的敌人造成2点伤害，并击飞最多1格",
+  "Cost": 3,
+  "Behaviors": [
+    { "Type": "damage", "Value": 1, "RangeMin": 1, "RangeMax": 1, "KnockBack": 1 }
+  ]
+}

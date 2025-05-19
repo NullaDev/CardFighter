@@ -3,9 +3,9 @@
   "Name": "射你一箭",
   "Class": "generic",
   "TextureName": "Arts/Cards/Attack/bow",
-  "Desc": "对2-4格内的首个敌人造成2点伤害",
+  "Desc": "对1-3格内的首个敌人造成2点伤害",
   "Cost": 1,
   "Behaviors": [
-    { "Type": "damage", "Value": 2, "RangeMin": 2, "RangeMax": 4}
+    { "Type": "damage", "Value": 2, "RangeMin": 1, "RangeMax": 3}
   ]
 }

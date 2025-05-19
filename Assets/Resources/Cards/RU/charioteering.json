@@ -6,6 +6,11 @@
   "Desc": "切换当前六艺状态至「御」。",
   "Cost": 1,
   "Behaviors": [
-    { "Type": "add_buff", "BuffName": "charioteering", "Turn": -1 }
+    {
+      "Type": "add_buff",
+      "BuffName": "charioteering",
+      "Turn": -1,
+      "Parameters": {"charioteering_value": 1}
+    }
   ]
 }

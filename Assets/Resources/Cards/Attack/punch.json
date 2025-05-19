@@ -3,9 +3,10 @@
   "Name": "给你一拳",
   "Class": "generic",
   "TextureName": "Arts/Cards/Attack/punch",
-  "Desc": "对1格内的敌人造成1点伤害",
+  "Desc": "对1格内的敌人造成1点伤害两次",
   "Cost": 1,
   "Behaviors": [
+    { "Type": "damage", "Value": 1, "RangeMin": 1, "RangeMax": 1},
     { "Type": "damage", "Value": 1, "RangeMin": 1, "RangeMax": 1}
   ]
 }

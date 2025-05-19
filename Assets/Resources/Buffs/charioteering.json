@@ -1,8 +1,8 @@
 ﻿{
   "ID": "charioteering",
-  "Name": "「御」",
+  "Name": "驾车",
   "TextureName": "Arts/Cards/RU/charioteering",
   "Positive": true,
-  "EffectText": "前进距离+1，转身消耗+1。",
+  "EffectText": "前进距离增加一格，但转身费用消耗增加{charioteering_value}。",
   "ExtraText": "吾执御矣。"
 }

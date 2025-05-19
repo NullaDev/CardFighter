@@ -25,7 +25,7 @@ namespace Entity
         public void DoDamageTo(EntityBase target, int value, BattleField battleField, List<string> damageTags)
         {
             var additiveModifier = 0;
-            var multipleModifier = 1;
+            var multipleModifier = 1.0;
             if (this.HasBuff(EntityBuffManager.Noble))
             {
                 additiveModifier += this.GetBuff(EntityBuffManager.Noble).GetParam<int>(EntityBuffManager.NobleValue);
@@ -50,17 +50,17 @@ namespace Entity
 
                         if (isFacingEachOther)
                         {
-                            additiveModifier += 2;
+                            additiveModifier += this.GetBuff(EntityBuffManager.Rites).GetParam<int>(EntityBuffManager.RitesPositiveValue);
                         }
                         else if (isBackAttacked)
                         {
-                            multipleModifier *= 0;
+                            multipleModifier *= this.GetBuff(EntityBuffManager.Rites).GetParam<float>(EntityBuffManager.RitesNegativeValue);
                         }
                     }
                 }
                 else if (this.HasBuff(EntityBuffManager.Archery))
                 {
-                    multipleModifier *= 0;
+                    multipleModifier *= this.GetBuff(EntityBuffManager.Archery).GetParam<float>(EntityBuffManager.ArcheryNegativeValue);
                 }
             }
 
@@ -68,12 +68,30 @@ namespace Entity
             {
                 if (this.HasBuff(EntityBuffManager.Archery))
                 {
-                    additiveModifier += 2;
+                    additiveModifier += this.GetBuff(EntityBuffManager.Archery).GetParam<int>(EntityBuffManager.ArcheryPositiveValue);
                 }
             }
 
-            value = multipleModifier * (value + additiveModifier);
-            target.Hurt(this, value, battleField);
+            value = (int)(multipleModifier * (value + additiveModifier));
+            if (value > 0)
+                target.TryHurtFrom(this, value, battleField, damageTags);
+        }
+
+        public void TryHurtFrom(EntityBase source, int value, BattleField battleField, List<string> damageTags)
+        {
+            var additiveModifier = 0;
+            var multipleModifier = 1.0;
+            if (this.HasBuff(EntityBuffManager.Mathematics))
+            {
+                if (this.HasBuff(EntityBuffManager.Insight))
+                    additiveModifier -= this.GetBuff(EntityBuffManager.Mathematics).GetParam<int>(EntityBuffManager.MathematicsPositiveValue);
+                else
+                    additiveModifier += this.GetBuff(EntityBuffManager.Mathematics).GetParam<int>(EntityBuffManager.MathematicsNegativeValue);
+            }
+            
+            value = (int)(multipleModifier * (value + additiveModifier));
+            if (value > 0)
+                this.Hurt(source, value, battleField);
         }
 
         public abstract void Hurt(EntityBase source, int value, BattleField battleField);
