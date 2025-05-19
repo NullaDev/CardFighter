@@ -1,0 +1,19 @@
+﻿{
+  "ID": "hammer",
+  "Name": "给你一锤",
+  "Class": "generic",
+  "TextureName": "Arts/Cards/Attack/hammer",
+  "Desc": "对1格内的敌人造成3点伤害，并晕眩其1回合",
+  "Cost": 1,
+  "Behaviors": [
+    {
+      "Type": "damage",
+      "Value": 3,
+      "RangeMin": 1,
+      "RangeMax": 1,
+      "OnHitBuffs": [
+        { "BuffName": "stunned", "Turn": 1 }
+      ]
+    }
+  ]
+}

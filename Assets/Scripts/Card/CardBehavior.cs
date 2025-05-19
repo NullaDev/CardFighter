@@ -7,6 +7,13 @@ using UnityEngine;
 
 namespace Card
 {
+    public class BuffData
+    {
+        public string BuffName { get; set; }
+        public int Turn { get; set; }
+        public Dictionary<string, object> Parameters { get; set; } = new();
+    }
+    
     public abstract class CardBehavior
     {
         public string Type { get; set; }
@@ -66,6 +73,7 @@ namespace Card
         public bool Aoe { get; set; } = false;
         public int KnockBack { get; set; } = 0;
         public List<string> Tags { get; set; } = new();
+        public List<BuffData> OnHitBuffs { get; set; } = new();
         public override Action<FightingControl, EntityBase> Execute()
         {
             return (fc, user) =>
@@ -93,10 +101,19 @@ namespace Card
                         if (target != null)
                         {
                             user.DoDamageTo(target, Value, map, localTags);
-                            if (!target.IsDead && KnockBack > 0)
+                            if (!target.IsDead)
                             {
-                                var moveStep = Math.Sign(curPos - pos) * KnockBack;
-                                map.TryMoveEntity(curPos, moveStep);
+                                foreach (var buffData in OnHitBuffs)
+                                {
+                                    var buff = new EntityBuff(buffData.BuffName, buffData.Turn);
+                                    buff.Parameters = new Dictionary<string, object>(buffData.Parameters);
+                                    target.AddOrUpdateBuff(buff);
+                                }
+                                if (KnockBack > 0)
+                                {
+                                    var moveStep = Math.Sign(curPos - pos) * KnockBack;
+                                    map.TryMoveEntity(curPos, moveStep);
+                                }
                             }
                             if (!Aoe) break;
                         }
@@ -120,18 +137,19 @@ namespace Card
         }
     }
     
-    public class AddBuffBehavior : CardBehavior
+    public class AddBuffToSelfBehavior : CardBehavior
     {
-        public string BuffName { get; set; }
-        public int Turn { get; set; }
-        public Dictionary<string, object> Parameters { get; set; } = new();
+        public List<BuffData> Buffs { get; set; } = new();
         public override Action<FightingControl, EntityBase> Execute()
         {
             return (fc, user) =>
             {
-                var buff = new EntityBuff(BuffName, Turn);
-                buff.Parameters = new Dictionary<string, object>(Parameters);
-                user.AddOrUpdateBuff(buff);
+                foreach (var buffData in Buffs)
+                {
+                    var buff = new EntityBuff(buffData.BuffName, buffData.Turn);
+                    buff.Parameters = new Dictionary<string, object>(buffData.Parameters);
+                    user.AddOrUpdateBuff(buff);
+                }
             };
         }
     }

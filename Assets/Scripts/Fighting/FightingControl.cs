@@ -1,5 +1,6 @@
 using Card;
 using Entity;
+using GameLogic;
 using Registry;
 using Render;
 using UnityEngine;
@@ -48,10 +49,15 @@ namespace Fighting
 
         public void PlayerUseCard(CardInstance card)
         {
+            var player = this.BattleField.GetPlayerFromMap();
+            if (player.HasBuff(EntityBuffManager.Stunned))
+            {
+                EndTurn();
+            }
             if (this.FightingData.CurrentCost < card.CurrentCost) return;
             
             this.FightingData.CurrentCost -= card.CurrentCost;
-            card.Effects.ForEach(effect=>effect(this, this.BattleField.GetPlayerFromMap()));
+            card.Effects.ForEach(effect=>effect(this, player));
             EndTurn();
         }
 
@@ -82,7 +88,8 @@ namespace Fighting
                 
                 if (entity is Enemy enemy)
                 {
-                    enemy.NextTurnCard?.Effects.ForEach(effect=>effect(this, enemy));
+                    if (!enemy.HasBuff(EntityBuffManager.Stunned))
+                        enemy.NextTurnCard?.Effects.ForEach(effect=>effect(this, enemy));
                     enemyRemain = true;
                 }
 

@@ -6,6 +6,11 @@
   "Desc": "在5回合内，可以预知敌方行动。",
   "Cost": 1,
   "Behaviors": [
-    { "Type": "add_buff", "BuffName": "insight", "Turn": 5 }
+    { 
+      "Type": "add_buff",
+      "Buffs": [
+        { "BuffName": "insight", "Turn": 5 }
+      ]
+    }
   ]
 }

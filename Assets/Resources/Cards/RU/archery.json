@@ -8,9 +8,13 @@
   "Behaviors": [
     {
       "Type": "add_buff",
-      "BuffName": "archery",
-      "Turn": -1,
-      "Parameters": {"archery_positive_value": 2, "archery_negative_value": 0.5}
+      "Buffs": [
+        {
+          "BuffName": "archery",
+          "Turn": -1,
+          "Parameters": {"archery_positive_value": 2, "archery_negative_value": 0.5}
+        }
+      ]
     }
   ]
 }

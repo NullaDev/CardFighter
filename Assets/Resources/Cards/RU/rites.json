@@ -8,9 +8,13 @@
   "Behaviors": [
     { 
       "Type": "add_buff",
-      "BuffName": "rites",
-      "Turn": -1,
-      "Parameters": {"rites_positive_value": 2, "rites_negative_value": 0.0}
+      "Buffs": [
+        {
+          "BuffName": "rites",
+          "Turn": -1,
+          "Parameters": {"rites_positive_value": 2, "rites_negative_value": 0.0}
+        }
+      ]
     }
   ]
 }

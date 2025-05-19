@@ -16,15 +16,11 @@ namespace GameLogic
         
         public static readonly Dictionary<string, HashSet<string>> StackableBuffs = new()
         {
-            { Rites , new HashSet<string> { RitesPositiveValue, RitesNegativeValue } },
-            { Archery , new HashSet<string> { ArcheryPositiveValue, ArcheryNegativeValue } },
-            { Charioteering , new HashSet<string> { CharioteeringValue} },
-            { Mathematics , new HashSet<string> { MathematicsPositiveValue, MathematicsNegativeValue} },
-
             { Noble , new HashSet<string> { NobleValue } }
         };
         
         public const string Insight = "insight";
+        public const string Stunned = "stunned";
         
         public const string Rites = "rites";
             public const string RitesPositiveValue = "rites_positive_value";

@@ -22,7 +22,7 @@ namespace Card
                 "turn_back" => new TurnBackBehavior(),
                 "move_forward" => new MoveForwardBehavior(),
                 "add_cost" => new AddCostBehavior(),
-                "add_buff" => new AddBuffBehavior(),
+                "add_buff" => new AddBuffToSelfBehavior(),
                 "force_turn" => new ForceTurnBehavior(),
                 "force_move" => new ForceMoveBehavior(),
                 _ => throw new Exception("Unknown effect type")

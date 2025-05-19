@@ -8,9 +8,13 @@
   "Behaviors": [
     {
       "Type": "add_buff",
-      "BuffName": "mathematics",
-      "Turn": -1,
-      "Parameters": {"mathematics_positive_value": 2, "mathematics_negative_value": 2}
+      "Buffs": [
+        {
+          "BuffName": "mathematics",
+          "Turn": -1,
+          "Parameters": {"mathematics_positive_value": 2, "mathematics_negative_value": 2}
+        }
+      ]
     }
   ]
 }
