@@ -21,6 +21,7 @@ namespace Card
                 "damage" => new DamageBehavior(),
                 "turn_back" => new TurnBackBehavior(),
                 "move_forward" => new MoveForwardBehavior(),
+                "move_attack" => new MoveAttackBehavior(),
                 "add_cost" => new AddCostBehavior(),
                 "add_buff" => new AddBuffToSelfBehavior(),
                 "force_turn" => new ForceTurnBehavior(),

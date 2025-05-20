@@ -63,6 +63,23 @@ namespace Registry.Data
             };
         }
     }
+    
+    public class StationaryEnemyConfig : EntityConfig, IHasFacing
+    {
+        public string AppearFacing { get; set; } = "auto";
+        public string Card { get; set; }
+
+        public override EntityBase GenEntity()
+        {
+            return new StationaryEnemy(Hp)
+            {
+                Name = Name,
+                TextureName = "Arts/Entities/" + TextureName,
+                Facing = IHasFacing.ParseFacing(this.AppearFacing),
+                HeldCard = StaticDataManager.CardDataManager.Find(Card)
+            };
+        }
+    }
 
     public class EliteEntityConfig : EntityConfig, IHasFacing
     {

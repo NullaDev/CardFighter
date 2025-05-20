@@ -1,0 +1,39 @@
+﻿{
+  "ID": "sentry_1",
+  "Name": "岗哨-难度1",
+  "Type": "Test",
+  "Difficulty": 0,
+  "Size": 6,
+  "PlayerSpawnPos": 0,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    {
+      "Type": "passive",
+      "AppearTurn": 0,
+      "AppearPos": 3,
+      "Name": "栅栏",
+      "TextureName": "gate",
+      "HP": 4
+    },
+    {
+      "Type": "stationary_enemy",
+      "AppearTurn": 0,
+      "AppearPos": 4,
+      "AppearFacing": "left",
+      "Name": "哨兵1",
+      "TextureName": "sentry",
+      "HP": 5,
+      "Card": "spear"
+    },
+    {
+      "Type": "simple_enemy",
+      "AppearTurn": 5,
+      "AppearPos": 1,
+      "AppearFacing": "auto",
+      "Name": "哨兵2",
+      "TextureName": "sentry",
+      "HP": 5,
+      "Card": "spear"
+    }
+  ]
+}

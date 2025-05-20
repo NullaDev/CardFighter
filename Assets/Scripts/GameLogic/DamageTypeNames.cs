@@ -7,5 +7,6 @@
         public const string Unarmed = "unarmed";
         public const string Weapon = "weapon";
         public const string BreakGuard = "break_guard";
+        public const string Charge = "charge";
     }
 }

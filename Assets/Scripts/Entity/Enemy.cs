@@ -104,6 +104,61 @@ namespace Entity
         }
     }
     
+    public class StationaryEnemy : Enemy
+    {
+        public CardPrototype HeldCard;
+
+        public StationaryEnemy(int hp) : base(hp)
+        {
+        }
+
+        public override CardInstance ThinkNextTurnCard(BattleField battleField)
+        {
+            var dmg = this.HeldCard.Behaviors.OfType<DamageBehavior>().FirstOrDefault();
+            if (dmg == null)
+                return new CardInstance(CommonCards.DoNothing);
+
+            var selfPos = battleField.GetEntityIndex(this);
+            var playerPos = battleField.GetPlayerIndex();
+
+            if ((playerPos < selfPos && this.Facing != EntityFacing.LEFT) ||
+                (playerPos > selfPos && this.Facing != EntityFacing.RIGHT))
+            {
+                return new CardInstance(CommonCards.TurnBack);
+            }
+
+            var rangeMin = dmg.RangeMin;
+            var rangeMax = dmg.RangeMax;
+            var direction = this.Facing == EntityFacing.RIGHT ? 1 : -1;
+
+            var minPos = selfPos + rangeMin * direction;
+            var maxPos = selfPos + rangeMax * direction;
+
+            minPos = Math.Clamp(minPos, 0, battleField.Size - 1);
+            maxPos = Math.Clamp(maxPos, 0, battleField.Size - 1);
+
+            var minAttackPos = Math.Min(minPos, maxPos);
+            var maxAttackPos = Math.Max(minPos, maxPos);
+
+            if (playerPos >= minAttackPos && playerPos <= maxAttackPos)
+            {
+                return new CardInstance(this.HeldCard);
+            }
+
+            for (var i = minAttackPos; i <= maxAttackPos; i++)
+            {
+                var entity = battleField.ListEntities[i];
+                if (entity is Enemy && entity != this)
+                {
+                    return new CardInstance(CommonCards.DoNothing);
+                }
+            }
+
+            return new CardInstance(CommonCards.DoNothing);
+        }
+    }
+
+    
     public class EliteEnemy : Enemy
     {
         public List<CardPrototype> HeldCards;

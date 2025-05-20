@@ -125,6 +125,84 @@ namespace Card
         }
     }
     
+    public class MoveAttackBehavior : CardBehavior
+    {
+        public int Value { get; set; }
+        public int Damage { get; set; }
+        public bool CanCrossEnemies { get; set; } = false;
+        public List<string> Tags { get; set; } = new();
+
+        public override Action<FightingControl, EntityBase> Execute()
+        {
+            return (fc, user) =>
+            {
+                var map = fc.BattleField;
+                var startPos = map.GetEntityIndex(user);
+                var direction = user.Facing == EntityFacing.LEFT ? -1 : 1;
+
+                var currentPos = startPos;
+                var stepsTaken = 0;
+                int? finalPos = null;
+                
+                var localTags = new List<string>(this.Tags);
+                if (!localTags.Contains(DamageTypeNames.Melee))
+                {
+                    localTags.Add(DamageTypeNames.Melee);
+                }
+                if (!localTags.Contains(DamageTypeNames.Charge))
+                {
+                    localTags.Add(DamageTypeNames.Charge);
+                }
+
+                var entitySnapshot = (EntityBase[])map.ListEntities.Clone();
+
+                while (stepsTaken < Value)
+                {
+                    var nextPos = currentPos + direction;
+                    if (nextPos < 0 || nextPos >= map.Size)
+                        break;
+
+                    var target = entitySnapshot[nextPos];
+
+                    var blocked = false;
+                    if (target != null && target != user)
+                    {
+                        user.DoDamageTo(target, Damage, map, localTags);
+
+                        if (!CanCrossEnemies)
+                        {
+                            if (!target.IsDead)
+                            {
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            if (!target.IsDead)
+                            {
+                                blocked = true;
+                            }
+                        }
+                    }
+
+                    if (!blocked && map.ListEntities[nextPos] == null)
+                    {
+                        finalPos = nextPos;
+                    }
+
+                    currentPos = nextPos;
+                    stepsTaken++;
+                }
+
+                if (finalPos.HasValue && finalPos.Value != startPos)
+                {
+                    map.ListEntities[startPos] = null;
+                    map.ListEntities[finalPos.Value] = user;
+                }
+            };
+        }
+    }
+    
     public class AddCostBehavior : CardBehavior
     {
         public int Value { get; set; }
@@ -159,6 +237,7 @@ namespace Card
         public int RangeMin { get; set; }
         public int RangeMax { get; set; }
         public bool Aoe { get; set; } = false;
+        public string DirectionMode { get; set; } = "auto";
 
         public override Action<FightingControl, EntityBase> Execute()
         {
@@ -184,7 +263,12 @@ namespace Card
                         var target = entitySnapshot[curPos];
                         if (target != null)
                         {
-                            target.Facing = target.Facing == EntityFacing.LEFT ? EntityFacing.RIGHT : EntityFacing.LEFT;
+                            target.Facing = DirectionMode switch
+                            {
+                                "towards" => curPos < pos ? EntityFacing.RIGHT : EntityFacing.LEFT,
+                                "away" => curPos < pos ? EntityFacing.LEFT : EntityFacing.RIGHT,
+                                "auto" or _ => target.Facing == EntityFacing.LEFT ? EntityFacing.RIGHT : EntityFacing.LEFT
+                            };
                             if (!Aoe) break;
                         }
                     }

@@ -1,0 +1,10 @@
+﻿{
+  "ID": "noble_word",
+  "Name": "君子一言",
+  "TextureName": "Arts/Cards/RU/noble_word",
+  "Desc": "击退2格内的首个敌人4格",
+  "Cost": 2,
+  "Behaviors": [
+    { "Type": "force_move", "Value": 4, "RangeMin": 1, "RangeMax": 2 }
+  ]
+}

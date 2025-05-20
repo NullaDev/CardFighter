@@ -38,7 +38,7 @@ namespace Render
                     var facing = IHasFacing.ParseFacing(facingEntity.AppearFacing);
                     if (facing == EntityFacing.DEFAULT)
                     {
-                        facing = FacingHelper.GetFacing(entity.AppearPos - map.GetPlayerIndex());
+                        facing = FacingHelper.GetFacing(map.GetPlayerIndex() - entity.AppearPos);
                     }
                     
                     switch (facing)

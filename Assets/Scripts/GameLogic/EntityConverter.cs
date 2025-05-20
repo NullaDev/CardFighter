@@ -21,6 +21,7 @@ namespace GameLogic
             {
                 "passive" => new PassiveEntityConfig(),
                 "simple_enemy" => new SimpleEnemyConfig(),
+                "stationary_enemy" => new StationaryEnemyConfig(),
                 "elite_enemy" => new EliteEntityConfig(),
                 _ => throw new Exception("Unknown entity type")
             };
