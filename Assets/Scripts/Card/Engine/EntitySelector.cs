@@ -37,9 +37,9 @@ namespace Card.Engine
             var pos = fc.BattleField.GetEntityIndex(user);
             var direction = user.Facing == EntityFacing.RIGHT ? 1 : -1;
 
-            for (int i = RangeMin; i <= RangeMax; i++)
+            for (var i = RangeMin; i <= RangeMax; i++)
             {
-                int index = pos + i * direction;
+                var index = pos + i * direction;
                 if (index >= 0 && index < fc.BattleField.Size)
                 {
                     var target = fc.BattleField.ListEntities[index];

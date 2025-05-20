@@ -1,0 +1,24 @@
+﻿{
+  "ID": "no_rites_no_motion",
+  "Name": "非礼勿动",
+  "TextureName": "Arts/Cards/RU/no_rites_no_motion",
+  "Desc": "使你身后1-2格内的目标全部晕眩1回合",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": { "Type": "range", "RangeMin": -2, "RangeMax": -1 },
+      "Filters": [
+        { "Type": "exclude_self" },
+        { "Type": "is_alive" }
+      ],
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            { "BuffName": "stunned", "Turn": 1 }
+          ]
+        }
+      ]
+    }
+  ]
+}

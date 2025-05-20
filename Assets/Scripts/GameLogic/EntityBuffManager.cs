@@ -45,7 +45,10 @@ namespace GameLogic
             public const string MathematicsNegativeValue = "mathematics_negative_value";
         
         public const string Noble = "noble";
-        public const string NobleValue = "noble_value";
+            public const string NobleValue = "noble_value";
+        
+        public const string HonestWord = "honest_word";
+            public const string HonestWordValue = "honest_word_value";
 
     }
 }

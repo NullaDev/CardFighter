@@ -8,14 +8,14 @@
   "PlayerSpawnFacing": "right",
   "Entities": [
     {
-      "Type": "simple_enemy",
+      "Type": "stationary_enemy",
       "AppearTurn": 0,
       "AppearPos": 5,
       "AppearFacing": "auto",
       "Name": "mob1",
       "TextureName": "robber",
       "HP": 30,
-      "Card": "do_nothing"
+      "Card": "punch"
     }
   ]
 }

@@ -42,6 +42,7 @@ namespace Card.Engine
                         "last_n" => f.ToObject<LastNFilter>(serializer),
                         "exclude_self" => f.ToObject<ExcludeSelfFilter>(serializer),
                         "is_alive" => f.ToObject<IsAliveFilter>(serializer),
+                        "health" => f.ToObject<HealthFilter>(serializer),
                         _ => throw new Exception("Unknown filter type: " + type)
                     };
                     action.Filters.Add(filter);
@@ -62,6 +63,7 @@ namespace Card.Engine
                         "add_buff" => p.ToObject<AddBuffProcessor>(serializer),
                         "add_cost" => p.ToObject<AddCostProcessor>(serializer),
                         "move_attack" => p.ToObject<MoveAttackProcessor>(serializer),
+                        "kill" => p.ToObject<KillProcessor>(serializer),
                         _ => throw new Exception("Unknown processor type: " + type)
                     };
                     action.Processors.Add(processor);

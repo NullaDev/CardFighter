@@ -33,19 +33,25 @@ namespace Entity
                 additiveModifier += this.GetBuff(EntityBuffManager.Noble).GetParam<int>(EntityBuffManager.NobleValue);
             }
             
+            if (this.HasBuff(EntityBuffManager.HonestWord))
+            {
+                var buff = this.GetBuff(EntityBuffManager.HonestWord);
+                multipleModifier *= buff.GetParam<float>(EntityBuffManager.HonestWordValue);
+                this.Buffs.Remove(buff);
+            }
+            
             if (this.HasBuff(EntityBuffManager.Harmony))
             {
-                var harmony = this.GetBuff(EntityBuffManager.Harmony);
-                Debug.Log(harmony.GetParam<int>(EntityBuffManager.HarmonyValue));
-                additiveModifier += harmony.GetParam<int>(EntityBuffManager.HarmonyValue);
-                this.Buffs.Remove(harmony);
+                var buff = this.GetBuff(EntityBuffManager.Harmony);
+                additiveModifier += buff.GetParam<int>(EntityBuffManager.HarmonyValue);
+                this.Buffs.Remove(buff);
             }
             
             if (this.HasBuff(EntityBuffManager.Chaos))
             {
-                var chaos = this.GetBuff(EntityBuffManager.Chaos);
-                additiveModifier -= chaos.GetParam<int>(EntityBuffManager.ChaosValue);
-                this.Buffs.Remove(chaos);
+                var buff = this.GetBuff(EntityBuffManager.Chaos);
+                additiveModifier -= buff.GetParam<int>(EntityBuffManager.ChaosValue);
+                this.Buffs.Remove(buff);
             }
             
             if (damageTags.Contains(DamageTypeNames.Melee))
@@ -148,6 +154,12 @@ namespace Entity
         }
 
         public abstract void Hurt(EntityBase source, int value, BattleField battleField);
+
+        public void SetDeadAndRemove(BattleField battleField)
+        {
+            this.IsDead = true;
+            battleField.RemoveEntityFromMap(this);
+        }
         
         public bool HasBuff(string buffName)
         {

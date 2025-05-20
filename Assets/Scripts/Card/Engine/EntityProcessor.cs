@@ -48,7 +48,6 @@ namespace Card.Engine
             }
         }
     }
-
     
     public class TurnProcessor : EntityProcessor
     {
@@ -181,5 +180,14 @@ namespace Card.Engine
         }
     }
 
+    public class KillProcessor : EntityProcessor
+    {
+        public override void Process(FightingControl fc, EntityBase user, EntityBase target)
+        {
+            if (target.IsDead || target is EliteEnemy || target is Player)
+                return;
+            target.SetDeadAndRemove(fc.BattleField);
+        }
+    }
     
 }

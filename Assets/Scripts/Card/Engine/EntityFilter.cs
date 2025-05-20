@@ -45,5 +45,30 @@ namespace Card.Engine
             return targets.Where(e => !e.IsDead).ToList();
         }
     }
+    
+    public class HealthFilter : EntityFilter
+    {
+        public string Operator { get; set; }
+        public int Value { get; set; }
+
+        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self)
+        {
+            return targets.Where(e => Compare(e.HP, Operator, Value)).ToList();
+        }
+
+        private static bool Compare(int health, string op, int value)
+        {
+            return op switch
+            {
+                ">"  => health > value,
+                "<"  => health < value,
+                ">=" => health >= value,
+                "<=" => health <= value,
+                "==" => health == value,
+                "!=" => health != value,
+                _    => throw new ArgumentException($"Unsupported operator: {op}")
+            };
+        }
+    }
 
 }

@@ -24,8 +24,7 @@ namespace Entity
             this.HP -= value;
             if (this.HP <= 0)
             {
-                this.IsDead = true;
-                battleField.RemoveEntityFromMap(this);
+                this.SetDeadAndRemove(battleField);
             }
         }
 
