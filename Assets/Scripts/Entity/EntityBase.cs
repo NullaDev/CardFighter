@@ -91,7 +91,40 @@ namespace Entity
             
             value = (int)(multipleModifier * (value + additiveModifier));
             if (value > 0)
+            {
+                if (this.HasBuff(EntityBuffManager.Block))
+                {
+                    var blockBuff = this.GetBuff(EntityBuffManager.Block);
+                    var blockTimes = blockBuff.GetParam<int>(EntityBuffManager.BlockTimes);
+
+                    var attackerIndex = battleField.GetEntityIndex(source);
+                    var targetIndex = battleField.GetEntityIndex(this);
+                    var isFromFront =
+                        (attackerIndex < targetIndex && this.Facing == EntityFacing.LEFT) ||
+                        (attackerIndex > targetIndex && this.Facing == EntityFacing.RIGHT);
+                    
+                    if (isFromFront)
+                    {
+                        if (damageTags.Contains(DamageTypeNames.BreakGuard))
+                        {
+                            Buffs.Remove(blockBuff);
+                        }
+                        else if (blockTimes > 0)
+                        {
+                            if (blockTimes <= 1)
+                            {
+                                Buffs.Remove(blockBuff);
+                            }
+                            else
+                            {
+                                blockBuff.SetParam(EntityBuffManager.BlockTimes, blockTimes - 1);
+                            }
+                            return;
+                        }
+                    }
+                }
                 this.Hurt(source, value, battleField);
+            }
         }
 
         public abstract void Hurt(EntityBase source, int value, BattleField battleField);

@@ -15,7 +15,7 @@
       "Name": "mob1",
       "TextureName": "robber",
       "HP": 3,
-      "Card": "punch"
+      "Card": "kick"
     },
     {
       "Type": "simple_enemy",

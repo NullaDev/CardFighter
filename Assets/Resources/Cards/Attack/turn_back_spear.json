@@ -1,12 +1,11 @@
 ﻿{
   "ID": "turn_back_spear",
   "Name": "回马枪",
-  "Class": "generic",
   "TextureName": "Arts/Cards/Attack/turn_back_spear",
   "Desc": "转身，然后对2格内的所有敌人造成4点伤害",
   "Cost": 2,
   "Behaviors": [
     { "Type": "turn_back" },
-    { "Type": "damage", "Value": 4, "RangeMin": 1, "RangeMax": 2, "Aoe": true}
+    { "Type": "damage", "Value": 4, "RangeMin": 1, "RangeMax": 2, "Aoe": true, "Tags": ["weapon"] }
   ]
 }

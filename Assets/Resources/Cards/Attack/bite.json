@@ -1,8 +1,7 @@
 ﻿{
   "ID": "bite",
   "Name": "咬你一口",
-  "Class": "generic",
-  "TextureName": "Arts/Cards/bite",
+  "TextureName": "Arts/Cards/Attack/bite",
   "Desc": "对1格内的敌人造成2点伤害",
   "Cost": 1,
   "Behaviors": [

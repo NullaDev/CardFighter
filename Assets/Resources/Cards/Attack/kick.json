@@ -1,11 +1,11 @@
 ﻿{
   "ID": "kick",
   "Name": "踹你一脚",
-  "Class": "generic",
   "TextureName": "Arts/Cards/Attack/kick",
-  "Desc": "对1格内的敌人造成1点伤害，并击飞最多1格",
-  "Cost": 2,
+  "Desc": "对1格内的敌人造成2点伤害，破格",
+  "Cost": 1,
   "Behaviors": [
-    { "Type": "damage", "Value": 1, "RangeMin": 1, "RangeMax": 1, "KnockBack": 1 }
+    { 
+      "Type": "damage", "Value": 2, "RangeMin": 1, "RangeMax": 1, "Tags": ["unarmed", "break_guard"] }
   ]
 }

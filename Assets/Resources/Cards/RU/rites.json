@@ -1,7 +1,6 @@
 ﻿{
   "ID": "rites",
   "Name": "礼",
-  "Class": "ru",
   "TextureName": "Arts/Cards/RU/rites",
   "Desc": "切换当前六艺状态至「礼」。",
   "Cost": 1,

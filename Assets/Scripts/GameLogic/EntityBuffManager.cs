@@ -21,6 +21,8 @@ namespace GameLogic
         
         public const string Insight = "insight";
         public const string Stunned = "stunned";
+        public const string Block = "block";
+            public const string BlockTimes = "block_times";
         
         public const string Rites = "rites";
             public const string RitesPositiveValue = "rites_positive_value";

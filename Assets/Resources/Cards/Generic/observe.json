@@ -1,7 +1,6 @@
 ﻿{
   "ID": "observe",
   "Name": "观察",
-  "Class": "generic",
   "TextureName": "Arts/Cards/Generic/observe",
   "Desc": "在5回合内，可以预知敌方行动。",
   "Cost": 1,

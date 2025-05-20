@@ -1,7 +1,6 @@
 ﻿{
   "ID": "noble",
   "Name": "君子",
-  "Class": "ru",
   "TextureName": "Arts/Cards/RU/noble",
   "Desc": "你造成的所有伤害增加一点，持续时间无限，可以无限叠加。",
   "Cost": 1,

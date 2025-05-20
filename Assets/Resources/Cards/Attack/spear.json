@@ -1,11 +1,10 @@
 ﻿{
   "ID": "spear",
   "Name": "捅你一枪",
-  "Class": "generic",
   "TextureName": "Arts/Cards/Attack/spear",
   "Desc": "对2格内的所有敌人造成2点伤害",
   "Cost": 2,
   "Behaviors": [
-    { "Type": "damage", "Value": 2, "RangeMin": 1, "RangeMax": 2, "Aoe": true}
+    { "Type": "damage", "Value": 2, "RangeMin": 1, "RangeMax": 2, "Aoe": true, "Tags": ["weapon"] }
   ]
 }

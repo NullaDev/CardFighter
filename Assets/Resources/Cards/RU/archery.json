@@ -1,7 +1,6 @@
 ﻿{
   "ID": "archery",
   "Name": "射",
-  "Class": "ru",
   "TextureName": "Arts/Cards/RU/archery",
   "Desc": "切换当前六艺状态至「射」。",
   "Cost": 1,

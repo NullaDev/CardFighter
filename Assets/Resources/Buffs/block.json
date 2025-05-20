@@ -1,0 +1,8 @@
+﻿{
+  "ID": "block",
+  "Name": "格挡",
+  "TextureName": "Arts/Cards/Generic/block",
+  "Positive": true,
+  "EffectText": "格挡面朝方向的攻击，还能格挡{block_times}次。",
+  "ExtraText": "故善守者，藏于九地之下。"
+}
