@@ -83,7 +83,7 @@ namespace Fighting
             for (var i = 0; i < this.BattleField.Size; i++)
             {
                 var entity = listEntitiesSnapshot[i];
-                if (entity == null || entity.IsDead)
+                if (entity == null || entity.IsDead || entity is Player)
                     continue;
                 
                 if (entity is Enemy enemy)
@@ -92,14 +92,12 @@ namespace Fighting
                         enemy.NextTurnCard?.Effects.ForEach(effect=>effect(this, enemy));
                     enemyRemain = true;
                 }
-
-                if (entity is not Player)
-                {
-                    entity.UpdateBuffs();
-                }
+                
+                entity.UpdateBuffs();
             }
             if (!enemyRemain && !this.BattleField.AnyIncomingEnemyRemain())
             {
+                // TODO win
                 Debug.Log("win");
                 SceneManager.LoadScene("RogueMap");
             }

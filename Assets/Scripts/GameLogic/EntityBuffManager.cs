@@ -28,6 +28,12 @@ namespace GameLogic
             public const string RitesPositiveValue = "rites_positive_value";
             public const string RitesNegativeValue = "rites_negative_value";
         public const string Music = "music";
+            public const string MusicPositiveValue = "music_positive_value";
+            public const string MusicNegativeValue = "music_negative_value";
+            public const string Harmony = "harmony";
+            public const string Chaos = "chaos";
+            public const string HarmonyValue = "music_harmony_value";
+            public const string ChaosValue = "music_chaos_value";
         public const string Archery = "archery";
             public const string ArcheryPositiveValue = "archery_positive_value";
             public const string ArcheryNegativeValue = "archery_negative_value";

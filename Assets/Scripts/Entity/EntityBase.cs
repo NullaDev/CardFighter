@@ -2,6 +2,7 @@
 using System.Linq;
 using Fighting;
 using GameLogic;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Entity
@@ -12,10 +13,11 @@ namespace Entity
         public int MaxHP;
         public string Name = "";
         public string TextureName = "";
-        public bool IsDead = false;
-        public List<EntityBuff> Buffs = new();
+        [JsonIgnore] public bool IsDead = false;
+        [JsonIgnore] public bool DamageDealtThisTurn = false;
+        [JsonIgnore] public List<EntityBuff> Buffs = new();
 
-        public EntityFacing Facing = EntityFacing.DEFAULT;
+        [JsonIgnore] public EntityFacing Facing = EntityFacing.DEFAULT;
 
         public EntityBase(int hp)
         {
@@ -29,6 +31,21 @@ namespace Entity
             if (this.HasBuff(EntityBuffManager.Noble))
             {
                 additiveModifier += this.GetBuff(EntityBuffManager.Noble).GetParam<int>(EntityBuffManager.NobleValue);
+            }
+            
+            if (this.HasBuff(EntityBuffManager.Harmony))
+            {
+                var harmony = this.GetBuff(EntityBuffManager.Harmony);
+                Debug.Log(harmony.GetParam<int>(EntityBuffManager.HarmonyValue));
+                additiveModifier += harmony.GetParam<int>(EntityBuffManager.HarmonyValue);
+                this.Buffs.Remove(harmony);
+            }
+            
+            if (this.HasBuff(EntityBuffManager.Chaos))
+            {
+                var chaos = this.GetBuff(EntityBuffManager.Chaos);
+                additiveModifier -= chaos.GetParam<int>(EntityBuffManager.ChaosValue);
+                this.Buffs.Remove(chaos);
             }
             
             if (damageTags.Contains(DamageTypeNames.Melee))
@@ -74,7 +91,10 @@ namespace Entity
 
             value = (int)(multipleModifier * (value + additiveModifier));
             if (value > 0)
+            {
                 target.TryHurtFrom(this, value, battleField, damageTags);
+            }
+            this.DamageDealtThisTurn = true;
         }
 
         public void TryHurtFrom(EntityBase source, int value, BattleField battleField, List<string> damageTags)
@@ -186,6 +206,24 @@ namespace Entity
                 })
                 .Where(buff => buff.Duration != 0)
                 .ToList();
+
+            if (this.HasBuff(EntityBuffManager.Music))
+            {
+                var musicBuff = this.GetBuff(EntityBuffManager.Music);
+                if (this.DamageDealtThisTurn)
+                {
+                    var buff = new EntityBuff(EntityBuffManager.Chaos, 1);
+                    buff.SetParam(EntityBuffManager.ChaosValue, musicBuff.GetParam<int>(EntityBuffManager.MusicNegativeValue));
+                    this.AddOrUpdateBuff(buff);
+                }
+                else
+                {
+                    var buff = new EntityBuff(EntityBuffManager.Harmony, 1);
+                    buff.SetParam(EntityBuffManager.HarmonyValue, musicBuff.GetParam<int>(EntityBuffManager.MusicPositiveValue));
+                    this.AddOrUpdateBuff(buff);
+                }
+            }
+            this.DamageDealtThisTurn = false;
         }
         
     }

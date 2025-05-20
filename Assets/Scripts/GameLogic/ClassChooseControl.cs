@@ -28,11 +28,11 @@ namespace GameLogic
             
             playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("punch"));
             playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("bow"));
-            playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("seize_general_rush"));
+            playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("music"));
             playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("charioteering"));
             
             var stageData = StaticDataManager.StageDataManager;
-            playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("sentry_1"));
+            playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("dummy"));
             
             SceneManager.LoadScene("Fighting");
         }

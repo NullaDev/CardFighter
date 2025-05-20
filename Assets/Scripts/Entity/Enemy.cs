@@ -4,6 +4,7 @@ using System.Linq;
 using Card;
 using Fighting;
 using GameLogic;
+using Newtonsoft.Json;
 using Registry;
 using Registry.Data;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace Entity
 {
     public abstract class Enemy: EntityBase
     {
-        public CardInstance NextTurnCard = null;
+        [JsonIgnore] public CardInstance NextTurnCard = null;
         public Enemy(int hp) : base(hp)
         {
         }
@@ -32,7 +33,7 @@ namespace Entity
 
     public class SimpleEnemy : Enemy
     {
-        public CardPrototype HeldCard;
+        [JsonIgnore] public CardPrototype HeldCard;
         public SimpleEnemy(int hp) : base(hp)
         {
         }
@@ -106,7 +107,7 @@ namespace Entity
     
     public class StationaryEnemy : Enemy
     {
-        public CardPrototype HeldCard;
+        [JsonIgnore] public CardPrototype HeldCard;
 
         public StationaryEnemy(int hp) : base(hp)
         {
@@ -161,7 +162,7 @@ namespace Entity
     
     public class EliteEnemy : Enemy
     {
-        public List<CardPrototype> HeldCards;
+        [JsonIgnore] public List<CardPrototype> HeldCards;
         public EliteEnemy(int hp) : base(hp)
         {
         }

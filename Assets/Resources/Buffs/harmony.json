@@ -1,0 +1,8 @@
+﻿{
+  "ID": "harmony",
+  "Name": "和谐",
+  "TextureName": "Arts/Misc/harmony",
+  "Positive": true,
+  "EffectText": "下一次伤害增加{music_harmony_value}点。",
+  "ExtraText": "乐得则阴阳和。"
+}
