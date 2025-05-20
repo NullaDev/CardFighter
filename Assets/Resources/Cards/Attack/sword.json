@@ -4,7 +4,17 @@
   "TextureName": "Arts/Cards/Attack/sword",
   "Desc": "对1格内的敌人造成3点伤害",
   "Cost": 1,
-  "Behaviors": [
-    { "Type": "damage", "Value": 3, "RangeMin": 1, "RangeMax": 1, "Tags": ["weapon"] }
+  "Actions": [
+    {
+      "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 1 },
+      "Filters": [
+        { "Type": "exclude_self" },
+        { "Type": "is_alive" },
+        { "Type": "first_n", "Value": 1 }
+      ],
+      "Processors": [
+        { "Type": "damage", "Value": 3, "Tags": ["melee", "weapon"] }
+      ]
+    }
   ]
 }

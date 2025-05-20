@@ -4,7 +4,12 @@
   "TextureName": "Arts/Cards/ru/drive",
   "Desc": "前进2格",
   "Cost": 1,
-  "Behaviors": [
-    { "Type": "move_forward", "Value": 2 }
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        { "Type": "move_forward", "Value": 2}
+      ]
+    }
   ]
 }

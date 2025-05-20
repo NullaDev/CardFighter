@@ -4,7 +4,12 @@
   "TextureName": "Arts/Cards/ru/seize_general_rush",
   "Desc": "前进3格，沿途造成3点伤害，可以跨越敌人",
   "Cost": 3,
-  "Behaviors": [
-    { "Type": "move_attack", "Value": 3, "Damage": 3, "CanCrossEnemies": true }
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        { "Type": "move_attack", "Value": 3, "Damage": 3, "CanCrossEnemies": true }
+      ]
+    }
   ]
 }

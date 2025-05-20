@@ -4,8 +4,17 @@
   "TextureName": "Arts/Cards/Attack/kick",
   "Desc": "对1格内的敌人造成2点伤害，破格",
   "Cost": 1,
-  "Behaviors": [
-    { 
-      "Type": "damage", "Value": 2, "RangeMin": 1, "RangeMax": 1, "Tags": ["unarmed", "break_guard"] }
+  "Actions": [
+    {
+      "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 1 },
+      "Filters": [
+        { "Type": "exclude_self" },
+        { "Type": "is_alive" },
+        { "Type": "first_n", "Value": 1 }
+      ],
+      "Processors": [
+        { "Type": "damage", "Value": 2, "Tags": ["melee", "unarmed", "break_guard"] }
+      ]
+    }
   ]
 }

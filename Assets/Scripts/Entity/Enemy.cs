@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Card;
+using Card.Engine;
 using Fighting;
 using GameLogic;
 using Newtonsoft.Json;
@@ -40,14 +41,18 @@ namespace Entity
 
         public override CardInstance ThinkNextTurnCard(BattleField battleField)
         {
-            var dmg = this.HeldCard.Behaviors.OfType<DamageBehavior>().FirstOrDefault();
-            if (dmg == null)
+            var attackAction = this.HeldCard.Actions.FirstOrDefault(action =>
+                action.Selector is RangeSelector &&
+                action.Processors.Any(p => p is DamageProcessor)
+            );
+            if (attackAction == null)
                 return new CardInstance(CommonCards.DoNothing);
+            var rangeSelector = attackAction.Selector as RangeSelector;
             
             var selfPos = battleField.GetEntityIndex(this);
             var playerPos = battleField.GetPlayerIndex();
-            var rangeMin = dmg.RangeMin;
-            var rangeMax = dmg.RangeMax;
+            var rangeMin = rangeSelector.RangeMin;
+            var rangeMax = rangeSelector.RangeMax;
             var direction = this.Facing == EntityFacing.RIGHT ? 1 : -1;
                 
             var minPos = selfPos + rangeMin * direction;
@@ -115,9 +120,13 @@ namespace Entity
 
         public override CardInstance ThinkNextTurnCard(BattleField battleField)
         {
-            var dmg = this.HeldCard.Behaviors.OfType<DamageBehavior>().FirstOrDefault();
-            if (dmg == null)
+            var attackAction = this.HeldCard.Actions.FirstOrDefault(action =>
+                action.Selector is RangeSelector &&
+                action.Processors.Any(p => p is DamageProcessor)
+            );
+            if (attackAction == null)
                 return new CardInstance(CommonCards.DoNothing);
+            var rangeSelector = attackAction.Selector as RangeSelector;
 
             var selfPos = battleField.GetEntityIndex(this);
             var playerPos = battleField.GetPlayerIndex();
@@ -128,8 +137,8 @@ namespace Entity
                 return new CardInstance(CommonCards.TurnBack);
             }
 
-            var rangeMin = dmg.RangeMin;
-            var rangeMax = dmg.RangeMax;
+            var rangeMin = rangeSelector.RangeMin;
+            var rangeMax = rangeSelector.RangeMax;
             var direction = this.Facing == EntityFacing.RIGHT ? 1 : -1;
 
             var minPos = selfPos + rangeMin * direction;

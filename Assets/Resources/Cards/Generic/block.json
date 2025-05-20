@@ -4,14 +4,19 @@
   "TextureName": "Arts/Cards/Generic/block",
   "Desc": "在下回合内，可以格挡一次面朝方向的攻击。",
   "Cost": 3,
-  "Behaviors": [
-    { 
-      "Type": "add_buff",
-      "Buffs": [
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
         {
-          "BuffName": "block",
-          "Turn": 1,
-          "Parameters": {"block_times": 1}
+          "Type": "add_buff",
+          "Buffs": [
+            { 
+              "BuffName": "block", 
+              "Turn": 1,
+              "Parameters": {"block_times": 1}
+            }
+          ]
         }
       ]
     }

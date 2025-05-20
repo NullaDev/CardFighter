@@ -2,9 +2,20 @@
   "ID": "iron_slam",
   "Name": "铁山靠",
   "TextureName": "Arts/Cards/Attack/iron_slam",
-  "Desc": "对1格内的敌人造成2点伤害，并击飞最多1格",
+  "Desc": "对1格内的敌人造成3点伤害，并击飞最多1格",
   "Cost": 3,
-  "Behaviors": [
-    { "Type": "damage", "Value": 1, "RangeMin": 1, "RangeMax": 1, "KnockBack": 1, "Tags": ["unarmed"] }
+  "Actions": [
+    {
+      "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 1 },
+      "Filters": [
+        { "Type": "exclude_self" },
+        { "Type": "is_alive" },
+        { "Type": "first_n", "Value": 1 }
+      ],
+      "Processors": [
+        { "Type": "damage", "Value": 3, "Tags": ["melee", "unarmed"] },
+        { "Type": "knock_back", "Value": 1 }
+      ]
+    }
   ]
 }

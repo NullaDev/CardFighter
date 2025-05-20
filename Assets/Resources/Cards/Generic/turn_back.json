@@ -4,7 +4,12 @@
   "TextureName": "Arts/Cards/Generic/turn_back",
   "Desc": "反转玩家当前方向",
   "Cost": 0,
-  "Behaviors": [
-    { "Type": "turn_back" }
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        { "Type": "turn" }
+      ]
+    }
   ]
 }

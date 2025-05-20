@@ -4,14 +4,19 @@
   "TextureName": "Arts/Cards/RU/charioteering",
   "Desc": "切换当前六艺状态至「御」。",
   "Cost": 1,
-  "Behaviors": [
+  "Actions": [
     {
-      "Type": "add_buff",
-      "Buffs": [
+      "Selector": { "Type": "self" },
+      "Processors": [
         {
-          "BuffName": "charioteering",
-          "Turn": -1,
-          "Parameters": {"charioteering_value": 1}
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "charioteering",
+              "Turn": -1,
+              "Parameters": { "charioteering_value": 1 }
+            }
+          ]
         }
       ]
     }

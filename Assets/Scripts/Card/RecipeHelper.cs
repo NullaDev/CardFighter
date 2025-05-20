@@ -11,7 +11,7 @@ namespace Card
             card.Name = "杂交卡片";
             card.Cost = card1.Cost + card2.Cost + 1;
             card.Desc = "使用" + card1.Name + "和" + card2.Name;
-            card.Behaviors = card1.Behaviors.Concat(card2.Behaviors).ToList();
+            card.Actions = card1.Actions.Concat(card2.Actions).ToList();
             return card;
         }
     }

@@ -4,14 +4,19 @@
   "TextureName": "Arts/Cards/RU/music",
   "Desc": "切换当前六艺状态至「乐」。",
   "Cost": 1,
-  "Behaviors": [
+  "Actions": [
     {
-      "Type": "add_buff",
-      "Buffs": [
+      "Selector": { "Type": "Self" },
+      "Processors": [
         {
-          "BuffName": "music",
-          "Turn": -1,
-          "Parameters": {"music_positive_value": 2, "music_negative_value": 1}
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "music",
+              "Turn": -1,
+              "Parameters": { "music_positive_value": 2, "music_negative_value": 1 }
+            }
+          ]
         }
       ]
     }

@@ -4,7 +4,16 @@
   "TextureName": "Arts/Cards/Attack/spear",
   "Desc": "对2格内的所有敌人造成2点伤害",
   "Cost": 2,
-  "Behaviors": [
-    { "Type": "damage", "Value": 2, "RangeMin": 1, "RangeMax": 2, "Aoe": true, "Tags": ["weapon"] }
+  "Actions": [
+    {
+      "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 2 },
+      "Filters": [
+        { "Type": "exclude_self" },
+        { "Type": "is_alive" }
+      ],
+      "Processors": [
+        { "Type": "damage", "Value": 2, "Tags": ["melee", "weapon"]}
+      ]
+    }
   ]
 }

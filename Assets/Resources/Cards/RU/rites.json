@@ -4,14 +4,19 @@
   "TextureName": "Arts/Cards/RU/rites",
   "Desc": "切换当前六艺状态至「礼」。",
   "Cost": 1,
-  "Behaviors": [
-    { 
-      "Type": "add_buff",
-      "Buffs": [
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
         {
-          "BuffName": "rites",
-          "Turn": -1,
-          "Parameters": {"rites_positive_value": 2, "rites_negative_value": 0.0}
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "rites",
+              "Turn": -1,
+              "Parameters": { "rites_positive_value": 2, "rites_negative_value": 1 }
+            }
+          ]
         }
       ]
     }

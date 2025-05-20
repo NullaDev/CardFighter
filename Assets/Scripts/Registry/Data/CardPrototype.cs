@@ -1,6 +1,5 @@
 using System.Collections.Generic;
-using Card;
-using GameLogic;
+using Card.Engine;
 using Newtonsoft.Json;
 
 namespace Registry.Data
@@ -12,13 +11,12 @@ namespace Registry.Data
         public string TextureName { get; set; }
         public string Desc { get; set; }
         public int Cost { get; set; }
-        public List<CardBehavior> Behaviors;
+        public List<EntityAction> Actions { get; set; } = new();
         
         public static CardPrototype CreateFromJson(string jsonString)
         {
             var settings = new JsonSerializerSettings();
-            settings.Converters.Add(new BehaviorConverter());
-            
+            settings.Converters.Add(new EntityActionConverter());
             return JsonConvert.DeserializeObject<CardPrototype>(jsonString, settings);
         }
     }

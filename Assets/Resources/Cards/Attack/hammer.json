@@ -3,16 +3,23 @@
   "Name": "给你一锤",
   "TextureName": "Arts/Cards/Attack/hammer",
   "Desc": "对1格内的敌人造成3点伤害，并晕眩其1回合",
-  "Cost": 1,
-  "Behaviors": [
+  "Cost": 3,
+  "Actions": [
     {
-      "Type": "damage",
-      "Value": 3,
-      "RangeMin": 1,
-      "RangeMax": 1,
-      "Tags": ["weapon"],
-      "OnHitBuffs": [
-        { "BuffName": "stunned", "Turn": 1 }
+      "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 1 },
+      "Filters": [
+        { "Type": "exclude_self" },
+        { "Type": "is_alive" },
+        { "Type": "first_n", "Value": 1 }
+      ],
+      "Processors": [
+        { "Type": "damage", "Value": 3, "Tags": ["melee", "weapon"] },
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            { "BuffName": "stunned", "Turn": 1 }
+          ]
+        }
       ]
     }
   ]

@@ -11,15 +11,22 @@ namespace Card
     {
         public readonly CardPrototype Prototype;
         public readonly List<Action<FightingControl, EntityBase>> Effects = new();
-        
+
         public int CurrentCost;
         public List<Action<CardInstance>> Buffs = new();
 
         public CardInstance(CardPrototype prototype)
         {
             this.Prototype = prototype;
-            this.CurrentCost = this.Prototype.Cost;
-            prototype.Behaviors.ForEach(b=>this.Effects.Add(b.Execute()));
+            this.CurrentCost = prototype.Cost;
+            
+            Debug.Log(this.Prototype.Name);
+            prototype.Actions.ForEach(b=>this.Effects.Add(b.Execute));
+
+            // Effects = prototype.Actions
+            //     .Select<EntityAction, Action<FightingControl, EntityBase>>(action => action.Execute)
+            //     .ToList();
         }
     }
+    
 }

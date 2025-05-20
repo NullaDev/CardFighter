@@ -1,8 +1,8 @@
 ﻿{
-  "ID": "punch",
-  "Name": "给你一拳",
-  "TextureName": "Arts/Cards/Attack/punch",
-  "Desc": "对1格内的敌人造成1点伤害两次",
+  "ID": "bite",
+  "Name": "咬你一口",
+  "TextureName": "Arts/Cards/Attack/bite",
+  "Desc": "对1格内的敌人造成2点伤害",
   "Cost": 1,
   "Actions": [
     {
@@ -13,8 +13,7 @@
         { "Type": "first_n", "Value": 1 }
       ],
       "Processors": [
-        { "Type": "damage", "Value": 1, "Tags": ["melee", "unarmed"] },
-        { "Type": "damage", "Value": 1, "Tags": ["melee", "unarmed"] }
+        { "Type": "damage", "Value": 2, "Tags": ["melee"] }
       ]
     }
   ]

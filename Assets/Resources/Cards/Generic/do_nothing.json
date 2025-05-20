@@ -4,7 +4,7 @@
   "TextureName": "Arts/Cards/Generic/do_nothing",
   "Desc": "什么也不做。",
   "Cost": 0,
-  "Behaviors": [
+  "Actions": [
 
   ]
 }

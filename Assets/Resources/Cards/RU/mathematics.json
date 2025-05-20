@@ -4,14 +4,19 @@
   "TextureName": "Arts/Cards/RU/mathematics",
   "Desc": "切换当前六艺状态至「数」。",
   "Cost": 1,
-  "Behaviors": [
+  "Actions": [
     {
-      "Type": "add_buff",
-      "Buffs": [
+      "Selector": { "Type": "self" },
+      "Processors": [
         {
-          "BuffName": "mathematics",
-          "Turn": -1,
-          "Parameters": {"mathematics_positive_value": 2, "mathematics_negative_value": 2}
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "mathematics",
+              "Turn": -1,
+              "Parameters": { "mathematics_positive_value": 2, "mathematics_negative_value": 2 }
+            }
+          ]
         }
       ]
     }

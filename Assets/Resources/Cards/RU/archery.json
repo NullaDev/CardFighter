@@ -4,14 +4,19 @@
   "TextureName": "Arts/Cards/RU/archery",
   "Desc": "切换当前六艺状态至「射」。",
   "Cost": 1,
-  "Behaviors": [
+  "Actions": [
     {
-      "Type": "add_buff",
-      "Buffs": [
+      "Selector": { "Type": "self" },
+      "Processors": [
         {
-          "BuffName": "archery",
-          "Turn": -1,
-          "Parameters": {"archery_positive_value": 2, "archery_negative_value": 0.5}
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "archery",
+              "Turn": -1,
+              "Parameters": { "archery_positive_value": 2, "archery_negative_value": 0.5 }
+            }
+          ]
         }
       ]
     }

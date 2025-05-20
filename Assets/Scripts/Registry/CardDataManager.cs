@@ -10,7 +10,7 @@ namespace Registry
         private bool _hasLoaded = false;
 
         public const string CardFolderRoot = "Cards/";
-        public static string[] SubFolders = {"Generic", "Attack", "RU", "Test"};
+        public static string[] SubFolders = {"Generic", "Attack", "Misc", "RU", "Test"};
         private readonly List<CardPrototype> _listCards = new();
 
         public void DebugLoadedCardInfo()
