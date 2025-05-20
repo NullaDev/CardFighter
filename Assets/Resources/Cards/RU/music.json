@@ -6,7 +6,7 @@
   "Cost": 1,
   "Actions": [
     {
-      "Selector": { "Type": "Self" },
+      "Selector": { "Type": "self" },
       "Processors": [
         {
           "Type": "add_buff",

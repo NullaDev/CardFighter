@@ -22,7 +22,7 @@ namespace Card.Engine
                     "empty" => selectorToken.ToObject<EmptySelector>(serializer),
                     "self" => selectorToken.ToObject<SelfSelector>(serializer),
                     "range" => selectorToken.ToObject<RangeSelector>(serializer),
-                    _ => throw new Exception("Unknown selector type")
+                    _ => throw new Exception("Unknown selector type: " + selectorType)
                 };
             }
             else
@@ -42,7 +42,7 @@ namespace Card.Engine
                         "last_n" => f.ToObject<LastNFilter>(serializer),
                         "exclude_self" => f.ToObject<ExcludeSelfFilter>(serializer),
                         "is_alive" => f.ToObject<IsAliveFilter>(serializer),
-                        _ => throw new Exception("Unknown filter type")
+                        _ => throw new Exception("Unknown filter type: " + type)
                     };
                     action.Filters.Add(filter);
                 }
@@ -62,7 +62,7 @@ namespace Card.Engine
                         "add_buff" => p.ToObject<AddBuffProcessor>(serializer),
                         "add_cost" => p.ToObject<AddCostProcessor>(serializer),
                         "move_attack" => p.ToObject<MoveAttackProcessor>(serializer),
-                        _ => throw new Exception("Unknown processor type")
+                        _ => throw new Exception("Unknown processor type: " + type)
                     };
                     action.Processors.Add(processor);
                 }

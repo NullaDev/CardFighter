@@ -19,13 +19,7 @@ namespace Card
         {
             this.Prototype = prototype;
             this.CurrentCost = prototype.Cost;
-            
-            Debug.Log(this.Prototype.Name);
             prototype.Actions.ForEach(b=>this.Effects.Add(b.Execute));
-
-            // Effects = prototype.Actions
-            //     .Select<EntityAction, Action<FightingControl, EntityBase>>(action => action.Execute)
-            //     .ToList();
         }
     }
     
