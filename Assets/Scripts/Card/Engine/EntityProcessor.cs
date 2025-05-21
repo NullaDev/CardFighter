@@ -26,12 +26,17 @@ namespace Card.Engine
         {
             var map = fc.BattleField;
             var pos = map.GetEntityIndex(user);
-            var direction = user.Facing == EntityFacing.LEFT ? -1 : 1;
+
+            if (pos == -1 || Value == 0) return;
+
+            var baseDirection = user.Facing == EntityFacing.LEFT ? -1 : 1;
+            var direction = baseDirection * Math.Sign(Value);
 
             var newPos = pos;
             var steps = 0;
+            var stepCount = Math.Abs(Value);
 
-            while (steps < Value)
+            while (steps < stepCount)
             {
                 var next = newPos + direction;
                 if (next < 0 || next >= map.Size || map.ListEntities[next] != null)

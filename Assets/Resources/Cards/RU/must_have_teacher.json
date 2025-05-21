@@ -1,0 +1,21 @@
+﻿{
+  "ID": "must_have_teacher",
+  "Name": "必有我师",
+  "TextureName": "Arts/Cards/RU/must_have_teacher",
+  "Desc": "对1-3格内的敌人各造成2点伤害，每击中一个敌人获得1费",
+  "Cost": 3,
+  "Actions": [
+    {
+      "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 3 },
+      "Filters": [
+        { "Type": "exclude_self" },
+        { "Type": "is_alive" },
+        { "Type": "entity_type", "MatchTypes": ["enemy"] }
+      ],
+      "Processors": [
+        { "Type": "damage", "Value": 2, "Tags": ["melee", "unarmed"] },
+        { "Type": "add_cost", "Value": 1 }
+      ]
+    }
+  ]
+}

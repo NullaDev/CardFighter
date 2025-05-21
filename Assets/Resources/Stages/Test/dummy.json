@@ -8,6 +8,14 @@
   "PlayerSpawnFacing": "right",
   "Entities": [
     {
+      "Type": "passive",
+      "AppearTurn": 0,
+      "AppearPos": 4,
+      "Name": "bucket",
+      "TextureName": "bucket",
+      "HP": 30
+    },
+    {
       "Type": "stationary_enemy",
       "AppearTurn": 0,
       "AppearPos": 5,

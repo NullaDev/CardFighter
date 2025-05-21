@@ -1,8 +1,8 @@
 ﻿{
   "ID": "honest_word",
-  "Name": "言果",
+  "Name": "行必果",
   "TextureName": "Arts/Cards/RU/honest_word",
   "Positive": true,
   "EffectText": "你造成的下一次伤害乘以{honest_word_value}。",
-  "ExtraText": "言必信，行必果。"
+  "ExtraText": "君子说打死你就一定会打死你。"
 }

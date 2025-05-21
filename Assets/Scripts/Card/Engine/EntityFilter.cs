@@ -70,5 +70,28 @@ namespace Card.Engine
             };
         }
     }
+    
+    public class TypeFilter : EntityFilter
+    {
+        public List<string> MatchTypes { get; set; } = new();
+        public bool Not { get; set; } = false;
+
+        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self)
+        {
+            return targets.Where(e =>
+            {
+                var match = MatchTypes.Any(type =>
+                    type switch
+                    {
+                        "enemy" => e is Enemy,
+                        "elite_enemy" => e is EliteEnemy,
+                        "player" => e is Player,
+                        "passive" => e is PassiveEntity,
+                        _ => false
+                    });
+                return Not ? !match : match;
+            }).ToList();
+        }
+    }
 
 }

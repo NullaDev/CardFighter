@@ -2,7 +2,7 @@
   "ID": "honest_word",
   "Name": "言必信",
   "TextureName": "Arts/Cards/RU/honest_word",
-  "Desc": "下回合的首次攻击伤害加倍",
+  "Desc": "你下回合的首次攻击伤害加倍",
   "Cost": 2,
   "Actions": [
     {
