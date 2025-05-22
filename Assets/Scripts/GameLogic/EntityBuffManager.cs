@@ -23,6 +23,8 @@ namespace GameLogic
         public const string Stunned = "stunned";
         public const string Block = "block";
             public const string BlockTimes = "block_times";
+        public const string CounterAttack = "counter_attack";
+        public const string CounterAttackValue = "counter_attack_value";
         
         public const string Rites = "rites";
             public const string RitesPositiveValue = "rites_positive_value";
@@ -46,9 +48,9 @@ namespace GameLogic
         
         public const string Noble = "noble";
             public const string NobleValue = "noble_value";
-        
         public const string HonestWord = "honest_word";
             public const string HonestWordValue = "honest_word_value";
+        public const string FollowHeart = "follow_heart";
 
     }
 }

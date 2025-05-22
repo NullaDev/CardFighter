@@ -10,7 +10,8 @@
       "Filters": [
         { "Type": "exclude_self" },
         { "Type": "is_alive" },
-        { "Type": "first_n", "Value": 1 }
+        { "Type": "first_n", "Value": 1 },
+        { "Type": "entity_type", "MatchTypes": ["enemy"] }
       ],
       "Processors": [
         { "Type": "knock_back", "Value": 4 }

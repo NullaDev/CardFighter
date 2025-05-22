@@ -2,7 +2,7 @@
   "ID": "hammer",
   "Name": "给你一锤",
   "TextureName": "Arts/Cards/Attack/hammer",
-  "Desc": "对1格内的敌人造成3点伤害，并晕眩其1回合",
+  "Desc": "对1格内的目标造成3点伤害，并晕眩其1回合",
   "Cost": 3,
   "Actions": [
     {

@@ -1,7 +1,7 @@
 ﻿{
-  "ID": "sentry_0",
-  "Name": "岗哨-难度0",
-  "Type": "Fight",
+  "ID": "sentry_test",
+  "Name": "岗哨-测试",
+  "Type": "Test",
   "Difficulty": 0,
   "Size": 6,
   "PlayerSpawnPos": 0,

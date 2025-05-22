@@ -4,5 +4,5 @@
   "TextureName": "Arts/Cards/RU/honest_word",
   "Positive": true,
   "EffectText": "你造成的下一次伤害乘以{honest_word_value}。",
-  "ExtraText": "君子说打死你就一定会打死你。"
+  "ExtraText": "子曰：我说要打死你，就一定会打死你。"
 }

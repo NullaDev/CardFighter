@@ -1,0 +1,8 @@
+﻿{
+  "ID": "counter_attack",
+  "Name": "反击",
+  "TextureName": "Arts/Cards/ru/retaliate",
+  "Positive": true,
+  "EffectText": "受到攻击时，反击目标并造成{counter_attack_value}点伤害。",
+  "ExtraText": "子曰：你如果不想挨打的话就别主动朝我动手。"
+}

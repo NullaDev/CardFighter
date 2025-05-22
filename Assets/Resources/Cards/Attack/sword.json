@@ -2,7 +2,7 @@
   "ID": "sword",
   "Name": "砍你一剑",
   "TextureName": "Arts/Cards/Attack/sword",
-  "Desc": "对1格内的敌人造成3点伤害",
+  "Desc": "对1格内的目标造成3点伤害",
   "Cost": 1,
   "Actions": [
     {

@@ -2,7 +2,7 @@
   "ID": "block",
   "Name": "格挡",
   "TextureName": "Arts/Cards/Generic/block",
-  "Desc": "在下回合内，可以格挡一次面朝方向的攻击。",
+  "Desc": "在下回合内，可以格挡一次面朝方向的攻击",
   "Cost": 3,
   "Actions": [
     {

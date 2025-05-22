@@ -1,0 +1,26 @@
+﻿{
+  "ID": "retaliate",
+  "Name": "己所不欲",
+  "TextureName": "Arts/Cards/ru/retaliate",
+  "Desc": "直到下回合前，每次受到伤害时，反击目标2点伤害",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": {
+        "Type": "self"
+      },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            { 
+              "BuffName": "counter_attack",
+              "Turn": 1,
+              "Parameters": { "counter_attack_value": 2 }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

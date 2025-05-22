@@ -2,7 +2,7 @@
   "ID": "seize_general_rush",
   "Name": "三军夺帅",
   "TextureName": "Arts/Cards/ru/seize_general_rush",
-  "Desc": "前进3格，沿途造成3点伤害，可以跨越敌人",
+  "Desc": "前进3格，沿途造成3点伤害，可以跨越目标",
   "Cost": 3,
   "Actions": [
     {

@@ -2,7 +2,7 @@
   "ID": "punch",
   "Name": "给你一拳",
   "TextureName": "Arts/Cards/Attack/punch",
-  "Desc": "对1格内的敌人造成1点伤害两次",
+  "Desc": "对1格内的目标造成1点伤害两次",
   "Cost": 1,
   "Actions": [
     {

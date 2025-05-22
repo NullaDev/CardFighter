@@ -2,7 +2,7 @@
   "ID": "u_turn",
   "Name": "调头",
   "TextureName": "Arts/Cards/RU/u_turn",
-  "Desc": "反转玩家当前方向",
+  "Desc": "反转当前方向",
   "Cost": 1,
   "Actions": [
     {

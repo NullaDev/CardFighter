@@ -53,6 +53,7 @@ namespace Fighting
             if (player.HasBuff(EntityBuffManager.Stunned))
             {
                 EndTurn();
+                return;
             }
             if (this.FightingData.CurrentCost < card.CurrentCost) return;
             
@@ -90,7 +91,8 @@ namespace Fighting
                 {
                     if (!enemy.HasBuff(EntityBuffManager.Stunned))
                         enemy.NextTurnCard?.Effects.ForEach(effect=>effect(this, enemy));
-                    enemyRemain = true;
+                    if (!enemy.IsDead)
+                        enemyRemain = true;
                 }
                 
                 entity.UpdateBuffs();

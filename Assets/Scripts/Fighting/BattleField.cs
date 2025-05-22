@@ -141,7 +141,7 @@ namespace Fighting
 
         public bool AnyIncomingEnemyRemain()
         {
-            return this._config.Entities.Any(e=>e.Type is "simple_enemy" or "elite_enemy");
+            return this._config.Entities.Any(e=>e.Type is "simple_enemy" or "elite_enemy" or "stationary_enemy");
         }
     }
 }

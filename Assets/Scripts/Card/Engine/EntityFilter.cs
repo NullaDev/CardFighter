@@ -93,5 +93,17 @@ namespace Card.Engine
             }).ToList();
         }
     }
+    
+    public class DealtDamageToPlayerFilter : EntityFilter
+    {
+        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self)
+        {
+            return targets
+                .OfType<Enemy>()
+                .Where(e => e.DealtDamageToPlayer)
+                .Cast<EntityBase>()
+                .ToList();
+        }
+    }
 
 }

@@ -44,6 +44,7 @@ namespace Card.Engine
                         "is_alive" => f.ToObject<IsAliveFilter>(serializer),
                         "health" => f.ToObject<HealthFilter>(serializer),
                         "entity_type" => f.ToObject<TypeFilter>(serializer),
+                        "dealt_damage_to_player" => f.ToObject<DealtDamageToPlayerFilter>(serializer),
                         _ => throw new Exception("Unknown filter type: " + type)
                     };
                     action.Filters.Add(filter);

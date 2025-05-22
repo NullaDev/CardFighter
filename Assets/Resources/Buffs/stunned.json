@@ -1,8 +1,8 @@
 ﻿{
   "ID": "stunned",
   "Name": "晕眩",
-  "TextureName": "Arts/Cards/Generic/observe",
+  "TextureName": "Arts/Misc/stunned",
   "Positive": false,
-  "EffectText": "这一回合你做什么都不产生效果。",
-  "ExtraText": "我的头好晕~"
+  "EffectText": "这一回合你使用的卡牌不产生效果。",
+  "ExtraText": "啊~我的头好晕~"
 }

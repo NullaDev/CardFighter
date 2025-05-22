@@ -2,7 +2,7 @@
   "ID": "kick",
   "Name": "踹你一脚",
   "TextureName": "Arts/Cards/Attack/kick",
-  "Desc": "对1格内的敌人造成2点伤害，破格",
+  "Desc": "对1格内的目标造成2点伤害，破格",
   "Cost": 1,
   "Actions": [
     {

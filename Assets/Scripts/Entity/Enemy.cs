@@ -15,6 +15,7 @@ namespace Entity
     public abstract class Enemy: EntityBase
     {
         [JsonIgnore] public CardInstance NextTurnCard = null;
+        [JsonIgnore] public bool DealtDamageToPlayer = false;
         public Enemy(int hp) : base(hp)
         {
         }

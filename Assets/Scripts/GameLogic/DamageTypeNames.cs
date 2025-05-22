@@ -8,5 +8,6 @@
         public const string Weapon = "weapon";
         public const string BreakGuard = "break_guard";
         public const string Charge = "charge";
+        public const string CounterAttack = "counter_attack";
     }
 }

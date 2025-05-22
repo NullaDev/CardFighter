@@ -75,13 +75,13 @@ namespace Entity
                         {
                             additiveModifier += this.GetBuff(EntityBuffManager.Rites).GetParam<int>(EntityBuffManager.RitesPositiveValue);
                         }
-                        else if (isBackAttacked)
+                        else if (isBackAttacked && !this.HasBuff(EntityBuffManager.FollowHeart))
                         {
                             multipleModifier *= this.GetBuff(EntityBuffManager.Rites).GetParam<float>(EntityBuffManager.RitesNegativeValue);
                         }
                     }
                 }
-                else if (this.HasBuff(EntityBuffManager.Archery))
+                else if (this.HasBuff(EntityBuffManager.Archery) && !this.HasBuff(EntityBuffManager.FollowHeart))
                 {
                     multipleModifier *= this.GetBuff(EntityBuffManager.Archery).GetParam<float>(EntityBuffManager.ArcheryNegativeValue);
                 }
@@ -100,13 +100,15 @@ namespace Entity
             {
                 target.TryHurtFrom(this, value, battleField, damageTags);
             }
-            this.DamageDealtThisTurn = true;
+            if (!damageTags.Contains(DamageTypeNames.CounterAttack))
+                this.DamageDealtThisTurn = true;
         }
 
         public void TryHurtFrom(EntityBase source, int value, BattleField battleField, List<string> damageTags)
         {
             var additiveModifier = 0;
             var multipleModifier = 1.0;
+            var doCauseDamage = true;
             if (this.HasBuff(EntityBuffManager.Mathematics))
             {
                 if (this.HasBuff(EntityBuffManager.Insight))
@@ -137,6 +139,7 @@ namespace Entity
                         }
                         else if (blockTimes > 0)
                         {
+                            doCauseDamage = false;
                             if (blockTimes <= 1)
                             {
                                 Buffs.Remove(blockBuff);
@@ -145,11 +148,23 @@ namespace Entity
                             {
                                 blockBuff.SetParam(EntityBuffManager.BlockTimes, blockTimes - 1);
                             }
-                            return;
                         }
                     }
                 }
-                this.Hurt(source, value, battleField);
+
+                if (doCauseDamage)
+                {
+                    this.Hurt(source, value, battleField);
+                    if (this is Player && source is Enemy enemy)
+                    {
+                        enemy.DealtDamageToPlayer = true;
+                    }
+                    if (this.HasBuff(EntityBuffManager.CounterAttack) && !damageTags.Contains(DamageTypeNames.CounterAttack))
+                    {
+                        var counterValue = this.GetBuff(EntityBuffManager.CounterAttack).GetParam<int>(EntityBuffManager.CounterAttackValue);
+                        this.DoDamageTo(source, counterValue, battleField, new List<string>{DamageTypeNames.CounterAttack});
+                    }
+                }
             }
         }
 
@@ -224,6 +239,7 @@ namespace Entity
                 var musicBuff = this.GetBuff(EntityBuffManager.Music);
                 if (this.DamageDealtThisTurn)
                 {
+                    if (this.HasBuff(EntityBuffManager.FollowHeart)) return;
                     var buff = new EntityBuff(EntityBuffManager.Chaos, 1);
                     buff.SetParam(EntityBuffManager.ChaosValue, musicBuff.GetParam<int>(EntityBuffManager.MusicNegativeValue));
                     this.AddOrUpdateBuff(buff);

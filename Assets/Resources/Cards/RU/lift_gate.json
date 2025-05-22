@@ -2,7 +2,7 @@
   "ID": "lift_gate",
   "Name": "力招城关",
   "TextureName": "Arts/Cards/ru/lift_gate",
-  "Desc": "对1格内的被动单位进行处决",
+  "Desc": "对1格内的被动目标进行处决",
   "Cost": 1,
   "Actions": [
     {
