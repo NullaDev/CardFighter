@@ -1,0 +1,8 @@
+﻿{
+  "ID": "hidden_weapon",
+  "Name": "藏器于身",
+  "TextureName": "Arts/Cards/RU/teacher_say",
+  "Positive": true,
+  "EffectText": "你使用卡牌不消耗费用。",
+  "ExtraText": "子曰：君子要把武器藏在身上，等到合适的时候出击。"
+}

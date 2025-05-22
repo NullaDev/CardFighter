@@ -37,10 +37,7 @@ namespace Fighting
                     AvailableCards[i] = cardInstance.Prototype.ID switch
                     {
                         "move" => new CardInstance(CommonCards.Drive),
-                        "turn_back" => new CardInstance(CommonCards.UTurn)
-                        {
-                            CurrentCost = player.GetBuff(EntityBuffManager.Charioteering).GetParam<int>(EntityBuffManager.CharioteeringValue)
-                        },
+                        "turn_back" => new CardInstance(CommonCards.UTurn),
                         _ => AvailableCards[i]
                     };
                 }

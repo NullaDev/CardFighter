@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Card;
+using Entity;
 using GameLogic;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace Render
 
         private readonly List<GameObject> _listCards = new();
 
-        public void RenderCards(List<CardInstance> playerCardsList)
+        public void RenderCards(List<CardInstance> playerCardsList, Player player)
         {
             foreach (var card in _listCards)
             {
@@ -25,7 +26,7 @@ namespace Render
             {
                 var card = GameObject.Instantiate(CardPrefab, CardGrid.transform);
                 var cardRender = card.GetComponent<CardRender>();
-                cardRender.RenderCard(cardInstance);
+                cardRender.RenderCard(cardInstance, cardInstance.GetCurrentCost(player));
                 var cardInteract = card.GetComponent<CardInteract>();
                 cardInteract.CardInstance = cardInstance;
                 

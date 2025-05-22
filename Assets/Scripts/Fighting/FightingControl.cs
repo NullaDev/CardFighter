@@ -1,3 +1,4 @@
+using System.Linq;
 using Card;
 using Entity;
 using GameLogic;
@@ -44,7 +45,7 @@ namespace Fighting
             mapRender.RenderIncomingEntities(this.BattleField, this.FightingData.CurrentTurn);
 
             var playerCardsRender = this.render.GetComponent<DeckRender>();
-            playerCardsRender.RenderCards(this.FightingData.AvailableCards);
+            playerCardsRender.RenderCards(this.FightingData.AvailableCards, this.BattleField.GetPlayerFromMap());
         }
 
         public void PlayerUseCard(CardInstance card)
@@ -55,10 +56,21 @@ namespace Fighting
                 EndTurn();
                 return;
             }
-            if (this.FightingData.CurrentCost < card.CurrentCost) return;
+            if (this.FightingData.CurrentCost < card.GetCurrentCost(player)) return;
             
-            this.FightingData.CurrentCost -= card.CurrentCost;
-            card.Effects.ForEach(effect=>effect(this, player));
+            this.FightingData.CurrentCost -= card.GetCurrentCost(player);
+            if (player.HasBuff(EntityBuffManager.Practice))
+            {
+                var times = player.GetBuff(EntityBuffManager.Practice).GetParam<int>(EntityBuffManager.PracticeValue);
+                foreach (var _ in Enumerable.Range(0, times))
+                {
+                    card.Effects.ForEach(effect=>effect(this, player));
+                }
+            }
+            else
+            {
+                card.Effects.ForEach(effect=>effect(this, player));
+            }
             EndTurn();
         }
 

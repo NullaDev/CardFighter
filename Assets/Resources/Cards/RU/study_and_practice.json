@@ -1,0 +1,24 @@
+﻿{
+  "ID": "study_and_practice",
+  "Name": "学而时习之",
+  "TextureName": "Arts/Cards/RU/study_and_practice",
+  "Desc": "你下回合的卡牌触发两次",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "practice",
+              "Turn": 2,
+              "Parameters": { "practice_value": 2 }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

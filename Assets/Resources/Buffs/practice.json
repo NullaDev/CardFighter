@@ -1,0 +1,8 @@
+﻿{
+  "ID": "practice",
+  "Name": "练习",
+  "TextureName": "Arts/Cards/RU/study_and_practice",
+  "Positive": true,
+  "EffectText": "你的牌触发{practice_value}次。",
+  "ExtraText": "子曰：学习打人之后，要时不时找人练习。"
+}

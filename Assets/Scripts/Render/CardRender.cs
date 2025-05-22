@@ -19,7 +19,7 @@ namespace Render
             _cardDesc = transform.Find("CardDesc").GetComponent<Text>();
         }
         
-        public void RenderCard(CardInstance card)
+        public void RenderCard(CardInstance card, int? cost)
         {
             if (card.Prototype.TextureName != "")
             {
@@ -30,7 +30,13 @@ namespace Render
             {
                 _cardImage.sprite = null;
             }
-            _cardCost.text = card.CurrentCost.ToString();
+
+            var actualCost = cost.GetValueOrDefault(card.Prototype.Cost);
+            if (actualCost > card.Prototype.Cost)
+                _cardCost.color = Color.red;
+            else if (actualCost < card.Prototype.Cost)
+                _cardCost.color = Color.green;
+            _cardCost.text = actualCost.ToString();
             _cardTitle.text = card.Prototype.Name;
             _cardDesc.text = card.Prototype.Desc;
         }

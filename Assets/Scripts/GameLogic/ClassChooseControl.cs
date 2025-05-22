@@ -27,12 +27,12 @@ namespace GameLogic
             playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("observe"));
             
             playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("punch"));
-            playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("justice_strikes_back"));
-            playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("retaliate"));
+            playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("teacher_say"));
+            playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("study_and_practice"));
             playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("music"));
             
             var stageData = StaticDataManager.StageDataManager;
-            playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("sentry_test"));
+            playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("dummy"));
             
             SceneManager.LoadScene("Fighting");
         }

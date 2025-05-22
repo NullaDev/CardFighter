@@ -51,6 +51,9 @@ namespace GameLogic
         public const string HonestWord = "honest_word";
             public const string HonestWordValue = "honest_word_value";
         public const string FollowHeart = "follow_heart";
+        public const string Practice = "practice";
+            public const string PracticeValue = "practice_value";
+        public const string HiddenWeapon = "hidden_weapon";
 
     }
 }

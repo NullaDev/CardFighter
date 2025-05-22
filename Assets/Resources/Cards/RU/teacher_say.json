@@ -1,0 +1,20 @@
+﻿{
+  "ID": "teacher_say",
+  "Name": "子曰",
+  "TextureName": "Arts/Cards/RU/teacher_say",
+  "Desc": "你下回合使用卡牌不消耗费用",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            { "BuffName": "hidden_weapon", "Turn": 2 }
+          ]
+        }
+      ]
+    }
+  ]
+}

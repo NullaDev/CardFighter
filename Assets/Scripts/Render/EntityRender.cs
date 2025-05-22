@@ -95,7 +95,7 @@ namespace Render
             _thinking.SetActive(true);
             
             var render = _thinking.transform.Find("CardNoInteract").GetComponent<CardRender>();
-            render.RenderCard(this._cardToUse);
+            render.RenderCard(this._cardToUse, null);
         }
 
         public void OnPointerExit(PointerEventData eventData)
