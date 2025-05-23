@@ -34,7 +34,7 @@ namespace Fighting
 
         void Rerender()
         {
-            var uiRender = this.render.GetComponent<UIRender>();
+            var uiRender = this.render.GetComponent<FightingUIRender>();
             uiRender.RenderTurn(this.FightingData.CurrentTurn);
             uiRender.RenderCost(this.FightingData.CurrentCost, this.FightingData.MaxCost);
 

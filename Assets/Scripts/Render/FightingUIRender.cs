@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace Render
 {
-    public class UIRender : MonoBehaviour
+    public class FightingUIRender : MonoBehaviour
     {
         public Text turnText;
         public Text costText;
