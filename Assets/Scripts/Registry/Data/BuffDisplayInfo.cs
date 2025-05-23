@@ -2,7 +2,7 @@
 
 namespace Registry.Data
 {
-    public class BuffInfo
+    public class BuffDisplayInfo
     {
         public string ID { get; set; }
         public string Name { get; set; }
@@ -11,9 +11,9 @@ namespace Registry.Data
         public string EffectText { get; set; }
         public string ExtraText { get; set; }
         
-        public static BuffInfo CreateFromJson(string jsonString)
+        public static BuffDisplayInfo CreateFromJson(string jsonString)
         {
-            return JsonConvert.DeserializeObject<BuffInfo>(jsonString);
+            return JsonConvert.DeserializeObject<BuffDisplayInfo>(jsonString);
         }
     }
 }

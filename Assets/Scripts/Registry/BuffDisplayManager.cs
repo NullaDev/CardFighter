@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Registry
 {
-    public class BuffDataManager
+    public class BuffDisplayManager
     {
         public bool HasLoaded = false;
 
         private const string BuffFolderRoot = "Buffs/";
-        private readonly List<BuffInfo> _listBuffInfos = new();
+        private readonly List<BuffDisplayInfo> _listBuffInfos = new();
 
         public void DebugLoadedBuffInfo()
         {
@@ -28,12 +28,12 @@ namespace Registry
             var buffList = Resources.LoadAll<TextAsset>(BuffFolderRoot);
             foreach (var buff in buffList)
             {
-                this._listBuffInfos.Add(BuffInfo.CreateFromJson(buff.text));
+                this._listBuffInfos.Add(BuffDisplayInfo.CreateFromJson(buff.text));
             }    
             DebugLoadedBuffInfo();
         }
         
-        public BuffInfo Find(string buffName)
+        public BuffDisplayInfo Find(string buffName)
         {
             return this._listBuffInfos.Find(c => c.ID.Equals(buffName));
         }

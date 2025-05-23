@@ -22,7 +22,7 @@ namespace Render
 
         public void RenderBuff(EntityBuff buff)
         {
-            var buffInfo = StaticDataManager.BuffDataManager.Find(buff.Name);
+            var buffInfo = StaticDataManager.BuffDisplayManager.Find(buff.Name);
             
             _buffBG.color = buffInfo.Positive ? Color.green : Color.red;
             if (buffInfo.TextureName != "")
