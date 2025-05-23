@@ -14,7 +14,7 @@
         { "Type": "entity_type", "MatchTypes": ["enemy"] }
       ],
       "Processors": [
-        { "Type": "knock_back", "Value": 4 }
+        { "Type": "force_move", "Value": 4 }
       ]
     }
   ]

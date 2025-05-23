@@ -61,7 +61,7 @@ namespace Card.Engine
                         "move_forward" => p.ToObject<MoveForwardProcessor>(serializer),
                         "turn" => p.ToObject<TurnProcessor>(serializer),
                         "damage" => p.ToObject<DamageProcessor>(serializer),
-                        "knock_back" => p.ToObject<KnockBackProcessor>(serializer),
+                        "force_move" => p.ToObject<ForceMoveProcessor>(serializer),
                         "add_buff" => p.ToObject<AddBuffProcessor>(serializer),
                         "add_cost" => p.ToObject<AddCostProcessor>(serializer),
                         "move_attack" => p.ToObject<MoveAttackProcessor>(serializer),

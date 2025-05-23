@@ -26,31 +26,10 @@ namespace Card.Engine
         {
             var map = fc.BattleField;
             var pos = map.GetEntityIndex(user);
-
             if (pos == -1 || Value == 0) return;
 
-            var baseDirection = user.Facing == EntityFacing.LEFT ? -1 : 1;
-            var direction = baseDirection * Math.Sign(Value);
-
-            var newPos = pos;
-            var steps = 0;
-            var stepCount = Math.Abs(Value);
-
-            while (steps < stepCount)
-            {
-                var next = newPos + direction;
-                if (next < 0 || next >= map.Size || map.ListEntities[next] != null)
-                    break;
-
-                newPos = next;
-                steps++;
-            }
-
-            if (newPos != pos)
-            {
-                map.ListEntities[pos] = null;
-                map.ListEntities[newPos] = user;
-            }
+            var direction = user.Facing == EntityFacing.LEFT ? -1 : 1;
+            map.TryMoveEntityStepByStep(pos, direction * Value);
         }
     }
     
@@ -62,6 +41,10 @@ namespace Card.Engine
         {
             var userPos = fc.BattleField.GetEntityIndex(user);
             var targetPos = fc.BattleField.GetEntityIndex(target);
+            if (userPos == -1 || targetPos == -1)
+            {
+                throw new Exception("Can't find one or more entity when execute Turn.");
+            }
             target.Facing = DirectionMode switch
             {
                 "towards" => targetPos < userPos ? EntityFacing.RIGHT : EntityFacing.LEFT,
@@ -83,19 +66,22 @@ namespace Card.Engine
         }
     }
     
-    public class KnockBackProcessor : EntityProcessor
+    public class ForceMoveProcessor : EntityProcessor
     {
-        public int Value { get; set; }
+        public int Value { get; set; }  // Positive for push, negative for pull
         public override void Process(FightingControl fc, EntityBase user, EntityBase target)
         {
             var map = fc.BattleField;
             var userPos = map.GetEntityIndex(user);
             var targetPos = map.GetEntityIndex(target);
 
-            if (userPos == -1 || targetPos == -1) return;
+            if (userPos == -1 || targetPos == -1)
+            {
+                throw new Exception("Can't find one or more entity when execute KnockBack.");
+            }
 
-            var direction = Math.Sign(targetPos - userPos) * (Value > 0 ? 1 : -1);
-            map.TryMoveEntity(targetPos, direction * Math.Abs(Value));
+            var direction = Math.Sign(targetPos - userPos);
+            map.TryMoveEntityStepByStep(targetPos, direction * Value);
         }
     }
     

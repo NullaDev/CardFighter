@@ -112,7 +112,7 @@ namespace Fighting
             return ie;
         }
 
-        public bool TryMoveEntity(int index, int moveStep)
+        public bool TryMoveEntityStepByStep(int index, int moveStep)
         {
             if (index < 0 || index >= this.Size || ListEntities[index] == null)
                 return false;
