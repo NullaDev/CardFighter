@@ -10,12 +10,12 @@ namespace Render
 
         public void RenderTurn(int turn)
         {
-            turnText.text = "回合："+turn;
+            turnText.text = $"回合：{turn}";
         }
         
         public void RenderCost(int current, int max)
         {
-            costText.text = "费用："+current+" / "+max;
+            costText.text = $"费用：{current} / {max}";
         }
         
     }

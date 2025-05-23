@@ -32,7 +32,7 @@ namespace Fighting
 
         public void InitializePlayer(PlayerData data, int pos, string direc)
         {
-            var player = new Player(data.MaxHp);
+            var player = new Player(data.Hp, data.MaxHp);
             player.Facing = direc switch
             {
                 "right" => EntityFacing.RIGHT,

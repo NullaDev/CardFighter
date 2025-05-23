@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Card;
 using Entity;
-using GameLogic;
+using Render.Interact;
 using UnityEngine;
 
 namespace Render

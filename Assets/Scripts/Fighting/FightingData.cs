@@ -18,8 +18,8 @@ namespace Fighting
         public static FightingData FromPlayerData(PlayerData playerData)
         {
             FightingData fightingData = new();
-            fightingData.CurrentCost = playerData.InitialCost;
-            fightingData.MaxCost = playerData.MaxCost;
+            fightingData.CurrentCost = playerData.InitialInGameCost;
+            fightingData.MaxCost = playerData.MaxInGameCost;
             foreach (var card in playerData.DefaultDeck.CardList)
             {
                 fightingData.AvailableCards.Add(new CardInstance(card));

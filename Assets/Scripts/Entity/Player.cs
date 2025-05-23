@@ -5,8 +5,9 @@ namespace Entity
 {
     public class Player: EntityBase
     {
-        public Player(int hp) : base(hp)
+        public Player(int hp, int maxHp) : base(maxHp)
         {
+            this.HP = hp;
             this.TextureName = "Arts/Entities/player";
         }
 

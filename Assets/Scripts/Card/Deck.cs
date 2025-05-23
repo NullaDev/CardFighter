@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using GameLogic;
+using Registry;
 using Registry.Data;
 
 namespace Card
@@ -22,7 +22,7 @@ namespace Card
         public static Deck FromFile()
         {
             // TODO parse json
-            return new Deck(PlayerClass.RU);
+            return new Deck(PlayerClass.GENERIC);
         }
 
         public static void ToFile()

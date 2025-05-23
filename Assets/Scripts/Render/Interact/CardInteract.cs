@@ -3,7 +3,7 @@ using Fighting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace GameLogic
+namespace Render.Interact
 {
     public class CardInteract: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {

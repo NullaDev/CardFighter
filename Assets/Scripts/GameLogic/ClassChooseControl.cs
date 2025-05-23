@@ -11,14 +11,21 @@ namespace GameLogic
         {
             StaticDataManager.LoadAll();
         }
+
+        public void ChooseClassRU()
+        {
+            var playerData = PlayerData.Instance;
+            playerData.PlayerClass = PlayerClass.RU;
+            playerData.MaxHp = playerData.Hp = 10;
+            playerData.InitialInGameCost = 1;
+            playerData.MaxInGameCost = 5;
+            
+            SceneManager.LoadScene("DeckInitialize");
+        }
         
         public void DirectEnterTestStage()
         {
-            var playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
-            playerData.PlayerClass = PlayerClass.RU;
-            playerData.MaxHp = playerData.Hp = 10;
-            playerData.InitialCost = 1;
-            playerData.MaxCost = 5;
+            var playerData = PlayerData.Instance;
 
             playerData.DefaultDeck = new Deck(playerData.PlayerClass);
             playerData.DefaultDeck.AddPrototype(StaticDataManager.CardDataManager.Find("move"));
