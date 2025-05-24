@@ -17,7 +17,7 @@ namespace RogueMap
             var mapRender = GameObject.Find("Render").GetComponent<RogueMapRender>();
             mapRender.RerenderAccordingToPlayerPos(mapControl.Map);
 
-            var playerData = GameObject.Find("PlayerData").GetComponent<PlayerData>();
+            var playerData = PlayerData.Instance;
             var stageData = StaticDataManager.StageDataManager;
             if (this.Node.Type == NodeType.FIGHT)
             {

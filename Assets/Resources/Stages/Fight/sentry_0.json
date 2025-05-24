@@ -1,8 +1,8 @@
 ﻿{
-  "ID": "sentry_1",
-  "Name": "岗哨-难度1",
+  "ID": "sentry_0",
+  "Name": "岗哨-难度0",
   "Type": "Fight",
-  "Difficulty": 1,
+  "Difficulty": 0,
   "Size": 6,
   "PlayerSpawnPos": 0,
   "PlayerSpawnFacing": "right",
@@ -22,17 +22,7 @@
       "AppearFacing": "left",
       "Name": "哨兵1",
       "TextureName": "sentry",
-      "HP": 5,
-      "Card": "spear"
-    },
-    {
-      "Type": "simple_enemy",
-      "AppearTurn": 5,
-      "AppearPos": 1,
-      "AppearFacing": "auto",
-      "Name": "哨兵2",
-      "TextureName": "sentry",
-      "HP": 5,
+      "HP": 4,
       "Card": "spear"
     }
   ]

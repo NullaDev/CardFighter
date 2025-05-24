@@ -72,14 +72,14 @@ namespace Registry
 
         public StageConfig GetNormalStage(int layer)
         {
-            var difficulty = layer / 3;
+            var difficulty = layer / 2;
             var listStage = NormalStages[difficulty];
             return listStage[Random.Range(0, listStage.Count)];
         }
         
         public StageConfig GetEliteStage(int layer)
         {
-            var difficulty = layer / 5;
+            var difficulty = layer / 4;
             var listStage = EliteStages[difficulty];
             return listStage[Random.Range(0, listStage.Count)];
         }

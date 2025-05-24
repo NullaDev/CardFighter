@@ -14,12 +14,31 @@ namespace Registry
         public int MaxHp { get; set; } = 10;
         public int InitialInGameCost { get; set; } = 1;
         public int MaxInGameCost { get; set; } = 5;
-        public int MaxCarryCost { get; set; } = 15;
+        public int MaxCarryCost { get; set; } = 10;
         public int InGameGold { get; set; } = 0;
 
-        public readonly List<CardPrototype> ListCard = new();
-        public Deck DefaultDeck;
-
+        public readonly Dictionary<CardPrototype, int> HeldCards = new();
+        public readonly CardOperationsInBattle CardOperations = new();
+        
         public StageConfig CurrentStage = null;
+        
+        public void InitCardOperationsFromHeld()
+        {
+            CardOperations.Clear();
+            
+            if (HeldCards.ContainsKey(CommonCards.Move1))
+                CardOperations.SetMoveSlot(CommonCards.Move1);
+            if (HeldCards.ContainsKey(CommonCards.TurnBack))
+                CardOperations.SetTurnSlot(CommonCards.TurnBack);
+
+            foreach (var card in HeldCards.Keys)
+            {
+                if (card == CommonCards.Move1 || card == CommonCards.TurnBack)
+                    continue;
+                if (CardOperations.GetAllCards().Count >= 2 + CardOperationsInBattle.MaxCardCount)
+                    break;
+                CardOperations.AddPrototype(card);
+            }
+        }
     }
 }

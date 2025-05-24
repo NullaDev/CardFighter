@@ -11,7 +11,11 @@ namespace RogueMap
 
         void Start()
         {
-            Map = RogueMap.GenerateRandomMap(15);
+            if (RogueMap.GlobalMap == null)
+            {
+                RogueMap.GlobalMap = RogueMap.GenerateRandomMap(14);
+            }
+            Map = RogueMap.GlobalMap;
 
             Rerender();
         }

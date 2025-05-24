@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Entity;
 using Fighting;
 using GameLogic;
@@ -15,6 +16,14 @@ namespace Card.Engine
         public override List<EntityBase> Select(FightingControl fc, EntityBase user)
         {
             return new List<EntityBase>();
+        }
+    }
+    
+    public class AllSelector : EntitySelector
+    {
+        public override List<EntityBase> Select(FightingControl fc, EntityBase user)
+        {
+            return fc.BattleField.ListEntities.Where(entity => entity != null).ToList();
         }
     }
 

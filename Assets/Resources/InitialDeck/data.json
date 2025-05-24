@@ -11,19 +11,39 @@
     "broadsword": 2,
     "spear": 2,
     "hammer": 2,
-    "bow": 2
+    "bow": 2,
+    
+    "divine_judgment": 10
   },
   "RU": {
-    "rites": 2,
-    "music": 2,
-    "archery": 2,
-    "charioteering": 2,
-    "mathematics": 2,
+    "rites": 3,
+    "music": 3,
+    "archery": 3,
+    "charioteering": 3,
+    "mathematics": 3,
 
-    "noble": 3,
+    "noble": 4,
     "honest_word": 2,
     "follow_heart": 2,
     "study_and_practice": 2,
-    "teacher_say": 2
+    "teacher_say": 2,
+
+    "noble_word": 2,
+    "from_a_distance": 2,
+    "seize_general_rush": 3,
+    "must_have_teacher": 3,
+    "flow_like_river": 3,
+    "leap_over_tiger": 3,
+    "retaliate": 3,
+    "lift_gate": 2,
+    "justice_strikes_back": 3,
+
+    "white_arrow": 3,
+    "triple_strike": 3,
+    "fourfold_strike": 3,
+    "retreat_strike": 3,
+
+    "no_rites_no_vision": 2,
+    "no_rites_no_motion": 2
   }
 }

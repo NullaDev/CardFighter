@@ -8,7 +8,6 @@ using GameLogic;
 using Newtonsoft.Json;
 using Registry;
 using Registry.Data;
-using UnityEngine;
 
 namespace Entity
 {
@@ -29,7 +28,7 @@ namespace Entity
             }
         }
 
-        public abstract CardInstance ThinkNextTurnCard(BattleField battleField);
+        public abstract CardInstance ThinkNextTurnCard(FightingControl fc);
     }
 
     public class SimpleEnemy : Enemy
@@ -39,8 +38,9 @@ namespace Entity
         {
         }
 
-        public override CardInstance ThinkNextTurnCard(BattleField battleField)
+        public override CardInstance ThinkNextTurnCard(FightingControl fc)
         {
+            var battleField = fc.BattleField;
             var attackAction = this.HeldCard.Actions.FirstOrDefault(action =>
                 action.Selector is RangeSelector &&
                 action.Processors.Any(p => p is DamageProcessor)
@@ -64,7 +64,20 @@ namespace Entity
             var maxAttackPos = Math.Max(minPos, maxPos);
             if (playerPos >= minAttackPos && playerPos <= maxAttackPos)
             {
-                return new CardInstance(this.HeldCard);
+                var targets = rangeSelector.Select(fc, this);
+                targets = attackAction.Filters.Aggregate(targets, (current, filter) => filter.Apply(current, this));
+
+                var onlyPassive = targets.All(t => t is PassiveEntity);
+                var containsPlayer = targets.Any(t => t is Player);
+
+                if (containsPlayer || (targets.Count > 0 && onlyPassive))
+                {
+                    return new CardInstance(this.HeldCard);
+                }
+                else
+                {
+                    return new CardInstance(CommonCards.DoNothing);
+                }
             }
 
             if (this.Facing == EntityFacing.LEFT && selfPos == 0)
@@ -118,8 +131,9 @@ namespace Entity
         {
         }
 
-        public override CardInstance ThinkNextTurnCard(BattleField battleField)
+        public override CardInstance ThinkNextTurnCard(FightingControl fc)
         {
+            var battleField = fc.BattleField;
             var attackAction = this.HeldCard.Actions.FirstOrDefault(action =>
                 action.Selector is RangeSelector &&
                 action.Processors.Any(p => p is DamageProcessor)
@@ -152,7 +166,20 @@ namespace Entity
 
             if (playerPos >= minAttackPos && playerPos <= maxAttackPos)
             {
-                return new CardInstance(this.HeldCard);
+                var targets = rangeSelector.Select(fc, this);
+                targets = attackAction.Filters.Aggregate(targets, (current, filter) => filter.Apply(current, this));
+
+                var onlyPassive = targets.All(t => t is PassiveEntity);
+                var containsPlayer = targets.Any(t => t is Player);
+
+                if (containsPlayer || (targets.Count > 0 && onlyPassive))
+                {
+                    return new CardInstance(this.HeldCard);
+                }
+                else
+                {
+                    return new CardInstance(CommonCards.DoNothing);
+                }
             }
 
             for (var i = minAttackPos; i <= maxAttackPos; i++)
@@ -176,7 +203,7 @@ namespace Entity
         {
         }
 
-        public override CardInstance ThinkNextTurnCard(BattleField battleField)
+        public override CardInstance ThinkNextTurnCard(FightingControl fc)
         {
             throw new System.NotImplementedException();
         }

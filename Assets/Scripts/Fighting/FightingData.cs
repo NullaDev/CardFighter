@@ -4,6 +4,8 @@ using Card;
 using Entity;
 using GameLogic;
 using Registry;
+using Registry.Data;
+using Unity.VisualScripting;
 
 namespace Fighting
 {
@@ -14,13 +16,19 @@ namespace Fighting
         public int CurrentCost;
         public int MaxCost;
         public readonly List<CardInstance> AvailableCards = new();
+        private CardPrototype _defaultMoveCard;
+        private CardPrototype _defaultTurnCard;
 
         public static FightingData FromPlayerData(PlayerData playerData)
         {
             FightingData fightingData = new();
             fightingData.CurrentCost = playerData.InitialInGameCost;
             fightingData.MaxCost = playerData.MaxInGameCost;
-            foreach (var card in playerData.DefaultDeck.CardList)
+
+            var cards = playerData.CardOperations.GetAllCards();
+            fightingData._defaultMoveCard = cards[0];
+            fightingData._defaultTurnCard = cards[1];
+            foreach (var card in cards)
             {
                 fightingData.AvailableCards.Add(new CardInstance(card));
             }
@@ -45,8 +53,8 @@ namespace Fighting
                 {
                     AvailableCards[i] = cardInstance.Prototype.ID switch
                     {
-                        "drive" => new CardInstance(CommonCards.Move1),
-                        "u_turn" => new CardInstance(CommonCards.TurnBack),
+                        "drive" => new CardInstance(this._defaultMoveCard),
+                        "u_turn" => new CardInstance(this._defaultTurnCard),
                         _ => AvailableCards[i]
                     };
                 }

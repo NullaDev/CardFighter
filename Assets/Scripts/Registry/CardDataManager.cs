@@ -15,10 +15,10 @@ namespace Registry
         public void DebugLoadedCardInfo()
         {
             Debug.Log("Loading cards, total number:" + this._listCards.Count);
-            foreach (var card in this._listCards)
-            {
-                Debug.Log("name:" + card.Name);
-            }
+            // foreach (var card in this._listCards)
+            // {
+            //     Debug.Log("name:" + card.Name);
+            // }
         }
 
         public void LoadFromFile()

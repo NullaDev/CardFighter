@@ -34,6 +34,8 @@ namespace RogueMap
     
     public class RogueMap
     {
+        public static RogueMap GlobalMap = null;
+        
         public readonly Random Random;
         public readonly List<MapNode>[] AllNodes;
         public readonly List<MapEdge> AllEdges = new();
@@ -64,24 +66,40 @@ namespace RogueMap
             this.PlayerCurrentLayer = Enumerable.Range(0, this.GetLayer()).FirstOrDefault(l => AllNodes[l].Contains(node));
         }
 
-        private List<NodeType> LegalTypesAtLayer(int layer)
+        private Dictionary<NodeType, int> GetNodeTypeWeights(int layer)
         {
             if (layer is 0 or 1)
+                return new Dictionary<NodeType, int> { { NodeType.FIGHT, 100 } };
+
+            if (layer == this.GetLayer() - 1)
+                return new Dictionary<NodeType, int> { { NodeType.BOSS, 100 } };
+
+            if (layer == this.GetLayer() - 2)
+                return new Dictionary<NodeType, int> { { NodeType.REST, 100 } };
+
+            return new Dictionary<NodeType, int>
             {
-                return new List<NodeType> { NodeType.FIGHT };
-            }
-            
-            if (layer == this.GetLayer()-1)
+                { NodeType.FIGHT, 40 },
+                { NodeType.ELITE_FIGHT, 20 },
+                { NodeType.REST, 20 },
+                { NodeType.EVENT, 20 }
+            };
+        }
+        
+        private NodeType GetWeightedRandomNodeType(int layer)
+        {
+            var weights = GetNodeTypeWeights(layer);
+            var total = weights.Values.Sum();
+            var roll = Random.Next(total);
+
+            foreach (var kvp in weights)
             {
-                return new List<NodeType> { NodeType.BOSS };
-            }
-            
-            if (layer == this.GetLayer()-2)
-            {
-                return new List<NodeType> { NodeType.REST };
+                roll -= kvp.Value;
+                if (roll < 0)
+                    return kvp.Key;
             }
 
-            return new List<NodeType> { NodeType.FIGHT, NodeType.ELITE_FIGHT, NodeType.REST, NodeType.EVENT };
+            return NodeType.FIGHT;
         }
 
         private void GenerateNodesAtLayer(int layer)
@@ -98,8 +116,7 @@ namespace RogueMap
             var thisLayerNodeNum = layer == 0? 1: Random.Next(2, Math.Clamp(2 * this.AllNodes[layer - 1].Count, 3, 6));
             foreach (var idx in Enumerable.Range(0, thisLayerNodeNum))
             {
-                var legalTypes = this.LegalTypesAtLayer(layer);
-                var node = new MapNode(legalTypes[Random.Next(legalTypes.Count)], layer);
+                var node = new MapNode(GetWeightedRandomNodeType(layer), layer);
                 node.PosX = (idx + 1F) / (thisLayerNodeNum + 1F);
                 node.PosY = (layer + 1F) / (this.GetLayer() + 1F);
                 this.AllNodes[layer].Add(node);

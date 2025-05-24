@@ -132,7 +132,7 @@ namespace Fighting
                 var entity = this.BattleField.ListEntities[i];
                 if (entity is Enemy enemy)
                 {
-                    enemy.NextTurnCard = enemy.ThinkNextTurnCard(this.BattleField);
+                    enemy.NextTurnCard = enemy.ThinkNextTurnCard(this);
                 }
             }
         }

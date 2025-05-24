@@ -20,6 +20,7 @@ namespace Card.Engine
                 action.Selector = selectorType switch
                 {
                     "empty" => selectorToken.ToObject<EmptySelector>(serializer),
+                    "all" => selectorToken.ToObject<AllSelector>(serializer),
                     "self" => selectorToken.ToObject<SelfSelector>(serializer),
                     "range" => selectorToken.ToObject<RangeSelector>(serializer),
                     _ => throw new Exception("Unknown selector type: " + selectorType)

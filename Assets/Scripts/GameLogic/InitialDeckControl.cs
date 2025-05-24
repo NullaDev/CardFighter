@@ -4,6 +4,7 @@ using System.Linq;
 using Registry;
 using Render;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameLogic
 {
@@ -36,6 +37,9 @@ namespace GameLogic
             
             _carryCards.Add(CommonCards.Move1.ID, 1);
             _carryCards.Add(CommonCards.TurnBack.ID, 1);
+            
+            Debug.Log($"{_allCards.Count} cards loaded form class generic and {playerData.PlayerClass}");
+            Debug.Log($"{GetTotalPage()} pages in total");
             Rerender();
         }
 
@@ -97,14 +101,14 @@ namespace GameLogic
             Rerender();
         }
 
-        public int GetTotalPage()
+        private int GetTotalPage()
         {
             return (int)Math.Ceiling((double)this._allCards.Count / CardPerPage);
         }
         
         public void NextPage()
         {
-            this._currentPageIndex = Math.Min(this._currentPageIndex + 1, GetTotalPage());
+            this._currentPageIndex = Math.Min(this._currentPageIndex + 1, GetTotalPage() - 1);
             Rerender();
         }
         
@@ -112,6 +116,26 @@ namespace GameLogic
         {
             this._currentPageIndex = Math.Max(this._currentPageIndex - 1, 0);
             Rerender();
+        }
+
+        public void EnterGame()
+        {
+            var playerData = PlayerData.Instance;
+            playerData.HeldCards.Clear();
+            foreach (var (cardID, count) in _carryCards)
+            {
+                var cardPrototype = StaticDataManager.CardDataManager.Find(cardID);
+                if (cardPrototype != null)
+                {
+                    playerData.HeldCards[cardPrototype] = count;
+                }
+                else
+                {
+                    Debug.LogWarning($"Card ID {cardID} not found in CardManager.");
+                }
+            }
+            playerData.InitCardOperationsFromHeld();
+            SceneManager.LoadScene("RogueMap");
         }
         
     }
