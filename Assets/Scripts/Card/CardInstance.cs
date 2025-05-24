@@ -5,7 +5,6 @@ using Fighting;
 using GameLogic;
 using Registry;
 using Registry.Data;
-using UnityEngine;
 
 namespace Card
 {

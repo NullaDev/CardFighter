@@ -3,7 +3,6 @@ using System.Linq;
 using Fighting;
 using GameLogic;
 using Newtonsoft.Json;
-using UnityEngine;
 
 namespace Entity
 {

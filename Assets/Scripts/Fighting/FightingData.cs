@@ -5,7 +5,6 @@ using Entity;
 using GameLogic;
 using Registry;
 using Registry.Data;
-using Unity.VisualScripting;
 
 namespace Fighting
 {

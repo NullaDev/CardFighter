@@ -1,5 +1,4 @@
-﻿using Card;
-using Registry;
+﻿using Registry;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

@@ -42,7 +42,7 @@ namespace Registry
             var deckAsset = Resources.Load<TextAsset>(DeckJsonPath);
             if (deckAsset == null)
             {
-                Debug.LogError("Failed to load InitialDeck.json from Resources.");
+                Debug.LogError("Failed to load InitialDeck/data.json from Resources.");
                 return;
             }
 

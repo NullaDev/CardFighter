@@ -1,5 +1,4 @@
-﻿using Card;
-using Fighting;
+﻿using Fighting;
 
 namespace Entity
 {
