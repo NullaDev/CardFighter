@@ -16,6 +16,7 @@ namespace Fighting
         private StageConfig _config;
         public int Size;
         [ItemCanBeNull] public EntityBase[] ListEntities;
+        private HashSet<EntityConfig> _spawnedEntities = new();
 
         public BattleField(StageConfig config, PlayerData pData)
         {
@@ -86,29 +87,29 @@ namespace Fighting
         public void SpawnEntitiesAtTurn(int turn)
         {
             var mobsToSpawn = this._config.Entities
-                .Where(mob => mob.AppearTurn <= turn)
+                .Where(mob => mob.AppearTurn <= turn && !_spawnedEntities.Contains(mob))
                 .GroupBy(mob => mob.AppearPos)
                 .Select(group => group.First())
                 .ToList();
-            
-            this._config.Entities.RemoveAll(
-                entity => 
-                    mobsToSpawn.Contains(entity) && 
-                    this.AddEntityToMap(entity.GenEntity(), entity.AppearPos)
-                );
+
+            foreach (var mob in mobsToSpawn)
+            {
+                if (this.AddEntityToMap(mob.GenEntity(), mob.AppearPos))
+                {
+                    _spawnedEntities.Add(mob);
+                }
+            }
         }
 
         public EntityConfig[] GetIncomingEntities(int turn)
         {
             var ie = new EntityConfig[this.Size];
             this._config.Entities
-                .Where(m => m.AppearTurn <= turn + 1)
+                .Where(m => m.AppearTurn <= turn + 1 && !_spawnedEntities.Contains(m))
                 .GroupBy(mob => mob.AppearPos)
                 .Select(group => group.First())
                 .ToList()
-                .ForEach(
-                    m=>ie[m.AppearPos]=m
-                );
+                .ForEach(m => ie[m.AppearPos] = m);
             return ie;
         }
 
@@ -141,7 +142,9 @@ namespace Fighting
 
         public bool AnyIncomingEnemyRemain()
         {
-            return this._config.Entities.Any(e=>e.Type is "simple_enemy" or "elite_enemy" or "stationary_enemy");
+            return this._config.Entities
+                .Any(e => !_spawnedEntities.Contains(e) &&
+                          e.Type is "simple_enemy" or "elite_enemy" or "stationary_enemy");
         }
     }
 }
