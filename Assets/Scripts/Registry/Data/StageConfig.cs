@@ -23,21 +23,6 @@ namespace Registry.Data
             
             return JsonConvert.DeserializeObject<StageConfig>(jsonString, settings);
         }
-        
-        public StageConfig Clone()
-        {
-            return new StageConfig
-            {
-                ID = this.ID,
-                Name = this.Name,
-                Type = this.Type,
-                Difficulty = this.Difficulty,
-                Size = this.Size,
-                PlayerSpawnPos = this.PlayerSpawnPos,
-                PlayerSpawnFacing = this.PlayerSpawnFacing,
-                Entities = this.Entities?.ConvertAll(e => e.Clone())
-            };
-        }
     }
     
 }

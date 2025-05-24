@@ -17,8 +17,6 @@ namespace Fighting
 
         void Start()
         {
-            Debug.Log($"Enter stage: {PlayerData.Instance.CurrentStage.Name}");
-            
             var playerData = PlayerData.Instance;
             this.FightingData = FightingData.FromPlayerData(playerData);
             
@@ -113,7 +111,9 @@ namespace Fighting
             }
             if (!enemyRemain && !this.BattleField.AnyIncomingEnemyRemain())
             {
-                VictorySettle();
+                // TODO win
+                Debug.Log("win");
+                SceneManager.LoadScene("RogueMap");
             }
         }
 
@@ -137,13 +137,11 @@ namespace Fighting
             }
         }
         
-        public void VictorySettle()
+        public void UpdatePlayerData()
         {
             var playerData = PlayerData.Instance;
             var player = this.BattleField.GetPlayerFromMap();
             playerData.Hp = player.HP;
-            // TODO winning bonus
-            SceneManager.LoadScene("RogueMap");
         }
     }
 }
