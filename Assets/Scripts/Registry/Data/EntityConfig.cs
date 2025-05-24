@@ -32,6 +32,7 @@ namespace Registry.Data
         public int Hp { get; set; }
 
         public abstract EntityBase GenEntity();
+        public abstract EntityConfig Clone();
     }
 
     public class PassiveEntityConfig : EntityConfig
@@ -43,6 +44,19 @@ namespace Registry.Data
                 Name = Name,
                 TextureName = "Arts/Entities/" + TextureName,
                 Facing = EntityFacing.DEFAULT
+            };
+        }
+        
+        public override EntityConfig Clone()
+        {
+            return new PassiveEntityConfig
+            {
+                Type = this.Type,
+                AppearTurn = this.AppearTurn,
+                AppearPos = this.AppearPos,
+                Name = this.Name,
+                TextureName = this.TextureName,
+                Hp = this.Hp
             };
         }
     }
@@ -62,6 +76,21 @@ namespace Registry.Data
                 HeldCard = StaticDataManager.CardDataManager.Find(Card)
             };
         }
+        
+        public override EntityConfig Clone()
+        {
+            return new SimpleEnemyConfig
+            {
+                Type = this.Type,
+                AppearTurn = this.AppearTurn,
+                AppearPos = this.AppearPos,
+                Name = this.Name,
+                TextureName = this.TextureName,
+                Hp = this.Hp,
+                AppearFacing = this.AppearFacing,
+                Card = this.Card
+            };
+        }
     }
     
     public class StationaryEnemyConfig : EntityConfig, IHasFacing
@@ -79,6 +108,21 @@ namespace Registry.Data
                 HeldCard = StaticDataManager.CardDataManager.Find(Card)
             };
         }
+        
+        public override EntityConfig Clone()
+        {
+            return new StationaryEnemyConfig
+            {
+                Type = this.Type,
+                AppearTurn = this.AppearTurn,
+                AppearPos = this.AppearPos,
+                Name = this.Name,
+                TextureName = this.TextureName,
+                Hp = this.Hp,
+                AppearFacing = this.AppearFacing,
+                Card = this.Card
+            };
+        }
     }
 
     public class EliteEntityConfig : EntityConfig, IHasFacing
@@ -94,6 +138,21 @@ namespace Registry.Data
                 TextureName = "Arts/Entities/" + TextureName,
                 Facing = IHasFacing.ParseFacing(this.AppearFacing),
                 HeldCards = Cards.Select(card => StaticDataManager.CardDataManager.Find(card)).ToList()
+            };
+        }
+        
+        public override EntityConfig Clone()
+        {
+            return new EliteEntityConfig
+            {
+                Type = this.Type,
+                AppearTurn = this.AppearTurn,
+                AppearPos = this.AppearPos,
+                Name = this.Name,
+                TextureName = this.TextureName,
+                Hp = this.Hp,
+                AppearFacing = this.AppearFacing,
+                Cards = new List<string>(this.Cards)
             };
         }
     }
