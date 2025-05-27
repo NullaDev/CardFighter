@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Fighting;
 using GameLogic;
@@ -12,6 +13,7 @@ namespace Entity
         public int MaxHP;
         public string Name = "";
         public string TextureName = "";
+        [JsonIgnore] public int Armor = 0;
         [JsonIgnore] public bool IsDead = false;
         [JsonIgnore] public bool DamageDealtThisTurn = false;
         [JsonIgnore] public List<EntityBuff> Buffs = new();
@@ -153,16 +155,27 @@ namespace Entity
 
                 if (doCauseDamage)
                 {
+                    if (damageTags.Contains(DamageTypeNames.BreakArmor))
+                    {
+                        this.Armor = 0;
+                    }
+                    if (this.Armor > 0 && !damageTags.Contains(DamageTypeNames.IgnoreArmor))
+                    {
+                        var absorbed = Math.Min(this.Armor, value);
+                        this.Armor -= absorbed;
+                        value -= absorbed;
+                    }
                     this.Hurt(source, value, battleField);
                     if (this is Player && source is Enemy enemy)
                     {
                         enemy.DealtDamageToPlayer = true;
                     }
-                    if (this.HasBuff(EntityBuffManager.CounterAttack) && !damageTags.Contains(DamageTypeNames.CounterAttack))
-                    {
-                        var counterValue = this.GetBuff(EntityBuffManager.CounterAttack).GetParam<int>(EntityBuffManager.CounterAttackValue);
-                        this.DoDamageTo(source, counterValue, battleField, new List<string>{DamageTypeNames.CounterAttack});
-                    }
+                }
+                
+                if (this.HasBuff(EntityBuffManager.CounterAttack) && !damageTags.Contains(DamageTypeNames.CounterAttack))
+                {
+                    var counterValue = this.GetBuff(EntityBuffManager.CounterAttack).GetParam<int>(EntityBuffManager.CounterAttackValue);
+                    this.DoDamageTo(source, counterValue, battleField, new List<string>{DamageTypeNames.CounterAttack});
                 }
             }
         }
@@ -221,7 +234,7 @@ namespace Entity
             return true;
         }
         
-        public void UpdateBuffs()
+        public void UpdateStatusAndBuffs()
         {
             this.Buffs = this.Buffs
                 .Select(buff =>
@@ -251,6 +264,8 @@ namespace Entity
                 }
             }
             this.DamageDealtThisTurn = false;
+
+            this.Armor = 0;
         }
         
     }

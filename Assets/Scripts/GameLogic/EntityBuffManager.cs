@@ -25,6 +25,7 @@ namespace GameLogic
             public const string BlockTimes = "block_times";
         public const string CounterAttack = "counter_attack";
         public const string CounterAttackValue = "counter_attack_value";
+        public const string Initiative = "initiative";
         
         public const string Rites = "rites";
             public const string RitesPositiveValue = "rites_positive_value";

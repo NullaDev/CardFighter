@@ -4,14 +4,26 @@
     "turn_back": 0,
     "focus_energy": 1,
     "observe": 1,
+    "block": 2,
+    "suit_up": 2,
     
     "punch": 2,
     "kick": 2,
     "sword": 2,
     "broadsword": 2,
     "spear": 2,
-    "hammer": 2,
     "bow": 2,
+    "axe": 2,
+    "hammer": 2,
+    "rush": 2,
+    
+    "iron_slam": 3,
+    "piercing_arrow": 3,
+    "throat_strike": 3,
+    
+    "turn_back_spear": 2,
+    "shield_charge": 3,
+    "punch_kick": 3,
     
     "divine_judgment": 10
   },
@@ -37,11 +49,13 @@
     "retaliate": 3,
     "lift_gate": 2,
     "justice_strikes_back": 3,
+    "no_one_stands_tough": 3,
 
     "white_arrow": 3,
     "triple_strike": 3,
     "fourfold_strike": 3,
     "retreat_strike": 3,
+    "rapid_shot": 3,
 
     "no_rites_no_vision": 2,
     "no_rites_no_motion": 2

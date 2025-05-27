@@ -65,6 +65,7 @@ namespace Card.Engine
                         "force_move" => p.ToObject<ForceMoveProcessor>(serializer),
                         "add_buff" => p.ToObject<AddBuffProcessor>(serializer),
                         "add_cost" => p.ToObject<AddCostProcessor>(serializer),
+                        "add_armor" => p.ToObject<AddArmorProcessor>(serializer),
                         "move_attack" => p.ToObject<MoveAttackProcessor>(serializer),
                         "kill" => p.ToObject<KillProcessor>(serializer),
                         _ => throw new Exception("Unknown processor type: " + type)

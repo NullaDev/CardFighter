@@ -1,0 +1,25 @@
+﻿{
+  "ID": "shield_charge",
+  "Name": "重盾冲锋",
+  "TextureName": "Arts/Cards/Attack/shield_charge",
+  "Desc": "前进1格，沿途造成2点伤害，格挡1次",
+  "Cost": 3,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        { "Type": "move_attack", "Value": 1, "Damage": 2 },
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            { 
+              "BuffName": "block", 
+              "Turn": 1,
+              "Parameters": {"block_times": 1}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

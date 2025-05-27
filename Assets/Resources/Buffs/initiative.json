@@ -1,0 +1,8 @@
+﻿{
+  "ID": "initiative",
+  "Name": "先机",
+  "TextureName": "Arts/Misc/initiative",
+  "Positive": true,
+  "EffectText": "具有一个额外回合。",
+  "ExtraText": "先发制人，后发制于人。"
+}

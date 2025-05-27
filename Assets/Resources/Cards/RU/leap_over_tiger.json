@@ -2,7 +2,7 @@
   "ID": "leap_over_tiger",
   "Name": "暴虎冯河",
   "TextureName": "Arts/Cards/ru/leap_over_tiger",
-  "Desc": "跃向2格外并沿途造成4点伤害，但是自身下回合晕眩。",
+  "Desc": "跃向2格外并沿途造成4点伤害，但是自身下回合晕眩",
   "Cost": 2,
   "Actions": [
     {
@@ -11,7 +11,7 @@
       },
       "Filters": [],
       "Processors": [
-        { "Type": "move_attack", "Value": 2, "Damage": 4, "CanCrossEnemies": true, "Tags": ["unarmed"] },
+        { "Type": "move_attack", "Value": 2, "Damage": 4, "CanCrossEnemies": true, "Tags": ["unarmed", "break_armor"] },
         {
           "Type": "add_buff",
           "Buffs": [

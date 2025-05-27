@@ -110,6 +110,16 @@ namespace Card.Engine
         }
     }
     
+    public class AddArmorProcessor : EntityProcessor
+    {
+        public int Value { get; set; }
+
+        public override void Process(FightingControl fc, EntityBase user, EntityBase target)
+        {
+            target.Armor += Value;
+        }
+    }
+    
     public class MoveAttackProcessor : EntityProcessor
     {
         public int Value { get; set; }

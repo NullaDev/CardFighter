@@ -1,0 +1,15 @@
+﻿{
+  "ID": "rush",
+  "Name": "冲撞",
+  "TextureName": "Arts/Cards/Attack/rush",
+  "Desc": "前进1格，沿途造成2点伤害",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        { "Type": "move_attack", "Value": 1, "Damage": 2 }
+      ]
+    }
+  ]
+}

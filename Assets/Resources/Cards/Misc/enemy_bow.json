@@ -1,0 +1,21 @@
+﻿{
+  "ID": "enemy_bow",
+  "Name": "射你一箭",
+  "TextureName": "Arts/Cards/Attack/bow",
+  "Desc": "对1-3格内的首个玩家造成2点伤害",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 3 },
+      "Filters": [
+        { "Type": "exclude_self" },
+        { "Type": "is_alive" },
+        { "Type": "entity_type", "MatchTypes": ["player"] },
+        { "Type": "first_n", "Value": 1 }
+      ],
+      "Processors": [
+        { "Type": "damage", "Value": 2, "Tags": ["ranged", "weapon"] }
+      ]
+    }
+  ]
+}

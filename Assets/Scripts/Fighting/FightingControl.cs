@@ -71,6 +71,13 @@ namespace Fighting
             {
                 card.Effects.ForEach(effect=>effect(this, player));
             }
+            
+            if (player.HasBuff(EntityBuffManager.Initiative))
+            {
+                var buff = player.GetBuff(EntityBuffManager.Initiative);
+                player.Buffs.Remove(buff);
+                return;
+            }
             EndTurn();
         }
 
@@ -107,7 +114,7 @@ namespace Fighting
                         enemyRemain = true;
                 }
                 
-                entity.UpdateBuffs();
+                entity.UpdateStatusAndBuffs();
             }
             if (!enemyRemain && !this.BattleField.AnyIncomingEnemyRemain())
             {
@@ -120,7 +127,7 @@ namespace Fighting
         public void UpdatePlayerStatus()
         {
             var player = this.BattleField.GetPlayerFromMap();
-            player.UpdateBuffs();
+            player.UpdateStatusAndBuffs();
             this.FightingData.UpdatePlayerDeck(player);
             this.FightingData.TryAddCost(1);
         }
