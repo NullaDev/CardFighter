@@ -1,0 +1,31 @@
+﻿{
+  "ID": "rushing_along_water",
+  "Name": "逐水曲",
+  "TextureName": "Arts/Cards/RU/rushing_along_water",
+  "Desc": "前进2格，沿途造成2点伤害。处于「御」状态时伤害+1且可穿越",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": {
+        "Type": "self"
+      },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "charioteering", "HasBuff": true }
+      ],
+      "Processors": [
+        { "Type": "move_attack", "Value": 2, "Damage": 3, "CanCrossEnemies": true }
+      ]
+    },
+    {
+      "Selector": {
+        "Type": "self"
+      },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "charioteering", "HasBuff": false }
+      ],
+      "Processors": [
+        { "Type": "move_attack", "Value": 2, "Damage": 2, "CanCrossEnemies": false }
+      ]
+    }
+  ]
+}

@@ -75,6 +75,7 @@ namespace GameLogic
             {
                 var buff = player.GetBuff(EntityBuffManager.Initiative);
                 player.Buffs.Remove(buff);
+                UpdatePlayerStatus(false);
                 Rerender();
                 return;
             }
@@ -124,12 +125,13 @@ namespace GameLogic
             }
         }
 
-        public void UpdatePlayerStatus()
+        public void UpdatePlayerStatus(bool shouldAddCost=true)
         {
             var player = this.BattleField.GetPlayerFromMap();
             player.UpdateStatusAndBuffs();
             this.FightingData.UpdatePlayerDeck(player);
-            this.FightingData.TryAddCost(1);
+            if (shouldAddCost)
+                this.FightingData.TryAddCost(1);
         }
         
         public void EntitiesThink()

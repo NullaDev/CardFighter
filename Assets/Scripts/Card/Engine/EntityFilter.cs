@@ -105,5 +105,20 @@ namespace Card.Engine
                 .ToList();
         }
     }
+    
+    public class HasBuffFilter : EntityFilter
+    {
+        public string BuffName { get; set; }
+        public bool HasBuff { get; set; } = true;
+
+        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self)
+        {
+            return targets.Where(e =>
+            {
+                var has = e.Buffs.Any(b => b.Name == BuffName);
+                return HasBuff ? has : !has;
+            }).ToList();
+        }
+    }
 
 }

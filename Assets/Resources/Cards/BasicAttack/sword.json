@@ -1,8 +1,8 @@
 ﻿{
   "ID": "sword",
-  "Name": "砍你一剑",
+  "Name": "刺你一剑",
   "TextureName": "Arts/Cards/Attack/sword",
-  "Desc": "对1格内的目标造成3点伤害",
+  "Desc": "对1格内的目标造成2点无视护甲伤害",
   "Cost": 1,
   "Actions": [
     {
@@ -13,7 +13,7 @@
         { "Type": "first_n", "Value": 1 }
       ],
       "Processors": [
-        { "Type": "damage", "Value": 3, "Tags": ["melee", "weapon"] }
+        { "Type": "damage", "Value": 3, "Tags": ["melee", "weapon", "ignore_armor"] }
       ]
     }
   ]

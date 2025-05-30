@@ -1,0 +1,25 @@
+﻿{
+  "ID": "pass_the_regal",
+  "Name": "过君表",
+  "TextureName": "Arts/Cards/RU/pass_the_regal",
+  "Desc": "前进1格，若处于「御」状态额外获得2点护甲",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [],
+      "Processors": [
+        { "Type": "move_forward", "Value": 1 }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "charioteering" }
+      ],
+      "Processors": [
+        { "Type": "add_armor", "Value": 2 }
+      ]
+    }
+  ]
+}
