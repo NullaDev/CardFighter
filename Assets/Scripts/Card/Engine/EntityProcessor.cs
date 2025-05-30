@@ -27,7 +27,7 @@ namespace Card.Engine
             var pos = map.GetEntityIndex(user);
             if (pos == -1 || Value == 0) return;
 
-            var direction = user.Facing == EntityFacing.LEFT ? -1 : 1;
+            var direction = user.Facing == EntityFacing.Left ? -1 : 1;
             map.TryMoveEntityStepByStep(pos, direction * Value);
         }
     }
@@ -46,9 +46,9 @@ namespace Card.Engine
             }
             target.Facing = DirectionMode switch
             {
-                "towards" => targetPos < userPos ? EntityFacing.RIGHT : EntityFacing.LEFT,
-                "away" => targetPos < userPos ? EntityFacing.LEFT : EntityFacing.RIGHT,
-                _ => target.Facing == EntityFacing.LEFT ? EntityFacing.RIGHT : EntityFacing.LEFT
+                "towards" => targetPos < userPos ? EntityFacing.Right : EntityFacing.Left,
+                "away" => targetPos < userPos ? EntityFacing.Left : EntityFacing.Right,
+                _ => target.Facing == EntityFacing.Left ? EntityFacing.Right : EntityFacing.Left
             };
         }
     }
@@ -130,7 +130,7 @@ namespace Card.Engine
         {
             var map = fc.BattleField;
             var startPos = map.GetEntityIndex(user);
-            var direction = user.Facing == EntityFacing.LEFT ? -1 : 1;
+            var direction = user.Facing == EntityFacing.Left ? -1 : 1;
 
             var currentPos = startPos;
             var stepsTaken = 0;

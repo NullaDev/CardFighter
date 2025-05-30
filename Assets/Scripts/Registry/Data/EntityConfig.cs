@@ -14,9 +14,9 @@ namespace Registry.Data
         {
             return facing switch
             {
-                "right" => EntityFacing.RIGHT,
-                "left" => EntityFacing.LEFT,
-                "auto" => EntityFacing.DEFAULT,
+                "right" => EntityFacing.Right,
+                "left" => EntityFacing.Left,
+                "auto" => EntityFacing.Default,
                 _ => throw new Exception("Unknown direction")
             };
         }
@@ -42,7 +42,7 @@ namespace Registry.Data
             {
                 Name = Name,
                 TextureName = "Arts/Entities/" + TextureName,
-                Facing = EntityFacing.DEFAULT
+                Facing = EntityFacing.Default
             };
         }
     }

@@ -2,7 +2,6 @@
   "ID": "stunned",
   "Name": "晕眩",
   "TextureName": "Arts/Misc/stunned",
-  "Positive": false,
   "EffectText": "这一回合你使用的卡牌不产生效果。",
   "ExtraText": "啊~我的头好晕~"
 }

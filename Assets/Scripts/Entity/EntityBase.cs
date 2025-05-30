@@ -17,7 +17,7 @@ namespace Entity
         [JsonIgnore] public bool DamageDealtThisTurn = false;
         [JsonIgnore] public List<EntityBuff> Buffs = new();
 
-        [JsonIgnore] public EntityFacing Facing = EntityFacing.DEFAULT;
+        [JsonIgnore] public EntityFacing Facing = EntityFacing.Default;
 
         public EntityBase(int hp)
         {
@@ -61,15 +61,15 @@ namespace Entity
                     var attackerIndex = battleField.GetEntityIndex(this);
                     var targetIndex = battleField.GetEntityIndex(target);
 
-                    if (this.Facing != EntityFacing.DEFAULT && target.Facing != EntityFacing.DEFAULT)
+                    if (this.Facing != EntityFacing.Default && target.Facing != EntityFacing.Default)
                     {
                         var isFacingEachOther =
-                            (attackerIndex < targetIndex && this.Facing == EntityFacing.RIGHT && target.Facing == EntityFacing.LEFT) ||
-                            (attackerIndex > targetIndex && this.Facing == EntityFacing.LEFT && target.Facing == EntityFacing.RIGHT);
+                            (attackerIndex < targetIndex && this.Facing == EntityFacing.Right && target.Facing == EntityFacing.Left) ||
+                            (attackerIndex > targetIndex && this.Facing == EntityFacing.Left && target.Facing == EntityFacing.Right);
 
                         var isBackAttacked =
-                            (attackerIndex < targetIndex && this.Facing == EntityFacing.RIGHT && target.Facing == EntityFacing.RIGHT) ||
-                            (attackerIndex > targetIndex && this.Facing == EntityFacing.LEFT && target.Facing == EntityFacing.LEFT);
+                            (attackerIndex < targetIndex && this.Facing == EntityFacing.Right && target.Facing == EntityFacing.Right) ||
+                            (attackerIndex > targetIndex && this.Facing == EntityFacing.Left && target.Facing == EntityFacing.Left);
 
                         if (isFacingEachOther)
                         {
@@ -158,8 +158,8 @@ namespace Entity
                     var attackerIndex = battleField.GetEntityIndex(source);
                     var targetIndex = battleField.GetEntityIndex(this);
                     var isFromFront =
-                        (attackerIndex < targetIndex && this.Facing == EntityFacing.LEFT) ||
-                        (attackerIndex > targetIndex && this.Facing == EntityFacing.RIGHT);
+                        (attackerIndex < targetIndex && this.Facing == EntityFacing.Left) ||
+                        (attackerIndex > targetIndex && this.Facing == EntityFacing.Right);
                     
                     if (isFromFront)
                     {
@@ -229,6 +229,23 @@ namespace Entity
         
         public bool AddOrUpdateBuff(EntityBuff newBuff)
         {
+            if (this.HasBuff(EntityBuffManager.Calligraphy) && EntityBuffManager.GetBuffType(newBuff.Name) == EntityBuffManager.BuffType.Positive)
+            {
+                var calligraphyBuff = this.GetBuff(EntityBuffManager.Calligraphy);
+                var currentPositiveBuffs = Buffs.Count(b => EntityBuffManager.GetBuffType(b.Name) == EntityBuffManager.BuffType.Positive);
+                var maxPositive = calligraphyBuff.GetParam<int>(EntityBuffManager.CalligraphyNegativeValue);
+
+                if (currentPositiveBuffs >= maxPositive)
+                    return false;
+
+                if (newBuff.Duration > 1)
+                {
+                    var extraTurns = calligraphyBuff.GetParam<int>(EntityBuffManager.CalligraphyPositiveValue);
+                    if (extraTurns > 0)
+                        newBuff.Duration += extraTurns;
+                }
+            }
+            
             foreach (var conflictingBuff in from @group in EntityBuffManager.BuffConflictGroups where @group.Contains(newBuff.Name) select Buffs.FirstOrDefault(b => @group.Contains(b.Name)) into conflictingBuff where conflictingBuff != null select conflictingBuff)
             {
                 if (conflictingBuff.Name != newBuff.Name) Buffs.Remove(conflictingBuff);

@@ -50,7 +50,7 @@ namespace Render
             {
                 var sprite = Resources.Load<Sprite>(entity.TextureName);
                 _entityImage.sprite = sprite;
-                if (entity.Facing == EntityFacing.LEFT)
+                if (entity.Facing == EntityFacing.Left)
                 {
                     _entityImage.transform.localScale = new Vector3(-1f, 1f, 1f);;
                 }

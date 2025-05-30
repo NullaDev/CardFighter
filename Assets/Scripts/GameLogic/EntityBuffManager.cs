@@ -1,9 +1,34 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace GameLogic
 {
-    public class EntityBuffManager
+    public static class EntityBuffManager
     {
+        public enum BuffType
+        {
+            Positive,
+            Neutral,
+            Negative
+        }
+        
+        public static readonly HashSet<string> PositiveBuffs = new()
+        {
+            Insight, Block, CounterAttack, Initiative, HoneSword,
+            Noble, HonestWord, FollowHeart, Practice, HiddenWeapon, GoodAtTools
+        };
+        
+        public static readonly HashSet<string> NeutralBuffs = new()
+        {
+            Rites, Music, Archery, Charioteering, Calligraphy, Mathematics,
+            NobleUnarmed
+        };
+        
+        public static readonly HashSet<string> NegativeBuffs = new()
+        {
+            Stunned
+        };
+        
         public static readonly List<HashSet<string>> BuffConflictGroups = new()
         {
             new HashSet<string> { Rites, Music, Archery, Charioteering, Calligraphy, Mathematics }
@@ -45,6 +70,8 @@ namespace GameLogic
         public const string Charioteering = "charioteering";
             public const string CharioteeringValue = "charioteering_value";
         public const string Calligraphy = "calligraphy";
+            public const string CalligraphyPositiveValue = "calligraphy_positive_value";
+            public const string CalligraphyNegativeValue = "calligraphy_negative_value";
         public const string Mathematics = "mathematics";
             public const string MathematicsPositiveValue = "mathematics_positive_value";
             public const string MathematicsNegativeValue = "mathematics_negative_value";
@@ -62,6 +89,17 @@ namespace GameLogic
             public const string NobleUnarmedNegativeValue = "noble_unarmed_negative_value";
         public const string GoodAtTools = "good_at_tools";
             public const string GoodAtToolsValue = "good_at_tools_value";
+            
+        public static BuffType GetBuffType(string buffName)
+        {
+            if (PositiveBuffs.Contains(buffName))
+                return BuffType.Positive;
+            if (NeutralBuffs.Contains(buffName))
+                return BuffType.Neutral;
+            if (NegativeBuffs.Contains(buffName))
+                return BuffType.Negative;
+            throw new Exception($"Unknown buff name: {buffName}");
+        }
 
     }
 }

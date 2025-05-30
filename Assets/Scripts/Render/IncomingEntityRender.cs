@@ -35,18 +35,18 @@ namespace Render
                 if (entity is IHasFacing facingEntity)
                 {
                     var facing = IHasFacing.ParseFacing(facingEntity.AppearFacing);
-                    if (facing == EntityFacing.DEFAULT)
+                    if (facing == EntityFacing.Default)
                     {
                         facing = FacingHelper.GetFacing(map.GetPlayerIndex() - entity.AppearPos);
                     }
                     
                     switch (facing)
                     {
-                        case EntityFacing.LEFT:
+                        case EntityFacing.Left:
                             _entityImage.transform.localScale = new Vector3(-1f, 1f, 1f);;
                             break;
-                        case EntityFacing.RIGHT:
-                        case EntityFacing.DEFAULT:
+                        case EntityFacing.Right:
+                        case EntityFacing.Default:
                             _entityImage.transform.localScale = new Vector3(1f, 1f, 1f);;
                             break;
                         default:

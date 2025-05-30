@@ -34,9 +34,9 @@ namespace GameLogic
             var player = new Player(data.Hp, data.MaxHp);
             player.Facing = direc switch
             {
-                "right" => EntityFacing.RIGHT,
-                "left" => EntityFacing.LEFT,
-                "random" => Random.Range(0, 2) == 0 ? EntityFacing.RIGHT : EntityFacing.LEFT,
+                "right" => EntityFacing.Right,
+                "left" => EntityFacing.Left,
+                "random" => Random.Range(0, 2) == 0 ? EntityFacing.Right : EntityFacing.Left,
                 _ => throw new Exception("Unknown direction")
             };
             this.ListEntities[pos] = player;
@@ -62,7 +62,7 @@ namespace GameLogic
             if (this.ListEntities[pos] == null)
             {
                 this.ListEntities[pos] = entity;
-                if (entity is Enemy { Facing: EntityFacing.DEFAULT } enemy)
+                if (entity is Enemy { Facing: EntityFacing.Default } enemy)
                 {
                     enemy.Facing = FacingHelper.GetFacing(GetPlayerIndex() - pos);
                 }

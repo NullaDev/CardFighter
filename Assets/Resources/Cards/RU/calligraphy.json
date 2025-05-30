@@ -1,0 +1,24 @@
+﻿{
+  "ID": "calligraphy",
+  "Name": "书",
+  "TextureName": "Arts/Cards/RU/calligraphy",
+  "Desc": "切换当前六艺状态至「书」。",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "calligraphy",
+              "Turn": -1,
+              "Parameters": { "calligraphy_positive_value": 1, "calligraphy_negative_value": 3 }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

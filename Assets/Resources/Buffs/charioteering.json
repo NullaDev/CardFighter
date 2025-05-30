@@ -2,7 +2,6 @@
   "ID": "charioteering",
   "Name": "驾车",
   "TextureName": "Arts/Cards/RU/charioteering",
-  "Positive": true,
   "EffectText": "前进距离增加一格，但转身费用消耗增加{charioteering_value}。",
   "ExtraText": "子曰：让我来开车。"
 }

@@ -1,4 +1,5 @@
-﻿using GameLogic;
+﻿using System;
+using GameLogic;
 using Registry;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -22,9 +23,15 @@ namespace Render
 
         public void RenderBuff(EntityBuff buff)
         {
-            var buffInfo = StaticDataManager.BuffDisplayManager.Find(buff.Name);
+            _buffBG.color = EntityBuffManager.GetBuffType(buff.Name) switch
+            {
+                EntityBuffManager.BuffType.Positive => Color.green,
+                EntityBuffManager.BuffType.Neutral  => Color.yellow,
+                EntityBuffManager.BuffType.Negative => Color.red,
+                _ => throw new ArgumentOutOfRangeException()
+            };
             
-            _buffBG.color = buffInfo.Positive ? Color.green : Color.red;
+            var buffInfo = StaticDataManager.BuffDisplayManager.Find(buff.Name);
             if (buffInfo.TextureName != "")
             {
                 var sprite = Resources.Load<Sprite>(buffInfo.TextureName);

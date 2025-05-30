@@ -1,0 +1,7 @@
+﻿{
+  "ID": "calligraphy",
+  "Name": "篆刻",
+  "TextureName": "Arts/Cards/RU/calligraphy",
+  "EffectText": "你的非临时正面Buff延长{calligraphy_positive_value}回合，但正面Buff最多同时持有{calligraphy_negative_value}个。",
+  "ExtraText": "子曰：打完架还有余力再去读书。"
+}

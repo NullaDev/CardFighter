@@ -52,7 +52,7 @@ namespace Entity
             var playerPos = battleField.GetPlayerIndex();
             var rangeMin = rangeSelector.RangeMin;
             var rangeMax = rangeSelector.RangeMax;
-            var direction = this.Facing == EntityFacing.RIGHT ? 1 : -1;
+            var direction = this.Facing == EntityFacing.Right ? 1 : -1;
                 
             var minPos = selfPos + rangeMin * direction;
             var maxPos = selfPos + rangeMax * direction;
@@ -79,11 +79,11 @@ namespace Entity
                 }
             }
 
-            if (this.Facing == EntityFacing.LEFT && selfPos == 0)
+            if (this.Facing == EntityFacing.Left && selfPos == 0)
             {
                 return new CardInstance(CommonCards.TurnBack);
             }
-            if (this.Facing == EntityFacing.RIGHT && selfPos == battleField.Size-1)
+            if (this.Facing == EntityFacing.Right && selfPos == battleField.Size-1)
             {
                 return new CardInstance(CommonCards.TurnBack);
             }
@@ -144,15 +144,15 @@ namespace Entity
             var selfPos = battleField.GetEntityIndex(this);
             var playerPos = battleField.GetPlayerIndex();
 
-            if ((playerPos < selfPos && this.Facing != EntityFacing.LEFT) ||
-                (playerPos > selfPos && this.Facing != EntityFacing.RIGHT))
+            if ((playerPos < selfPos && this.Facing != EntityFacing.Left) ||
+                (playerPos > selfPos && this.Facing != EntityFacing.Right))
             {
                 return new CardInstance(CommonCards.TurnBack);
             }
 
             var rangeMin = rangeSelector.RangeMin;
             var rangeMax = rangeSelector.RangeMax;
-            var direction = this.Facing == EntityFacing.RIGHT ? 1 : -1;
+            var direction = this.Facing == EntityFacing.Right ? 1 : -1;
 
             var minPos = selfPos + rangeMin * direction;
             var maxPos = selfPos + rangeMax * direction;

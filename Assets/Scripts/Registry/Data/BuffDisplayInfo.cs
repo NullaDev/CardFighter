@@ -7,7 +7,6 @@ namespace Registry.Data
         public string ID { get; set; }
         public string Name { get; set; }
         public string TextureName { get; set; }
-        public bool Positive { get; set; }
         public string EffectText { get; set; }
         public string ExtraText { get; set; }
         
