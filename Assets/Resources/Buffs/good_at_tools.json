@@ -1,0 +1,8 @@
+﻿{
+  "ID": "good_at_tools",
+  "Name": "善假于物",
+  "TextureName": "Arts/Cards/RU/good_at_tools",
+  "Positive": true,
+  "EffectText": "造成的武器伤害增加{good_at_tools_value}点。",
+  "ExtraText": "荀子曰：君子只不过是打架时更会使用武器罢了。"
+}

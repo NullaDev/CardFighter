@@ -2,8 +2,8 @@
   "ID": "follow_heart",
   "Name": "从心所欲",
   "TextureName": "Arts/Cards/ru/follow_heart",
-  "Desc": "3回合内，你的礼、乐、射没有惩罚",
-  "Cost": 1,
+  "Desc": "7回合内，你的礼、乐、射没有惩罚",
+  "Cost": 2,
   "Actions": [
     {
       "Selector": {
@@ -14,7 +14,7 @@
         {
           "Type": "add_buff",
           "Buffs": [
-            { "BuffName": "follow_heart", "Turn": 3 }
+            { "BuffName": "follow_heart", "Turn": 7 }
           ]
         }
       ]

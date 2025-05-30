@@ -1,0 +1,24 @@
+﻿{
+  "ID": "hone_sword",
+  "Name": "十年磨一剑",
+  "TextureName": "Arts/Cards/Generic/hone_sword",
+  "Desc": "你造成的所有近战武器伤害增加一点，不能叠加。",
+  "Cost": 3,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "hone_sword",
+              "Turn": -1,
+              "Parameters": { "hone_sword_value": 1 }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

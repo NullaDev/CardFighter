@@ -1,0 +1,24 @@
+﻿{
+  "ID": "good_at_tools",
+  "Name": "善假于物",
+  "TextureName": "Arts/Cards/RU/good_at_tools",
+  "Desc": "你造成的武器增加2点，持续时间无限",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "good_at_tools",
+              "Turn": -1,
+              "Parameters": { "good_at_tools_value": 2 }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

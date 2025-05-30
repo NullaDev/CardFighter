@@ -1,0 +1,24 @@
+﻿{
+  "ID": "noble_unarmed",
+  "Name": "君子不器",
+  "TextureName": "Arts/Cards/RU/noble_unarmed",
+  "Desc": "你造成的空手伤害提高1点，但不能造成武器伤害，可以关闭",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "noble_unarmed",
+              "Turn": -1,
+              "Parameters": { "noble_unarmed_positive_value": 2, "noble_unarmed_negative_value": 0 }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

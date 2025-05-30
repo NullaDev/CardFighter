@@ -86,6 +86,36 @@ namespace Entity
                     multipleModifier *= this.GetBuff(EntityBuffManager.Archery).GetParam<float>(EntityBuffManager.ArcheryNegativeValue);
                 }
             }
+            
+            if (damageTags.Contains(DamageTypeNames.Unarmed))
+            {
+                if (this.HasBuff(EntityBuffManager.NobleUnarmed))
+                {
+                    additiveModifier += this.GetBuff(EntityBuffManager.NobleUnarmed).GetParam<int>(EntityBuffManager.NobleUnarmedPositiveValue);
+                }
+            }
+            
+            if (damageTags.Contains(DamageTypeNames.Weapon))
+            {
+                if (this.HasBuff(EntityBuffManager.NobleUnarmed))
+                {
+                    multipleModifier *= this.GetBuff(EntityBuffManager.NobleUnarmed).GetParam<float>(EntityBuffManager.NobleUnarmedNegativeValue);
+                }
+                
+                if (this.HasBuff(EntityBuffManager.GoodAtTools))
+                {
+                    additiveModifier += this.GetBuff(EntityBuffManager.GoodAtTools).GetParam<int>(EntityBuffManager.GoodAtToolsValue);
+                }
+            }
+
+            if (damageTags.Contains(DamageTypeNames.Melee) && damageTags.Contains(DamageTypeNames.Weapon))
+            {
+                if (this.HasBuff(EntityBuffManager.HoneSword))
+                {
+                    var buff = this.GetBuff(EntityBuffManager.HoneSword);
+                    additiveModifier += buff.GetParam<int>(EntityBuffManager.HoneSwordValue);
+                }
+            }
 
             if (damageTags.Contains(DamageTypeNames.Ranged))
             {

@@ -6,6 +6,7 @@
     "observe": 1,
     "block": 2,
     "suit_up": 2,
+    "hone_sword": 3,
     
     "punch": 2,
     "kick": 2,
@@ -39,6 +40,8 @@
     "follow_heart": 2,
     "study_and_practice": 2,
     "teacher_say": 2,
+    "noble_unarmed": 2,
+    "good_at_tools": 2,
 
     "noble_word": 2,
     "from_a_distance": 2,

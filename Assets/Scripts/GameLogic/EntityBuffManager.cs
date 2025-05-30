@@ -11,7 +11,7 @@ namespace GameLogic
 
         public static readonly HashSet<string> ToggleBuffs = new()
         {
-            Rites, Music, Archery, Charioteering, Calligraphy, Mathematics
+            Rites, Music, Archery, Charioteering, Calligraphy, Mathematics, NobleUnarmed
         };
         
         public static readonly Dictionary<string, HashSet<string>> StackableBuffs = new()
@@ -24,8 +24,10 @@ namespace GameLogic
         public const string Block = "block";
             public const string BlockTimes = "block_times";
         public const string CounterAttack = "counter_attack";
-        public const string CounterAttackValue = "counter_attack_value";
+            public const string CounterAttackValue = "counter_attack_value";
         public const string Initiative = "initiative";
+        public const string HoneSword = "hone_sword";
+            public const string HoneSwordValue = "hone_sword_value";
         
         public const string Rites = "rites";
             public const string RitesPositiveValue = "rites_positive_value";
@@ -55,6 +57,11 @@ namespace GameLogic
         public const string Practice = "practice";
             public const string PracticeValue = "practice_value";
         public const string HiddenWeapon = "hidden_weapon";
+        public const string NobleUnarmed = "noble_unarmed";
+            public const string NobleUnarmedPositiveValue = "noble_unarmed_positive_value";
+            public const string NobleUnarmedNegativeValue = "noble_unarmed_negative_value";
+        public const string GoodAtTools = "good_at_tools";
+            public const string GoodAtToolsValue = "good_at_tools_value";
 
     }
 }

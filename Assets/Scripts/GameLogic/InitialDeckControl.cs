@@ -48,7 +48,7 @@ namespace GameLogic
             var cardRender = render.GetComponent<DeckInitialzeRender>();
             cardRender.RenderCards(GetCurrentPageCards());
             var uiRender = render.GetComponent<DeckInitializeUIRender>();
-            uiRender.RenderCost(CalcTotalCost(), _maxCost);
+            uiRender.RenderCost(_maxCost-CalcTotalCost(), _maxCost);
             uiRender.RenderCount(_carryCards.Count);
         }
         
