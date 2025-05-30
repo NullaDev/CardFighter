@@ -1,6 +1,6 @@
 using System.Linq;
 using Card;
-using Entity;
+using GameLogic.Entity;
 using Registry;
 using Render;
 using UnityEngine;

@@ -1,6 +1,6 @@
 ﻿using System;
-using Entity;
 using GameLogic;
+using GameLogic.Entity;
 using Registry.Data;
 using UnityEngine;
 using UnityEngine.UI;

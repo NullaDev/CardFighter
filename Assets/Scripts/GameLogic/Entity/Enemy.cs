@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Card;
 using Card.Engine;
-using GameLogic;
 using Newtonsoft.Json;
 using Registry;
 using Registry.Data;
 
-namespace Entity
+namespace GameLogic.Entity
 {
     public abstract class Enemy: EntityBase
     {

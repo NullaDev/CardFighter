@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Entity;
 using GameLogic;
+using GameLogic.Entity;
 
 namespace Card.Engine
 {
@@ -27,7 +27,7 @@ namespace Card.Engine
             var pos = map.GetEntityIndex(user);
             if (pos == -1 || Value == 0) return;
 
-            var direction = user.Facing == EntityFacing.Left ? -1 : 1;
+            var direction = (int)user.Facing;
             map.TryMoveEntityStepByStep(pos, direction * Value);
         }
     }
@@ -46,9 +46,9 @@ namespace Card.Engine
             }
             target.Facing = DirectionMode switch
             {
-                "towards" => targetPos < userPos ? EntityFacing.Right : EntityFacing.Left,
-                "away" => targetPos < userPos ? EntityFacing.Left : EntityFacing.Right,
-                _ => target.Facing == EntityFacing.Left ? EntityFacing.Right : EntityFacing.Left
+                "towards" => FacingHelper.GetFacing(userPos - targetPos),
+                "away" => FacingHelper.GetFacing(targetPos - userPos),
+                _ => (EntityFacing)(-(int)target.Facing)
             };
         }
     }
@@ -130,7 +130,7 @@ namespace Card.Engine
         {
             var map = fc.BattleField;
             var startPos = map.GetEntityIndex(user);
-            var direction = user.Facing == EntityFacing.Left ? -1 : 1;
+            var direction = (int)user.Facing;
 
             var currentPos = startPos;
             var stepsTaken = 0;

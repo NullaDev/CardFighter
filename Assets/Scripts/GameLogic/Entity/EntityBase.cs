@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using GameLogic;
 using Newtonsoft.Json;
 
-namespace Entity
+namespace GameLogic.Entity
 {
     public abstract class EntityBase
     {

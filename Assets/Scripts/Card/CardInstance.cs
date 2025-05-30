@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Entity;
 using GameLogic;
+using GameLogic.Entity;
 using Registry;
 using Registry.Data;
 

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Entity;
+using GameLogic.Entity;
 using Newtonsoft.Json;
 
 namespace Registry.Data

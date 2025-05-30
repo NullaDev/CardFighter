@@ -1,4 +1,4 @@
-﻿namespace Entity
+﻿namespace GameLogic.Entity
 {
     public enum EntityFacing
     {

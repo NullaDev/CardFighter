@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Entity;
+using GameLogic.Entity;
 using JetBrains.Annotations;
 using Registry;
 using Registry.Data;
@@ -11,10 +11,10 @@ namespace GameLogic
 {
     public class BattleField
     {
-        private StageConfig _config;
+        private readonly StageConfig _config;
         public int Size;
         [ItemCanBeNull] public EntityBase[] ListEntities;
-        private HashSet<EntityConfig> _spawnedEntities = new();
+        private readonly HashSet<EntityConfig> _spawnedEntities = new();
 
         public BattleField(StageConfig config, PlayerData pData)
         {
@@ -23,13 +23,13 @@ namespace GameLogic
             this.InitializePlayer(pData, config.PlayerSpawnPos, config.PlayerSpawnFacing);
         }
 
-        public void SetSize(int size)
+        private void SetSize(int size)
         {
             this.Size = size;
             this.ListEntities = new EntityBase[size];
         }
 
-        public void InitializePlayer(PlayerData data, int pos, string direc)
+        private void InitializePlayer(PlayerData data, int pos, string direc)
         {
             var player = new Player(data.Hp, data.MaxHp);
             player.Facing = direc switch

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Card;
-using Entity;
+using GameLogic.Entity;
 using Render.Interact;
 using UnityEngine;
 

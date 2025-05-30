@@ -1,7 +1,7 @@
 using System;
 using Card;
-using Entity;
 using GameLogic;
+using GameLogic.Entity;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Entity;
 using GameLogic;
+using GameLogic.Entity;
 
 namespace Registry.Data
 {

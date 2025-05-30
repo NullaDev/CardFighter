@@ -1,6 +1,4 @@
-﻿using GameLogic;
-
-namespace Entity
+﻿namespace GameLogic.Entity
 {
     public class PassiveEntity: EntityBase
     {

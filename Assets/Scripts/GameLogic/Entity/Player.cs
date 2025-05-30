@@ -1,6 +1,4 @@
-﻿using GameLogic;
-
-namespace Entity
+﻿namespace GameLogic.Entity
 {
     public class Player: EntityBase
     {
@@ -15,7 +13,7 @@ namespace Entity
             this.HP -= value;
             if (this.HP <= 0)
             {
-                // TODO
+                // TODO Lose
             }
         }
         

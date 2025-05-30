@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Registry.Data;
 
-namespace Entity
+namespace GameLogic.Entity
 {
     public class EntityConverter: JsonConverter
     {

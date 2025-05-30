@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Entity;
 using GameLogic;
+using GameLogic.Entity;
 
 namespace Card.Engine
 {
@@ -43,7 +43,7 @@ namespace Card.Engine
         {
             var list = new List<EntityBase>();
             var pos = fc.BattleField.GetEntityIndex(user);
-            var direction = user.Facing == EntityFacing.Right ? 1 : -1;
+            var direction = (int)user.Facing;
 
             for (var i = RangeMin; i <= RangeMax; i++)
             {
