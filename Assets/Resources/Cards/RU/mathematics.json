@@ -14,7 +14,7 @@
             {
               "BuffName": "mathematics",
               "Turn": -1,
-              "Parameters": { "mathematics_positive_value": 2, "mathematics_negative_value": 2 }
+              "Parameters": { "mathematics_positive_value": 1, "mathematics_negative_value": 1 }
             }
           ]
         }

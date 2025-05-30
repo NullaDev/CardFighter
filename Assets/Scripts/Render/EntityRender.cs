@@ -1,7 +1,6 @@
 using System;
 using Card;
 using Entity;
-using Fighting;
 using GameLogic;
 using UnityEngine;
 using UnityEngine.EventSystems;

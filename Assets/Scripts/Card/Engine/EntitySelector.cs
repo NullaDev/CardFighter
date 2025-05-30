@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Entity;
-using Fighting;
 using GameLogic;
 
 namespace Card.Engine

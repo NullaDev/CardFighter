@@ -15,6 +15,17 @@
       "Processors": [
         { "Type": "damage", "Value": 1, "Tags": ["ranged"] }
       ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            { "BuffName": "initiative", "Turn": 2 }
+          ]
+        }
+      ]
     }
   ]
 }

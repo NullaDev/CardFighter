@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Entity;
-using Fighting;
+using GameLogic;
 using UnityEngine;
 
 namespace Render

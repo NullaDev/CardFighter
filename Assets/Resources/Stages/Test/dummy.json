@@ -23,7 +23,7 @@
       "Name": "mob1",
       "TextureName": "robber",
       "HP": 30,
-      "Card": "punch"
+      "Card": "sword"
     }
   ]
 }

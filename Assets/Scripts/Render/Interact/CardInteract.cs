@@ -1,5 +1,5 @@
 ﻿using Card;
-using Fighting;
+using GameLogic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

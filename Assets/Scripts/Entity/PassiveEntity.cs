@@ -1,4 +1,4 @@
-﻿using Fighting;
+﻿using GameLogic;
 
 namespace Entity
 {

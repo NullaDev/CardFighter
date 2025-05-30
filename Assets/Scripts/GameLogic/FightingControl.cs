@@ -1,13 +1,12 @@
 using System.Linq;
 using Card;
 using Entity;
-using GameLogic;
 using Registry;
 using Render;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Fighting
+namespace GameLogic
 {
     public class FightingControl : MonoBehaviour
     {
@@ -76,6 +75,7 @@ namespace Fighting
             {
                 var buff = player.GetBuff(EntityBuffManager.Initiative);
                 player.Buffs.Remove(buff);
+                Rerender();
                 return;
             }
             EndTurn();
