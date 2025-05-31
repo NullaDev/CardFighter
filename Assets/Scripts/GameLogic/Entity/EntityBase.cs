@@ -138,6 +138,17 @@ namespace GameLogic.Entity
             var additiveModifier = 0;
             var multipleModifier = 1.0;
             var doCauseDamage = true;
+
+            if (this.HasBuff(EntityBuffManager.Vulnerable))
+            {
+                additiveModifier += this.GetBuff(EntityBuffManager.Vulnerable).GetParam<int>(EntityBuffManager.VulnerableValue);
+            }
+            
+            if (this.HasBuff(EntityBuffManager.NowhereToHide))
+            {
+                additiveModifier += this.GetBuff(EntityBuffManager.NowhereToHide).GetParam<int>(EntityBuffManager.NowhereToHideValue);
+            }
+
             if (this.HasBuff(EntityBuffManager.Mathematics))
             {
                 if (this.HasBuff(EntityBuffManager.Insight))
@@ -198,12 +209,12 @@ namespace GameLogic.Entity
                     {
                         enemy.DealtDamageToPlayer = true;
                     }
-                }
-                
-                if (this.HasBuff(EntityBuffManager.CounterAttack) && !damageTags.Contains(DamageTypeNames.CounterAttack))
-                {
-                    var counterValue = this.GetBuff(EntityBuffManager.CounterAttack).GetParam<int>(EntityBuffManager.CounterAttackValue);
-                    this.DoDamageTo(source, counterValue, battleField, new List<string>{DamageTypeNames.CounterAttack});
+                    
+                    if (this.HasBuff(EntityBuffManager.CounterAttack) && !damageTags.Contains(DamageTypeNames.CounterAttack))
+                    {
+                        var counterValue = this.GetBuff(EntityBuffManager.CounterAttack).GetParam<int>(EntityBuffManager.CounterAttackValue);
+                        this.DoDamageTo(source, counterValue, battleField, new List<string>{DamageTypeNames.CounterAttack});
+                    }
                 }
             }
         }

@@ -1,0 +1,7 @@
+﻿{
+  "ID": "vulnerable",
+  "Name": "易伤",
+  "TextureName": "Arts/Misc/vulnerable",
+  "EffectText": "下一次受伤增加{vulnerable_value}点。",
+  "ExtraText": "形劳而不休，则弊。"
+}

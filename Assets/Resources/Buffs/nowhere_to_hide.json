@@ -1,0 +1,7 @@
+﻿{
+  "ID": "nowhere_to_hide",
+  "Name": "人焉廋哉",
+  "TextureName": "Arts/Cards/RU/observe_comfort_zone",
+  "EffectText": "下一次受伤增加{nowhere_to_hide_value}点。",
+  "ExtraText": "子曰：观察你最安逸的地方，看你还能躲到哪去？。"
+}

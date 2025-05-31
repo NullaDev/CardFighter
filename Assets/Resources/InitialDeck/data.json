@@ -2,11 +2,12 @@
   "Generic": {
     "move": 0,
     "turn_back": 0,
-    "focus_energy": 1,
+    "do_nothing": 1,
     "observe": 1,
+    "focus_energy": 2,
     "block": 2,
     "suit_up": 2,
-    "hone_sword": 3,
+    "hone_sword": 2,
     
     "punch": 2,
     "kick": 2,

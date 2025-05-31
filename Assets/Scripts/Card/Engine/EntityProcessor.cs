@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using GameLogic;
 using GameLogic.Entity;
 
@@ -17,18 +18,47 @@ namespace Card.Engine
         public abstract void Process(FightingControl fc, EntityBase user, EntityBase target);
     }
     
-    public class MoveForwardProcessor : EntityProcessor
+    public class MoveProcessor : EntityProcessor
     {
+        public string Mode { get; set; } = "forward";
         public int Value { get; set; } = 1;
 
         public override void Process(FightingControl fc, EntityBase user, EntityBase target)
         {
             var map = fc.BattleField;
-            var pos = map.GetEntityIndex(user);
-            if (pos == -1 || Value == 0) return;
+            var userPos = map.GetEntityIndex(user);
+            var targetPos = map.GetEntityIndex(target);
 
-            var direction = (int)user.Facing;
-            map.TryMoveEntityStepByStep(pos, direction * Value);
+            if (userPos == -1 || targetPos == -1)
+            {
+                throw new Exception("Can't find one or more entity when executing MoveOrForce.");
+            }
+
+            if (user == target && Mode is "push" or "pull")
+            {
+                return;
+            }
+
+            switch (Mode)
+            {
+                case "forward":
+                    var forwardDir = (int)user.Facing;
+                    map.TryMoveEntityStepByStep(targetPos, forwardDir * Value);
+                    break;
+
+                case "push":
+                    var pushDir = Math.Sign(targetPos - userPos);
+                    map.TryMoveEntityStepByStep(targetPos, pushDir * Value);
+                    break;
+
+                case "pull":
+                    var pullDir = Math.Sign(userPos - targetPos);
+                    map.TryMoveEntityStepByStep(targetPos, pullDir * Value);
+                    break;
+
+                default:
+                    throw new ArgumentException($"Unsupported MoveOrForceProcessor mode: {Mode}");
+            }
         }
     }
     
@@ -44,6 +74,8 @@ namespace Card.Engine
             {
                 throw new Exception("Can't find one or more entity when execute Turn.");
             }
+            if (user == target && DirectionMode is "towards" or "away")
+                return;
             target.Facing = DirectionMode switch
             {
                 "towards" => FacingHelper.GetFacing(userPos - targetPos),
@@ -62,25 +94,6 @@ namespace Card.Engine
         {
             var map = fc.BattleField;
             user.DoDamageTo(target, Value, map, Tags);
-        }
-    }
-    
-    public class ForceMoveProcessor : EntityProcessor
-    {
-        public int Value { get; set; }  // Positive for push, negative for pull
-        public override void Process(FightingControl fc, EntityBase user, EntityBase target)
-        {
-            var map = fc.BattleField;
-            var userPos = map.GetEntityIndex(user);
-            var targetPos = map.GetEntityIndex(target);
-
-            if (userPos == -1 || targetPos == -1)
-            {
-                throw new Exception("Can't find one or more entity when execute KnockBack.");
-            }
-
-            var direction = Math.Sign(targetPos - userPos);
-            map.TryMoveEntityStepByStep(targetPos, direction * Value);
         }
     }
     
@@ -187,6 +200,35 @@ namespace Card.Engine
             if (target.IsDead || target is EliteEnemy || target is Player)
                 return;
             target.SetDeadAndRemove(fc.BattleField);
+        }
+    }
+    
+    public class ClearBuffProcessor : EntityProcessor
+    {
+        public string BuffType { get; set; } = "negative";
+        public int Count { get; set; } = -1;
+
+        public override void Process(FightingControl fc, EntityBase user, EntityBase target)
+        {
+            var toRemove = target.Buffs
+                .Where(b =>
+                {
+                    var type = EntityBuffManager.GetBuffType(b.Name);
+                    return BuffType switch
+                    {
+                        "positive" => type == EntityBuffManager.BuffType.Positive,
+                        "negative" => type == EntityBuffManager.BuffType.Negative,
+                        "all" => true,
+                        _ => false
+                    };
+                })
+                .Take(Count < 0 ? int.MaxValue : Count)
+                .ToList();
+
+            foreach (var b in toRemove)
+            {
+                target.Buffs.Remove(b);
+            }
         }
     }
     

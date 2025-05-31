@@ -14,7 +14,7 @@
       ],
       "Processors": [
         { "Type": "damage", "Value": 3, "Tags": ["melee", "unarmed"] },
-        { "Type": "force_move", "Value": 1 }
+        { "Type": "move", "Mode": "push", "Value": 1 }
       ]
     }
   ]

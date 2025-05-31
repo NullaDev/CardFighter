@@ -32,10 +32,10 @@ namespace GameLogic
             
             playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("focus_energy"));
             playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("observe"));
-            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("noble"));
-            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("hone_sword"));
-            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("teacher_say"));
-            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("calligraphy"));
+            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("iron_slam"));
+            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("noble_word"));
+            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("from_a_distance"));
+            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("lift_gate"));
             
             var stageData = StaticDataManager.StageDataManager;
             playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("dummy"));

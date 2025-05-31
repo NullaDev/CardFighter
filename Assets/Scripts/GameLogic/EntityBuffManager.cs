@@ -26,7 +26,8 @@ namespace GameLogic
         
         public static readonly HashSet<string> NegativeBuffs = new()
         {
-            Stunned
+            Stunned, Vulnerable,
+            NowhereToHide
         };
         
         public static readonly List<HashSet<string>> BuffConflictGroups = new()
@@ -41,7 +42,8 @@ namespace GameLogic
         
         public static readonly Dictionary<string, HashSet<string>> StackableBuffs = new()
         {
-            { Noble , new HashSet<string> { NobleValue } }
+            { Noble , new HashSet<string> { NobleValue } },
+            { Vulnerable, new HashSet<string> { VulnerableValue } }
         };
         
         public const string Insight = "insight";
@@ -53,6 +55,8 @@ namespace GameLogic
         public const string Initiative = "initiative";
         public const string HoneSword = "hone_sword";
             public const string HoneSwordValue = "hone_sword_value";
+        public const string Vulnerable = "vulnerable";
+            public const string VulnerableValue = "vulnerable_value";
         
         public const string Rites = "rites";
             public const string RitesPositiveValue = "rites_positive_value";
@@ -89,6 +93,8 @@ namespace GameLogic
             public const string NobleUnarmedNegativeValue = "noble_unarmed_negative_value";
         public const string GoodAtTools = "good_at_tools";
             public const string GoodAtToolsValue = "good_at_tools_value";
+        public const string NowhereToHide = "nowhere_to_hide";
+            public const string NowhereToHideValue = "nowhere_to_hide_value";
             
         public static BuffType GetBuffType(string buffName)
         {

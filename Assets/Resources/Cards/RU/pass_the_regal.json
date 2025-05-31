@@ -9,7 +9,7 @@
       "Selector": { "Type": "self" },
       "Filters": [],
       "Processors": [
-        { "Type": "move_forward", "Value": 1 }
+        { "Type": "move", "Value": 1 }
       ]
     },
     {

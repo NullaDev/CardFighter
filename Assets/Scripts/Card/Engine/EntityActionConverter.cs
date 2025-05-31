@@ -60,15 +60,15 @@ namespace Card.Engine
                     var type = p["Type"]?.ToString();
                     EntityProcessor processor = type switch
                     {
-                        "move_forward" => p.ToObject<MoveForwardProcessor>(serializer),
+                        "move" => p.ToObject<MoveProcessor>(serializer),
                         "turn" => p.ToObject<TurnProcessor>(serializer),
                         "damage" => p.ToObject<DamageProcessor>(serializer),
-                        "force_move" => p.ToObject<ForceMoveProcessor>(serializer),
                         "add_buff" => p.ToObject<AddBuffProcessor>(serializer),
                         "add_cost" => p.ToObject<AddCostProcessor>(serializer),
                         "add_armor" => p.ToObject<AddArmorProcessor>(serializer),
                         "move_attack" => p.ToObject<MoveAttackProcessor>(serializer),
                         "kill" => p.ToObject<KillProcessor>(serializer),
+                        "clear_buff" => p.ToObject<ClearBuffProcessor>(serializer),
                         _ => throw new Exception("Unknown processor type: " + type)
                     };
                     action.Processors.Add(processor);

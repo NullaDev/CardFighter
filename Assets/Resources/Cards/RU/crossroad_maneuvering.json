@@ -28,7 +28,7 @@
         { "Type": "has_buff", "BuffName": "charioteering", "HasBuff": false }
       ],
       "Processors": [
-        { "Type": "move_forward", "Value": 1 }
+        { "Type": "move", "Value": 1 }
       ]
     }
   ]

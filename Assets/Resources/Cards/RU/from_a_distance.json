@@ -14,7 +14,7 @@
         { "Type": "entity_type", "MatchTypes": ["enemy"] }
       ],
       "Processors": [
-        { "Type": "force_move", "Value": -3 }
+        { "Type": "move", "Mode": "pull", "Value": 3 }
       ]
     }
   ]
