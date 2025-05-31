@@ -38,6 +38,7 @@ namespace Card.Engine
     {
         public int RangeMin { get; set; }
         public int RangeMax { get; set; }
+        public bool Reversed { get; set; } = false;
 
         public override List<EntityBase> Select(FightingControl fc, EntityBase user)
         {
@@ -55,6 +56,7 @@ namespace Card.Engine
                 }
             }
 
+            if (Reversed) list.Reverse();
             return list;
         }
     }

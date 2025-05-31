@@ -39,26 +39,14 @@ namespace Card.Engine
                 return;
             }
 
-            switch (Mode)
+            var direction = Mode switch
             {
-                case "forward":
-                    var forwardDir = (int)user.Facing;
-                    map.TryMoveEntityStepByStep(targetPos, forwardDir * Value);
-                    break;
-
-                case "push":
-                    var pushDir = Math.Sign(targetPos - userPos);
-                    map.TryMoveEntityStepByStep(targetPos, pushDir * Value);
-                    break;
-
-                case "pull":
-                    var pullDir = Math.Sign(userPos - targetPos);
-                    map.TryMoveEntityStepByStep(targetPos, pullDir * Value);
-                    break;
-
-                default:
-                    throw new ArgumentException($"Unsupported MoveOrForceProcessor mode: {Mode}");
-            }
+                "forward" => (int)user.Facing,
+                "push"    => Math.Sign(targetPos - userPos),
+                "pull"    => Math.Sign(userPos - targetPos),
+                _         => throw new ArgumentException($"Unsupported MoveProcessor mode: {Mode}")
+            };
+            map.TryMoveEntityStepByStep(targetPos, direction * Value);
         }
     }
     
@@ -118,6 +106,7 @@ namespace Card.Engine
 
         public override void Process(FightingControl fc, EntityBase user, EntityBase target)
         {
+            if (target is not Player) return;
             fc.FightingData.TryAddCost(Value);
         }
     }
@@ -229,6 +218,16 @@ namespace Card.Engine
             {
                 target.Buffs.Remove(b);
             }
+        }
+    }
+    
+    public class ExecuteActionProcessor : EntityProcessor
+    {
+        public EntityAction Action { get; set; }
+
+        public override void Process(FightingControl fc, EntityBase user, EntityBase target)
+        {
+            Action?.Execute(fc, target);
         }
     }
     

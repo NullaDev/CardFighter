@@ -13,8 +13,19 @@
         { "Type": "entity_type", "MatchTypes": ["enemy"] }
       ],
       "Processors": [
-        { "Type": "damage", "Value": 2, "Tags": ["melee", "unarmed"] },
-        { "Type": "add_cost", "Value": 1 }
+        {
+          "Type": "execute_action",
+          "Action": {
+            "Selector": { "Type": "all" },
+            "Filters": [
+              { "Type": "entity_type", "MatchTypes": ["player"] }
+            ],
+            "Processors": [
+              { "Type": "add_cost", "Value": 1 }
+            ]
+          }
+        },
+        { "Type": "damage", "Value": 2, "Tags": ["melee", "unarmed"] }
       ]
     }
   ]

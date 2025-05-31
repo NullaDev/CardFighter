@@ -69,6 +69,9 @@ namespace Card.Engine
                         "move_attack" => p.ToObject<MoveAttackProcessor>(serializer),
                         "kill" => p.ToObject<KillProcessor>(serializer),
                         "clear_buff" => p.ToObject<ClearBuffProcessor>(serializer),
+                        "execute_action" => new ExecuteActionProcessor {
+                            Action = p["Action"]?.ToObject<EntityAction>(serializer)
+                        },
                         _ => throw new Exception("Unknown processor type: " + type)
                     };
                     action.Processors.Add(processor);
