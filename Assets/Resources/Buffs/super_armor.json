@@ -1,0 +1,7 @@
+﻿{
+  "ID": "super_armor",
+  "Name": "霸体",
+  "TextureName": "Arts/Misc/super_armor",
+  "EffectText": "不会被控制或强制位移。",
+  "ExtraText": "虽千万人，吾往矣！"
+}

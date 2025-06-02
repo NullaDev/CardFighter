@@ -1,0 +1,7 @@
+﻿{
+  "ID": "kind_heart",
+  "Name": "仁心",
+  "TextureName": "Arts/Cards/ru/kind_unworried",
+  "EffectText": "每次受伤后恢复{kind_heart_value}点生命。",
+  "ExtraText": "子曰：仁德的人即使被打得很重，也没什么关系。"
+}

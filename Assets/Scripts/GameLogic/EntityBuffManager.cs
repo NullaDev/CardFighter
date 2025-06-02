@@ -14,8 +14,8 @@ namespace GameLogic
         
         public static readonly HashSet<string> PositiveBuffs = new()
         {
-            Insight, Block, CounterAttack, Initiative, HoneSword,
-            Noble, HonestWord, FollowHeart, Practice, HiddenWeapon, GoodAtTools
+            Insight, Block, CounterAttack, Initiative, HoneSword, SuperArmor,
+            Noble, HonestWord, FollowHeart, Practice, HiddenWeapon, GoodAtTools, KindHeart, Fearless
         };
         
         public static readonly HashSet<string> NeutralBuffs = new()
@@ -26,13 +26,18 @@ namespace GameLogic
         
         public static readonly HashSet<string> NegativeBuffs = new()
         {
-            Stunned, Vulnerable,
+            Stunned, Vulnerable, Rooted, LockedFacing,
             NowhereToHide
         };
         
         public static readonly List<HashSet<string>> BuffConflictGroups = new()
         {
             new HashSet<string> { Rites, Music, Archery, Charioteering, Calligraphy, Mathematics }
+        };
+        
+        public static readonly Dictionary<string, HashSet<string>> BuffImmunityGroups = new()
+        {
+            { SuperArmor, new HashSet<string> { Stunned, Rooted, LockedFacing } }
         };
 
         public static readonly HashSet<string> ToggleBuffs = new()
@@ -57,6 +62,9 @@ namespace GameLogic
             public const string HoneSwordValue = "hone_sword_value";
         public const string Vulnerable = "vulnerable";
             public const string VulnerableValue = "vulnerable_value";
+        public const string SuperArmor = "super_armor";
+        public const string Rooted = "rooted";
+        public const string LockedFacing = "locked_facing";
         
         public const string Rites = "rites";
             public const string RitesPositiveValue = "rites_positive_value";
@@ -95,6 +103,10 @@ namespace GameLogic
             public const string GoodAtToolsValue = "good_at_tools_value";
         public const string NowhereToHide = "nowhere_to_hide";
             public const string NowhereToHideValue = "nowhere_to_hide_value";
+        public const string KindHeart = "kind_heart";
+            public const string KindHeartValue = "kind_heart_value";
+        public const string Fearless = "fearless";
+            public const string FearlessValue = "fearless_value";
             
         public static BuffType GetBuffType(string buffName)
         {

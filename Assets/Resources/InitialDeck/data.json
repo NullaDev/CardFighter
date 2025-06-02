@@ -44,17 +44,22 @@
     "teacher_say": 2,
     "noble_unarmed": 2,
     "good_at_tools": 2,
+    "observe_comfort_zone": 2,
+    "unshaken": 2,
+    "reflect_on_myself": 3,
 
     "noble_word": 2,
-    "from_a_distance": 2,
+    "comes_from_afar": 2,
     "seize_general_rush": 3,
     "must_have_teacher": 3,
+    "not_ashamed_to_ask": 3,
     "flow_like_river": 3,
     "leap_over_tiger": 3,
     "retaliate": 3,
-    "lift_gate": 2,
+    "lift_city_bar": 2,
     "justice_strikes_back": 3,
     "no_one_stands_tough": 3,
+    "gentleman_upright": 3,
 
     "white_arrow": 3,
     "triple_strike": 3,
@@ -69,6 +74,11 @@
     "leftward_pursuit": 3,
 
     "no_rites_no_vision": 2,
-    "no_rites_no_motion": 2
+    "no_rites_no_speech": 2,
+    "no_rites_no_motion": 2,
+
+    "wise_unconfused": 3,
+    "kind_unworried": 3,
+    "brave_fearless": 3
   }
 }

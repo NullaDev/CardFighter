@@ -31,12 +31,18 @@ namespace Card.Engine
 
             if (userPos == -1 || targetPos == -1)
             {
-                throw new Exception("Can't find one or more entity when executing MoveOrForce.");
+                throw new Exception("Can't find one or more entity when executing Move.");
+            }
+            
+            if (Mode is "auto")
+            {
+                if (target.HasBuff(EntityBuffManager.Rooted)) return;
             }
 
-            if (user == target && Mode is "push" or "pull")
+            if (Mode is "push" or "pull")
             {
-                return;
+                if (user == target) return;
+                if (target.HasBuff(EntityBuffManager.SuperArmor)) return;
             }
 
             var direction = Mode switch
@@ -62,8 +68,17 @@ namespace Card.Engine
             {
                 throw new Exception("Can't find one or more entity when execute Turn.");
             }
-            if (user == target && DirectionMode is "towards" or "away")
-                return;
+
+            if (DirectionMode is "auto")
+            {
+                if (target.HasBuff(EntityBuffManager.LockedFacing)) return;
+            }
+
+            if (DirectionMode is "towards" or "away")
+            {
+                if (user == target) return;
+                if (target.HasBuff(EntityBuffManager.SuperArmor)) return;
+            }
             target.Facing = DirectionMode switch
             {
                 "towards" => FacingHelper.GetFacing(userPos - targetPos),
@@ -207,6 +222,7 @@ namespace Card.Engine
                     {
                         "positive" => type == EntityBuffManager.BuffType.Positive,
                         "negative" => type == EntityBuffManager.BuffType.Negative,
+                        "neutral" => type == EntityBuffManager.BuffType.Neutral,
                         "all" => true,
                         _ => false
                     };

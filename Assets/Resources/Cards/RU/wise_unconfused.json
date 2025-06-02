@@ -1,0 +1,21 @@
+﻿{
+  "ID": "wise_unconfused",
+  "Name": "知者不惑",
+  "TextureName": "Arts/Cards/ru/wise_unconfused",
+  "Cost": 1,
+  "Desc": "解除所有负面状态并获得3回合洞察",
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        { "Type": "clear_buff", "BuffType": "negative", "Count": -1 },
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            { "BuffName": "insight", "Turn": 3 }
+          ]
+        }
+      ]
+    }
+  ]
+}

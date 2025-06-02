@@ -1,0 +1,21 @@
+﻿{
+  "ID": "unshaken",
+  "Name": "三年不改",
+  "Cost": 1,
+  "Desc": "3回合内，你不能转身且获得霸体",
+  "TextureName": "Arts/Cards/ru/unshaken",
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            { "BuffName": "locked_facing", "Turn": 3 },
+            { "BuffName": "super_armor", "Turn": 3 }
+          ]
+        }
+      ]
+    }
+  ]
+}

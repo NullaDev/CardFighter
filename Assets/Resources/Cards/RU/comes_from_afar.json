@@ -1,7 +1,7 @@
 ﻿{
-  "ID": "from_a_distance",
+  "ID": "comes_from_afar",
   "Name": "自远方来",
-  "TextureName": "Arts/Cards/RU/from_a_distance",
+  "TextureName": "Arts/Cards/RU/comes_from_afar",
   "Desc": "将3格内的首个敌人拉到你身边",
   "Cost": 1,
   "Actions": [

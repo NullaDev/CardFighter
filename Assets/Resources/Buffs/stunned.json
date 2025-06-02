@@ -2,6 +2,6 @@
   "ID": "stunned",
   "Name": "晕眩",
   "TextureName": "Arts/Misc/stunned",
-  "EffectText": "这一回合你使用的卡牌不产生效果。",
-  "ExtraText": "啊~我的头好晕~"
+  "EffectText": "你使用的卡牌不产生效果。",
+  "ExtraText": "髓海不足，则脑转耳鸣，胫酸眩冒，目无所见，懈怠安卧。"
 }

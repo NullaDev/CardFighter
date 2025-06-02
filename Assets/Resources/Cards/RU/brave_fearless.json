@@ -1,0 +1,27 @@
+﻿{
+  "ID": "brave_fearless",
+  "Name": "勇者不惧",
+  "Cost": 2,
+  "Desc": "获得2回合霸体，下回合首次攻击伤害+2",
+  "TextureName": "Arts/Cards/ru/brave_fearless",
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            { "BuffName": "super_armor", "Turn": 2 },
+            {
+              "BuffName": "fearless",
+              "Turn": 1,
+              "Parameters": {
+                "fearless_value": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

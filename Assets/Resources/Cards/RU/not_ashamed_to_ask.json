@@ -1,0 +1,31 @@
+﻿{
+  "ID": "not_ashamed_to_ask",
+  "Name": "不耻下问",
+  "TextureName": "Arts/Cards/RU/not_ashamed_to_ask",
+  "Desc": "对全体敌人造成1点伤害，每击中一个回复1费",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": { "Type": "all" },
+      "Filters": [
+        { "Type": "is_alive" },
+        { "Type": "entity_type", "MatchTypes": ["enemy"] }
+      ],
+      "Processors": [
+        {
+          "Type": "execute_action",
+          "Action": {
+            "Selector": { "Type": "all" },
+            "Filters": [
+              { "Type": "entity_type", "MatchTypes": ["player"] }
+            ],
+            "Processors": [
+              { "Type": "add_cost", "Value": 1 }
+            ]
+          }
+        },
+        { "Type": "damage", "Value": 1, "Tags": ["melee", "unarmed"] }
+      ]
+    }
+  ]
+}

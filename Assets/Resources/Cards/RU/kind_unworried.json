@@ -1,0 +1,26 @@
+﻿{
+  "ID": "kind_unworried",
+  "Name": "仁者不忧",
+  "Cost": 1,
+  "Desc": "2回合内，每次受伤后恢复1点生命",
+  "TextureName": "Arts/Cards/ru/kind_unworried",
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "kind_heart",
+              "Turn": 2,
+              "Parameters": {
+                "kind_heart_value": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

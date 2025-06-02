@@ -39,6 +39,13 @@ namespace GameLogic.Entity
                 this.Buffs.Remove(buff);
             }
             
+            if (this.HasBuff(EntityBuffManager.Fearless))
+            {
+                var buff = this.GetBuff(EntityBuffManager.Fearless);
+                additiveModifier += buff.GetParam<int>(EntityBuffManager.FearlessValue);
+                this.Buffs.Remove(buff);
+            }
+            
             if (this.HasBuff(EntityBuffManager.Harmony))
             {
                 var buff = this.GetBuff(EntityBuffManager.Harmony);
@@ -210,16 +217,28 @@ namespace GameLogic.Entity
                         enemy.DealtDamageToPlayer = true;
                     }
                     
+                    if (this.IsDead) return;
+                    
                     if (this.HasBuff(EntityBuffManager.CounterAttack) && !damageTags.Contains(DamageTypeNames.CounterAttack))
                     {
                         var counterValue = this.GetBuff(EntityBuffManager.CounterAttack).GetParam<int>(EntityBuffManager.CounterAttackValue);
                         this.DoDamageTo(source, counterValue, battleField, new List<string>{DamageTypeNames.CounterAttack});
+                    }
+
+                    if (this.HasBuff(EntityBuffManager.KindHeart))
+                    {
+                        this.Heal(this, this.GetBuff(EntityBuffManager.KindHeart).GetParam<int>(EntityBuffManager.KindHeartValue));
                     }
                 }
             }
         }
 
         public abstract void Hurt(EntityBase source, int value, BattleField battleField);
+
+        public void Heal(EntityBase source, int value)
+        {
+            this.HP = Math.Min(this.HP + value, this.MaxHP);
+        }
 
         public void SetDeadAndRemove(BattleField battleField)
         {
@@ -239,6 +258,11 @@ namespace GameLogic.Entity
         
         public bool AddOrUpdateBuff(EntityBuff newBuff)
         {
+            if (EntityBuffManager.BuffImmunityGroups.Any(kvp => Buffs.Any(b => b.Name == kvp.Key) && kvp.Value.Contains(newBuff.Name)))
+            {
+                return false;
+            }
+            
             if (this.HasBuff(EntityBuffManager.Calligraphy) && EntityBuffManager.GetBuffType(newBuff.Name) == EntityBuffManager.BuffType.Positive)
             {
                 var calligraphyBuff = this.GetBuff(EntityBuffManager.Calligraphy);

@@ -1,0 +1,16 @@
+﻿{
+  "ID": "gentleman_upright",
+  "Name": "君子坦荡荡",
+  "TextureName": "Arts/Cards/RU/gentleman_upright",
+  "Desc": "解除所有负面状态，获得4点护甲",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        { "Type": "clear_buff", "BuffType": "negative", "Count": -1 },
+        { "Type": "add_armor", "Value": 4 }
+      ]
+    }
+  ]
+}

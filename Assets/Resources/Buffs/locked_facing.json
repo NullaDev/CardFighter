@@ -1,0 +1,7 @@
+﻿{
+  "ID": "locked_facing",
+  "Name": "固首",
+  "TextureName": "Arts/Misc/locked_facing",
+  "EffectText": "你不能转身。",
+  "ExtraText": "呕有苦，善大息，心胁痛不能反侧。"
+}
