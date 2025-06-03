@@ -1,8 +1,19 @@
 ﻿using System.Collections.Generic;
 using Registry.Data;
 
-namespace HeldItem
+namespace Item
 {
+    public class HeldItem
+    {
+        public string ID { get; set; }
+        public string Name { get; set; }
+        public string TextureName { get; set; }
+        public string EffectText { get; set; }
+        public string ExtraText { get; set; }
+        
+        public List<HeldItemEffect> Effects { get; set; } = new();
+    }
+    
     public abstract class HeldItemEffect
     {
         public string EffectType { get; set; }
@@ -33,16 +44,5 @@ namespace HeldItem
     public class MiscEffect : HeldItemEffect
     {
         public Dictionary<string, object> Parameters { get; set; } = new();
-    }
-    
-    public class HeldItem
-    {
-        public string ID { get; set; }
-        public string Name { get; set; }
-        public string TextureName { get; set; }
-        public string EffectText { get; set; }
-        public string ExtraText { get; set; }
-        
-        public List<HeldItemEffect> Effects { get; set; } = new();
     }
 }

@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace HeldItem
+namespace Item
 {
     public class HeldItemEffectConverter : JsonConverter
     {

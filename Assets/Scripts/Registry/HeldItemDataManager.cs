@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using HeldItem;
+using Item;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -12,7 +12,7 @@ namespace Registry
         public const string ItemFolderRoot = "HeldItems/";
         public static string[] SubFolders = { "Generic", "RU", "Test" };
 
-        private readonly List<HeldItem.HeldItem> _listItems = new();
+        private readonly List<HeldItem> _listItems = new();
 
         public void DebugLoadedItemInfo()
         {
@@ -38,7 +38,7 @@ namespace Registry
 
                 foreach (var item in itemList)
                 {
-                    var parsed = JsonConvert.DeserializeObject<HeldItem.HeldItem>(item.text, settings);
+                    var parsed = JsonConvert.DeserializeObject<HeldItem>(item.text, settings);
                     if (parsed != null)
                         _listItems.Add(parsed);
                 }
@@ -47,11 +47,11 @@ namespace Registry
             DebugLoadedItemInfo();
         }
 
-        public HeldItem.HeldItem Find(string itemId)
+        public HeldItem Find(string itemId)
         {
             return _listItems.Find(i => i.ID.Equals(itemId));
         }
 
-        public List<HeldItem.HeldItem> All() => _listItems;
+        public List<HeldItem> All() => _listItems;
     }
 }

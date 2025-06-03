@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Card;
+using Item;
 using Registry.Data;
 
 namespace Registry
@@ -19,6 +20,7 @@ namespace Registry
 
         public readonly Dictionary<CardPrototype, int> HeldCards = new();
         public readonly CardOperationsInBattle CardOperations = new();
+        public readonly List<HeldItem> HeldItems = new();
         
         public StageConfig CurrentStage = null;
         
