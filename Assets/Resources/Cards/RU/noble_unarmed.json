@@ -2,7 +2,7 @@
   "ID": "noble_unarmed",
   "Name": "君子不器",
   "TextureName": "Arts/Cards/RU/noble_unarmed",
-  "Desc": "你造成的空手伤害提高1点，但不能造成武器伤害，可以关闭",
+  "Desc": "你造成的空手伤害提高2点，但不能造成武器伤害，可以关闭",
   "Cost": 1,
   "Actions": [
     {

@@ -14,7 +14,7 @@
             {
               "BuffName": "music",
               "Turn": -1,
-              "Parameters": { "music_positive_value": 2, "music_negative_value": 1 }
+              "Parameters": { "music_positive_value": 1, "music_negative_value": 1 }
             }
           ]
         }

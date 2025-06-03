@@ -14,7 +14,7 @@
             {
               "BuffName": "rites",
               "Turn": -1,
-              "Parameters": { "rites_positive_value": 2, "rites_negative_value": 1 }
+              "Parameters": { "rites_positive_value": 1, "rites_negative_value": 0 }
             }
           ]
         }

@@ -1,0 +1,25 @@
+﻿{
+  "ID": "the_book_of_rites",
+  "Name": "礼记",
+  "TextureName": "Arts/HeldItems/the_book_of_rites",
+  "EffectText": "将你的“礼”替换为更强力的“君子六艺·礼”，且在开局时获得之。",
+  "ExtraText": "",
+  "Effects": [
+    {
+      "EffectType": "starting_buff",
+      "Buffs": [
+        {
+          "BuffName": "rites",
+          "Turn": -1,
+          "Parameters": { "rites_positive_value": 2, "rites_negative_value": 0 }
+        }
+      ]
+    },
+    {
+      "EffectType": "replace_card",
+      "ReplacementMap": {
+        "rites": "rites_advanced"
+      }
+    }
+  ]
+}

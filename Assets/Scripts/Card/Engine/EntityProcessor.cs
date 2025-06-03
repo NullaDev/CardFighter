@@ -3,16 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using GameLogic;
 using GameLogic.Entity;
+using Registry.Data;
 
 namespace Card.Engine
 {
-    public class BuffData
-    {
-        public string BuffName { get; set; }
-        public int Turn { get; set; }
-        public Dictionary<string, object> Parameters { get; set; } = new();
-    }
-    
     public abstract class EntityProcessor
     {
         public abstract void Process(FightingControl fc, EntityBase user, EntityBase target);

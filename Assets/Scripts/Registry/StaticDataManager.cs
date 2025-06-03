@@ -4,6 +4,7 @@
     {
         public static readonly CardDataManager CardDataManager = new();
         public static readonly InitialDeckManager InitialDeckManager = new();
+        public static readonly HeldItemDataManager HeldItemDataManager = new();
         public static readonly StageDataManager StageDataManager = new();
         public static readonly BuffDisplayManager BuffDisplayManager = new();
 
@@ -11,6 +12,7 @@
         {
             CardDataManager.LoadFromFile();
             InitialDeckManager.LoadFromFile();
+            HeldItemDataManager.LoadFromFile();
             StageDataManager.LoadFromFile();
             BuffDisplayManager.LoadFromFile();
             CommonCards.Init();
