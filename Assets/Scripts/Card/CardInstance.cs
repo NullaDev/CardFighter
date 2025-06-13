@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using GameLogic;
+using GameLogic.Buff;
 using GameLogic.Entity;
 using Registry;
 using Registry.Data;
@@ -23,7 +24,7 @@ namespace Card
                 if (player.HasBuff(EntityBuffManager.Charioteering))
                 {
                     return player.GetBuff(EntityBuffManager.Charioteering)
-                        .GetParam<int>(EntityBuffManager.CharioteeringValue);
+                        .GetMiscParam<int>(EntityBuffManager.CharioteeringValue);
                 }
                 else
                 {

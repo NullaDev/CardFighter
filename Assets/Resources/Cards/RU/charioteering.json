@@ -14,7 +14,12 @@
             {
               "BuffName": "charioteering",
               "Turn": -1,
-              "Parameters": { "charioteering_value": 1 }
+              "Rules": [
+                {
+                  "Target": "Misc",
+                  "Parameters": { "charioteering_value": 1 }
+                }
+              ]
             }
           ]
         }

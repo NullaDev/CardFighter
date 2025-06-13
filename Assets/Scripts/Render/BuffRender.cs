@@ -1,5 +1,6 @@
 ﻿using System;
-using GameLogic;
+using System.Collections.Generic;
+using GameLogic.Buff;
 using Registry;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -41,7 +42,44 @@ namespace Render
             var infoText = _info.transform.Find("InfoText").GetComponent<Text>();
             var timeRemain = buff.Duration<0? "永久":$"{buff.Duration}回合";
             var effect = buffInfo.EffectText;
-            foreach (var param in buff.Parameters)
+            
+            var displayParams = new Dictionary<string, object>();
+            var causedDamageRuleCount = 0;
+            var receivedDamageRuleCount = 0;
+            var blockRuleCount = 0;
+
+            foreach (var rule in buff.EffectRules)
+            {
+                switch (rule)
+                {
+                    case CausedDamageEffectRule causedRule:
+                        causedDamageRuleCount++;
+                        var causedKey = causedDamageRuleCount == 1 ? "value" : $"value{causedDamageRuleCount}";
+                        displayParams[causedKey] = causedRule.Value;
+                        break;
+
+                    case ReceivedDamageEffectRule receivedRule:
+                        receivedDamageRuleCount++;
+                        var receivedKey = receivedDamageRuleCount == 1 ? "value" : $"value{receivedDamageRuleCount}";
+                        displayParams[receivedKey] = receivedRule.Value;
+                        break;
+
+                    case BlockEffectRule blockRule:
+                        blockRuleCount++;
+                        var blockKey = blockRuleCount == 1 ? "block_times" : $"block_times{blockRuleCount}";
+                        displayParams[blockKey] = blockRule.RemainingTimes;
+                        break;
+
+                    case MiscEffectRule miscRule:
+                        foreach (var kvp in miscRule.Parameters)
+                        {
+                            displayParams[kvp.Key] = kvp.Value;
+                        }
+                        break;
+                }
+            }
+
+            foreach (var param in displayParams)
             {
                 var placeholder = "{" + param.Key + "}";
                 if (effect.Contains(placeholder))
@@ -49,6 +87,7 @@ namespace Render
                     effect = effect.Replace(placeholder, param.Value?.ToString());
                 }
             }
+
             infoText.text = $"{buffInfo.Name}\n" +
                             $"剩余时间：{timeRemain}\n" +
                             $"{effect}\n" +

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Card;
+using GameLogic.Buff;
 using GameLogic.Entity;
 using Registry;
 using Registry.Data;

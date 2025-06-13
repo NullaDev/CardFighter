@@ -2,6 +2,6 @@
   "ID": "hone_sword",
   "Name": "十年磨一剑",
   "TextureName": "Arts/Cards/Generic/hone_sword",
-  "EffectText": "造成的近战武器伤害增加{hone_sword_value}点。",
+  "EffectText": "造成的近战武器伤害增加{value}点。",
   "ExtraText": "今日把示君，谁有不平事？"
 }

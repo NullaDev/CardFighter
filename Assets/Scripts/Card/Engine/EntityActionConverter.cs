@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using GameLogic.Buff;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Registry.Data;
+using UnityEngine;
 
 namespace Card.Engine
 {
@@ -55,27 +59,67 @@ namespace Card.Engine
 
             var processorsToken = obj["Processors"];
             if (processorsToken != null)
+            {
                 foreach (var p in processorsToken)
                 {
                     var type = p["Type"]?.ToString();
-                    EntityProcessor processor = type switch
+                    EntityProcessor processor;
+                    if (type == "add_buff")
                     {
-                        "move" => p.ToObject<MoveProcessor>(serializer),
-                        "turn" => p.ToObject<TurnProcessor>(serializer),
-                        "damage" => p.ToObject<DamageProcessor>(serializer),
-                        "add_buff" => p.ToObject<AddBuffProcessor>(serializer),
-                        "add_cost" => p.ToObject<AddCostProcessor>(serializer),
-                        "add_armor" => p.ToObject<AddArmorProcessor>(serializer),
-                        "move_attack" => p.ToObject<MoveAttackProcessor>(serializer),
-                        "kill" => p.ToObject<KillProcessor>(serializer),
-                        "clear_buff" => p.ToObject<ClearBuffProcessor>(serializer),
-                        "execute_action" => new ExecuteActionProcessor {
-                            Action = p["Action"]?.ToObject<EntityAction>(serializer)
-                        },
-                        _ => throw new Exception("Unknown processor type: " + type)
-                    };
+                        processor = new AddBuffProcessor();
+                        foreach (var buffToken in p["Buffs"])
+                        {
+                            var buffData = new BuffData
+                            {
+                                BuffName = buffToken["BuffName"]?.ToString(),
+                                Turn = buffToken["Turn"]?.ToObject<int>() ?? 0,
+                                Rules = new List<BuffEffectRule>()
+                            };
+
+                            var rulesToken = buffToken["Rules"];
+                            if (rulesToken != null)
+                            {
+                                foreach (var r in rulesToken)
+                                {
+                                    var targetType = r["Target"]?.ToString();
+                                    BuffEffectRule rule = targetType switch
+                                    {
+                                        "CausedDamage" => r.ToObject<CausedDamageEffectRule>(serializer),
+                                        "ReceivedDamage" => r.ToObject<ReceivedDamageEffectRule>(serializer),
+                                        "Block" => r.ToObject<BlockEffectRule>(serializer),
+                                        "Misc" => r.ToObject<MiscEffectRule>(serializer),
+                                        _ => throw new Exception("Unknown BuffEffectTarget: " + targetType)
+                                    };
+
+                                    buffData.Rules.Add(rule);
+                                }
+                            }
+
+                            ((AddBuffProcessor)processor).Buffs.Add(buffData);
+                        }
+                    }
+                    else
+                    {
+                        processor = type switch
+                        {
+                            "move" => p.ToObject<MoveProcessor>(serializer),
+                            "turn" => p.ToObject<TurnProcessor>(serializer),
+                            "damage" => p.ToObject<DamageProcessor>(serializer),
+                            "add_cost" => p.ToObject<AddCostProcessor>(serializer),
+                            "add_armor" => p.ToObject<AddArmorProcessor>(serializer),
+                            "move_attack" => p.ToObject<MoveAttackProcessor>(serializer),
+                            "kill" => p.ToObject<KillProcessor>(serializer),
+                            "clear_buff" => p.ToObject<ClearBuffProcessor>(serializer),
+                            "execute_action" => new ExecuteActionProcessor
+                            {
+                                Action = p["Action"]?.ToObject<EntityAction>(serializer)
+                            },
+                            _ => throw new Exception("Unknown processor type: " + type)
+                        };
+                    }
                     action.Processors.Add(processor);
                 }
+            }
 
             return action;
         }

@@ -15,9 +15,9 @@
             {
               "BuffName": "fearless",
               "Turn": 1,
-              "Parameters": {
-                "fearless_value": 2
-              }
+              "Rules": [
+                { "Target": "CausedDamage", "Operator": "Add", "Value": 2, "RemainingTimes": 1 }
+              ]
             }
           ]
         }

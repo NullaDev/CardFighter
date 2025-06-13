@@ -2,6 +2,6 @@
   "ID": "noble_unarmed",
   "Name": "不器",
   "TextureName": "Arts/Cards/RU/noble_unarmed",
-  "EffectText": "空手攻击造成伤害增加{noble_unarmed_positive_value}点，武器攻击则乘以{noble_unarmed_negative_value}。",
+  "EffectText": "空手攻击造成伤害增加{value}点，武器攻击则乘以{value2}。",
   "ExtraText": "子曰：君子不屑于使用武器。"
 }

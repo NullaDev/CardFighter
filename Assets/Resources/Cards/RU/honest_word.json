@@ -14,7 +14,9 @@
             {
               "BuffName": "honest_word",
               "Turn": 2,
-              "Parameters": { "honest_word_value": 2.0 }
+              "Rules": [
+                { "Target": "CausedDamage", "Operator": "Multiply", "Value": 2.0, "RemainingTimes": 1 }
+              ]
             }
           ]
         }

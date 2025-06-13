@@ -34,11 +34,11 @@ namespace GameLogic
             playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("observe"));
             playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("must_have_teacher"));
             playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("noble_word"));
-            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("from_a_distance"));
-            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("lift_gate"));
+            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("mathematics"));
+            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("lift_city_bar"));
             
             var stageData = StaticDataManager.StageDataManager;
-            playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("dummy"));
+            playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("hurt"));
             
             SceneManager.LoadScene("Fighting");
         }

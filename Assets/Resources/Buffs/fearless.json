@@ -2,6 +2,6 @@
   "ID": "fearless",
   "Name": "不惧",
   "TextureName": "Arts/Cards/ru/brave_fearless",
-  "EffectText": "下一次伤害增加{fearless_value}点。",
+  "EffectText": "下一次伤害增加{value}点。",
   "ExtraText": "子曰：勇敢的人从不害怕打架。"
 }

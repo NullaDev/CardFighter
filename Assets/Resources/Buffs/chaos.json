@@ -2,6 +2,6 @@
   "ID": "chaos",
   "Name": "失谐",
   "TextureName": "Arts/Misc/chaos",
-  "EffectText": "下一次伤害减少{music_chaos_value}点。",
+  "EffectText": "下一次伤害减少{value}点。",
   "ExtraText": "节奏乱了，打得不太顺手。"
 }

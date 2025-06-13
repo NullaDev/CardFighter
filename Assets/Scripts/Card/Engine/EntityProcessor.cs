@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using GameLogic;
+using GameLogic.Buff;
 using GameLogic.Entity;
 using Registry.Data;
 
@@ -103,7 +104,7 @@ namespace Card.Engine
             foreach (var buffData in Buffs)
             {
                 var buff = new EntityBuff(buffData.BuffName, buffData.Turn);
-                buff.Parameters = new Dictionary<string, object>(buffData.Parameters);
+                buff.EffectRules = buffData.Rules.Select(r => r.Clone()).ToList();
                 target.AddOrUpdateBuff(buff);
             }
         }

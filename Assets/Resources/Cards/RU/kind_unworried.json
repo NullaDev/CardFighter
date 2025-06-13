@@ -14,9 +14,12 @@
             {
               "BuffName": "kind_heart",
               "Turn": 2,
-              "Parameters": {
-                "kind_heart_value": 1
-              }
+              "Rules": [
+                {
+                  "Target": "Misc",
+                  "Parameters": { "kind_heart_value": 1 }
+                }
+              ]
             }
           ]
         }

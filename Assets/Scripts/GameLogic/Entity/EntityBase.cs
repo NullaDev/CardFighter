@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using GameLogic.Buff;
 using Newtonsoft.Json;
 
 namespace GameLogic.Entity
@@ -25,109 +26,61 @@ namespace GameLogic.Entity
 
         public void DoDamageTo(EntityBase target, int value, BattleField battleField, List<string> damageTags)
         {
-            var additiveModifier = 0;
+            var additiveModifier = 0.0;
             var multipleModifier = 1.0;
-            if (this.HasBuff(EntityBuffManager.Noble))
+            foreach (var buff in this.Buffs.ToList())
             {
-                additiveModifier += this.GetBuff(EntityBuffManager.Noble).GetParam<int>(EntityBuffManager.NobleValue);
-            }
-            
-            if (this.HasBuff(EntityBuffManager.HonestWord))
-            {
-                var buff = this.GetBuff(EntityBuffManager.HonestWord);
-                multipleModifier *= buff.GetParam<float>(EntityBuffManager.HonestWordValue);
-                this.Buffs.Remove(buff);
-            }
-            
-            if (this.HasBuff(EntityBuffManager.Fearless))
-            {
-                var buff = this.GetBuff(EntityBuffManager.Fearless);
-                additiveModifier += buff.GetParam<int>(EntityBuffManager.FearlessValue);
-                this.Buffs.Remove(buff);
-            }
-            
-            if (this.HasBuff(EntityBuffManager.Harmony))
-            {
-                var buff = this.GetBuff(EntityBuffManager.Harmony);
-                additiveModifier += buff.GetParam<int>(EntityBuffManager.HarmonyValue);
-                this.Buffs.Remove(buff);
-            }
-            
-            if (this.HasBuff(EntityBuffManager.Chaos))
-            {
-                var buff = this.GetBuff(EntityBuffManager.Chaos);
-                additiveModifier -= buff.GetParam<int>(EntityBuffManager.ChaosValue);
-                this.Buffs.Remove(buff);
-            }
-            
-            if (damageTags.Contains(DamageTypeNames.Melee))
-            {
-                if (this.HasBuff(EntityBuffManager.Rites))
+                foreach (var rule in buff.EffectRules.ToList())
                 {
-                    var attackerIndex = battleField.GetEntityIndex(this);
-                    var targetIndex = battleField.GetEntityIndex(target);
-
-                    if (this.Facing != EntityFacing.Default && target.Facing != EntityFacing.Default)
+                    if (rule.Target == BuffEffectTarget.CausedDamage && rule is CausedDamageEffectRule causedRule)
                     {
-                        var isFacingEachOther =
-                            (attackerIndex < targetIndex && this.Facing == EntityFacing.Right && target.Facing == EntityFacing.Left) ||
-                            (attackerIndex > targetIndex && this.Facing == EntityFacing.Left && target.Facing == EntityFacing.Right);
+                        var hasAllWithBuff = causedRule.WithBuff.All(this.HasBuff);
+                        var hasNoWithoutBuff = causedRule.WithoutBuff.All(b => !this.HasBuff(b));
+                        if (!hasAllWithBuff || !hasNoWithoutBuff)
+                            continue;
 
-                        var isBackAttacked =
-                            (attackerIndex < targetIndex && this.Facing == EntityFacing.Right && target.Facing == EntityFacing.Right) ||
-                            (attackerIndex > targetIndex && this.Facing == EntityFacing.Left && target.Facing == EntityFacing.Left);
+                        var hasAllWithCondition = causedRule.WithCondition.All(c => Condition.CheckCondition(c, this, target, battleField));
+                        var hasNoWithoutCondition = causedRule.WithoutCondition.All(c => !Condition.CheckCondition(c, this, target, battleField));
+                        if (!hasAllWithCondition || !hasNoWithoutCondition)
+                            continue;
+                        
+                        var tagMatch = causedRule.TargetTags.Count == 0 || (
+                            causedRule.TagsLogicOr
+                                ? causedRule.TargetTags.Any(damageTags.Contains)
+                                : causedRule.TargetTags.All(damageTags.Contains)
+                        );
+                        if (!tagMatch) continue;
 
-                        if (isFacingEachOther)
+                        switch (causedRule.Operator)
                         {
-                            additiveModifier += this.GetBuff(EntityBuffManager.Rites).GetParam<int>(EntityBuffManager.RitesPositiveValue);
+                            case BuffEffectOperator.Add:
+                                additiveModifier += causedRule.Value;
+                                break;
+                            case BuffEffectOperator.Minus:
+                                additiveModifier -= causedRule.Value;
+                                break;
+                            case BuffEffectOperator.Multiply:
+                                multipleModifier *= causedRule.Value;
+                                break;
+                            case BuffEffectOperator.Divide:
+                                multipleModifier /= causedRule.Value;
+                                break;
+                            case BuffEffectOperator.Set:
+                                value = (int)causedRule.Value;
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
                         }
-                        else if (isBackAttacked && !this.HasBuff(EntityBuffManager.FollowHeart))
+
+                        if (causedRule.RemainingTimes > 0)
                         {
-                            multipleModifier *= this.GetBuff(EntityBuffManager.Rites).GetParam<float>(EntityBuffManager.RitesNegativeValue);
+                            causedRule.RemainingTimes--;
+                            if (causedRule.RemainingTimes == 0)
+                            {
+                                buff.EffectRules.Remove(causedRule);
+                            }
                         }
                     }
-                }
-                else if (this.HasBuff(EntityBuffManager.Archery) && !this.HasBuff(EntityBuffManager.FollowHeart))
-                {
-                    multipleModifier *= this.GetBuff(EntityBuffManager.Archery).GetParam<float>(EntityBuffManager.ArcheryNegativeValue);
-                }
-            }
-            
-            if (damageTags.Contains(DamageTypeNames.Unarmed))
-            {
-                if (this.HasBuff(EntityBuffManager.NobleUnarmed))
-                {
-                    additiveModifier += this.GetBuff(EntityBuffManager.NobleUnarmed).GetParam<int>(EntityBuffManager.NobleUnarmedPositiveValue);
-                }
-            }
-            
-            if (damageTags.Contains(DamageTypeNames.Weapon))
-            {
-                if (this.HasBuff(EntityBuffManager.NobleUnarmed))
-                {
-                    multipleModifier *= this.GetBuff(EntityBuffManager.NobleUnarmed).GetParam<float>(EntityBuffManager.NobleUnarmedNegativeValue);
-                }
-                
-                if (this.HasBuff(EntityBuffManager.GoodAtTools))
-                {
-                    additiveModifier += this.GetBuff(EntityBuffManager.GoodAtTools).GetParam<int>(EntityBuffManager.GoodAtToolsValue);
-                }
-            }
-
-            if (damageTags.Contains(DamageTypeNames.Melee) && damageTags.Contains(DamageTypeNames.Weapon))
-            {
-                if (this.HasBuff(EntityBuffManager.HoneSword))
-                {
-                    var buff = this.GetBuff(EntityBuffManager.HoneSword);
-                    additiveModifier += buff.GetParam<int>(EntityBuffManager.HoneSwordValue);
-                }
-            }
-
-            if (damageTags.Contains(DamageTypeNames.Ranged))
-            {
-                if (this.HasBuff(EntityBuffManager.Archery))
-                {
-                    additiveModifier += this.GetBuff(EntityBuffManager.Archery).GetParam<int>(EntityBuffManager.ArcheryPositiveValue);
                 }
             }
 
@@ -142,92 +95,122 @@ namespace GameLogic.Entity
 
         public void TryHurtFrom(EntityBase source, int value, BattleField battleField, List<string> damageTags)
         {
-            var additiveModifier = 0;
+            var additiveModifier = 0.0;
             var multipleModifier = 1.0;
             var doCauseDamage = true;
 
-            if (this.HasBuff(EntityBuffManager.Vulnerable))
+            foreach (var buff in this.Buffs.ToList())
             {
-                additiveModifier += this.GetBuff(EntityBuffManager.Vulnerable).GetParam<int>(EntityBuffManager.VulnerableValue);
-            }
-            
-            if (this.HasBuff(EntityBuffManager.NowhereToHide))
-            {
-                additiveModifier += this.GetBuff(EntityBuffManager.NowhereToHide).GetParam<int>(EntityBuffManager.NowhereToHideValue);
-            }
-
-            if (this.HasBuff(EntityBuffManager.Mathematics))
-            {
-                if (this.HasBuff(EntityBuffManager.Insight))
-                    additiveModifier -= this.GetBuff(EntityBuffManager.Mathematics).GetParam<int>(EntityBuffManager.MathematicsPositiveValue);
-                else
-                    additiveModifier += this.GetBuff(EntityBuffManager.Mathematics).GetParam<int>(EntityBuffManager.MathematicsNegativeValue);
-            }
-            
-            value = (int)(multipleModifier * (value + additiveModifier));
-            if (value > 0)
-            {
-                if (this.HasBuff(EntityBuffManager.Block))
+                foreach (var rule in buff.EffectRules.ToList())
                 {
-                    var blockBuff = this.GetBuff(EntityBuffManager.Block);
-                    var blockTimes = blockBuff.GetParam<int>(EntityBuffManager.BlockTimes);
-
-                    var attackerIndex = battleField.GetEntityIndex(source);
-                    var targetIndex = battleField.GetEntityIndex(this);
-                    var isFromFront =
-                        (attackerIndex < targetIndex && this.Facing == EntityFacing.Left) ||
-                        (attackerIndex > targetIndex && this.Facing == EntityFacing.Right);
-                    
-                    if (isFromFront)
+                    if (rule.Target == BuffEffectTarget.ReceivedDamage && rule is ReceivedDamageEffectRule receivedRule)
                     {
-                        if (damageTags.Contains(DamageTypeNames.BreakGuard))
+                        var hasAllWithBuff = receivedRule.WithBuff.All(this.HasBuff);
+                        var hasNoWithoutBuff = receivedRule.WithoutBuff.All(b => !this.HasBuff(b));
+                        if (!hasAllWithBuff || !hasNoWithoutBuff)
+                            continue;
+
+                        var hasAllWithCondition = receivedRule.WithCondition.All(c => Condition.CheckCondition(c, source, this, battleField));
+                        var hasNoWithoutCondition = receivedRule.WithoutCondition.All(c => !Condition.CheckCondition(c, source, this, battleField));
+                        if (!hasAllWithCondition || !hasNoWithoutCondition)
+                            continue;
+                        
+                        var tagMatch = receivedRule.TargetTags.Count == 0 || (
+                            receivedRule.TagsLogicOr
+                                ? receivedRule.TargetTags.Any(damageTags.Contains)
+                                : receivedRule.TargetTags.All(damageTags.Contains)
+                        );
+                        if (!tagMatch) continue;
+
+                        switch (receivedRule.Operator)
                         {
-                            Buffs.Remove(blockBuff);
+                            case BuffEffectOperator.Add:
+                                additiveModifier += receivedRule.Value;
+                                break;
+                            case BuffEffectOperator.Minus:
+                                additiveModifier -= receivedRule.Value;
+                                break;
+                            case BuffEffectOperator.Multiply:
+                                multipleModifier *= receivedRule.Value;
+                                break;
+                            case BuffEffectOperator.Divide:
+                                multipleModifier /= receivedRule.Value;
+                                break;
+                            case BuffEffectOperator.Set:
+                                value = (int)receivedRule.Value;
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
                         }
-                        else if (blockTimes > 0)
+
+                        if (receivedRule.RemainingTimes > 0)
                         {
-                            doCauseDamage = false;
-                            if (blockTimes <= 1)
+                            receivedRule.RemainingTimes--;
+                            if (receivedRule.RemainingTimes == 0)
                             {
-                                Buffs.Remove(blockBuff);
+                                buff.EffectRules.Remove(receivedRule);
                             }
-                            else
+                        }
+                    }
+                    else if (rule.Target == BuffEffectTarget.Block && rule is BlockEffectRule blockRule)
+                    {
+                        var attackerIndex = battleField.GetEntityIndex(source);
+                        var targetIndex = battleField.GetEntityIndex(this);
+
+                        var isFromFront =
+                            (attackerIndex < targetIndex && this.Facing == EntityFacing.Left) ||
+                            (attackerIndex > targetIndex && this.Facing == EntityFacing.Right);
+
+                        if (!blockRule.FrontOnly || isFromFront)
+                        {
+                            if (damageTags.Contains(DamageTypeNames.BreakGuard))
                             {
-                                blockBuff.SetParam(EntityBuffManager.BlockTimes, blockTimes - 1);
+                                buff.EffectRules.Remove(blockRule);
+                            }
+                            else if (blockRule.RemainingTimes > 0)
+                            {
+                                doCauseDamage = false;
+                                blockRule.RemainingTimes--;
+                                if (blockRule.RemainingTimes == 0)
+                                {
+                                    this.Buffs.Remove(buff);
+                                }
                             }
                         }
                     }
                 }
-
-                if (doCauseDamage)
+            }
+            
+            value = (int)(multipleModifier * (value + additiveModifier));
+            if (value > 0 && doCauseDamage)
+            {
+                if (damageTags.Contains(DamageTypeNames.BreakArmor))
                 {
-                    if (damageTags.Contains(DamageTypeNames.BreakArmor))
-                    {
-                        this.Armor = 0;
-                    }
-                    if (this.Armor > 0 && !damageTags.Contains(DamageTypeNames.IgnoreArmor))
-                    {
-                        var absorbed = Math.Min(this.Armor, value);
-                        this.Armor -= absorbed;
-                        value -= absorbed;
-                    }
-                    this.Hurt(source, value, battleField);
-                    if (this is Player && source is Enemy enemy)
-                    {
-                        enemy.DealtDamageToPlayer = true;
-                    }
-                    
-                    if (this.IsDead) return;
-                    
-                    if (this.HasBuff(EntityBuffManager.CounterAttack) && !damageTags.Contains(DamageTypeNames.CounterAttack))
-                    {
-                        var counterValue = this.GetBuff(EntityBuffManager.CounterAttack).GetParam<int>(EntityBuffManager.CounterAttackValue);
-                        this.DoDamageTo(source, counterValue, battleField, new List<string>{DamageTypeNames.CounterAttack});
-                    }
+                    this.Armor = 0;
+                }
 
-                    if (this.HasBuff(EntityBuffManager.KindHeart))
+                if (this.Armor > 0 && !damageTags.Contains(DamageTypeNames.IgnoreArmor))
+                {
+                    var absorbed = Math.Min(this.Armor, value);
+                    this.Armor -= absorbed;
+                    value -= absorbed;
+                }
+
+                this.Hurt(source, value, battleField);
+
+                if (this is Player && source is Enemy enemy)
+                {
+                    enemy.DealtDamageToPlayer = true;
+                }
+
+                foreach (var rule in this.Buffs.ToList().SelectMany(buff => buff.EffectRules))
+                {
+                    if (rule.Target == BuffEffectTarget.Misc && rule is MiscEffectRule miscRule &&
+                        !damageTags.Contains(DamageTypeNames.CounterAttack) &&
+                        miscRule.Parameters.TryGetValue(EntityBuffManager.CounterAttack, out var counterValueObj))
                     {
-                        this.Heal(this, this.GetBuff(EntityBuffManager.KindHeart).GetParam<int>(EntityBuffManager.KindHeartValue));
+                        var counterValue = Convert.ToInt32(counterValueObj);
+                        this.DoDamageTo(source, counterValue, battleField, new List<string> { DamageTypeNames.CounterAttack });
                     }
                 }
             }
@@ -267,14 +250,20 @@ namespace GameLogic.Entity
             {
                 var calligraphyBuff = this.GetBuff(EntityBuffManager.Calligraphy);
                 var currentPositiveBuffs = Buffs.Count(b => EntityBuffManager.GetBuffType(b.Name) == EntityBuffManager.BuffType.Positive);
-                var maxPositive = calligraphyBuff.GetParam<int>(EntityBuffManager.CalligraphyNegativeValue);
+                var maxPositive = calligraphyBuff.EffectRules
+                    .OfType<MiscEffectRule>()
+                    .Select(r => r.Parameters.TryGetValue(EntityBuffManager.CalligraphyNegativeValue, out var maxPosObj) ? Convert.ToInt32(maxPosObj) : int.MaxValue)
+                    .FirstOrDefault();
 
                 if (currentPositiveBuffs >= maxPositive)
                     return false;
 
                 if (newBuff.Duration > 1)
                 {
-                    var extraTurns = calligraphyBuff.GetParam<int>(EntityBuffManager.CalligraphyPositiveValue);
+                    var extraTurns = calligraphyBuff.EffectRules
+                        .OfType<MiscEffectRule>()
+                        .Select(r => r.Parameters.TryGetValue(EntityBuffManager.CalligraphyPositiveValue, out var extraObj) ? Convert.ToInt32(extraObj) : 0)
+                        .FirstOrDefault();
                     if (extraTurns > 0)
                         newBuff.Duration += extraTurns;
                 }
@@ -297,10 +286,42 @@ namespace GameLogic.Entity
                 {
                     foreach (var param in stackParams)
                     {
-                        var newVal = newBuff.GetParam<int>(param);
-                        var existingVal = existing.GetParam<int>(param);
-                        existing.SetParam(param, existingVal + newVal);
+                        foreach (var rule in existing.EffectRules)
+                        {
+                            if (rule is CausedDamageEffectRule causedRule && param == EntityBuffManager.GenericValueKey)
+                            {
+                                var newVal = newBuff.EffectRules
+                                    .OfType<CausedDamageEffectRule>()
+                                    .Select(r => r.Value)
+                                    .FirstOrDefault();
+
+                                causedRule.Value += newVal;
+                            }
+                            else if (rule is ReceivedDamageEffectRule receivedRule && param == EntityBuffManager.GenericValueKey)
+                            {
+                                var newVal = newBuff.EffectRules
+                                    .OfType<ReceivedDamageEffectRule>()
+                                    .Select(r => r.Value)
+                                    .FirstOrDefault();
+
+                                receivedRule.Value += newVal;
+                            }
+                            else if (rule is MiscEffectRule miscRule)
+                            {
+                                if (miscRule.Parameters.TryGetValue(param, out var existingValObj))
+                                {
+                                    var existingVal = Convert.ToInt32(existingValObj);
+                                    var newVal = newBuff.EffectRules
+                                        .OfType<MiscEffectRule>()
+                                        .Select(r => r.Parameters.TryGetValue(param, out var vObj) ? Convert.ToInt32(vObj) : 0)
+                                        .FirstOrDefault();
+
+                                    miscRule.Parameters[param] = existingVal + newVal;
+                                }
+                            }
+                        }
                     }
+
                     existing.Duration = newBuff.Duration;
                     return true;
                 }
@@ -329,17 +350,39 @@ namespace GameLogic.Entity
             if (this.HasBuff(EntityBuffManager.Music))
             {
                 var musicBuff = this.GetBuff(EntityBuffManager.Music);
+
+                var miscRule = musicBuff.EffectRules
+                    .OfType<MiscEffectRule>()
+                    .FirstOrDefault();
+
+                if (miscRule == null) return;
+
+                miscRule.Parameters.TryGetValue(EntityBuffManager.MusicPositiveValue, out var posObj);
+                miscRule.Parameters.TryGetValue(EntityBuffManager.MusicNegativeValue, out var negObj);
+
+                var positiveValue = Convert.ToInt32(posObj ?? 0);
+                var negativeValue = Convert.ToInt32(negObj ?? 0);
+
                 if (this.DamageDealtThisTurn)
                 {
                     if (this.HasBuff(EntityBuffManager.FollowHeart)) return;
+
                     var buff = new EntityBuff(EntityBuffManager.Chaos, 1);
-                    buff.SetParam(EntityBuffManager.ChaosValue, musicBuff.GetParam<int>(EntityBuffManager.MusicNegativeValue));
+                    buff.EffectRules.Add(new CausedDamageEffectRule
+                    {
+                        Operator = BuffEffectOperator.Minus,
+                        Value = negativeValue
+                    });
                     this.AddOrUpdateBuff(buff);
                 }
                 else
                 {
                     var buff = new EntityBuff(EntityBuffManager.Harmony, 1);
-                    buff.SetParam(EntityBuffManager.HarmonyValue, musicBuff.GetParam<int>(EntityBuffManager.MusicPositiveValue));
+                    buff.EffectRules.Add(new CausedDamageEffectRule
+                    {
+                        Operator = BuffEffectOperator.Add,
+                        Value = positiveValue
+                    });
                     this.AddOrUpdateBuff(buff);
                 }
             }

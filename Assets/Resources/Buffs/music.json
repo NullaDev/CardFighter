@@ -2,6 +2,6 @@
   "ID": "music",
   "Name": "奏乐",
   "TextureName": "Arts/Cards/RU/music",
-  "EffectText": "如果回合内未攻击，下回合首次攻击增加{music_positive_value}点，否则减少{music_negative_value}点。",
+  "EffectText": "如果回合内未攻击，下回合首次攻击增加{value}点，否则减少{value2}点。",
   "ExtraText": "子曰：打架要按照节奏。"
 }

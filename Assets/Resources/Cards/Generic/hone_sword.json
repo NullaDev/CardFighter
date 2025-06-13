@@ -14,7 +14,9 @@
             {
               "BuffName": "hone_sword",
               "Turn": -1,
-              "Parameters": { "hone_sword_value": 1 }
+              "Rules": [
+                { "Target": "CausedDamage", "Operator": "Add", "Value": 1, "TargetTags": ["melee", "weapon"], "TagsLogicOr": false }
+              ]
             }
           ]
         }

@@ -1,5 +1,6 @@
 using System.Linq;
 using Card;
+using GameLogic.Buff;
 using GameLogic.Entity;
 using Registry;
 using Render;
@@ -60,7 +61,7 @@ namespace GameLogic
             this.FightingData.CurrentCost -= card.GetCurrentCost(player);
             if (player.HasBuff(EntityBuffManager.Practice))
             {
-                var times = player.GetBuff(EntityBuffManager.Practice).GetParam<int>(EntityBuffManager.PracticeValue);
+                var times = player.GetBuff(EntityBuffManager.Practice).GetMiscParam<int>(EntityBuffManager.PracticeValue);
                 foreach (var _ in Enumerable.Range(0, times))
                 {
                     card.Effects.ForEach(effect=>effect(this, player));

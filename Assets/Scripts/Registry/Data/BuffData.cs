@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using GameLogic.Buff;
 
 namespace Registry.Data
 {
@@ -6,6 +7,6 @@ namespace Registry.Data
     {
         public string BuffName { get; set; }
         public int Turn { get; set; }
-        public Dictionary<string, object> Parameters { get; set; } = new();
+        public List<BuffEffectRule> Rules { get; set; } = new();
     }
 }

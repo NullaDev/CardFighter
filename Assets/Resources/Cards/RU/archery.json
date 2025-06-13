@@ -14,7 +14,10 @@
             {
               "BuffName": "archery",
               "Turn": -1,
-              "Parameters": { "archery_positive_value": 1, "archery_negative_value": 0.5 }
+              "Rules": [
+                { "Target": "CausedDamage", "Operator": "Add", "Value": 1, "TargetTags": ["Ranged"] },
+                { "Target": "CausedDamage", "Operator": "Multiply", "Value": 0.5, "TargetTags": ["Melee"] }
+              ]
             }
           ]
         }

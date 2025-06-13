@@ -14,10 +14,10 @@ namespace Registry
         public void DebugLoadedBuffInfo()
         {
             Debug.Log("Loading buffs, total number:" + this._listBuffInfos.Count);
-            foreach (var buff in this._listBuffInfos)
-            {
-                Debug.Log("name:" + buff.Name);
-            }
+            // foreach (var buff in this._listBuffInfos)
+            // {
+            //     Debug.Log("name:" + buff.Name);
+            // }
         }
         
         public void LoadFromFile()

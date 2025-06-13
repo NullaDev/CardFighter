@@ -14,7 +14,10 @@
             {
               "BuffName": "mathematics",
               "Turn": -1,
-              "Parameters": { "mathematics_positive_value": 1, "mathematics_negative_value": 1 }
+              "Rules": [
+                { "Target": "ReceivedDamage", "Operator": "Minus", "Value": 1, "WithBuff": ["insight"] },
+                { "Target": "ReceivedDamage", "Operator": "Add", "Value": 1, "WithoutBuff": ["insight"] }
+              ]
             }
           ]
         }

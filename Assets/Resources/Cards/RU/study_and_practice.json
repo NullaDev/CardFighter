@@ -14,7 +14,12 @@
             {
               "BuffName": "practice",
               "Turn": 2,
-              "Parameters": { "practice_value": 2 }
+              "Rules": [
+                {
+                  "Target": "Misc",
+                  "Parameters": { "practice_value": 2 }
+                }
+              ]
             }
           ]
         }

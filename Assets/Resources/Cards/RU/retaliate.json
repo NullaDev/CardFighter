@@ -16,7 +16,12 @@
             { 
               "BuffName": "counter_attack",
               "Turn": 1,
-              "Parameters": { "counter_attack_value": 2 }
+              "Rules": [
+                {
+                  "Target": "Misc",
+                  "Parameters": { "counter_attack_value": 2 }
+                }
+              ]
             }
           ]
         }

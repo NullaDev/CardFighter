@@ -31,9 +31,9 @@
             {
               "BuffName": "nowhere_to_hide",
               "Turn": 3,
-              "Parameters": {
-                "nowhere_to_hide_value": 2
-              }
+              "Rules": [
+                { "Target": "ReceivedDamage", "Operator": "Add", "Value": 2 }
+              ]
             }
           ]
         }

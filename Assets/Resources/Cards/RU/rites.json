@@ -14,7 +14,10 @@
             {
               "BuffName": "rites",
               "Turn": -1,
-              "Parameters": { "rites_positive_value": 1, "rites_negative_value": 0 }
+              "Rules": [
+                { "Target": "CausedDamage", "Operator": "Add", "Value": 1, "WithCondition": ["face_to_face"] },
+                { "Target": "CausedDamage", "Operator": "Multiply", "Value": 0, "WithoutCondition": ["face_to_face"] }
+              ]
             }
           ]
         }

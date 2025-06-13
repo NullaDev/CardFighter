@@ -14,7 +14,15 @@
             {
               "BuffName": "calligraphy",
               "Turn": -1,
-              "Parameters": { "calligraphy_positive_value": 1, "calligraphy_negative_value": 3 }
+              "Rules": [
+                {
+                  "Target": "Misc",
+                  "Parameters": {
+                    "calligraphy_positive_value": 1,
+                    "calligraphy_negative_value": 3
+                  }
+                }
+              ]
             }
           ]
         }
