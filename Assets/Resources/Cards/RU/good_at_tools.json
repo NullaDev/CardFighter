@@ -15,7 +15,7 @@
               "BuffName": "good_at_tools",
               "Turn": -1,
               "Rules": [
-                { "Target": "CausedDamage", "Operator": "Add", "Value": 2, "TargetTags": ["Weapon"] }
+                { "Target": "CausedDamage", "Operator": "Add", "Value": 2, "TargetTags": ["weapon"] }
               ]
             }
           ]

@@ -15,8 +15,8 @@
               "BuffName": "noble_unarmed",
               "Turn": -1,
               "Rules": [
-                { "Target": "CausedDamage", "Operator": "Add", "Value": 2, "TargetTags": ["Unarmed"] },
-                { "Target": "CausedDamage", "Operator": "Multiply", "Value": 0, "TargetTags": ["Weapon"] }
+                { "Target": "CausedDamage", "Operator": "Add", "Value": 2, "TargetTags": ["unarmed"] },
+                { "Target": "CausedDamage", "Operator": "Multiply", "Value": 0, "TargetTags": ["weapon"] }
               ]
             }
           ]

@@ -32,13 +32,13 @@ namespace GameLogic
             
             playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("focus_energy"));
             playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("observe"));
-            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("must_have_teacher"));
-            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("noble_word"));
+            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("spear"));
+            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("white_arrow"));
             playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("mathematics"));
-            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("lift_city_bar"));
+            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("archery"));
             
             var stageData = StaticDataManager.StageDataManager;
-            playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("hurt"));
+            playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("dummy"));
             
             SceneManager.LoadScene("Fighting");
         }
