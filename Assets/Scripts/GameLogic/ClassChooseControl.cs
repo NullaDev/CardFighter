@@ -27,8 +27,8 @@ namespace GameLogic
             var playerData = PlayerData.Instance;
 
             playerData.CardOperations.Clear();
-            playerData.CardOperations.SetMoveSlot(StaticDataManager.CardDataManager.Find("move"));
-            playerData.CardOperations.SetTurnSlot(StaticDataManager.CardDataManager.Find("turn_back"));
+            playerData.CardOperations.SetMoveSlot(CommonCards.Move1);
+            playerData.CardOperations.SetTurnSlot(CommonCards.TurnBack);
             
             playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("focus_energy"));
             playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("observe"));

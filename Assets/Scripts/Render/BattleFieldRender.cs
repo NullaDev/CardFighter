@@ -16,7 +16,7 @@ namespace Render
         public GameObject IncomingEntityPrefab;
         public GameObject IncomingEntityGrid;
 
-        private List<GameObject> _listBuffs = new();
+        private readonly List<GameObject> _listBuffs = new();
         private GameObject[] _listFloors = {};
         private GameObject[] _listEntities = {};
         private GameObject[] _listIncomingEntities = {};

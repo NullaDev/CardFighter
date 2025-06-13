@@ -1,0 +1,15 @@
+﻿{
+  "ID": "noble_abstains_from_kitchen",
+  "Name": "君子远庖厨",
+  "TextureName": "Arts/Cards/ru/noble_abstains_from_kitchen",
+  "Desc": "后退1格",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        { "Type": "move", "Value": -1 }
+      ]
+    }
+  ]
+}

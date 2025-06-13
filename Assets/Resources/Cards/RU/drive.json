@@ -8,7 +8,7 @@
     {
       "Selector": { "Type": "self" },
       "Processors": [
-        { "Type": "move", "Value": 2}
+        { "Type": "move", "Value": 2 }
       ]
     }
   ]
