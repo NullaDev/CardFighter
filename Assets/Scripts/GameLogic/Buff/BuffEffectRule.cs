@@ -1,14 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace GameLogic.Buff
 {
-    public enum BuffEffectTarget
-    {
-        CausedDamage,
-        ReceivedDamage,
-        Block,
-        Misc
-    }
     
     public enum BuffEffectOperator
     {
@@ -18,18 +13,46 @@ namespace GameLogic.Buff
         Divide,
         Set
     }
-    
+
+    public interface IOperatorEffect
+    {
+        public BuffEffectOperator Operator { get; set; }
+        public float Value { get; set; }
+
+        public static void ApplyBuffEffect(ref int value, ref double additiveModifier, ref double multipleModifier, IOperatorEffect effect)
+        {
+            switch (effect.Operator)
+            {
+                case BuffEffectOperator.Add:
+                    additiveModifier += effect.Value;
+                    break;
+                case BuffEffectOperator.Minus:
+                    additiveModifier -= effect.Value;
+                    break;
+                case BuffEffectOperator.Multiply:
+                    multipleModifier *= effect.Value;
+                    break;
+                case BuffEffectOperator.Divide:
+                    if (effect.Value == 0)
+                        throw new DivideByZeroException();
+                    multipleModifier /= effect.Value;
+                    break;
+                case BuffEffectOperator.Set:
+                    value = (int)effect.Value;
+                    break;
+                default:
+                    throw new InvalidEnumArgumentException();
+            }
+        }
+    }
+
     public abstract class BuffEffectRule
     {
-        public abstract BuffEffectTarget Target { get; }
-
         public abstract BuffEffectRule Clone();
     }
 
-    public class CausedDamageEffectRule : BuffEffectRule
+    public class CausedDamageEffectRule : BuffEffectRule, IOperatorEffect
     {
-        public override BuffEffectTarget Target => BuffEffectTarget.CausedDamage;
-
         public BuffEffectOperator Operator { get; set; }
         public float Value { get; set; }
         public int RemainingTimes { get; set; } = -1;
@@ -41,7 +64,7 @@ namespace GameLogic.Buff
         public List<string> WithoutBuff { get; set; } = new();
         public List<string> WithCondition { get; set; } = new();
         public List<string> WithoutCondition { get; set; } = new();
-
+        
         public override BuffEffectRule Clone()
         {
             return new CausedDamageEffectRule
@@ -59,10 +82,8 @@ namespace GameLogic.Buff
         }
     }
 
-    public class ReceivedDamageEffectRule : BuffEffectRule
+    public class ReceivedDamageEffectRule : BuffEffectRule, IOperatorEffect
     {
-        public override BuffEffectTarget Target => BuffEffectTarget.ReceivedDamage;
-
         public BuffEffectOperator Operator { get; set; }
         public float Value { get; set; }
         public int RemainingTimes { get; set; } = -1;
@@ -94,8 +115,6 @@ namespace GameLogic.Buff
 
     public class BlockEffectRule : BuffEffectRule
     {
-        public override BuffEffectTarget Target => BuffEffectTarget.Block;
-
         public int RemainingTimes { get; set; }
         public bool FrontOnly { get; set; } = true;
 
@@ -111,8 +130,6 @@ namespace GameLogic.Buff
 
     public class MiscEffectRule : BuffEffectRule
     {
-        public override BuffEffectTarget Target => BuffEffectTarget.Misc;
-
         public Dictionary<string, object> Parameters { get; set; } = new();
 
         public override BuffEffectRule Clone()

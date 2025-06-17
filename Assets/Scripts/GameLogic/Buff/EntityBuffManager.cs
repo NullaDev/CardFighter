@@ -75,8 +75,6 @@ namespace GameLogic.Buff
             public const string CalligraphyPositiveValue = "calligraphy_positive_value";
             public const string CalligraphyNegativeValue = "calligraphy_negative_value";
         public const string Mathematics = "mathematics";
-            public const string MathematicsPositiveValue = "mathematics_positive_value";
-            public const string MathematicsNegativeValue = "mathematics_negative_value";
         
         public const string Noble = "noble";
         public const string HonestWord = "honest_word";

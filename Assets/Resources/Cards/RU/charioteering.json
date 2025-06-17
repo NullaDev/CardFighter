@@ -16,7 +16,7 @@
               "Turn": -1,
               "Rules": [
                 {
-                  "Target": "Misc",
+                  "RuleType": "misc",
                   "Parameters": { "charioteering_value": 1 }
                 }
               ]

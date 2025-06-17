@@ -32,7 +32,7 @@ namespace GameLogic.Entity
             {
                 foreach (var rule in buff.EffectRules.ToList())
                 {
-                    if (rule.Target == BuffEffectTarget.CausedDamage && rule is CausedDamageEffectRule causedRule)
+                    if (rule is CausedDamageEffectRule causedRule)
                     {
                         var hasAllWithBuff = causedRule.WithBuff.All(this.HasBuff);
                         var hasNoWithoutBuff = causedRule.WithoutBuff.All(b => !this.HasBuff(b));
@@ -51,26 +51,7 @@ namespace GameLogic.Entity
                         );
                         if (!tagMatch) continue;
 
-                        switch (causedRule.Operator)
-                        {
-                            case BuffEffectOperator.Add:
-                                additiveModifier += causedRule.Value;
-                                break;
-                            case BuffEffectOperator.Minus:
-                                additiveModifier -= causedRule.Value;
-                                break;
-                            case BuffEffectOperator.Multiply:
-                                multipleModifier *= causedRule.Value;
-                                break;
-                            case BuffEffectOperator.Divide:
-                                multipleModifier /= causedRule.Value;
-                                break;
-                            case BuffEffectOperator.Set:
-                                value = (int)causedRule.Value;
-                                break;
-                            default:
-                                throw new ArgumentOutOfRangeException();
-                        }
+                        IOperatorEffect.ApplyBuffEffect(ref value, ref additiveModifier, ref multipleModifier, causedRule);
 
                         if (causedRule.RemainingTimes > 0)
                         {
@@ -103,7 +84,7 @@ namespace GameLogic.Entity
             {
                 foreach (var rule in buff.EffectRules.ToList())
                 {
-                    if (rule.Target == BuffEffectTarget.ReceivedDamage && rule is ReceivedDamageEffectRule receivedRule)
+                    if (rule is ReceivedDamageEffectRule receivedRule)
                     {
                         var hasAllWithBuff = receivedRule.WithBuff.All(this.HasBuff);
                         var hasNoWithoutBuff = receivedRule.WithoutBuff.All(b => !this.HasBuff(b));
@@ -122,26 +103,7 @@ namespace GameLogic.Entity
                         );
                         if (!tagMatch) continue;
 
-                        switch (receivedRule.Operator)
-                        {
-                            case BuffEffectOperator.Add:
-                                additiveModifier += receivedRule.Value;
-                                break;
-                            case BuffEffectOperator.Minus:
-                                additiveModifier -= receivedRule.Value;
-                                break;
-                            case BuffEffectOperator.Multiply:
-                                multipleModifier *= receivedRule.Value;
-                                break;
-                            case BuffEffectOperator.Divide:
-                                multipleModifier /= receivedRule.Value;
-                                break;
-                            case BuffEffectOperator.Set:
-                                value = (int)receivedRule.Value;
-                                break;
-                            default:
-                                throw new ArgumentOutOfRangeException();
-                        }
+                        IOperatorEffect.ApplyBuffEffect(ref value, ref additiveModifier, ref multipleModifier, receivedRule);
 
                         if (receivedRule.RemainingTimes > 0)
                         {
@@ -152,7 +114,7 @@ namespace GameLogic.Entity
                             }
                         }
                     }
-                    else if (rule.Target == BuffEffectTarget.Block && rule is BlockEffectRule blockRule)
+                    else if (rule is BlockEffectRule blockRule)
                     {
                         var attackerIndex = battleField.GetEntityIndex(source);
                         var targetIndex = battleField.GetEntityIndex(this);
@@ -205,8 +167,7 @@ namespace GameLogic.Entity
 
                 foreach (var rule in this.Buffs.ToList().SelectMany(buff => buff.EffectRules))
                 {
-                    if (rule.Target == BuffEffectTarget.Misc && rule is MiscEffectRule miscRule &&
-                        !damageTags.Contains(DamageTypeNames.CounterAttack) &&
+                    if (rule is MiscEffectRule miscRule && !damageTags.Contains(DamageTypeNames.CounterAttack) &&
                         miscRule.Parameters.TryGetValue(EntityBuffManager.CounterAttack, out var counterValueObj))
                     {
                         var counterValue = Convert.ToInt32(counterValueObj);

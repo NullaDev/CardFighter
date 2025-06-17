@@ -32,7 +32,7 @@
               "BuffName": "nowhere_to_hide",
               "Turn": 3,
               "Rules": [
-                { "Target": "ReceivedDamage", "Operator": "Add", "Value": 2 }
+                { "RuleType": "damage_received", "Operator": "Add", "Value": 2 }
               ]
             }
           ]

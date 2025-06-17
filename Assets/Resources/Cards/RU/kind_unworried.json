@@ -16,7 +16,7 @@
               "Turn": 2,
               "Rules": [
                 {
-                  "Target": "Misc",
+                  "RuleType": "misc",
                   "Parameters": { "kind_heart_value": 1 }
                 }
               ]

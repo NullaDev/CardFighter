@@ -15,8 +15,8 @@
               "BuffName": "mathematics",
               "Turn": -1,
               "Rules": [
-                { "Target": "ReceivedDamage", "Operator": "Minus", "Value": 1, "WithBuff": ["insight"] },
-                { "Target": "ReceivedDamage", "Operator": "Add", "Value": 1, "WithoutBuff": ["insight"] }
+                { "RuleType": "damage_received", "Operator": "Minus", "Value": 1, "WithBuff": ["insight"] },
+                { "RuleType": "damage_received", "Operator": "Add", "Value": 1, "WithoutBuff": ["insight"] }
               ]
             }
           ]

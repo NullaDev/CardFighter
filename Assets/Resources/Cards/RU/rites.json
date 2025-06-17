@@ -15,8 +15,8 @@
               "BuffName": "rites",
               "Turn": -1,
               "Rules": [
-                { "Target": "CausedDamage", "Operator": "Add", "Value": 1, "WithCondition": ["face_to_face"] },
-                { "Target": "CausedDamage", "Operator": "Multiply", "Value": 0, "WithoutCondition": ["face_to_face"] }
+                { "RuleType": "damage_caused", "Operator": "Add", "Value": 1, "WithCondition": ["face_to_face"] },
+                { "RuleType": "damage_caused", "Operator": "Multiply", "Value": 0, "WithoutCondition": ["face_to_face"] }
               ]
             }
           ]

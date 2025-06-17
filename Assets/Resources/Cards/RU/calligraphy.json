@@ -16,7 +16,7 @@
               "Turn": -1,
               "Rules": [
                 {
-                  "Target": "Misc",
+                  "RuleType": "misc",
                   "Parameters": {
                     "calligraphy_positive_value": 1,
                     "calligraphy_negative_value": 3

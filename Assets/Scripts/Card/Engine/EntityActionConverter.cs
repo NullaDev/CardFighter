@@ -67,6 +67,8 @@ namespace Card.Engine
                     if (type == "add_buff")
                     {
                         processor = new AddBuffProcessor();
+                        if (p["Buffs"]?.Type != JTokenType.Array)
+                            continue;
                         foreach (var buffToken in p["Buffs"])
                         {
                             var buffData = new BuffData
@@ -81,13 +83,13 @@ namespace Card.Engine
                             {
                                 foreach (var r in rulesToken)
                                 {
-                                    var targetType = r["Target"]?.ToString();
+                                    var targetType = r["RuleType"]?.ToString();
                                     BuffEffectRule rule = targetType switch
                                     {
-                                        "CausedDamage" => r.ToObject<CausedDamageEffectRule>(serializer),
-                                        "ReceivedDamage" => r.ToObject<ReceivedDamageEffectRule>(serializer),
-                                        "Block" => r.ToObject<BlockEffectRule>(serializer),
-                                        "Misc" => r.ToObject<MiscEffectRule>(serializer),
+                                        "damage_caused" => r.ToObject<CausedDamageEffectRule>(serializer),
+                                        "damage_received" => r.ToObject<ReceivedDamageEffectRule>(serializer),
+                                        "block" => r.ToObject<BlockEffectRule>(serializer),
+                                        "misc" => r.ToObject<MiscEffectRule>(serializer),
                                         _ => throw new Exception("Unknown BuffEffectTarget: " + targetType)
                                     };
 

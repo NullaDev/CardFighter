@@ -15,7 +15,9 @@
             { 
               "BuffName": "block", 
               "Turn": 1,
-              "Parameters": {"block_times": 1}
+              "Rules": [
+                { "RuleType": "block", "RemainingTimes": 1 }
+              ]
             }
           ]
         }

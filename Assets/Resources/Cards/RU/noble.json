@@ -15,7 +15,7 @@
               "BuffName": "noble",
               "Turn": -1,
               "Rules": [
-                { "Target": "CausedDamage", "Operator": "Add", "Value": 1 }
+                { "RuleType": "damage_caused", "Operator": "Add", "Value": 1 }
               ]
             }
           ]

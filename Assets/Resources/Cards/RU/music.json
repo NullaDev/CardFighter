@@ -16,7 +16,7 @@
               "Turn": -1,
               "Rules": [
                 {
-                  "Target": "Misc",
+                  "RuleType": "misc",
                   "Parameters": { "music_positive_value": 1, "music_negative_value": 1 }
                 }
               ]

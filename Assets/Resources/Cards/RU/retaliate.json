@@ -18,7 +18,7 @@
               "Turn": 1,
               "Rules": [
                 {
-                  "Target": "Misc",
+                  "RuleType": "misc",
                   "Parameters": { "counter_attack_value": 2 }
                 }
               ]
