@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 989397725624456684}
   - component: {fileID: 7302975113988735265}
   m_Layer: 5
-  m_Name: CardInDeck
+  m_Name: DeckInitializeCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

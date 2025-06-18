@@ -39,7 +39,7 @@ namespace Registry
                     continue;
                 if (CardOperations.GetAllCards().Count >= 2 + CardOperationsInBattle.MaxCardCount)
                     break;
-                CardOperations.AddPrototype(card);
+                CardOperations.AddCard(card);
             }
         }
     }

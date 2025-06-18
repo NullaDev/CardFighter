@@ -35,12 +35,43 @@ namespace Card
             _cardList.Clear();
         }
 
-        public void AddPrototype(CardPrototype prototype)
+        public bool AddCard(CardPrototype prototype)
         {
+            if (_cardList.Contains(prototype))
+                return false;
             if (prototype != null && _cardList.Count < MaxCardCount)
             {
                 _cardList.Add(prototype);
+                return true;
             }
+            return false;
+        }
+        
+        public bool RemoveCard(CardPrototype card)
+        {
+            if (card == MoveSlot || card == TurnSlot)
+            {
+                return false;
+            }
+
+            return _cardList.Remove(card);
+        }
+        
+        public bool ReplaceCard(CardPrototype card, CardPrototype newCard)
+        {
+            if (card == MoveSlot || card == TurnSlot)
+            {
+                // TODO
+                return false;
+            }
+
+            var index = _cardList.IndexOf(card);
+            if (index >= 0)
+            {
+                _cardList[index] = newCard;
+                return true;
+            }
+            return false;
         }
         
         public List<CardPrototype> GetAllCards()

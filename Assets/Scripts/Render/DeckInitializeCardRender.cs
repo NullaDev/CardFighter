@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Render
 {
-    public class CardInDeckRender : MonoBehaviour
+    public class DeckInitializeCardRender : MonoBehaviour
     {
         public string CardID { get; set; }
         private CardRender _cardRender;

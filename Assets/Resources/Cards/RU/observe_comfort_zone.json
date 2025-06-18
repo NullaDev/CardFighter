@@ -17,9 +17,7 @@
       ]
     },
     {
-      "Selector": {
-        "Type": "all"
-      },
+      "Selector": { "Type": "all" },
       "Filters": [
         { "Type": "exclude_self" },
         { "Type": "entity_type", "MatchTypes": ["enemy"] }

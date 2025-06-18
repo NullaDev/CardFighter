@@ -30,12 +30,12 @@ namespace GameLogic
             playerData.CardOperations.SetMoveSlot(CommonCards.Move1);
             playerData.CardOperations.SetTurnSlot(CommonCards.TurnBack);
             
-            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("focus_energy"));
-            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("observe"));
-            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("spear"));
-            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("white_arrow"));
-            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("mathematics"));
-            playerData.CardOperations.AddPrototype(StaticDataManager.CardDataManager.Find("archery"));
+            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("focus_energy"));
+            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("observe"));
+            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("spear"));
+            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("white_arrow"));
+            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("mathematics"));
+            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("archery"));
             
             var stageData = StaticDataManager.StageDataManager;
             playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("dummy"));

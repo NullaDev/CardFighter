@@ -7,7 +7,7 @@ namespace Render
 {
     public class DeckInitialzeRender: MonoBehaviour
     {
-        public GameObject CardInDeckPrefab;
+        public GameObject DeckInitializeCardPrefab;
         public GameObject CardGrid;
         
         private readonly List<GameObject> _listCards = new();
@@ -27,8 +27,8 @@ namespace Render
                 {
                     Debug.Log(cardID);
                 }
-                var cardObject = GameObject.Instantiate(CardInDeckPrefab, CardGrid.transform);
-                var render = cardObject.GetComponent<CardInDeckRender>();
+                var cardObject = GameObject.Instantiate(DeckInitializeCardPrefab, CardGrid.transform);
+                var render = cardObject.GetComponent<DeckInitializeCardRender>();
                 render.Render(new CardInstance(cardPrototype), cost, count);
                 _listCards.Add(cardObject);
             }

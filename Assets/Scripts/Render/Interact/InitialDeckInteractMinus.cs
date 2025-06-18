@@ -4,13 +4,13 @@ using UnityEngine.EventSystems;
 
 namespace Render.Interact
 {
-    public class CardInDeckInteractAdd: MonoBehaviour, IPointerClickHandler
+    public class InitialDeckInteractMinus: MonoBehaviour, IPointerClickHandler
     {
         public void OnPointerClick(PointerEventData eventData)
         {
-            var cardID = this.transform.parent.transform.GetComponent<CardInDeckRender>().CardID;
+            var cardID = this.transform.parent.transform.GetComponent<DeckInitializeCardRender>().CardID;
             var initialDeckControl = GameObject.Find("InitialDeckControl").GetComponent<InitialDeckControl>();
-            initialDeckControl.TryAddCard(cardID);
+            initialDeckControl.TryMinusCard(cardID);
         }
     }
 }
