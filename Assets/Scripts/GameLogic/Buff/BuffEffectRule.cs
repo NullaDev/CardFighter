@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using GameLogic.Entity;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Registry.Data;
 
 namespace GameLogic.Buff
 {
@@ -45,13 +50,78 @@ namespace GameLogic.Buff
             }
         }
     }
+    
+    public interface IBuffFilterEffect
+    {
+        public List<string> WithBuff { get; set; }
+        public List<string> WithoutBuff { get; set; }
+        
+        public bool BuffSatisfied(EntityBase self)
+        {
+            var hasAllWithBuff = WithBuff.All(self.HasBuff);
+            var hasNoWithoutBuff = WithoutBuff.All(b => !self.HasBuff(b));
+            return hasAllWithBuff && hasNoWithoutBuff;
+        }
+    }
+    
+    public interface IConditionFilterEffect
+    {
+        public List<string> WithCondition { get; set; }
+        public List<string> WithoutCondition { get; set; }
+        
+        public bool ConditionSatisfied(EntityBase self, EntityBase target, BattleField battleField)
+        {
+            var hasAllWithCondition = WithCondition.All(c => Condition.CheckCondition(c, self, target, battleField));
+            var hasNoWithoutCondition = WithoutCondition.All(c => !Condition.CheckCondition(c, self, target, battleField));
+            return hasAllWithCondition && hasNoWithoutCondition;
+        }
+    }
 
     public abstract class BuffEffectRule
     {
         public abstract BuffEffectRule Clone();
+        
+        public static List<BuffData> ParseBuffs(JToken buffsToken, JsonSerializer serializer)
+        {
+            var result = new List<BuffData>();
+            if (buffsToken?.Type != JTokenType.Array)
+                return result;
+
+            foreach (var buffToken in buffsToken)
+            {
+                var buffData = new BuffData
+                {
+                    BuffName = buffToken["BuffName"]?.ToString(),
+                    Turn = buffToken["Turn"]?.ToObject<int>() ?? 0,
+                    Rules = new List<BuffEffectRule>()
+                };
+
+                var rulesToken = buffToken["Rules"];
+                if (rulesToken != null)
+                {
+                    foreach (var r in rulesToken)
+                    {
+                        var ruleType = r["RuleType"]?.ToString();
+                        BuffEffectRule rule = ruleType switch
+                        {
+                            "damage_caused" => r.ToObject<CausedDamageEffectRule>(serializer),
+                            "damage_received" => r.ToObject<ReceivedDamageEffectRule>(serializer),
+                            "card_cost" => r.ToObject<CardCostEffectRule>(serializer),
+                            "block" => r.ToObject<BlockEffectRule>(serializer),
+                            "misc" => r.ToObject<MiscEffectRule>(serializer),
+                            _ => throw new Exception("Unknown RuleType: " + ruleType)
+                        };
+                        buffData.Rules.Add(rule);
+                    }
+                }
+
+                result.Add(buffData);
+            }
+            return result;
+        }
     }
 
-    public class CausedDamageEffectRule : BuffEffectRule, IOperatorEffect
+    public class CausedDamageEffectRule : BuffEffectRule, IOperatorEffect, IBuffFilterEffect, IConditionFilterEffect
     {
         public BuffEffectOperator Operator { get; set; }
         public float Value { get; set; }
@@ -82,7 +152,7 @@ namespace GameLogic.Buff
         }
     }
 
-    public class ReceivedDamageEffectRule : BuffEffectRule, IOperatorEffect
+    public class ReceivedDamageEffectRule : BuffEffectRule, IOperatorEffect, IBuffFilterEffect, IConditionFilterEffect
     {
         public BuffEffectOperator Operator { get; set; }
         public float Value { get; set; }
@@ -109,6 +179,31 @@ namespace GameLogic.Buff
                 WithoutBuff = new List<string>(this.WithoutBuff),
                 WithCondition = new List<string>(this.WithCondition),
                 WithoutCondition = new List<string>(this.WithoutCondition)
+            };
+        }
+    }
+    
+    public class CardCostEffectRule : BuffEffectRule, IOperatorEffect, IBuffFilterEffect
+    {
+        public BuffEffectOperator Operator { get; set; }
+        public float Value { get; set; }
+
+        public bool AffectAllCards { get; set; } = false;
+        public List<string> AffectedCardIds { get; set; } = new();
+
+        public List<string> WithBuff { get; set; } = new();
+        public List<string> WithoutBuff { get; set; } = new();
+
+        public override BuffEffectRule Clone()
+        {
+            return new CardCostEffectRule
+            {
+                Operator = this.Operator,
+                Value = this.Value,
+                AffectAllCards = this.AffectAllCards,
+                AffectedCardIds = new List<string>(this.AffectedCardIds),
+                WithBuff = new List<string>(this.WithBuff),
+                WithoutBuff = new List<string>(this.WithoutBuff)
             };
         }
     }

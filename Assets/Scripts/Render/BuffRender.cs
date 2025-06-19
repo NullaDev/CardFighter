@@ -44,8 +44,7 @@ namespace Render
             var effect = buffInfo.EffectText;
             
             var displayParams = new Dictionary<string, object>();
-            var causedDamageRuleCount = 0;
-            var receivedDamageRuleCount = 0;
+            var valueCount = 0;
             var blockRuleCount = 0;
 
             foreach (var rule in buff.EffectRules)
@@ -53,15 +52,21 @@ namespace Render
                 switch (rule)
                 {
                     case CausedDamageEffectRule causedRule:
-                        causedDamageRuleCount++;
-                        var causedKey = causedDamageRuleCount == 1 ? "value" : $"value{causedDamageRuleCount}";
+                        valueCount++;
+                        var causedKey = valueCount == 1 ? "value" : $"value{valueCount}";
                         displayParams[causedKey] = causedRule.Value;
                         break;
 
                     case ReceivedDamageEffectRule receivedRule:
-                        receivedDamageRuleCount++;
-                        var receivedKey = receivedDamageRuleCount == 1 ? "value" : $"value{receivedDamageRuleCount}";
+                        valueCount++;
+                        var receivedKey = valueCount == 1 ? "value" : $"value{valueCount}";
                         displayParams[receivedKey] = receivedRule.Value;
+                        break;
+                    
+                    case CardCostEffectRule cardCostRule:
+                        valueCount++;
+                        var cardCostKey = valueCount == 1 ? "value" : $"value{valueCount}";
+                        displayParams[cardCostKey] = cardCostRule.Value;
                         break;
 
                     case BlockEffectRule blockRule:

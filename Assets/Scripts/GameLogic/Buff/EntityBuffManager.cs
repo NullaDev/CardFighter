@@ -70,7 +70,6 @@ namespace GameLogic.Buff
             public const string Chaos = "chaos";
         public const string Archery = "archery";
         public const string Charioteering = "charioteering";
-            public const string CharioteeringValue = "charioteering_value";
         public const string Calligraphy = "calligraphy";
             public const string CalligraphyPositiveValue = "calligraphy_positive_value";
             public const string CalligraphyNegativeValue = "calligraphy_negative_value";

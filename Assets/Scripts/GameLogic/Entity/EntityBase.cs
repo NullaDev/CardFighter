@@ -34,14 +34,10 @@ namespace GameLogic.Entity
                 {
                     if (rule is CausedDamageEffectRule causedRule)
                     {
-                        var hasAllWithBuff = causedRule.WithBuff.All(this.HasBuff);
-                        var hasNoWithoutBuff = causedRule.WithoutBuff.All(b => !this.HasBuff(b));
-                        if (!hasAllWithBuff || !hasNoWithoutBuff)
+                        if (causedRule is IBuffFilterEffect buffFilter && !buffFilter.BuffSatisfied(this))
                             continue;
 
-                        var hasAllWithCondition = causedRule.WithCondition.All(c => Condition.CheckCondition(c, this, target, battleField));
-                        var hasNoWithoutCondition = causedRule.WithoutCondition.All(c => !Condition.CheckCondition(c, this, target, battleField));
-                        if (!hasAllWithCondition || !hasNoWithoutCondition)
+                        if (causedRule is IConditionFilterEffect condFilter && !condFilter.ConditionSatisfied(this, target, battleField))
                             continue;
                         
                         var tagMatch = causedRule.TargetTags.Count == 0 || (
@@ -86,14 +82,10 @@ namespace GameLogic.Entity
                 {
                     if (rule is ReceivedDamageEffectRule receivedRule)
                     {
-                        var hasAllWithBuff = receivedRule.WithBuff.All(this.HasBuff);
-                        var hasNoWithoutBuff = receivedRule.WithoutBuff.All(b => !this.HasBuff(b));
-                        if (!hasAllWithBuff || !hasNoWithoutBuff)
+                        if (receivedRule is IBuffFilterEffect buffFilter && !buffFilter.BuffSatisfied(this))
                             continue;
 
-                        var hasAllWithCondition = receivedRule.WithCondition.All(c => Condition.CheckCondition(c, source, this, battleField));
-                        var hasNoWithoutCondition = receivedRule.WithoutCondition.All(c => !Condition.CheckCondition(c, source, this, battleField));
-                        if (!hasAllWithCondition || !hasNoWithoutCondition)
+                        if (receivedRule is IConditionFilterEffect condFilter && !condFilter.ConditionSatisfied(source, this, battleField))
                             continue;
                         
                         var tagMatch = receivedRule.TargetTags.Count == 0 || (

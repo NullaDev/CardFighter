@@ -34,8 +34,8 @@ namespace GameLogic
             playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("observe"));
             playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("spear"));
             playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("white_arrow"));
-            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("mathematics"));
-            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("archery"));
+            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("teacher_say"));
+            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("charioteering"));
             
             var stageData = StaticDataManager.StageDataManager;
             playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("dummy"));

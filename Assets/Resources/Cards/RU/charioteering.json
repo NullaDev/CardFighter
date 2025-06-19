@@ -16,8 +16,12 @@
               "Turn": -1,
               "Rules": [
                 {
-                  "RuleType": "misc",
-                  "Parameters": { "charioteering_value": 1 }
+                  "RuleType": "card_cost",
+                  "Operator": "Add",
+                  "Value": 1,
+                  "AffectAllCards": false,
+                  "AffectedCardIds": [ "u_turn" ],
+                  "WithoutBuff": [ "follow_heart" ]
                 }
               ]
             }

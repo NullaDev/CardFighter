@@ -1,4 +1,5 @@
 ﻿using System;
+using GameLogic.Buff;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -15,7 +16,10 @@ namespace Item
 
             return type switch
             {
-                "starting_buff" => obj.ToObject<StartingBuffEffect>(serializer),
+                "starting_buff" => new StartingBuffEffect
+                {
+                    Buffs = BuffEffectRule.ParseBuffs(obj["Buffs"], serializer)
+                },
                 "grant_card_on_obtain" => obj.ToObject<GrantCardOnObtainEffect>(serializer),
                 "synthesis_free_card" => obj.ToObject<SynthesisFreeCardEffect>(serializer),
                 "replace_card" => obj.ToObject<ReplaceCardEffect>(serializer),
