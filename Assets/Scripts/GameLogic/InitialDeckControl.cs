@@ -137,6 +137,10 @@ namespace GameLogic
             playerData.InitCardOperationsFromHeld();
             SceneManager.LoadScene("RogueMap");
         }
-        
+
+        public void Return()
+        {
+            SceneManager.LoadScene("ClassChoose");
+        }
     }
 }

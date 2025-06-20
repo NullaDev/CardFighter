@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using RogueMap;
+using GameLogic.RogueMap;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
@@ -39,7 +38,7 @@ namespace Render
             return lineObj;
         }
 
-        public void RenderRogueMap(RogueMap.RogueMap map)
+        public void RenderRogueMap(GameLogic.RogueMap.RogueMap map)
         {
             foreach (var (node, obj) in _listNodes)
             {
@@ -95,7 +94,7 @@ namespace Render
             RerenderAccordingToPlayerPos(map);
         }
 
-        public void RerenderAccordingToPlayerPos(RogueMap.RogueMap map)
+        public void RerenderAccordingToPlayerPos(GameLogic.RogueMap.RogueMap map)
         {
             foreach (var (node, nodeEntity) in this._listNodes)
             {

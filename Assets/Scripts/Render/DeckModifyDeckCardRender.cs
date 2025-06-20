@@ -23,7 +23,7 @@ namespace Render
 
         public void RenderCard(CardInstance card)
         {
-            this._cardRender.RenderCard(card, null);
+            this._cardRender.RenderCard(card);
             
             this._cover.enabled = false;
             this._coverText.enabled = false;
@@ -31,7 +31,7 @@ namespace Render
 
         public void RenderEmpty()
         {
-            this._cardRender.RenderCard(new CardInstance(CommonCards.DoNothing), null);
+            this._cardRender.RenderCard(new CardInstance(CommonCards.DoNothing));
             
             this._cover.enabled = true;
             this._coverText.enabled = true;

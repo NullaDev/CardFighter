@@ -19,7 +19,7 @@ namespace Render
             _cardDesc = transform.Find("CardDesc").GetComponent<Text>();
         }
         
-        public void RenderCard(CardInstance card, int? cost)
+        public void RenderCard(CardInstance card, int? cost=null)
         {
             if (card.Prototype.TextureName != "")
             {

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-namespace RogueMap
+namespace GameLogic.RogueMap
 {
     public class NodeInteract: MonoBehaviour, IPointerClickHandler
     {

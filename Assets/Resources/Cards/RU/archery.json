@@ -16,7 +16,7 @@
               "Turn": -1,
               "Rules": [
                 { "RuleType": "damage_caused", "Operator": "Add", "Value": 1, "TargetTags": ["ranged"] },
-                { "RuleType": "damage_caused", "Operator": "Multiply", "Value": 0.5, "TargetTags": ["melee"] }
+                { "RuleType": "damage_caused", "Operator": "Multiply", "Value": 0.5, "TargetTags": ["melee"], "WithoutBuff": ["follow_heart"] }
               ]
             }
           ]

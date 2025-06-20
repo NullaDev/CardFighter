@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using Card;
 using GameLogic;
+using JetBrains.Annotations;
 using Registry;
 using Registry.Data;
 using Render.Interact;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Render
 {
@@ -14,6 +16,10 @@ namespace Render
         public GameObject BackpackCardGrid;
         public GameObject DeckCardPrefab;
         public GameObject DeckCardGrid;
+
+        public GameObject RecipeSlot1;
+        public GameObject RecipeSlot2;
+        public GameObject RecipeSlotResult;
         
         private readonly List<GameObject> _listBackpackCards = new();
         private readonly List<GameObject> _listDeckCards = new();
@@ -69,6 +75,57 @@ namespace Render
                     cardRender.RenderEmpty();
                 }
                 _listDeckCards.Add(card);
+            }
+        }
+
+        public void RenderSlots([CanBeNull] CardPrototype card1, [CanBeNull] CardPrototype card2, [CanBeNull] CardPrototype cardResult)
+        {
+            var render1 = RecipeSlot1.transform.Find("CardNoInteract").GetComponent<CardRender>();
+            var cover1 = RecipeSlot1.transform.Find("EmptySlotCover").GetComponent<Image>();
+            var coverText1 = RecipeSlot1.transform.Find("EmptySlotText").GetComponent<Text>();
+            if (card1 != null)
+            {
+                render1.RenderCard(new CardInstance(card1));
+                cover1.enabled = false;
+                coverText1.enabled = false;
+            }
+            else
+            {
+                render1.RenderCard(new CardInstance(CommonCards.DoNothing));
+                cover1.enabled = true;
+                coverText1.enabled = true;
+            }
+            
+            var render2 = RecipeSlot2.transform.Find("CardNoInteract").GetComponent<CardRender>();
+            var cover2 = RecipeSlot2.transform.Find("EmptySlotCover").GetComponent<Image>();
+            var coverText2 = RecipeSlot2.transform.Find("EmptySlotText").GetComponent<Text>();
+            if (card2 != null)
+            {
+                render2.RenderCard(new CardInstance(card2));
+                cover2.enabled = false;
+                coverText2.enabled = false;
+            }
+            else
+            {
+                render2.RenderCard(new CardInstance(CommonCards.DoNothing));
+                cover2.enabled = true;
+                coverText2.enabled = true;
+            }
+            
+            var render3 = RecipeSlotResult.transform.Find("CardNoInteract").GetComponent<CardRender>();
+            var cover3 = RecipeSlotResult.transform.Find("EmptySlotCover").GetComponent<Image>();
+            var coverText3 = RecipeSlotResult.transform.Find("EmptySlotText").GetComponent<Text>();
+            if (cardResult != null)
+            {
+                render3.RenderCard(new CardInstance(cardResult));
+                cover3.enabled = false;
+                coverText3.enabled = false;
+            }
+            else
+            {
+                render3.RenderCard(new CardInstance(CommonCards.DoNothing));
+                cover3.enabled = true;
+                coverText3.enabled = true;
             }
         }
     }

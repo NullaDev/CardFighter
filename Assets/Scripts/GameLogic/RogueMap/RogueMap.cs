@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace RogueMap
+namespace GameLogic.RogueMap
 {
     public enum NodeType
     {

@@ -7,6 +7,7 @@
         public static readonly HeldItemDataManager HeldItemDataManager = new();
         public static readonly StageDataManager StageDataManager = new();
         public static readonly BuffDisplayManager BuffDisplayManager = new();
+        public static readonly RecipeDataManager RecipeDataManager = new();
 
         public static void LoadAll()
         {
@@ -15,6 +16,7 @@
             HeldItemDataManager.LoadFromFile();
             StageDataManager.LoadFromFile();
             BuffDisplayManager.LoadFromFile();
+            RecipeDataManager.LoadFromFile();
             CommonCards.Init();
         }
     }

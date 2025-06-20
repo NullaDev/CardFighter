@@ -15,14 +15,7 @@
               "BuffName": "charioteering",
               "Turn": -1,
               "Rules": [
-                {
-                  "RuleType": "card_cost",
-                  "Operator": "Add",
-                  "Value": 1,
-                  "AffectAllCards": false,
-                  "AffectedCardIds": [ "u_turn" ],
-                  "WithoutBuff": [ "follow_heart" ]
-                }
+                { "RuleType": "card_cost", "Operator": "Add", "Value": 1, "AffectAllCards": false, "AffectedCardIds": ["u_turn"]}
               ]
             }
           ]

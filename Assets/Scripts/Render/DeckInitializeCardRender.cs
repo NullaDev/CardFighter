@@ -21,7 +21,7 @@ namespace Render
         public void Render(CardInstance card, int cost, int carryCount)
         {
             this.CardID = card.Prototype.ID;
-            this._cardRender.RenderCard(card, null);
+            this._cardRender.RenderCard(card);
             this._cost.text = $"携带费用：{cost}";
             this._carryCount.text = $"×{carryCount}";
         }

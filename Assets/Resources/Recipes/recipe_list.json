@@ -1,0 +1,14 @@
+﻿[
+  {
+    "Slot1": [ "punch" ],
+    "Slot2": [ "kick" ],
+    "Result": "punch_kick",
+    "Priority": 3
+  },
+  {
+    "Slot1": [ "turn_back" ],
+    "Slot2": [ "spear" ],
+    "Result": "turn_back_spear",
+    "Priority": 3
+  }
+]

@@ -34,6 +34,13 @@ namespace Card
             TurnSlot = CommonCards.TurnBack;
             _cardList.Clear();
         }
+        
+        public bool HasCard(CardPrototype card)
+        {
+            if (card == null)
+                return false;
+            return MoveSlot == card || TurnSlot == card || _cardList.Contains(card);
+        }
 
         public bool AddCard(CardPrototype prototype)
         {

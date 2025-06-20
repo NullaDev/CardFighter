@@ -15,7 +15,7 @@ namespace GameLogic
         public BattleField BattleField { get; private set; }
         public FightingData FightingData { get; private set; }
 
-        void Start()
+        public void Start()
         {
             var playerData = PlayerData.Instance;
             this.FightingData = FightingData.FromPlayerData(playerData);
@@ -27,12 +27,7 @@ namespace GameLogic
             Rerender();
         }
 
-        void Update()
-        {
-        
-        }
-
-        void Rerender()
+        private void Rerender()
         {
             var uiRender = this.render.GetComponent<FightingUIRender>();
             uiRender.RenderTurn(this.FightingData.CurrentTurn);
@@ -120,8 +115,8 @@ namespace GameLogic
             }
             if (!enemyRemain && !this.BattleField.AnyIncomingEnemyRemain())
             {
-                // TODO win
-                Debug.Log("win");
+                // TODO reward
+                UpdatePlayerData();
                 SceneManager.LoadScene("RogueMap");
             }
         }

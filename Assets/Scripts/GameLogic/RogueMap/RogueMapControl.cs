@@ -1,7 +1,8 @@
 ﻿using Render;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-namespace RogueMap
+namespace GameLogic.RogueMap
 {
     public class RogueMapControl: MonoBehaviour
     {
@@ -9,7 +10,7 @@ namespace RogueMap
 
         public RogueMap Map;
 
-        void Start()
+        public void Start()
         {
             if (RogueMap.GlobalMap == null)
             {
@@ -20,10 +21,23 @@ namespace RogueMap
             Rerender();
         }
 
-        void Rerender()
+        private void Rerender()
         {
             var mapRender = this.render.GetComponent<RogueMapRender>();
             mapRender.RenderRogueMap(this.Map);
+
+            var uiRender = this.render.GetComponent<RogueMapUIRender>();
+            uiRender.Render();
+        }
+
+        public void ClickModify()
+        {
+            SceneManager.LoadScene("DeckModify");
+        }
+        
+        public void ClickReturn()
+        {
+            SceneManager.LoadScene("ClassChoose");
         }
     }
 }

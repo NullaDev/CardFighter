@@ -6,43 +6,24 @@ using Registry;
 using Registry.Data;
 using Render;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameLogic
 {
     public class DeckModifyControl: MonoBehaviour
     {
         public GameObject render;
+        
         private const int CardPerPage = 8;
         private int _currentPageIndex = 0;
         
         private readonly Dictionary<CardPrototype, int> _unusedCards = new();
-        [CanBeNull] private CardPrototype _recipeSlot1 = null;
-        [CanBeNull] private CardPrototype _recipeSlot2 = null;
-        
+        [CanBeNull] public CardPrototype RecipeSlot1 = null;
+        [CanBeNull] public CardPrototype RecipeSlot2 = null;
         [CanBeNull] public CardPrototype ChosenCard = null;
-
-        public void Test()
-        {
-            StaticDataManager.LoadAll();
-            
-            var playerData = PlayerData.Instance;
-            playerData.HeldCards[CommonCards.Move1] = 1;
-            playerData.HeldCards[CommonCards.TurnBack] = 1;
-            
-            playerData.HeldCards[StaticDataManager.CardDataManager.Find("punch")] = 1;
-            playerData.HeldCards[StaticDataManager.CardDataManager.Find("kick")] = 2;
-            playerData.HeldCards[StaticDataManager.CardDataManager.Find("sword")] = 3;
-            playerData.HeldCards[StaticDataManager.CardDataManager.Find("broadsword")] = 3;
-            playerData.HeldCards[StaticDataManager.CardDataManager.Find("spear")] = 3;
-            playerData.HeldCards[StaticDataManager.CardDataManager.Find("bow")] = 3;
-            playerData.HeldCards[StaticDataManager.CardDataManager.Find("axe")] = 3;
-            playerData.HeldCards[StaticDataManager.CardDataManager.Find("hammer")] = 3;
-            playerData.HeldCards[StaticDataManager.CardDataManager.Find("rush")] = 3;
-        }
 
         private void Awake()
         {
-            Test();
             var playerData = PlayerData.Instance;
             var playerDeck = playerData.CardOperations.GetAllCards();
             
@@ -95,6 +76,8 @@ namespace GameLogic
             }
             cardRender.RenderBackpackCards(backPackCards);
             cardRender.RenderDeckCards();
+            cardRender.RenderSlots(RecipeSlot1, RecipeSlot2, 
+                StaticDataManager.RecipeDataManager.TryGetFusionResult(this.RecipeSlot1, this.RecipeSlot2)?.ResultCard);
         }
         
         private List<(CardPrototype cardPrototype, int cardCount)> GetCurrentPageCards()
@@ -122,5 +105,126 @@ namespace GameLogic
             this._currentPageIndex = Math.Max(this._currentPageIndex - 1, 0);
             Rerender();
         }
+
+        public void ClickSlot1()
+        {
+            if (RecipeSlot1 == null)
+            {
+                if (ChosenCard != null)
+                {
+                    ShrinkCard(ChosenCard);
+                    RecipeSlot1 = ChosenCard;
+                    ChosenCard = null;
+                }
+            }
+            else
+            {
+                if (ChosenCard == null)
+                {
+                    AddCard(RecipeSlot1);
+                    RecipeSlot1 = null;
+                }
+                else
+                {
+                    ShrinkCard(ChosenCard);
+                    AddCard(RecipeSlot1);
+                    RecipeSlot1 = ChosenCard;
+                    ChosenCard = null;
+                }
+            }
+            Rerender();
+        }
+        
+        public void ClickSlot2()
+        {
+            if (RecipeSlot2 == null)
+            {
+                if (ChosenCard != null)
+                {
+                    ShrinkCard(ChosenCard);
+                    RecipeSlot2 = ChosenCard;
+                    ChosenCard = null;
+                }
+            }
+            else
+            {
+                if (ChosenCard == null)
+                {
+                    AddCard(RecipeSlot2);
+                    RecipeSlot2 = null;
+                }
+                else
+                {
+                    ShrinkCard(ChosenCard);
+                    AddCard(RecipeSlot2);
+                    RecipeSlot2 = ChosenCard;
+                    ChosenCard = null;
+                }
+            }
+            Rerender();
+        }
+
+        public void ClickSlotResult()
+        {
+            var result = StaticDataManager.RecipeDataManager.TryGetFusionResult(RecipeSlot1, RecipeSlot2);
+            if (result == null) return;
+
+            var playerData = PlayerData.Instance;
+            if (result.ConsumeSlot1 && RecipeSlot1 != CommonCards.TurnBack && RecipeSlot1 != CommonCards.Move1)
+            {
+                if (playerData.HeldCards.ContainsKey(RecipeSlot1))
+                {
+                    playerData.HeldCards[RecipeSlot1]--;
+                    if (playerData.HeldCards[RecipeSlot1] <= 0)
+                    {
+                        playerData.HeldCards.Remove(RecipeSlot1);
+                        if (playerData.CardOperations.HasCard(RecipeSlot1))
+                        {
+                            playerData.CardOperations.RemoveCard(RecipeSlot1);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                AddCard(RecipeSlot1);
+            }
+            
+            if (result.ConsumeSlot2 && RecipeSlot2 != CommonCards.TurnBack && RecipeSlot2 != CommonCards.Move1)
+            {
+                if (playerData.HeldCards.ContainsKey(RecipeSlot2))
+                {
+                    playerData.HeldCards[RecipeSlot2]--;
+                    if (playerData.HeldCards[RecipeSlot2] <= 0)
+                    {
+                        playerData.HeldCards.Remove(RecipeSlot2);
+                        if (playerData.CardOperations.HasCard(RecipeSlot2))
+                        {
+                            playerData.CardOperations.RemoveCard(RecipeSlot2);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                AddCard(RecipeSlot2);
+            }
+            
+            RecipeSlot1 = null;
+            RecipeSlot2 = null;
+            if (!playerData.HeldCards.TryAdd(result.ResultCard, 1))
+            {
+                playerData.HeldCards[result.ResultCard]++;
+            }
+            AddCard(result.ResultCard);
+
+            Rerender();
+        }
+
+        public void ClickReturn()
+        {
+            SceneManager.LoadScene("RogueMap");
+        }
+        
     }
 }

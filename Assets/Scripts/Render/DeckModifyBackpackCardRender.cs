@@ -21,7 +21,7 @@ namespace Render
 
         public void Render(CardInstance card, int count, bool shouldRenderFrame)
         {
-            this._cardRender.RenderCard(card, null);
+            this._cardRender.RenderCard(card);
             this._count.text = $"×{count}";
             this._frame.enabled = shouldRenderFrame;
         }
