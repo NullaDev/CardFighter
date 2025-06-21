@@ -1,0 +1,29 @@
+﻿{
+  "ID": "scout_ahead",
+  "Name": "探马先行",
+  "TextureName": "Arts/Cards/Generic/Misc/scout_ahead",
+  "Desc": "前进1格，获得2回合洞察",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": {
+        "Type": "self"
+      },
+      "Processors": [
+        {
+          "Type": "move",
+          "Value": 1
+        },
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "insight",
+              "Turn": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

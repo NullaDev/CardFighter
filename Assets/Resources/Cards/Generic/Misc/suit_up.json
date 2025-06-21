@@ -1,0 +1,15 @@
+﻿{
+  "ID": "suit_up",
+  "Name": "披挂上阵",
+  "TextureName": "Arts/Cards/Generic/Misc/suit_up",
+  "Desc": "获得2点临时护甲",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        { "Type": "add_armor", "Value": 2 }
+      ]
+    }
+  ]
+}

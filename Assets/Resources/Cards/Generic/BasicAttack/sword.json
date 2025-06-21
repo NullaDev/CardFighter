@@ -1,0 +1,39 @@
+﻿{
+  "ID": "sword",
+  "Name": "刺你一剑",
+  "TextureName": "Arts/Cards/Generic/BasicAttack/sword",
+  "Desc": "对1格内的目标造成2点无视护甲伤害",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": {
+        "Type": "range",
+        "RangeMin": 1,
+        "RangeMax": 1
+      },
+      "Filters": [
+        {
+          "Type": "exclude_self"
+        },
+        {
+          "Type": "is_alive"
+        },
+        {
+          "Type": "first_n",
+          "Value": 1
+        }
+      ],
+      "Processors": [
+        {
+          "Type": "damage",
+          "Value": 3,
+          "Tags": [
+            "melee",
+            "weapon",
+            "ignore_armor"
+          ]
+        }
+      ]
+    }
+  ]
+}

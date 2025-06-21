@@ -1,0 +1,15 @@
+﻿{
+  "ID": "regain_strength",
+  "Name": "养精蓄锐",
+  "TextureName": "Arts/Cards/Generic/Misc/regain_strength",
+  "Desc": "回复4点能量",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        { "Type": "add_cost", "Value": 4 }
+      ]
+    }
+  ]
+}

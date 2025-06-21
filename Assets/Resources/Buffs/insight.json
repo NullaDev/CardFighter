@@ -1,7 +1,7 @@
 ﻿{
   "ID": "insight",
   "Name": "洞察",
-  "TextureName": "Arts/Cards/Generic/observe",
+  "TextureName": "Arts/Cards/Generic/Misc/observe",
   "EffectText": "可以预知敌方行动。",
   "ExtraText": "知人者智，自知者明。"
 }

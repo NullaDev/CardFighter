@@ -1,0 +1,27 @@
+﻿{
+  "ID": "steady_as_mount",
+  "Name": "稳如泰山",
+  "TextureName": "Arts/Cards/Generic/Misc/steady_as_mount",
+  "Desc": "在下回合内，霸体并且可以格挡1次面朝方向的攻击",
+  "Cost": 3,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            { "BuffName": "super_armor", "Turn": 1 },
+            {
+              "BuffName": "block",
+              "Turn": 1,
+              "Rules": [
+                { "RuleType": "block", "RemainingTimes": 1 }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

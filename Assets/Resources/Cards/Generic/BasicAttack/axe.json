@@ -1,0 +1,39 @@
+﻿{
+  "ID": "axe",
+  "Name": "砍你一斧",
+  "TextureName": "Arts/Cards/Generic/BasicAttack/axe",
+  "Desc": "对1格内的目标造成4点破甲伤害",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": {
+        "Type": "range",
+        "RangeMin": 1,
+        "RangeMax": 1
+      },
+      "Filters": [
+        {
+          "Type": "exclude_self"
+        },
+        {
+          "Type": "is_alive"
+        },
+        {
+          "Type": "first_n",
+          "Value": 1
+        }
+      ],
+      "Processors": [
+        {
+          "Type": "damage",
+          "Value": 4,
+          "Tags": [
+            "melee",
+            "weapon",
+            "break_armor"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+﻿{
+  "ID": "armored_and_sharpened",
+  "Name": "披坚执锐",
+  "TextureName": "Arts/Cards/Generic/Misc/armored_and_sharpened",
+  "Desc": "获得3点护甲，你下回合造成的所有近战武器伤害增加1点",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        { "Type": "add_armor", "Value": 2 },
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "sharpened",
+              "Turn": -1,
+              "Rules": [
+                { "RuleType": "damage_caused", "Operator": "Add", "Value": 1, "TargetTags": ["melee", "weapon"], "TagsLogicOr": false }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

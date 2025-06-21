@@ -2,12 +2,24 @@
   "Generic": {
     "move": 0,
     "turn_back": 0,
+
+    "divine_judgment": 0,
+
     "do_nothing": 1,
     "observe": 1,
     "focus_energy": 2,
     "block": 2,
     "suit_up": 2,
+    
     "hone_sword": 2,
+    "scout_ahead": 1,
+    "regain_strength": 3,
+    "golden_bell_shield": 3,
+    "iron_cloth_armor": 3,
+    "wait_for_weary": 2,
+    "steady_as_mount": 2,
+    "armored_and_sharpened": 3,
+    "flow_of_time": 1,
     
     "punch": 2,
     "kick": 2,
@@ -22,12 +34,11 @@
     "iron_slam": 3,
     "piercing_arrow": 3,
     "throat_strike": 3,
-    
     "turn_back_spear": 2,
     "shield_charge": 3,
     "punch_kick": 3,
-    
-    "divine_judgment": 10
+    "tiger_descent": 2,
+    "feint_strike": 2
   },
   "RU": {
     "rites": 3,

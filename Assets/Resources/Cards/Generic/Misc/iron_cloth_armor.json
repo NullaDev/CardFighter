@@ -1,0 +1,15 @@
+﻿{
+  "ID": "iron_cloth_armor",
+  "Name": "铁布衫",
+  "TextureName": "Arts/Cards/Generic/Misc/iron_cloth_armor",
+  "Desc": "获得6点临时护甲",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        { "Type": "add_armor", "Value": 6 }
+      ]
+    }
+  ]
+}

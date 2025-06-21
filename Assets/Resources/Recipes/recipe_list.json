@@ -1,14 +1,109 @@
 ﻿[
   {
+    "Slot1": [ "suit_up" ],
+    "Slot2": [ "axe", "broadsword", "spear", "sword" ],
+    "Result": "armored_and_sharpened",
+    "Priority": 2
+  },
+  {
+    "Slot1": [ "do_nothing" ],
+    "Slot2": [ "do_nothing" ],
+    "Result": "flow_of_time",
+    "Priority": 3
+  },
+  {
+    "Slot1": [ "block" ],
+    "Slot2": [ "suit_up" ],
+    "Result": "golden_bell_shield",
+    "Priority": 3
+  },
+  {
+    "Slot1": [ "do_nothing" ],
+    "Slot2": [ "sword" ],
+    "Result": "hone_sword",
+    "Priority": 3
+  },
+  {
+    "Slot1": [ "suit_up" ],
+    "Slot2": [ "suit_up" ],
+    "Result": "iron_cloth_armor",
+    "Priority": 3
+  },
+  {
+    "Slot1": [ "focus_energy" ],
+    "Slot2": [ "focus_energy" ],
+    "Result": "regain_strength",
+    "Priority": 3
+  },
+  {
+    "Slot1": [ "move" ],
+    "Slot2": [ "observe" ],
+    "Result": "scout_ahead",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "block" ],
+    "Slot2": [ "do_nothing" ],
+    "Result": "steady_as_mount",
+    "Priority": 3
+  },
+  {
+    "Slot1": [ "do_nothing" ],
+    "Slot2": [ "block" ],
+    "Result": "wait_for_weary",
+    "Priority": 3
+  },
+  
+  {
+    "Slot1": [ "turn_back" ],
+    "Slot2": [ "sword" ],
+    "Result": "feint_strike",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "rush" ],
+    "Slot2": [ "punch" ],
+    "Result": "iron_slam",
+    "Priority": 3
+  },
+  {
+    "Slot1": [ "bow" ],
+    "Slot2": [ "axe" ],
+    "Result": "piercing_arrow",
+    "Priority": 3
+  },
+  {
     "Slot1": [ "punch" ],
     "Slot2": [ "kick" ],
     "Result": "punch_kick",
     "Priority": 3
   },
   {
+    "Slot1": [ "block" ],
+    "Slot2": [ "rush" ],
+    "Result": "shield_charge",
+    "Priority": 3
+  },
+  {
+    "Slot1": [ "spear" ],
+    "Slot2": [ "sword" ],
+    "Result": "throat_strike",
+    "Priority": 3
+  },
+  {
+    "Slot1": [ "move" ],
+    "Slot2": [ "kick" ],
+    "Result": "tiger_descent",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
     "Slot1": [ "turn_back" ],
     "Slot2": [ "spear" ],
     "Result": "turn_back_spear",
-    "Priority": 3
+    "Priority": 3,
+    "ConsumeSlot1": false
   }
 ]

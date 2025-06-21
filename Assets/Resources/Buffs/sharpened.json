@@ -1,0 +1,7 @@
+﻿{
+  "ID": "sharpened",
+  "Name": "执锐",
+  "TextureName": "Arts/Cards/Generic/Misc/armored_and_sharpened",
+  "EffectText": "造成的近战武器伤害增加{value}点。",
+  "ExtraText": "披坚执锐，临难不顾。"
+}

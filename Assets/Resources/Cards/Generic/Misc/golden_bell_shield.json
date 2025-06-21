@@ -1,0 +1,27 @@
+﻿{
+  "ID": "golden_bell_shield",
+  "Name": "金钟罩",
+  "TextureName": "Arts/Cards/Generic/Misc/golden_bell_shield",
+  "Desc": "获得2点护甲，在下回合内可以格挡一次攻击",
+  "Cost": 3,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        { "Type": "add_armor", "Value": 2 },
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "block",
+              "Turn": 1,
+              "Rules": [
+                { "RuleType": "block", "RemainingTimes": 1, "FrontOnly": false }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

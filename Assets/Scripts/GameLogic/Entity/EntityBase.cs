@@ -109,27 +109,26 @@ namespace GameLogic.Entity
                     }
                     else if (rule is BlockEffectRule blockRule)
                     {
+                        if (damageTags.Contains(DamageTypeNames.BreakGuard))
+                        {
+                            buff.EffectRules.Remove(blockRule);
+                            continue;
+                        }
+                        
                         var attackerIndex = battleField.GetEntityIndex(source);
                         var targetIndex = battleField.GetEntityIndex(this);
-
                         var isFromFront =
                             (attackerIndex < targetIndex && this.Facing == EntityFacing.Left) ||
                             (attackerIndex > targetIndex && this.Facing == EntityFacing.Right);
-
-                        if (!blockRule.FrontOnly || isFromFront)
+                        if (blockRule.FrontOnly && !isFromFront) continue;
+                        
+                        if (blockRule.RemainingTimes > 0)
                         {
-                            if (damageTags.Contains(DamageTypeNames.BreakGuard))
+                            doCauseDamage = false;
+                            blockRule.RemainingTimes--;
+                            if (blockRule.RemainingTimes == 0)
                             {
-                                buff.EffectRules.Remove(blockRule);
-                            }
-                            else if (blockRule.RemainingTimes > 0)
-                            {
-                                doCauseDamage = false;
-                                blockRule.RemainingTimes--;
-                                if (blockRule.RemainingTimes == 0)
-                                {
-                                    this.Buffs.Remove(buff);
-                                }
+                                this.Buffs.Remove(buff);
                             }
                         }
                     }

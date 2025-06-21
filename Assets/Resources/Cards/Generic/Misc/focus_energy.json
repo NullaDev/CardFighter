@@ -1,0 +1,15 @@
+﻿{
+  "ID": "focus_energy",
+  "Name": "聚气",
+  "TextureName": "Arts/Cards/Generic/Misc/focus_energy",
+  "Desc": "回复1点能量",
+  "Cost": 0,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        { "Type": "add_cost", "Value": 1 }
+      ]
+    }
+  ]
+}

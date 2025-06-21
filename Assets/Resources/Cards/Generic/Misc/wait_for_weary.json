@@ -1,0 +1,26 @@
+﻿{
+  "ID": "wait_for_weary",
+  "Name": "以逸待劳",
+  "TextureName": "Arts/Cards/Generic/Misc/wait_for_weary",
+  "Desc": "在下回合内，可以格挡2次面朝方向的攻击",
+  "Cost": 3,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "block",
+              "Turn": 1,
+              "Rules": [
+                { "RuleType": "block", "RemainingTimes": 2 }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

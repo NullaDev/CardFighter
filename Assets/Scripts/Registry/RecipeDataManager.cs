@@ -66,7 +66,7 @@ namespace Registry
                 {
                     ID = $"fusion_{card1.ID}+{card2.ID}",
                     Name = fusedName,
-                    TextureName = "fusion",
+                    TextureName = "Arts/Cards/Misc/fusion",
                     Desc = $"施放{card1.Name}和{card2.Name}",
                     Cost = card1.Cost + card2.Cost + 1,
                     IsFusionCard = true,

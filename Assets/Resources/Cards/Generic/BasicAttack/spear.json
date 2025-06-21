@@ -1,0 +1,34 @@
+﻿{
+  "ID": "spear",
+  "Name": "捅你一枪",
+  "TextureName": "Arts/Cards/Generic/BasicAttack/spear",
+  "Desc": "对2格内的所有目标造成2点伤害",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": {
+        "Type": "range",
+        "RangeMin": 1,
+        "RangeMax": 2
+      },
+      "Filters": [
+        {
+          "Type": "exclude_self"
+        },
+        {
+          "Type": "is_alive"
+        }
+      ],
+      "Processors": [
+        {
+          "Type": "damage",
+          "Value": 2,
+          "Tags": [
+            "melee",
+            "weapon"
+          ]
+        }
+      ]
+    }
+  ]
+}

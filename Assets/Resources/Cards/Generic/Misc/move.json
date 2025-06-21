@@ -1,0 +1,20 @@
+﻿{
+  "ID": "move",
+  "Name": "前进",
+  "TextureName": "Arts/Cards/Generic/Misc/move",
+  "Desc": "前进1格",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": {
+        "Type": "self"
+      },
+      "Processors": [
+        {
+          "Type": "move",
+          "Value": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+﻿{
+  "ID": "turn_back",
+  "Name": "转身",
+  "TextureName": "Arts/Cards/Generic/Misc/turn_back",
+  "Desc": "反转当前方向",
+  "Cost": 0,
+  "Actions": [
+    {
+      "Selector": {
+        "Type": "self"
+      },
+      "Processors": [
+        {
+          "Type": "turn"
+        }
+      ]
+    }
+  ]
+}

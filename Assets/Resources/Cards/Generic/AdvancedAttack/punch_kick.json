@@ -1,0 +1,21 @@
+﻿{
+  "ID": "punch_kick",
+  "Name": "拳打脚踢",
+  "TextureName": "Arts/Cards/Generic/AdvancedAttack/punch_kick",
+  "Desc": "对1格内的目标造成2点破格伤害两次",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 1 },
+      "Filters": [
+        { "Type": "exclude_self" },
+        { "Type": "is_alive" },
+        { "Type": "first_n", "Value": 1 }
+      ],
+      "Processors": [
+        { "Type": "damage", "Value": 2, "Tags": ["melee", "unarmed", "break_guard"] },
+        { "Type": "damage", "Value": 2, "Tags": ["melee", "unarmed", "break_guard"] }
+      ]
+    }
+  ]
+}

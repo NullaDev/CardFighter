@@ -1,0 +1,20 @@
+﻿{
+  "ID": "flow_of_time",
+  "Name": "日月如流",
+  "TextureName": "Arts/Cards/Generic/Misc/flow_of_time",
+  "Desc": "获得额外回合",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            { "BuffName": "initiative", "Turn": 2 }
+          ]
+        }
+      ]
+    }
+  ]
+}

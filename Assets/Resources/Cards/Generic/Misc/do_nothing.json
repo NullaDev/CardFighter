@@ -1,0 +1,8 @@
+﻿{
+  "ID": "do_nothing",
+  "Name": "发呆",
+  "TextureName": "Arts/Cards/Generic/Misc/do_nothing",
+  "Desc": "什么也不做",
+  "Cost": 0,
+  "Actions": []
+}

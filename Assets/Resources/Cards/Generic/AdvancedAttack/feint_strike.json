@@ -1,0 +1,29 @@
+﻿{
+  "ID": "feint_strike",
+  "Name": "声东击西",
+  "TextureName": "Arts/Cards/Generic/AdvancedAttack/feint_strike",
+  "Desc": "转身，然后对1格内的目标造成3点无视护甲伤害",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        { "Type": "turn" }
+      ]
+    },
+    {
+      "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 2 },
+      "Filters": [
+        { "Type": "exclude_self"},
+        { "Type": "is_alive" }
+      ],
+      "Processors": [
+        {
+          "Type": "damage",
+          "Value": 4,
+          "Tags": ["melee", "weapon"]
+        }
+      ]
+    }
+  ]
+}

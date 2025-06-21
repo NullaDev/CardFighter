@@ -12,7 +12,7 @@
       "Count": 1
     },
     {
-      "EffectType": "synthesis_free_card",
+      "EffectType": "recipe_free_card",
       "CardIDs": [ "sword" ]
     }
   ]

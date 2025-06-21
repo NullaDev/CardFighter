@@ -2,7 +2,7 @@
   "ID": "divine_judgment",
   "Name": "天罚",
   "TextureName": "Arts/Cards/Misc/divine_judgment",
-  "Desc": "处决除自己外的所有单位",
+  "Desc": "处决除自己外的所有单位，测试用卡",
   "Cost": 0,
   "Actions": [
     {

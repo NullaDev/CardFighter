@@ -1,0 +1,25 @@
+﻿{
+  "ID": "observe",
+  "Name": "观察",
+  "TextureName": "Arts/Cards/Generic/Misc/observe",
+  "Desc": "在5回合内，可以预知敌方行动。",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": {
+        "Type": "self"
+      },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "insight",
+              "Turn": 5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

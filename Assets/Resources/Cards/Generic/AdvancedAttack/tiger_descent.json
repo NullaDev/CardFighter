@@ -1,0 +1,26 @@
+﻿{
+  "ID": "tiger_descent",
+  "Name": "猛虎下山",
+  "TextureName": "Arts/Cards/Generic/AdvancedAttack/tiger_descent",
+  "Desc": "前进1格，对1格内的目标造成3点破格伤害",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        { "Type": "move", "Value": 1 }
+      ]
+    },
+    {
+      "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 1 },
+      "Filters": [
+        { "Type": "exclude_self" },
+        { "Type": "is_alive" },
+        { "Type": "first_n",  "Value": 1 }
+      ],
+      "Processors": [
+        { "Type": "damage", "Value": 3, "Tags": ["melee", "unarmed", "break_guard", "rush"] }
+      ]
+    }
+  ]
+}
