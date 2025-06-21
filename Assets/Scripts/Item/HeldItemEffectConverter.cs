@@ -21,7 +21,7 @@ namespace Item
                     Buffs = BuffEffectRule.ParseBuffs(obj["Buffs"], serializer)
                 },
                 "grant_card_on_obtain" => obj.ToObject<GrantCardOnObtainEffect>(serializer),
-                "synthesis_free_card" => obj.ToObject<SynthesisFreeCardEffect>(serializer),
+                "recipe_free_card" => obj.ToObject<RecipeFreeCardEffect>(serializer),
                 "replace_card" => obj.ToObject<ReplaceCardEffect>(serializer),
                 "misc" => obj.ToObject<MiscEffect>(serializer),
                 _ => throw new Exception("Unknown HeldItemEffect type: " + type)

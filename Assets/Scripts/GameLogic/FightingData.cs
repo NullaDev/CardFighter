@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Card;
 using GameLogic.Buff;
 using GameLogic.Entity;
+using Item;
 using Registry;
 using Registry.Data;
 
@@ -23,13 +25,33 @@ namespace GameLogic
             FightingData fightingData = new();
             fightingData.CurrentCost = playerData.InitialInGameCost;
             fightingData.MaxCost = playerData.MaxInGameCost;
+            
+            Dictionary<string, string> replaceMap = new();
+            foreach (var effect in playerData.HeldItems.SelectMany(heldItem => heldItem.Effects))
+            {
+                if (effect is ReplaceCardEffect replaceEffect)
+                {
+                    foreach (var kv in replaceEffect.ReplacementMap)
+                    {
+                        replaceMap[kv.Key] = kv.Value;
+                    }
+                }
+            }
 
             var cards = playerData.CardOperations.GetAllCards();
             fightingData._defaultMoveCard = cards[0];
             fightingData._defaultTurnCard = cards[1];
             foreach (var card in cards)
             {
-                fightingData.AvailableCards.Add(new CardInstance(card));
+                if (replaceMap.TryGetValue(card.ID, out var newCardId))
+                {
+                    var newCard = StaticDataManager.CardDataManager.Find(newCardId);
+                    fightingData.AvailableCards.Add(newCard != null ? new CardInstance(newCard) : new CardInstance(card));
+                }
+                else
+                {
+                    fightingData.AvailableCards.Add(new CardInstance(card));
+                }
             }
             return fightingData;
         }

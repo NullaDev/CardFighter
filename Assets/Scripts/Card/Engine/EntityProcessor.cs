@@ -103,9 +103,7 @@ namespace Card.Engine
         {
             foreach (var buffData in Buffs)
             {
-                var buff = new EntityBuff(buffData.BuffName, buffData.Turn);
-                buff.EffectRules = buffData.Rules.Select(r => r.Clone()).ToList();
-                target.AddOrUpdateBuff(buff);
+                target.AddOrUpdateBuff(new EntityBuff(buffData));
             }
         }
     }

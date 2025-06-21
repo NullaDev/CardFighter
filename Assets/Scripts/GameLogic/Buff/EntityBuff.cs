@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Registry.Data;
 
 namespace GameLogic.Buff
 {
@@ -10,10 +11,11 @@ namespace GameLogic.Buff
         public int Duration { get; set; }
         public List<BuffEffectRule> EffectRules { get; set; } = new();
 
-        public EntityBuff(string name, int duration)
+        public EntityBuff(BuffData data)
         {
-            this.Name = name;
-            this.Duration = duration;
+            this.Name = data.BuffName;
+            this.Duration = data.Turn;
+            this.EffectRules = data.Rules?.Select(r => r.Clone()).ToList() ?? new List<BuffEffectRule>();
         }
         
         public T GetMiscParam<T>(string paramKey, T defaultValue = default)

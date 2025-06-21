@@ -18,10 +18,10 @@ namespace GameLogic
         public void Start()
         {
             var playerData = PlayerData.Instance;
-            this.FightingData = FightingData.FromPlayerData(playerData);
-            
             this.BattleField = new BattleField(playerData.CurrentStage, playerData);
             this.BattleField.SpawnEntitiesAtTurn(0);
+            this.FightingData = FightingData.FromPlayerData(playerData);
+            
             EntitiesThink();
             
             Rerender();

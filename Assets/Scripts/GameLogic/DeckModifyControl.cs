@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Item;
 using JetBrains.Annotations;
 using Registry;
 using Registry.Data;
@@ -170,7 +171,7 @@ namespace GameLogic
             if (result == null) return;
 
             var playerData = PlayerData.Instance;
-            if (result.ConsumeSlot1 && RecipeSlot1 != CommonCards.TurnBack && RecipeSlot1 != CommonCards.Move1)
+            if (result.ConsumeSlot1 && !IsCardFree(RecipeSlot1.ID) && RecipeSlot1 != CommonCards.TurnBack && RecipeSlot1 != CommonCards.Move1)
             {
                 if (playerData.HeldCards.ContainsKey(RecipeSlot1))
                 {
@@ -190,7 +191,7 @@ namespace GameLogic
                 AddCard(RecipeSlot1);
             }
             
-            if (result.ConsumeSlot2 && RecipeSlot2 != CommonCards.TurnBack && RecipeSlot2 != CommonCards.Move1)
+            if (result.ConsumeSlot2 && !IsCardFree(RecipeSlot2.ID) && RecipeSlot2 != CommonCards.TurnBack && RecipeSlot2 != CommonCards.Move1)
             {
                 if (playerData.HeldCards.ContainsKey(RecipeSlot2))
                 {
@@ -219,6 +220,14 @@ namespace GameLogic
             AddCard(result.ResultCard);
 
             Rerender();
+        }
+        
+        private bool IsCardFree(string cardId)
+        {
+            return PlayerData.Instance.HeldItems
+                .SelectMany(item => item.Effects)
+                .OfType<RecipeFreeCardEffect>()
+                .Any(effect => effect.CardIDs.Contains(cardId));
         }
 
         public void ClickReturn()

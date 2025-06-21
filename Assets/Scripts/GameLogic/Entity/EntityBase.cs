@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using GameLogic.Buff;
 using Newtonsoft.Json;
+using Registry.Data;
 
 namespace GameLogic.Entity
 {
@@ -320,21 +321,35 @@ namespace GameLogic.Entity
                 {
                     if (this.HasBuff(EntityBuffManager.FollowHeart)) return;
 
-                    var buff = new EntityBuff(EntityBuffManager.Chaos, 1);
-                    buff.EffectRules.Add(new CausedDamageEffectRule
+                    var buff = new EntityBuff(new BuffData
                     {
-                        Operator = BuffEffectOperator.Minus,
-                        Value = negativeValue
+                        BuffName = EntityBuffManager.Chaos,
+                        Turn = 1,
+                        Rules = new List<BuffEffectRule>
+                        {
+                            new CausedDamageEffectRule
+                            {
+                                Operator = BuffEffectOperator.Minus,
+                                Value = negativeValue
+                            }
+                        }
                     });
                     this.AddOrUpdateBuff(buff);
                 }
                 else
                 {
-                    var buff = new EntityBuff(EntityBuffManager.Harmony, 1);
-                    buff.EffectRules.Add(new CausedDamageEffectRule
+                    var buff = new EntityBuff(new BuffData
                     {
-                        Operator = BuffEffectOperator.Add,
-                        Value = positiveValue
+                        BuffName = EntityBuffManager.Harmony,
+                        Turn = 1,
+                        Rules = new List<BuffEffectRule>
+                        {
+                            new CausedDamageEffectRule
+                            {
+                                Operator = BuffEffectOperator.Add,
+                                Value = negativeValue
+                            }
+                        }
                     });
                     this.AddOrUpdateBuff(buff);
                 }

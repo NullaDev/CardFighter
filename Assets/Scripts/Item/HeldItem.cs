@@ -31,7 +31,7 @@ namespace Item
         public int Count { get; set; } = 1;
     }
 
-    public class SynthesisFreeCardEffect : HeldItemEffect
+    public class RecipeFreeCardEffect : HeldItemEffect
     {
         public List<string> CardIDs { get; set; } = new();
     }

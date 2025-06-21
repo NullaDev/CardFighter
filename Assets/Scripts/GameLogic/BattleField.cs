@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using GameLogic.Buff;
 using GameLogic.Entity;
+using Item;
 using JetBrains.Annotations;
 using Registry;
 using Registry.Data;
@@ -39,6 +41,17 @@ namespace GameLogic
                 "random" => Random.Range(0, 2) == 0 ? EntityFacing.Right : EntityFacing.Left,
                 _ => throw new Exception("Unknown direction")
             };
+            foreach (var effect in data.HeldItems.SelectMany(heldItem => heldItem.Effects))
+            {
+                if (effect is StartingBuffEffect buffEffect)
+                {
+                    foreach (var buffData in buffEffect.Buffs)
+                    {
+                        player.AddOrUpdateBuff(new EntityBuff(buffData));
+                    }
+                }
+            }
+            
             this.ListEntities[pos] = player;
         }
 
