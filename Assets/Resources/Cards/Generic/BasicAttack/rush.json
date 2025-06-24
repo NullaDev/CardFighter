@@ -6,15 +6,9 @@
   "Cost": 2,
   "Actions": [
     {
-      "Selector": {
-        "Type": "self"
-      },
+      "Selector": { "Type": "self" },
       "Processors": [
-        {
-          "Type": "move_attack",
-          "Value": 1,
-          "Damage": 2
-        }
+        { "Type": "move_attack", "Value": 1, "Damage": 2 }
       ]
     }
   ]

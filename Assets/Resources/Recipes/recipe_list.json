@@ -54,7 +54,13 @@
     "Result": "wait_for_weary",
     "Priority": 3
   },
-  
+
+  {
+    "Slot1": [ "sword" ],
+    "Slot2": [ "axe" ],
+    "Result": "blunt_sword_no_edge",
+    "Priority": 3
+  },
   {
     "Slot1": [ "turn_back" ],
     "Slot2": [ "sword" ],
@@ -66,6 +72,12 @@
     "Slot1": [ "rush" ],
     "Slot2": [ "punch" ],
     "Result": "iron_slam",
+    "Priority": 3
+  },
+  {
+    "Slot1": [ "rush" ],
+    "Slot2": [ "spear" ],
+    "Result": "lone_spear",
     "Priority": 3
   },
   {
@@ -88,8 +100,20 @@
   },
   {
     "Slot1": [ "spear" ],
+    "Slot2": [ "axe" ],
+    "Result": "sweep_all_armies",
+    "Priority": 3
+  },
+  {
+    "Slot1": [ "spear" ],
     "Slot2": [ "sword" ],
     "Result": "throat_strike",
+    "Priority": 3
+  },
+  {
+    "Slot1": [ "spear" ],
+    "Slot2": [ "bow" ],
+    "Result": "throw_spear",
     "Priority": 3
   },
   {
@@ -105,5 +129,11 @@
     "Result": "turn_back_spear",
     "Priority": 3,
     "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "punch" ],
+    "Slot2": [ "punch" ],
+    "Result": "unseen_fist",
+    "Priority": 3
   }
 ]

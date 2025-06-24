@@ -1,0 +1,15 @@
+﻿{
+  "ID": "lone_spear",
+  "Name": "单枪匹马",
+  "TextureName": "Arts/Cards/Generic/AdvancedAttack/lone_spear",
+  "Desc": "前进2格，沿途造成2点伤害",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        { "Type": "move_attack", "Value": 2, "Damage": 2 }
+      ]
+    }
+  ]
+}

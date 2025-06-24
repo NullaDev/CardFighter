@@ -38,7 +38,12 @@
     "shield_charge": 3,
     "punch_kick": 3,
     "tiger_descent": 2,
-    "feint_strike": 2
+    "feint_strike": 2,
+    "blunt_sword_no_edge": 3,
+    "lone_spear": 3,
+    "sweep_all_armies": 3,
+    "throw_spear": 3,
+    "unseen_fist": 3
   },
   "RU": {
     "rites": 3,

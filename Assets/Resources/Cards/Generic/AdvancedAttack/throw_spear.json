@@ -1,0 +1,20 @@
+﻿{
+  "ID": "throw_spear",
+  "Name": "投枪",
+  "TextureName": "Arts/Cards/Generic/AdvancedAttack/throw_spear",
+  "Desc": "对1-3格内的前2个目标造成2点伤害",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 3 },
+      "Filters": [
+        { "Type": "exclude_self" },
+        { "Type": "is_alive" },
+        { "Type": "first_n", "Value": 2 }
+      ],
+      "Processors": [
+        { "Type": "damage", "Value": 2, "Tags": ["melee", "weapon"] }
+      ]
+    }
+  ]
+}

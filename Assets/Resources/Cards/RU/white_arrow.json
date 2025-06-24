@@ -2,7 +2,7 @@
   "ID": "white_arrow",
   "Name": "白矢",
   "TextureName": "Arts/Cards/ru/white_arrow",
-  "Desc": "强力一箭，对1-3格内的首个目标造成3点伤害",
+  "Desc": "强力一箭，对1-3格内的首个目标造成4点破甲伤害",
   "Cost": 1,
   "Actions": [
     {
@@ -13,7 +13,7 @@
         { "Type": "first_n", "Value": 1 }
       ],
       "Processors": [
-        { "Type": "damage", "Value": 3, "Tags": ["ranged"] }
+        { "Type": "damage", "Value": 4, "Tags": ["ranged", "weapon", "break_armor"] }
       ]
     }
   ]

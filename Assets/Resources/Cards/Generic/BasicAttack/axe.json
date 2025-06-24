@@ -6,33 +6,14 @@
   "Cost": 2,
   "Actions": [
     {
-      "Selector": {
-        "Type": "range",
-        "RangeMin": 1,
-        "RangeMax": 1
-      },
+      "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 1 },
       "Filters": [
-        {
-          "Type": "exclude_self"
-        },
-        {
-          "Type": "is_alive"
-        },
-        {
-          "Type": "first_n",
-          "Value": 1
-        }
+        { "Type": "exclude_self" },
+        { "Type": "is_alive" },
+        { "Type": "first_n", "Value": 1 }
       ],
       "Processors": [
-        {
-          "Type": "damage",
-          "Value": 4,
-          "Tags": [
-            "melee",
-            "weapon",
-            "break_armor"
-          ]
-        }
+        { "Type": "damage", "Value": 4, "Tags": ["melee", "weapon", "break_armor"] }
       ]
     }
   ]

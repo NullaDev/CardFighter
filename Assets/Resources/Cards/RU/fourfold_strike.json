@@ -13,10 +13,10 @@
         { "Type": "first_n", "Value": 1 }
       ],
       "Processors": [
-        { "Type": "damage", "Value": 1, "Tags": ["ranged"] },
-        { "Type": "damage", "Value": 1, "Tags": ["ranged"] },
-        { "Type": "damage", "Value": 1, "Tags": ["ranged"] },
-        { "Type": "damage", "Value": 1, "Tags": ["ranged"] }
+        { "Type": "damage", "Value": 1, "Tags": ["ranged", "weapon"] },
+        { "Type": "damage", "Value": 1, "Tags": ["ranged", "weapon"] },
+        { "Type": "damage", "Value": 1, "Tags": ["ranged", "weapon"] },
+        { "Type": "damage", "Value": 1, "Tags": ["ranged", "weapon"] }
       ]
     }
   ]

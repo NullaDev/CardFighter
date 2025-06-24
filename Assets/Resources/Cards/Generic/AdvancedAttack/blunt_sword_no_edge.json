@@ -1,0 +1,20 @@
+﻿{
+  "ID": "blunt_sword_no_edge",
+  "Name": "重剑无锋",
+  "TextureName": "Arts/Cards/Generic/AdvancedAttack/blunt_sword_no_edge",
+  "Desc": "对1格内的目标造成5点破甲、破格伤害",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 1 },
+      "Filters": [
+        { "Type": "exclude_self" },
+        { "Type": "is_alive" },
+        { "Type": "first_n", "Value": 1 }
+      ],
+      "Processors": [
+        { "Type": "damage", "Value": 5, "Tags": ["melee", "weapon", "break_armor", "break_guard"] }
+      ]
+    }
+  ]
+}

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using GameLogic.Buff;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Registry.Data;
-using UnityEngine;
 
 namespace Card.Engine
 {

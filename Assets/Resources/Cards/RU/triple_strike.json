@@ -2,31 +2,17 @@
   "ID": "triple_strike",
   "Name": "参连",
   "TextureName": "Arts/Cards/ru/triple_strike",
-  "Desc": "对1-3格内的首个目标造成2点伤害，然后对首个目标造成1点伤害3次",
-  "Cost": 3,
+  "Desc": "对1-3格内的所有目标造成2点伤害",
+  "Cost": 2,
   "Actions": [
     {
       "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 3 },
       "Filters": [
         { "Type": "exclude_self" },
-        { "Type": "is_alive" },
-        { "Type": "first_n", "Value": 1 }
+        { "Type": "is_alive" }
       ],
       "Processors": [
-        { "Type": "damage", "Value": 2, "Tags": ["ranged"] }
-      ]
-    },
-    {
-      "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 3 },
-      "Filters": [
-        { "Type": "exclude_self" },
-        { "Type": "is_alive" },
-        { "Type": "first_n", "Value": 1 }
-      ],
-      "Processors": [
-        { "Type": "damage", "Value": 1, "Tags": ["ranged"] },
-        { "Type": "damage", "Value": 1, "Tags": ["ranged"] },
-        { "Type": "damage", "Value": 1, "Tags": ["ranged"] }
+        { "Type": "damage", "Value": 2, "Tags": ["ranged", "weapon"] }
       ]
     }
   ]
