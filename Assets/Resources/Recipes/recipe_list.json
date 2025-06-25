@@ -111,6 +111,12 @@
     "Priority": 3
   },
   {
+    "Slot1": [ "broadsword" ],
+    "Slot2": [ "bow" ],
+    "Result": "throw_knife",
+    "Priority": 3
+  },
+  {
     "Slot1": [ "spear" ],
     "Slot2": [ "bow" ],
     "Result": "throw_spear",
@@ -135,5 +141,12 @@
     "Slot2": [ "punch" ],
     "Result": "unseen_fist",
     "Priority": 3
+  },
+  {
+    "Slot1": [ "turn_back" ],
+    "Slot2": [ "broadsword" ],
+    "Result": "whirlwind_slash",
+    "Priority": 3,
+    "ConsumeSlot1": false
   }
 ]

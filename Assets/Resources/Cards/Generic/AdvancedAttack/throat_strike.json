@@ -2,7 +2,7 @@
   "ID": "throat_strike",
   "Name": "一枪封喉",
   "TextureName": "Arts/Cards/Generic/AdvancedAttack/throat_strike",
-  "Desc": "对1-2格内的首个目标造成4点无视护甲伤害",
+  "Desc": "对2格内的首个目标造成4点无视护甲伤害",
   "Cost": 2,
   "Actions": [
     {

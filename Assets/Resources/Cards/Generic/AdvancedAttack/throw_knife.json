@@ -1,9 +1,9 @@
 ﻿{
-  "ID": "throw_spear",
-  "Name": "投枪",
-  "TextureName": "Arts/Cards/Generic/AdvancedAttack/throw_spear",
-  "Desc": "对1-3格内的前2个目标造成3点伤害",
-  "Cost": 2,
+  "ID": "throw_knife",
+  "Name": "投掷飞刀",
+  "TextureName": "Arts/Cards/Generic/AdvancedAttack/throw_knife",
+  "Desc": "对3格内的首个目标造成3点伤害",
+  "Cost": 1,
   "Actions": [
     {
       "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 3 },

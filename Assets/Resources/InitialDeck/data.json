@@ -43,7 +43,9 @@
     "lone_spear": 3,
     "sweep_all_armies": 3,
     "throw_spear": 3,
-    "unseen_fist": 3
+    "unseen_fist": 3,
+    "whirlwind_slash": 2,
+    "throw_knife": 3
   },
   "RU": {
     "rites": 3,

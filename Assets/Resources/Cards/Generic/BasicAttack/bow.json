@@ -2,7 +2,7 @@
   "ID": "bow",
   "Name": "射你一箭",
   "TextureName": "Arts/Cards/Generic/BasicAttack/bow",
-  "Desc": "对1-3格内的首个目标造成2点伤害",
+  "Desc": "对3格内的首个目标造成2点伤害",
   "Cost": 1,
   "Actions": [
     {
