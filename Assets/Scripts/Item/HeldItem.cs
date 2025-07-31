@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Registry;
 using Registry.Data;
 
 namespace Item
@@ -12,37 +14,28 @@ namespace Item
         public string ExtraText { get; set; }
         
         public List<HeldItemEffect> Effects { get; set; } = new();
-    }
-    
-    public abstract class HeldItemEffect
-    {
-        public string EffectType { get; set; }
-    }
-    
-    public class StartingBuffEffect : HeldItemEffect
-    {
-        public List<BuffData> Buffs { get; set; } = new();
-    }
 
-    public class GrantCardOnObtainEffect : HeldItemEffect
-    {
-        public List<string> CardIDs { get; set; } = new();
-        public bool IsRandom { get; set; } = false;
-        public int Count { get; set; } = 1;
-    }
+        public void PlayerTryObtain(PlayerData player)
+        {
+            if (player.HeldItems.Any(h => h.ID == this.ID))
+                return;
+            
+            player.HeldItems.Add(this);
+            foreach (var effect in Effects)
+            {
+                if (effect is not GrantCardOnObtainEffect grantEffect) continue;
+                var gained = new List<CardPrototype>();
+                for (var i = 0; i < grantEffect.Count; i++)
+                {
+                    var cardId = grantEffect.IsRandom ? grantEffect.CardIDs[player.Random.Next(grantEffect.CardIDs.Count)] : grantEffect.CardIDs[i % grantEffect.CardIDs.Count];
+                    gained.Add(StaticDataManager.CardDataManager.Find(cardId));
+                }
 
-    public class RecipeFreeCardEffect : HeldItemEffect
-    {
-        public List<string> CardIDs { get; set; } = new();
-    }
-
-    public class ReplaceCardEffect : HeldItemEffect
-    {
-        public Dictionary<string, string> ReplacementMap { get; set; } = new();
-    }
-    
-    public class MiscEffect : HeldItemEffect
-    {
-        public Dictionary<string, object> Parameters { get; set; } = new();
+                foreach (var card in gained.Where(card => !player.HeldCards.TryAdd(card, 1)))
+                {
+                    player.HeldCards[card]++;
+                }
+            }
+        }
     }
 }

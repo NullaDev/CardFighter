@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Card;
 using Item;
@@ -21,6 +22,7 @@ namespace Registry
         public readonly Dictionary<CardPrototype, int> HeldCards = new();
         public readonly CardOperationsInBattle CardOperations = new();
         public readonly List<HeldItem> HeldItems = new();
+        public readonly Random Random = new();
         
         public StageConfig CurrentStage = null;
         
@@ -40,6 +42,15 @@ namespace Registry
                 if (CardOperations.GetAllCards().Count >= 2 + CardOperationsInBattle.MaxCardCount)
                     break;
                 CardOperations.AddCard(card);
+            }
+        }
+
+        public void UpdateHp()
+        {
+            this.Hp = Math.Min(this.Hp, this.MaxHp);
+            if (this.Hp <= 0)
+            {
+                // TODO
             }
         }
     }

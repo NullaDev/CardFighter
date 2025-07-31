@@ -9,40 +9,25 @@ using Registry.Data;
 
 namespace GameLogic.Buff
 {
-    
-    public enum BuffEffectOperator
-    {
-        Add,
-        Minus,
-        Multiply,
-        Divide,
-        Set
-    }
 
     public interface IOperatorEffect
     {
-        public BuffEffectOperator Operator { get; set; }
+        public Operator Operator { get; set; }
         public float Value { get; set; }
 
         public static void ApplyBuffEffect(ref int value, ref double additiveModifier, ref double multipleModifier, IOperatorEffect effect)
         {
             switch (effect.Operator)
             {
-                case BuffEffectOperator.Add:
-                    additiveModifier += effect.Value;
+                case Operator.Add:
+                case Operator.Minus:
+                    additiveModifier = OperatorUtils.ApplyOperator(additiveModifier, effect.Operator, effect.Value);
                     break;
-                case BuffEffectOperator.Minus:
-                    additiveModifier -= effect.Value;
+                case Operator.Multiply:
+                case Operator.Divide:
+                    multipleModifier = OperatorUtils.ApplyOperator(multipleModifier, effect.Operator, effect.Value);
                     break;
-                case BuffEffectOperator.Multiply:
-                    multipleModifier *= effect.Value;
-                    break;
-                case BuffEffectOperator.Divide:
-                    if (effect.Value == 0)
-                        throw new DivideByZeroException();
-                    multipleModifier /= effect.Value;
-                    break;
-                case BuffEffectOperator.Set:
+                case Operator.Set:
                     value = (int)effect.Value;
                     break;
                 default:
@@ -123,7 +108,7 @@ namespace GameLogic.Buff
 
     public class CausedDamageEffectRule : BuffEffectRule, IOperatorEffect, IBuffFilterEffect, IConditionFilterEffect
     {
-        public BuffEffectOperator Operator { get; set; }
+        public Operator Operator { get; set; }
         public float Value { get; set; }
         public int RemainingTimes { get; set; } = -1;
 
@@ -154,7 +139,7 @@ namespace GameLogic.Buff
 
     public class ReceivedDamageEffectRule : BuffEffectRule, IOperatorEffect, IBuffFilterEffect, IConditionFilterEffect
     {
-        public BuffEffectOperator Operator { get; set; }
+        public Operator Operator { get; set; }
         public float Value { get; set; }
         public int RemainingTimes { get; set; } = -1;
 
@@ -185,7 +170,7 @@ namespace GameLogic.Buff
     
     public class CardCostEffectRule : BuffEffectRule, IOperatorEffect, IBuffFilterEffect
     {
-        public BuffEffectOperator Operator { get; set; }
+        public Operator Operator { get; set; }
         public float Value { get; set; }
 
         public bool AffectAllCards { get; set; } = false;

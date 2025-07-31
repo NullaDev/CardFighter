@@ -328,7 +328,7 @@ namespace GameLogic.Entity
                         {
                             new CausedDamageEffectRule
                             {
-                                Operator = BuffEffectOperator.Minus,
+                                Operator = Operator.Minus,
                                 Value = negativeValue
                             }
                         }
@@ -345,7 +345,7 @@ namespace GameLogic.Entity
                         {
                             new CausedDamageEffectRule
                             {
-                                Operator = BuffEffectOperator.Add,
+                                Operator = Operator.Add,
                                 Value = negativeValue
                             }
                         }

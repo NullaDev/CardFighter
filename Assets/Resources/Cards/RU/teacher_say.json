@@ -15,12 +15,7 @@
               "BuffName": "hidden_weapon",
               "Turn": 2,
               "Rules": [
-                {
-                  "RuleType": "card_cost",
-                  "Operator": "Set",
-                  "Value": 0,
-                  "AffectAllCards": true
-                }
+                { "RuleType": "card_cost", "Operator": "Set", "Value": 0, "AffectAllCards": true }
               ]
             }
           ]
