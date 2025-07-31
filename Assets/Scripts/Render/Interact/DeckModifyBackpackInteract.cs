@@ -1,4 +1,5 @@
 ﻿using GameLogic;
+using GameLogic.SceneControl;
 using Registry;
 using Registry.Data;
 using UnityEngine;

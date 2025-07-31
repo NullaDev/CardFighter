@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace GameLogic
+namespace GameLogic.SceneControl
 {
     public class ClassChooseControl: MonoBehaviour
     {

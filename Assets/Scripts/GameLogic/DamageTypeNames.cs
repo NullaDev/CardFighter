@@ -1,6 +1,6 @@
 ﻿namespace GameLogic
 {
-    public class DamageTypeNames
+    public static class DamageTypeNames
     {
         public const string Melee = "melee";
         public const string Ranged = "ranged";

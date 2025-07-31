@@ -7,7 +7,7 @@ using Render;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace GameLogic
+namespace GameLogic.SceneControl
 {
     public class FightingControl : MonoBehaviour
     {

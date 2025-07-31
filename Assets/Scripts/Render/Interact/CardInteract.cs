@@ -1,5 +1,6 @@
 ﻿using Card;
 using GameLogic;
+using GameLogic.SceneControl;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
