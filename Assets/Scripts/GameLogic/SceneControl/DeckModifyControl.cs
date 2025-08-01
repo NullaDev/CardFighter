@@ -167,6 +167,9 @@ namespace GameLogic.SceneControl
 
         public void ClickSlotResult()
         {
+            if (RecipeSlot1 == null || RecipeSlot2 == null)
+                return;
+            
             var result = StaticDataManager.RecipeDataManager.TryGetFusionResult(RecipeSlot1, RecipeSlot2);
             if (result == null) return;
 

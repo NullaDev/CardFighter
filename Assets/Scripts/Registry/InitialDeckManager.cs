@@ -27,10 +27,10 @@ namespace Registry
         
         public void DebugLoadedDeckInfo()
         {
-            Debug.Log("Loading cards, total number:" + this._deckDict.Count);
+            Debug.Log("Loading initial deck configs, total number:" + this._deckDict.Count);
             foreach (var kv in this._deckDict)
             {
-                Debug.Log("name: " + kv.Key.ToString() + ", cards: " + kv.Value.Count);
+                Debug.Log("name: " + kv.Key + ", cards: " + kv.Value.Count);
             }
         }
 
