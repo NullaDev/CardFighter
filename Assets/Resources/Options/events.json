@@ -1,0 +1,54 @@
+﻿{
+  "event_wandering_scholar": [
+    {
+      "Id": "humble_request",
+      "Title": "恭敬求教",
+      "Description": "你选择向他请教礼法之道。他笑而不语，赠你一些心得（失去10金币，获得卡牌：观察）。",
+      "PlayerClass": "generic",
+      "Actions": [
+        {
+          "Type": "card_gain",
+          "CardIDs": ["observe"],
+          "Count": 1,
+          "Random": false
+        },
+        {
+          "Type": "gold_change",
+          "Operator": "Minus",
+          "Amount": 10
+        }
+      ]
+    },
+    {
+      "Id": "accept_trial",
+      "Title": "接受试炼",
+      "Description": "你挺身而出，准备接受他的试炼。（失去8HP，获得道具：剑）",
+      "PlayerClass": "generic",
+      "Actions": [
+        {
+          "Type": "hp_change",
+          "Operator": "Minus",
+          "Amount": 8
+        },
+        {
+          "Type": "item_gain",
+          "ItemIDs": ["sword"],
+          "Count": 1,
+          "Random": false
+        }
+      ]
+    },
+    {
+      "Id": "turn_away",
+      "Title": "转身离去",
+      "Description": "你选择默默离去，但似乎有什么重要的东西遗失了（随机失去1张卡牌）。",
+      "PlayerClass": "generic",
+      "Actions": [
+        {
+          "Type": "card_random_lose",
+          "Count": 1
+        }
+      ]
+    }
+  ]
+}

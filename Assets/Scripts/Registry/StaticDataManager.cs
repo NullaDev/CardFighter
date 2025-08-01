@@ -8,6 +8,7 @@
         public static readonly StageDataManager StageDataManager = new();
         public static readonly BuffDisplayManager BuffDisplayManager = new();
         public static readonly RecipeDataManager RecipeDataManager = new();
+        public static readonly OptionDataManager OptionDataManager = new();
 
         public static void LoadAll()
         {
@@ -17,6 +18,7 @@
             StageDataManager.LoadFromFile();
             BuffDisplayManager.LoadFromFile();
             RecipeDataManager.LoadFromFile();
+            OptionDataManager.LoadFromFile();
             CommonCards.Init();
         }
     }

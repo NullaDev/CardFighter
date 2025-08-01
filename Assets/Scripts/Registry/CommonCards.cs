@@ -1,4 +1,5 @@
-﻿using Registry.Data;
+﻿using System.Collections.Generic;
+using Registry.Data;
 
 namespace Registry
 {
@@ -18,5 +19,7 @@ namespace Registry
             Move1 = StaticDataManager.CardDataManager.Find("move");
             Drive = StaticDataManager.CardDataManager.Find("drive");
         }
+
+        public static List<CardPrototype> UnremovableCards = new() {TurnBack, Move1};
     }
 }

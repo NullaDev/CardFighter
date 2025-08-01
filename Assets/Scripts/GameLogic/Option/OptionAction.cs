@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Registry;
 using Registry.Data;
@@ -14,35 +15,36 @@ namespace GameLogic.Option
     
     public class GoldChangeAction : OptionAction
     {
-        public Operator Op { get; set; }
+        public Operator Operator { get; set; }
         public float Amount { get; set; }
     
         public override void Execute(PlayerData player)
         {
-            player.InGameGold = (int)OperatorUtils.ApplyOperator(player.InGameGold, Op, Amount);
+            player.InGameGold = (int)OperatorUtils.ApplyOperator(player.InGameGold, Operator, Amount);
+            player.InGameGold = Math.Max(player.InGameGold, 0);
         }
     }
     
     public class HpChangeAction : OptionAction
     {
-        public Operator Op { get; set; }
+        public Operator Operator { get; set; }
         public float Amount { get; set; }
     
         public override void Execute(PlayerData player)
         {
-            player.Hp = (int)OperatorUtils.ApplyOperator(player.Hp, Op, Amount);
+            player.Hp = (int)OperatorUtils.ApplyOperator(player.Hp, Operator, Amount);
             player.UpdateHp();
         }
     }
     
     public class MaxHpChangeAction  : OptionAction
     {
-        public Operator Op { get; set; }
+        public Operator Operator { get; set; }
         public float Amount { get; set; }
     
         public override void Execute(PlayerData player)
         {
-            player.MaxHp = (int)OperatorUtils.ApplyOperator(player.MaxHp, Op, Amount);
+            player.MaxHp = (int)OperatorUtils.ApplyOperator(player.MaxHp, Operator, Amount);
             player.UpdateHp();
         }
     }
@@ -94,10 +96,11 @@ namespace GameLogic.Option
         public override void Execute(PlayerData player)
         {
             var flatList = player.HeldCards
+                .Where(kv => !CommonCards.UnremovableCards.Contains(kv.Key))
                 .SelectMany(kv => Enumerable.Repeat(kv.Key, kv.Value))
                 .ToList();
 
-            if (flatList.Count == 0) return;
+            if (flatList.Count <= 0) return;
 
             for (var i = 0; i < Count && flatList.Count > 0; i++)
             {
