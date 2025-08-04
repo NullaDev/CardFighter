@@ -1,7 +1,9 @@
+using System;
 using System.Linq;
 using Card;
 using GameLogic.Buff;
 using GameLogic.Entity;
+using GameLogic.RogueMap;
 using Registry;
 using Render;
 using UnityEngine;
@@ -115,9 +117,8 @@ namespace GameLogic.SceneControl
             }
             if (!enemyRemain && !this.BattleField.AnyIncomingEnemyRemain())
             {
-                // TODO reward
                 UpdatePlayerData();
-                SceneManager.LoadScene("RogueMap");
+                SceneManager.LoadScene("OptionChoose");
             }
         }
 
@@ -147,6 +148,15 @@ namespace GameLogic.SceneControl
             var playerData = PlayerData.Instance;
             var player = this.BattleField.GetPlayerFromMap();
             playerData.Hp = player.HP;
+
+            var optionName = playerData.CurrentNodeType switch
+            {
+                NodeType.FIGHT => $"normal_fight_bonus_{playerData.CurrentLayerDifficulty/2}",
+                NodeType.ELITE_FIGHT => $"elite_fight_bonus_{playerData.CurrentLayerDifficulty/4}",
+                NodeType.BOSS => "boss_fight_bonus",
+                _ => ""
+            };
+            playerData.Options = StaticDataManager.OptionDataManager.GetOptions(optionName, playerData);
         }
     }
 }

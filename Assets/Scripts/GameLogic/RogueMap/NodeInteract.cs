@@ -21,16 +21,21 @@ namespace GameLogic.RogueMap
             var stageData = StaticDataManager.StageDataManager;
             if (this.Node.Type == NodeType.FIGHT)
             {
+                playerData.CurrentNodeType = NodeType.FIGHT;
                 playerData.CurrentStage = stageData.GetNormalStage(this.Node.LayerDifficulty);
+                playerData.CurrentLayerDifficulty = this.Node.LayerDifficulty;
                 SceneManager.LoadScene("Fighting");
             }
             else if (this.Node.Type == NodeType.ELITE_FIGHT)
             {
+                playerData.CurrentNodeType = NodeType.ELITE_FIGHT;
                 playerData.CurrentStage = stageData.GetEliteStage(this.Node.LayerDifficulty);
+                playerData.CurrentLayerDifficulty = this.Node.LayerDifficulty;
                 SceneManager.LoadScene("Fighting");
             }
             else if (this.Node.Type == NodeType.BOSS)
             {
+                playerData.CurrentNodeType = NodeType.BOSS;
                 //TODO
             }
             else if (this.Node.Type == NodeType.EVENT)

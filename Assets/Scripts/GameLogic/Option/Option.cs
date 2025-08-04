@@ -8,6 +8,7 @@ namespace GameLogic.Option
         public string Title { get; set; }
         public string Description { get; set; }
         public string PlayerClass { get; set; } = "generic";
+        public string TargetSceneName { get; set; } = "RogueMap";
 
         public List<OptionAction> Actions { get; set; }
     }

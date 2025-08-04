@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DeckModify.unity
     guid: 256cc54906907634ea54698ce8a24a73
+  - enabled: 1
+    path: Assets/Scenes/OptionChoose.unity
+    guid: ed70fc66d1d9dc34983c209845b68c59
   m_configObjects: {}

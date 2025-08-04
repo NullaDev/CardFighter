@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Card;
+using GameLogic.Option;
+using GameLogic.RogueMap;
 using Item;
 using Registry.Data;
 
@@ -23,8 +25,11 @@ namespace Registry
         public readonly CardOperationsInBattle CardOperations = new();
         public readonly List<HeldItem> HeldItems = new();
         public readonly Random Random = new();
-        
+
+        public NodeType CurrentNodeType = NodeType.FIGHT;
+        public int CurrentLayerDifficulty = 0;
         public StageConfig CurrentStage = null;
+        public List<Option> Options = new();
         
         public void InitCardOperationsFromHeld()
         {

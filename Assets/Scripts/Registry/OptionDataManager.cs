@@ -50,10 +50,13 @@ namespace Registry
             DebugLoadedOptionInfo();
         }
 
-        public List<Option> GetOptions(string key, string playerClass)
+        public List<Option> GetOptions(string key, PlayerData playerData, int maxLen=3)
         {
             if (!OptionMap.TryGetValue(key, out var allOptions)) return new List<Option>();
-            return allOptions.FindAll(opt => opt.PlayerClass == "generic" || opt.PlayerClass == playerClass);
+            return allOptions.FindAll(opt => opt.PlayerClass == "generic" || opt.PlayerClass == playerData.PlayerClass.ToString())
+                .OrderBy(_ => playerData.Random.Next())
+                .Take(maxLen)
+                .ToList();
         }
     }
 }
