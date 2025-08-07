@@ -4,6 +4,7 @@
   "TextureName": "Arts/Cards/Generic/Misc/move",
   "Desc": "前进1格",
   "Cost": 1,
+  "IsBuiltinCard": true,
   "Actions": [
     {
       "Selector": {

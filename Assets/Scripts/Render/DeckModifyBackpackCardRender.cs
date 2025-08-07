@@ -22,7 +22,7 @@ namespace Render
         public void Render(CardInstance card, int count, bool shouldRenderFrame)
         {
             this._cardRender.RenderCard(card);
-            this._count.text = $"×{count}";
+            this._count.text = count>=0? $"×{count}" : "×inf";
             this._frame.enabled = shouldRenderFrame;
         }
     }

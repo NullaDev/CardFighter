@@ -4,6 +4,7 @@
   "TextureName": "Arts/Cards/Generic/Misc/turn_back",
   "Desc": "反转当前方向",
   "Cost": 0,
+  "IsBuiltinCard": true,
   "Actions": [
     {
       "Selector": {

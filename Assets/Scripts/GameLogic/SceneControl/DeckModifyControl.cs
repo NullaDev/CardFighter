@@ -28,6 +28,9 @@ namespace GameLogic.SceneControl
             var playerData = PlayerData.Instance;
             var playerDeck = playerData.CardOperations.GetAllCards();
             
+            _unusedCards.Add(CommonCards.Move1, -1);
+            _unusedCards.Add(CommonCards.TurnBack, -1);
+            
             foreach (var cardPrototype in playerData.HeldCards.Keys)
             {
                 var countInDeck = playerDeck.Count(card => card == cardPrototype);
@@ -45,6 +48,9 @@ namespace GameLogic.SceneControl
 
         public void ShrinkCard(CardPrototype card)
         {
+            if (card.IsBuiltinCard)
+                return;
+            
             if (_unusedCards.TryGetValue(card, out var count))
             {
                 if (count <= 1)
@@ -60,6 +66,9 @@ namespace GameLogic.SceneControl
 
         public void AddCard(CardPrototype card)
         {
+            if (card.IsBuiltinCard)
+                return;
+            
             if (!_unusedCards.TryAdd(card, 1))
             {
                 _unusedCards[card]++;
@@ -174,7 +183,7 @@ namespace GameLogic.SceneControl
             if (result == null) return;
 
             var playerData = PlayerData.Instance;
-            if (result.ConsumeSlot1 && !IsCardFree(RecipeSlot1.ID) && RecipeSlot1 != CommonCards.TurnBack && RecipeSlot1 != CommonCards.Move1)
+            if (result.ConsumeSlot1 && !IsCardFree(RecipeSlot1.ID) && !RecipeSlot1.IsBuiltinCard)
             {
                 if (playerData.HeldCards.ContainsKey(RecipeSlot1))
                 {
@@ -194,7 +203,7 @@ namespace GameLogic.SceneControl
                 AddCard(RecipeSlot1);
             }
             
-            if (result.ConsumeSlot2 && !IsCardFree(RecipeSlot2.ID) && RecipeSlot2 != CommonCards.TurnBack && RecipeSlot2 != CommonCards.Move1)
+            if (result.ConsumeSlot2 && !IsCardFree(RecipeSlot2.ID) && !RecipeSlot2.IsBuiltinCard)
             {
                 if (playerData.HeldCards.ContainsKey(RecipeSlot2))
                 {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Card.Engine;
 using JetBrains.Annotations;
@@ -61,7 +62,9 @@ namespace Registry
             {
                 var name1 = card1.Name;
                 var name2 = card2.Name;
-                var fusedName = name1[..(name1.Length/2)] + name2[(name2.Length/2)..];
+                var half1Len = Math.Max(2, Math.Min(3, (int)Math.Ceiling(name1.Length / 2.0)));
+                var half2Len = Math.Max(2, Math.Min(3, (int)Math.Ceiling(name2.Length / 2.0)));
+                var fusedName = name1[..Math.Min(half1Len, name1.Length)] + name2[Math.Max(0, name2.Length - half2Len)..];
                 var fusionCard = new CardPrototype
                 {
                     ID = $"fusion_{card1.ID}+{card2.ID}",

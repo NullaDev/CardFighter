@@ -11,6 +11,7 @@ namespace Registry.Data
         public string TextureName { get; set; }
         public string Desc { get; set; }
         public int Cost { get; set; }
+        public bool IsBuiltinCard = false;
         [JsonIgnore] public bool IsFusionCard = false;
         public List<EntityAction> Actions { get; set; } = new();
         

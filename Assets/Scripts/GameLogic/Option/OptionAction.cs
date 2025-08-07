@@ -96,7 +96,7 @@ namespace GameLogic.Option
         public override void Execute(PlayerData player)
         {
             var flatList = player.HeldCards
-                .Where(kv => !CommonCards.UnremovableCards.Contains(kv.Key))
+                .Where(kv => !kv.Key.IsBuiltinCard)
                 .SelectMany(kv => Enumerable.Repeat(kv.Key, kv.Value))
                 .ToList();
 

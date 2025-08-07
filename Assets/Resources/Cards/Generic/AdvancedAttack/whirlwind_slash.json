@@ -2,7 +2,7 @@
   "ID": "whirlwind_slash",
   "Name": "旋风斩",
   "TextureName": "Arts/Cards/Generic/AdvancedAttack/whirlwind_slash",
-  "Desc": "对自身前后1格的目标各造成3点伤害，但是自身下回合晕眩",
+  "Desc": "对自身前后1格的目标各造成4点伤害，但是自身下回合晕眩",
   "Cost": 2,
   "Actions": [
     {
@@ -12,13 +12,11 @@
         { "Type": "is_alive" }
       ],
       "Processors": [
-        { "Type": "damage", "Value": 3, "Tags": ["melee", "weapon"] }
+        { "Type": "damage", "Value": 4, "Tags": ["melee", "weapon"] }
       ]
     },
     {
-      "Selector": {
-        "Type": "self"
-      },
+      "Selector": { "Type": "self" },
       "Filters": [],
       "Processors": [
         {
