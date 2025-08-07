@@ -1,116 +1,43 @@
 ﻿{
-  "normal_fight_bonus_0": [
-    {
-      "Id": "get_basic_card_punch",
-      "Title": "获得：给你一拳",
-      "Description": "你学习了一招简单的拳法。",
-      "PlayerClass": "generic",
-      "Actions": [
-        {
-          "Type": "card_gain",
-          "CardIDs": ["punch"],
-          "Count": 1,
-          "Random": false
-        }
-      ]
-    },
-    {
-      "Id": "get_basic_card_kick",
-      "Title": "获得：踹你一脚",
-      "Description": "你学习了一招简单的腿法。",
-      "PlayerClass": "generic",
-      "Actions": [
-        {
-          "Type": "card_gain",
-          "CardIDs": ["kick"],
-          "Count": 1,
-          "Random": false
-        }
-      ]
-    },
-    {
-      "Id": "get_basic_card_axe",
-      "Title": "获得：给你一斧",
-      "Description": "你掌握了使用战斧的基础方法。",
-      "PlayerClass": "generic",
-      "Actions": [
-        {
-          "Type": "card_gain",
-          "CardIDs": ["axe"],
-          "Count": 1,
-          "Random": false
-        }
-      ]
-    },
-    {
-      "Id": "get_basic_card_bow",
-      "Title": "获得：射你一箭",
-      "Description": "你学会了基础的弓箭技巧。",
-      "PlayerClass": "generic",
-      "Actions": [
-        {
-          "Type": "card_gain",
-          "CardIDs": ["bow"],
-          "Count": 1,
-          "Random": false
-        }
-      ]
-    },
-    {
-      "Id": "get_basic_card_broadsword",
-      "Title": "获得：砍你一刀",
-      "Description": "你获得了一把趁手的横刀。",
-      "PlayerClass": "generic",
-      "Actions": [
-        {
-          "Type": "card_gain",
-          "CardIDs": ["broadsword"],
-          "Count": 1,
-          "Random": false
-        }
-      ]
-    },
-    {
-      "Id": "get_basic_card_hammer",
-      "Title": "获得：给你一锤",
-      "Description": "你抡起了大锤，准备制敌。",
-      "PlayerClass": "generic",
-      "Actions": [
-        {
-          "Type": "card_gain",
-          "CardIDs": ["hammer"],
-          "Count": 1,
-          "Random": false
-        }
-      ]
-    },
-    {
-      "Id": "get_basic_card_spear",
-      "Title": "获得：捅你一枪",
-      "Description": "你掌握了长兵器的进攻节奏。",
-      "PlayerClass": "generic",
-      "Actions": [
-        {
-          "Type": "card_gain",
-          "CardIDs": ["spear"],
-          "Count": 1,
-          "Random": false
-        }
-      ]
-    },
-    {
-      "Id": "get_basic_card_sword",
-      "Title": "获得：刺你一剑",
-      "Description": "你学习了精确的剑术刺击。",
-      "PlayerClass": "generic",
-      "Actions": [
-        {
-          "Type": "card_gain",
-          "CardIDs": ["sword"],
-          "Count": 1,
-          "Random": false
-        }
-      ]
-    }
-  ]
+  "normal_fight_bonus_0": {
+    "Description": "战斗结束后，你获得了一些收获。",
+    "GuaranteedOptions": [
+      {
+        "Id": "bonus_gold",
+        "Title": "获得金币",
+        "Description": "你搜刮了敌人遗落的财物，获得了10金币。",
+        "PlayerClass": "generic",
+        "Actions": [
+          { "Type": "gold_change", "Operator": "Add", "Amount": 10 }
+        ]
+      },
+      {
+        "Id": "increase_max_hp",
+        "Title": "提升生命上限",
+        "Description": "你在战斗中成长，最大生命值上限提高了5点（不会回复生命值）。",
+        "PlayerClass": "generic",
+        "Actions": [
+          { "Type": "max_hp_change", "Operator": "Add", "Amount": 5 }
+        ]
+      }
+    ],
+    "OptionalOptions": [
+      {
+        "Id": "get_random_basic_attack",
+        "Title": "获得随机攻击卡",
+        "Description": "你复盘战斗，从中领悟一招新的基本攻击技法（包含：给你一拳、踢你一脚、给你一斧、射你一箭、砍你一刀、给你一锤、捅你一枪、刺你一剑）。",
+        "PlayerClass": "generic",
+        "Actions": [
+          {
+            "Type": "card_gain",
+            "CardIDs": [
+              "punch", "kick", "axe", "bow", "broadsword", "hammer", "spear", "sword"
+            ],
+            "Count": 1,
+            "Random": true
+          }
+        ]
+      }
+    ]
+  }
 }

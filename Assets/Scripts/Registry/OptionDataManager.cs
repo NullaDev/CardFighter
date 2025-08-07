@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using GameLogic.Option;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace Registry
     public class OptionDataManager
     {
         private bool _hasLoaded = false;
-        public readonly Dictionary<string, List<Option>> OptionMap = new();
+        public readonly Dictionary<string, OptionBundle> OptionMap = new();
         
         private const string OptionFolderRoot = "Options";
         
@@ -18,7 +19,7 @@ namespace Registry
             Debug.Log("Loading options...");
             
             var keyCount = OptionMap.Count;
-            var optionCount = OptionMap.Sum(kv => kv.Value.Count);
+            var optionCount = OptionMap.Sum(kv => kv.Value.GuaranteedOptions.Count + kv.Value.OptionalOptions.Count);
             Debug.Log($"Total option types: {keyCount}");
             Debug.Log($"Total options: {optionCount}");
         }
@@ -37,26 +38,20 @@ namespace Registry
 
             foreach (var file in jsonFiles)
             {
-                var dict = JsonConvert.DeserializeObject<Dictionary<string, List<Option>>>(file.text, settings);
+                var dict = JsonConvert.DeserializeObject<Dictionary<string, OptionBundle>>(file.text, settings);
                 foreach (var kv in dict)
                 {
-                    if (!OptionMap.ContainsKey(kv.Key))
-                        OptionMap[kv.Key] = new List<Option>();
-
-                    OptionMap[kv.Key].AddRange(kv.Value);
+                    OptionMap[kv.Key] = kv.Value;
                 }
             }
 
             DebugLoadedOptionInfo();
         }
 
-        public List<Option> GetOptions(string key, PlayerData playerData, int maxLen=3)
+        [CanBeNull]
+        public OptionBundle GetBundle(string key)
         {
-            if (!OptionMap.TryGetValue(key, out var allOptions)) return new List<Option>();
-            return allOptions.FindAll(opt => opt.PlayerClass == "generic" || opt.PlayerClass == playerData.PlayerClass.ToString())
-                .OrderBy(_ => playerData.Random.Next())
-                .Take(maxLen)
-                .ToList();
+            return OptionMap.GetValueOrDefault(key);
         }
     }
 }

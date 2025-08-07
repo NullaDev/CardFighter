@@ -4,6 +4,7 @@ using Card;
 using GameLogic.Option;
 using GameLogic.RogueMap;
 using Item;
+using JetBrains.Annotations;
 using Registry.Data;
 
 namespace Registry
@@ -28,8 +29,8 @@ namespace Registry
 
         public NodeType CurrentNodeType = NodeType.FIGHT;
         public int CurrentLayerDifficulty = 0;
-        public StageConfig CurrentStage = null;
-        public List<Option> Options = new();
+        [CanBeNull] public StageConfig CurrentStage = null;
+        [CanBeNull] public OptionBundle OptionBundle = null;
         
         public void InitCardOperationsFromHeld()
         {

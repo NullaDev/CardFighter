@@ -20,6 +20,12 @@ namespace GameLogic.SceneControl
         public void Start()
         {
             var playerData = PlayerData.Instance;
+            
+            if (playerData.CurrentStage == null)
+            {
+                throw new Exception("Enter Battle but CurrentStage is null");
+            }
+            
             this.BattleField = new BattleField(playerData.CurrentStage, playerData);
             this.BattleField.SpawnEntitiesAtTurn(0);
             this.FightingData = FightingData.FromPlayerData(playerData);
@@ -156,7 +162,7 @@ namespace GameLogic.SceneControl
                 NodeType.BOSS => "boss_fight_bonus",
                 _ => ""
             };
-            playerData.Options = StaticDataManager.OptionDataManager.GetOptions(optionName, playerData);
+            playerData.OptionBundle = StaticDataManager.OptionDataManager.GetBundle(optionName);
         }
     }
 }
