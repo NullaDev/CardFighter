@@ -202,9 +202,106 @@ namespace GameLogic.Entity
         {
         }
 
+        // Unfinished, maybe buggy
         public override CardInstance ThinkNextTurnCard(FightingControl fc)
         {
-            throw new System.NotImplementedException();
+            var battleField = fc.BattleField;
+
+            var attackInfos = new List<(CardPrototype Card, EntityAction Action, RangeSelector Range, int Damage)>();
+            foreach (var card in this.HeldCards ?? Enumerable.Empty<CardPrototype>())
+            {
+                foreach (var action in card.Actions ?? Enumerable.Empty<EntityAction>())
+                {
+                    if (action.Selector is RangeSelector rs && action.Processors != null && action.Processors.Any(p => p is DamageProcessor))
+                    {
+                        var totalDamage = action.Processors.OfType<DamageProcessor>().Sum(p => p.Value);
+                        attackInfos.Add((card, action, rs, totalDamage));
+                    }
+                }
+            }
+
+            if (attackInfos.Count == 0)
+                return new CardInstance(CommonCards.DoNothing);
+
+            var selfPos   = battleField.GetEntityIndex(this);
+            var playerPos = battleField.GetPlayerIndex();
+            var direction = this.Facing == EntityFacing.Right ? 1 : -1;
+
+            var canHitPlayer = attackInfos.Where(info =>
+                {
+                    var (card, action, rangeSel, dmg) = info;
+                    var minPos = Math.Clamp(selfPos + rangeSel.RangeMin * direction, 0, battleField.Size - 1);
+                    var maxPos = Math.Clamp(selfPos + rangeSel.RangeMax * direction, 0, battleField.Size - 1);
+                    if (playerPos < Math.Min(minPos, maxPos) || playerPos > Math.Max(minPos, maxPos))
+                        return false;
+                    var targets = rangeSel.Select(fc, this);
+                    targets = action.Filters.Aggregate(targets, (cur, f) => f.Apply(cur, this));
+                    return targets.Any(t => t is Player);
+                })
+                .OrderByDescending(info => info.Damage)
+                .FirstOrDefault();
+            if (canHitPlayer.Card != null)
+                return new CardInstance(canHitPlayer.Card);
+
+            var canHitPassive = attackInfos.Where(info =>
+                {
+                    var (card, action, rangeSel, dmg) = info;
+                    var minPos = Math.Clamp(selfPos + rangeSel.RangeMin * direction, 0, battleField.Size - 1);
+                    var maxPos = Math.Clamp(selfPos + rangeSel.RangeMax * direction, 0, battleField.Size - 1);
+                    if (playerPos < Math.Min(minPos, maxPos) || playerPos > Math.Max(minPos, maxPos))
+                        return false;
+                    var targets = rangeSel.Select(fc, this);
+                    targets = action.Filters.Aggregate(targets, (cur, f) => f.Apply(cur, this));
+                    return targets.Count > 0 && targets.All(t => t is PassiveEntity);
+                })
+                .OrderByDescending(info => info.Damage)
+                .FirstOrDefault();
+            if (canHitPassive.Card != null)
+                return new CardInstance(canHitPassive.Card);
+
+            var best = attackInfos.OrderByDescending(x => x.Damage).First();
+            var minAttackPos = Math.Min(
+                Math.Clamp(selfPos + best.Range.RangeMin * direction, 0, battleField.Size - 1),
+                Math.Clamp(selfPos + best.Range.RangeMax * direction, 0, battleField.Size - 1)
+            );
+            var maxAttackPos = Math.Max(
+                Math.Clamp(selfPos + best.Range.RangeMin * direction, 0, battleField.Size - 1),
+                Math.Clamp(selfPos + best.Range.RangeMax * direction, 0, battleField.Size - 1)
+            );
+
+            if (this.Facing == EntityFacing.Left && selfPos == 0)
+                return new CardInstance(CommonCards.TurnBack);
+            if (this.Facing == EntityFacing.Right && selfPos == battleField.Size - 1)
+                return new CardInstance(CommonCards.TurnBack);
+
+            var distance    = playerPos <= minAttackPos ? (minAttackPos - playerPos) : (playerPos - maxAttackPos);
+            var newMin      = Math.Clamp(minAttackPos + direction, 0, battleField.Size - 1);
+            var newMax      = Math.Clamp(maxAttackPos + direction, 0, battleField.Size - 1);
+            var newDistance = playerPos <= newMin ? (newMin - playerPos) : (playerPos - newMax);
+
+            if (newDistance < distance)
+            {
+                var nextPos = selfPos + direction;
+                if (nextPos >= 0 && nextPos < battleField.Size && battleField.ListEntities[nextPos] == null)
+                    return new CardInstance(CommonCards.Move1);
+
+                var willHurtAllies = false;
+                for (var i = minAttackPos; i <= maxAttackPos; i++)
+                {
+                    var entity = battleField.ListEntities[i];
+                    if (entity is Enemy && entity != this)
+                    {
+                        willHurtAllies = true;
+                        break;
+                    }
+                }
+                return willHurtAllies ? new CardInstance(CommonCards.DoNothing) : new CardInstance(best.Card);
+            }
+            else
+            {
+                return new CardInstance(CommonCards.TurnBack);
+            }
         }
+
     }
 }
