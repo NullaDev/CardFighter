@@ -12,8 +12,8 @@
       "AppearTurn": 0,
       "AppearPos": 3,
       "Name": "栅栏",
-      "TextureName": "gate",
-      "HP": 4
+      "TextureName": "gate1",
+      "HP": 3
     },
     {
       "Type": "stationary_enemy",
@@ -22,8 +22,8 @@
       "AppearFacing": "left",
       "Name": "哨兵1",
       "TextureName": "sentry",
-      "HP": 4,
-      "Card": "spear"
+      "HP": 3,
+      "Card": "enemy_spear"
     }
   ]
 }

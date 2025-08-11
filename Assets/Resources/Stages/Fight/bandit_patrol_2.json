@@ -1,0 +1,49 @@
+﻿{
+  "ID": "bandit_patrol_2",
+  "Name": "山贼巡逻-难度2",
+  "Type": "Fight",
+  "Difficulty": 2,
+  "Size": 6,
+  "PlayerSpawnPos": 0,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    {
+      "Type": "passive",
+      "AppearTurn": 0,
+      "AppearPos": 3,
+      "Name": "大石头",
+      "TextureName": "stone2",
+      "HP": 4
+    },
+    {
+      "Type": "stationary_enemy",
+      "AppearTurn": 0,
+      "AppearPos": 4,
+      "AppearFacing": "left",
+      "Name": "山贼哨兵1",
+      "TextureName": "bandit2",
+      "HP": 4,
+      "Card": "enemy_bow"
+    },
+    {
+      "Type": "simple_enemy",
+      "AppearTurn": 3,
+      "AppearPos": 1,
+      "AppearFacing": "auto",
+      "Name": "山贼小弟",
+      "TextureName": "bandit1",
+      "HP": 5,
+      "Card": "broadsword"
+    },
+    {
+      "Type": "simple_enemy",
+      "AppearTurn": 4,
+      "AppearPos": 5,
+      "AppearFacing": "left",
+      "Name": "山贼哨兵2",
+      "TextureName": "bandit2",
+      "HP": 4,
+      "Card": "enemy_bow"
+    }
+  ]
+}

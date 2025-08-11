@@ -1,6 +1,6 @@
 ﻿{
-  "ID": "sentry_1",
-  "Name": "岗哨-难度1",
+  "ID": "bandit_patrol_1",
+  "Name": "山贼巡逻-难度1",
   "Type": "Fight",
   "Difficulty": 1,
   "Size": 6,
@@ -11,29 +11,29 @@
       "Type": "passive",
       "AppearTurn": 0,
       "AppearPos": 3,
-      "Name": "栅栏",
-      "TextureName": "gate1",
-      "HP": 4
+      "Name": "大石头",
+      "TextureName": "stone2",
+      "HP": 3
     },
     {
       "Type": "stationary_enemy",
       "AppearTurn": 0,
       "AppearPos": 4,
       "AppearFacing": "left",
-      "Name": "哨兵1",
-      "TextureName": "sentry",
-      "HP": 5,
-      "Card": "enemy_spear"
+      "Name": "山贼哨兵",
+      "TextureName": "bandit2",
+      "HP": 3,
+      "Card": "enemy_bow"
     },
     {
       "Type": "simple_enemy",
       "AppearTurn": 5,
       "AppearPos": 1,
       "AppearFacing": "auto",
-      "Name": "哨兵2",
-      "TextureName": "sentry",
-      "HP": 5,
-      "Card": "enemy_spear"
+      "Name": "山贼小弟",
+      "TextureName": "bandit1",
+      "HP": 4,
+      "Card": "broadsword"
     }
   ]
 }

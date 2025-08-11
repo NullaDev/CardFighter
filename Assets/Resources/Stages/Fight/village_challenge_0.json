@@ -1,0 +1,39 @@
+﻿{
+  "ID": "village_challenge_0",
+  "Name": "村口挑衅-难度0",
+  "Type": "Fight",
+  "Difficulty": 0,
+  "Size": 5,
+  "PlayerSpawnPos": 0,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    {
+      "Type": "passive",
+      "AppearTurn": 0,
+      "AppearPos": 2,
+      "Name": "村口",
+      "TextureName": "gate2",
+      "HP": 2
+    },
+    {
+      "Type": "simple_enemy",
+      "AppearTurn": 0,
+      "AppearPos": 3,
+      "AppearFacing": "left",
+      "Name": "村民1",
+      "TextureName": "villager1",
+      "HP": 3,
+      "Card": "punch"
+    },
+    {
+      "Type": "simple_enemy",
+      "AppearTurn": 0,
+      "AppearPos": 4,
+      "AppearFacing": "left",
+      "Name": "村民2",
+      "TextureName": "villager1",
+      "HP": 3,
+      "Card": "punch"
+    }
+  ]
+}

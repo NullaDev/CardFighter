@@ -32,13 +32,14 @@ namespace GameLogic.SceneControl
             
             playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("focus_energy"));
             playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("observe"));
-            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("spear"));
-            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("white_arrow"));
+            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("archery"));
+            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("fourfold_strike"));
             playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("teacher_say"));
-            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("charioteering"));
+            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("throw_stone"));
             
             var stageData = StaticDataManager.StageDataManager;
-            playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("dummy"));
+            // playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("dummy"));
+            playerData.CurrentStage = stageData.NormalStages[2].Find(s=>s.ID.Equals("village_challenge_2"));
             
             SceneManager.LoadScene("Fighting");
         }

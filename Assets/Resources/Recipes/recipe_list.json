@@ -112,13 +112,13 @@
   },
   {
     "Slot1": [ "broadsword" ],
-    "Slot2": [ "bow" ],
+    "Slot2": [ "throw_stone" ],
     "Result": "throw_knife",
     "Priority": 3
   },
   {
     "Slot1": [ "spear" ],
-    "Slot2": [ "bow" ],
+    "Slot2": [ "throw_stone" ],
     "Result": "throw_spear",
     "Priority": 3
   },

@@ -1,0 +1,39 @@
+﻿{
+  "ID": "two_wolf_1",
+  "Name": "屠夫两狼-难度1",
+  "Type": "Fight",
+  "Difficulty": 1,
+  "Size": 6,
+  "PlayerSpawnPos": 3,
+  "PlayerSpawnFacing": "left",
+  "Entities": [
+    {
+      "Type": "passive",
+      "AppearTurn": 0,
+      "AppearPos": 4,
+      "Name": "一堆柴火",
+      "TextureName": "woodpile",
+      "HP": 3
+    },
+    {
+      "Type": "simple_enemy",
+      "AppearTurn": 0,
+      "AppearPos": 0,
+      "AppearFacing": "right",
+      "Name": "狼1",
+      "TextureName": "wolf",
+      "HP": 4,
+      "Card": "bite"
+    },
+    {
+      "Type": "simple_enemy",
+      "AppearTurn": 2,
+      "AppearPos": 5,
+      "AppearFacing": "left",
+      "Name": "狼2",
+      "TextureName": "wolf",
+      "HP": 4,
+      "Card": "bite"
+    }
+  ]
+}

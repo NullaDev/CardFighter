@@ -2,7 +2,7 @@
   "ID": "triple_strike",
   "Name": "参连",
   "TextureName": "Arts/Cards/ru/triple_strike",
-  "Desc": "对1-3格内的所有目标造成2点伤害",
+  "Desc": "对1-3格内的所有目标造成3点伤害",
   "Cost": 2,
   "Actions": [
     {
@@ -12,7 +12,7 @@
         { "Type": "is_alive" }
       ],
       "Processors": [
-        { "Type": "damage", "Value": 2, "Tags": ["ranged", "weapon"] }
+        { "Type": "damage", "Value": 3, "Tags": ["ranged", "weapon"] }
       ]
     }
   ]

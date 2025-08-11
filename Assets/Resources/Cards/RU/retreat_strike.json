@@ -2,8 +2,8 @@
   "ID": "retreat_strike",
   "Name": "襄尺",
   "TextureName": "Arts/Cards/ru/retreat_strike",
-  "Desc": "后退一格，然后对1-3格内的首个目标造成1点伤害",
-  "Cost": 1,
+  "Desc": "后退一格，然后对1-3格内的首个目标造成2点伤害",
+  "Cost": 2,
   "Actions": [
     {
       "Selector": { "Type": "self" },
@@ -16,7 +16,7 @@
       "Filters": [
         { "Type": "exclude_self" },
         { "Type": "is_alive" },
-        { "Type": "first_n", "Value": 1 }
+        { "Type": "first_n", "Value": 2 }
       ],
       "Processors": [
         { "Type": "damage", "Value": 1, "Tags": ["ranged", "weapon"] }

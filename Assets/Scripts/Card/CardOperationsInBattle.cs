@@ -72,6 +72,11 @@ namespace Card
                 return false;
             }
 
+            if (_cardList.Contains(newCard))
+            {
+                return false;
+            }
+
             var index = _cardList.IndexOf(card);
             if (index >= 0)
             {
