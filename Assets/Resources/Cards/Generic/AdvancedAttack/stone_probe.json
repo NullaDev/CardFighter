@@ -1,0 +1,32 @@
+﻿{
+  "ID": "stone_probe",
+  "Name": "投石问路",
+  "TextureName": "Arts/Cards/Generic/AdvancedAttack/stone_probe",
+  "Desc": "对2格内的首个目标造成2点伤害，然后2格内若无敌人则前进一格",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 2 },
+      "Filters": [
+        { "Type": "exclude_self" },
+        { "Type": "is_alive" },
+        { "Type": "first_n", "Value": 1 }
+      ],
+      "Processors": [
+        { "Type": "damage", "Value": 2, "Tags": ["ranged", "weapon"] }
+      ]
+    },
+    {
+      "Selector": { "Type": "range", "RangeMin": 0, "RangeMax": 2, "Reversed": true },
+      "Filters": [
+        { "Type": "is_alive" },
+        { "Type": "entity_type", "MatchTypes": ["player", "enemy"] },
+        { "Type": "first_n", "Value": 1 },
+        { "Type": "entity_type", "MatchTypes": ["player"] }
+      ],
+      "Processors": [
+        { "Type": "move", "Value": 1 }
+      ]
+    }
+  ]
+}

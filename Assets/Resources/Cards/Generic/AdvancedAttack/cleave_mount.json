@@ -1,9 +1,9 @@
 ﻿{
-  "ID": "hammer",
-  "Name": "给你一锤",
-  "TextureName": "Arts/Cards/Generic/BasicAttack/hammer",
-  "Desc": "对1格内的目标造成3点破甲伤害，并晕眩其1回合",
-  "Cost": 3,
+  "ID": "cleave_mount",
+  "Name": "力劈华山",
+  "TextureName": "Arts/Cards/Generic/AdvancedAttack/cleave_mount",
+  "Desc": "对1格内的目标造成6点破甲伤害，并晕眩其1回合",
+  "Cost": 4,
   "Actions": [
     {
       "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 1 },
@@ -13,7 +13,7 @@
         { "Type": "first_n", "Value": 1 }
       ],
       "Processors": [
-        { "Type": "damage", "Value": 3, "Tags": ["melee", "weapon", "break_armor"] },
+        { "Type": "damage", "Value": 6, "Tags": ["melee", "weapon", "break_armor"] },
         {
           "Type": "add_buff",
           "Buffs": [

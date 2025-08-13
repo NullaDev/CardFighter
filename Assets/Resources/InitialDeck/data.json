@@ -47,7 +47,11 @@
     "throw_spear": 2,
     "unseen_fist": 2,
     "whirlwind_slash": 2,
-    "throw_knife": 2
+    "throw_knife": 2,
+    "meteor_chase": 2,
+    "hundred_pace_pierce": 3,
+    "stone_probe": 1,
+    "cleave_mount": 3
   },
   "RU": {
     "rites": 3,

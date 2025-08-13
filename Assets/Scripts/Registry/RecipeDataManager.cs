@@ -60,25 +60,30 @@ namespace Registry
 
             if (!card1.IsFusionCard && !card2.IsFusionCard)
             {
-                var name1 = card1.Name;
-                var name2 = card2.Name;
-                var half1Len = Math.Max(2, Math.Min(3, (int)Math.Ceiling(name1.Length / 2.0)));
-                var half2Len = Math.Max(2, Math.Min(3, (int)Math.Ceiling(name2.Length / 2.0)));
-                var fusedName = name1[..Math.Min(half1Len, name1.Length)] + name2[Math.Max(0, name2.Length - half2Len)..];
-                var fusionCard = new CardPrototype
-                {
-                    ID = $"fusion_{card1.ID}+{card2.ID}",
-                    Name = fusedName,
-                    TextureName = "Arts/Cards/Misc/fusion",
-                    Desc = $"施放{card1.Name}和{card2.Name}",
-                    Cost = card1.Cost + card2.Cost + 1,
-                    IsFusionCard = true,
-                    Actions = card1.Actions.Concat(card2.Actions).ToList()
-                };
-                return new RecipeMatchResult(fusionCard, true, true);
+                return DefaultMergeTwoCards(card1, card2);
             }
 
             return null;
+        }
+        
+        public static RecipeMatchResult DefaultMergeTwoCards(CardPrototype card1, CardPrototype card2)
+        {
+            var name1 = card1.Name;
+            var name2 = card2.Name;
+            var half1Len = Math.Max(2, Math.Min(3, (int)Math.Ceiling(name1.Length / 2.0)));
+            var half2Len = Math.Max(2, Math.Min(3, (int)Math.Ceiling(name2.Length / 2.0)));
+            var fusedName = name1[..Math.Min(half1Len, name1.Length)] + name2[Math.Max(0, name2.Length - half2Len)..];
+            var fusionCard = new CardPrototype
+            {
+                ID = $"fusion_{card1.ID}+{card2.ID}",
+                Name = fusedName,
+                TextureName = "Arts/Cards/Misc/fusion",
+                Desc = $"施放{card1.Name}和{card2.Name}",
+                Cost = card1.Cost + card2.Cost + 1,
+                IsFusionCard = true,
+                Actions = card1.Actions.Concat(card2.Actions).ToList()
+            };
+            return new RecipeMatchResult(fusionCard, !card1.IsBuiltinCard, !card2.IsBuiltinCard);
         }
         
         public List<RecipeTemplate> All() => _recipes;

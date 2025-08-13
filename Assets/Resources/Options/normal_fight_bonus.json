@@ -12,26 +12,81 @@
         ]
       },
       {
-        "Id": "increase_max_hp",
-        "Title": "提升生命上限",
-        "Description": "你在战斗中成长，最大生命值上限提高了5点（不会回复生命值）。",
-        "PlayerClass": "generic",
-        "Actions": [
-          { "Type": "max_hp_change", "Operator": "Add", "Amount": 5 }
-        ]
-      }
-    ],
-    "OptionalOptions": [
-      {
-        "Id": "get_random_basic_attack",
-        "Title": "获得随机攻击卡",
-        "Description": "你复盘战斗，从中领悟一招新的基本攻击技法（包含：给你一拳、踢你一脚、给你一斧、射你一箭、砍你一刀、给你一锤、捅你一枪、刺你一剑）。",
+        "Id": "get_random_basic_attack_card",
+        "Title": "获得随机通用攻击卡",
+        "Description": "你对刚刚的战斗进行复盘，从中随机领悟一招新的基本攻击技法（包含：给你一拳、踢你一脚、投掷、冲撞）。",
         "PlayerClass": "generic",
         "Actions": [
           {
             "Type": "card_gain",
             "CardIDs": [
-              "punch", "kick", "axe", "bow", "broadsword", "hammer", "spear", "sword"
+              "punch", "kick", "throw_stone", "rush"
+            ],
+            "Count": 1,
+            "Random": true
+          }
+        ]
+      }
+    ],
+    "OptionalOptions": [
+      {
+        "Id": "get_random_basic_ru_card",
+        "Title": "获得随机基础抡语卡",
+        "Description": "你对抡语内容进行复习，悟得了一招抡语秘籍（包含：言必信、学而时习之、子曰、君子不器、察其所安）。",
+        "PlayerClass": "RU",
+        "Actions": [
+          {
+            "Type": "card_gain",
+            "CardIDs": [
+              "honest_word", "study_and_practice", "teacher_say", "noble_unarmed", "observe_comfort_zone"
+            ],
+            "Count": 1,
+            "Random": true
+          }
+        ]
+      }
+    ]
+  },
+  "normal_fight_bonus_1": {
+    "Description": "战斗结束后，你获得了一些收获。",
+    "GuaranteedOptions": [
+      {
+        "Id": "bonus_gold",
+        "Title": "获得金币",
+        "Description": "你搜刮了敌人遗落的财物，获得了20金币。",
+        "PlayerClass": "generic",
+        "Actions": [
+          { "Type": "gold_change", "Operator": "Add", "Amount": 20 }
+        ]
+      },
+      {
+        "Id": "get_random_basic_attack_card",
+        "Title": "获得随机武器攻击卡",
+        "Description": "你对战场进行打扫，从中得到了随机武器（包含：刺你一剑、砍你一刀、捅你一枪、射你一箭、给你一斧、给你一锤）。",
+        "PlayerClass": "generic",
+        "Actions": [
+          {
+            "Type": "card_gain",
+            "CardIDs": [
+              "sword", "broadsword", "spear", "bow", "axe", "hammer"
+            ],
+            "Count": 1,
+            "Random": true
+          }
+        ]
+      }
+    ],
+    "OptionalOptions": [
+      {
+        "Id": "get_random_basic_ru_card",
+        "Title": "获得随机六艺卡",
+        "Description": "你对抡语内容进行复习，从中随机习得了六艺中的一门（包含：礼、乐、射、御、书、数）。",
+        "PlayerClass": "RU",
+        "Actions": [
+          {
+            "Type": "card_gain",
+            "CardIDs": [
+              "rites", "music", "archery", "charioteering", "calligraphy", "mathematics"
             ],
             "Count": 1,
             "Random": true

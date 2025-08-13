@@ -35,7 +35,7 @@ namespace GameLogic.SceneControl
             playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("archery"));
             playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("fourfold_strike"));
             playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("teacher_say"));
-            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("throw_stone"));
+            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("stone_probe"));
             
             var stageData = StaticDataManager.StageDataManager;
             // playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("dummy"));

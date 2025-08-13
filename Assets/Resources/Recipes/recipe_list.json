@@ -62,11 +62,23 @@
     "Priority": 3
   },
   {
+    "Slot1": [ "axe" ],
+    "Slot2": [ "hammer" ],
+    "Result": "cleave_mount",
+    "Priority": 3
+  },
+  {
     "Slot1": [ "turn_back" ],
     "Slot2": [ "sword" ],
     "Result": "feint_strike",
     "Priority": 3,
     "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "bow" ],
+    "Slot2": [ "bow" ],
+    "Result": "hundred_pace_pierce",
+    "Priority": 3
   },
   {
     "Slot1": [ "rush" ],
@@ -79,6 +91,13 @@
     "Slot2": [ "spear" ],
     "Result": "lone_spear",
     "Priority": 3
+  },
+  {
+    "Slot1": [ "bow" ],
+    "Slot2": [ "move" ],
+    "Result": "meteor_chase",
+    "Priority": 3,
+    "ConsumeSlot2": false
   },
   {
     "Slot1": [ "bow" ],
@@ -97,6 +116,13 @@
     "Slot2": [ "rush" ],
     "Result": "shield_charge",
     "Priority": 3
+  },
+  {
+    "Slot1": [ "throw_stone" ],
+    "Slot2": [ "move" ],
+    "Result": "stone_probe",
+    "Priority": 3,
+    "ConsumeSlot2": false
   },
   {
     "Slot1": [ "spear" ],
