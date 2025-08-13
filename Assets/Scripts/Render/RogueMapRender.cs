@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using GameLogic.RogueMap;
+using Render.Interact;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;

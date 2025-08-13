@@ -15,8 +15,8 @@ namespace Registry
         public static readonly PlayerData Instance = new();
 
         public PlayerClass PlayerClass { get; set; } = PlayerClass.GENERIC;
-        public int Hp { get; set; } = 10;
-        public int MaxHp { get; set; } = 10;
+        public int Hp { get; set; } = 20;
+        public int MaxHp { get; set; } = 20;
         public int InitialInGameCost { get; set; } = 1;
         public int MaxInGameCost { get; set; } = 5;
         public int MaxCarryCost { get; set; } = 10;

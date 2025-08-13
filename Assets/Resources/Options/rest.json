@@ -1,0 +1,40 @@
+﻿{
+  "rest": {
+    "Description": "你找到一处安静之地，决定稍作歇息。",
+    "GuaranteedOptions": [
+      {
+        "Id": "restore_hp",
+        "Title": "调息养神",
+        "Description": "你打坐调息，恢复50%最大生命值。",
+        "PlayerClass": "generic",
+        "Actions": [
+          { "Type": "hp_restore", "Operator": "Multiply", "Amount": 0.5 }
+        ]
+      },
+      {
+        "Id": "increase_max_hp",
+        "Title": "锻体养生",
+        "Description": "你进行一番吐纳练功，最大生命值+10（当前生命值不变）。",
+        "PlayerClass": "generic",
+        "Actions": [
+          { "Type": "max_hp_change", "Operator": "Add", "Amount": 10 }
+        ]
+      },
+      {
+        "Id": "gain_random_item",
+        "Title": "搜寻四周",
+        "Description": "你在休息的间隙四处查看，意外找到一些物品（获得随机物品：剑/刀/枪）。",
+        "PlayerClass": "generic",
+        "Actions": [
+          {
+            "Type": "item_gain",
+            "ItemIDs": [ "item_sword", "item_broadsword", "item_spear" ],
+            "Count": 1,
+            "Random": true
+          }
+        ]
+      }
+    ],
+    "OptionalOptions": []
+  }
+}

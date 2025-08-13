@@ -37,6 +37,24 @@ namespace GameLogic.Option
         }
     }
     
+    public class HpRestoreAction : OptionAction
+    {
+        public Operator Operator { get; set; }
+        public float Amount { get; set; }
+    
+        public override void Execute(PlayerData player)
+        {
+            player.Hp += Operator switch
+            {
+                Operator.Add => (int)Amount,
+                Operator.Multiply or Operator.Divide =>
+                    (int)OperatorUtils.ApplyOperator(player.MaxHp, Operator, Amount),
+                _ => throw new Exception("Inappropriate operator")
+            };
+            player.UpdateHp();
+        }
+    }
+    
     public class MaxHpChangeAction  : OptionAction
     {
         public Operator Operator { get; set; }
@@ -74,12 +92,14 @@ namespace GameLogic.Option
     
     public class ItemGainAction : OptionAction
     {
-        public List<string> ItemIDs { get; set; }
+        public List<string> ItemIDs { get; set; } = new();
         public int Count { get; set; }
         public bool Random { get; set; }
 
         public override void Execute(PlayerData player)
         {
+            if (ItemIDs.Count == 0)
+                return;
             for (var i = 0; i < Count; i++)
             {
                 var itemId = Random ? ItemIDs[player.Random.Next(ItemIDs.Count)] : ItemIDs[i % ItemIDs.Count];

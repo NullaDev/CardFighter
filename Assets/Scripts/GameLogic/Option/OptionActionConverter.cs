@@ -19,6 +19,7 @@ namespace GameLogic.Option
             {
                 "gold_change" => new GoldChangeAction(),
                 "hp_change" => new HpChangeAction(),
+                "hp_restore" => new HpRestoreAction(),
                 "max_hp_change" => new MaxHpChangeAction(),
                 "card_gain" => new CardGainAction(),
                 "item_gain" => new ItemGainAction(),

@@ -1,10 +1,10 @@
-﻿using Registry;
-using Render;
+﻿using GameLogic.RogueMap;
+using Registry;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-namespace GameLogic.RogueMap
+namespace Render.Interact
 {
     public class NodeInteract: MonoBehaviour, IPointerClickHandler
     {
@@ -44,7 +44,9 @@ namespace GameLogic.RogueMap
             }
             else if (this.Node.Type == NodeType.REST)
             {
-                //TODO
+                playerData.CurrentNodeType = NodeType.REST;
+                playerData.OptionBundle = StaticDataManager.OptionDataManager.GetBundle("rest");
+                SceneManager.LoadScene("OptionChoose");
             }
         }
         

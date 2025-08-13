@@ -37,9 +37,7 @@
           },
           {
             "Type": "item_gain",
-            "ItemIDs": [
-              "sword"
-            ],
+            "ItemIDs": [ "sword" ],
             "Count": 1,
             "Random": false
           }
