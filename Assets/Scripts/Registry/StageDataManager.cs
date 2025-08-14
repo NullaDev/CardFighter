@@ -9,10 +9,11 @@ namespace Registry
         private bool _hasLoaded = false;
 
         private const string StageFolderRoot = "Stages/";
-        public static string[] SubFolders = {"Tutorial", "Fight", "Elite", "Test"};
+        public static string[] SubFolders = {"Tutorial", "Fight", "Elite", "Boss", "Test"};
 
         public readonly Dictionary<int, List<StageConfig>> NormalStages = new();
         public readonly Dictionary<int, List<StageConfig>> EliteStages = new();
+        public readonly List<StageConfig> BossStages = new();
         public readonly List<StageConfig> MiscStages = new();
         
         public void DebugLoadedStageInfo()
@@ -59,6 +60,9 @@ namespace Registry
                             }
                             EliteStages[difficulty].Add(config);
                             break;
+                        case "Boss":
+                            BossStages.Add(config);
+                            break;
                         default:
                             MiscStages.Add(config);
                             break;
@@ -81,6 +85,11 @@ namespace Registry
             var difficulty = layer / 4;
             var listStage = EliteStages[difficulty];
             return listStage[Random.Range(0, listStage.Count)];
+        }
+        
+        public StageConfig GetBossStage()
+        {
+            return BossStages[Random.Range(0, BossStages.Count)];
         }
     }
 }

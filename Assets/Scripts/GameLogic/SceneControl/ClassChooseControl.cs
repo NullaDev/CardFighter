@@ -15,7 +15,7 @@ namespace GameLogic.SceneControl
         {
             var playerData = PlayerData.Instance;
             playerData.PlayerClass = PlayerClass.RU;
-            playerData.MaxHp = playerData.Hp = 10;
+            playerData.MaxHp = playerData.Hp = 20;
             playerData.InitialInGameCost = 1;
             playerData.MaxInGameCost = 5;
             

@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using GameLogic.Option;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Registry
 {
@@ -52,6 +54,15 @@ namespace Registry
         public OptionBundle GetBundle(string key)
         {
             return OptionMap.GetValueOrDefault(key);
+        }
+        
+        public OptionBundle GetRandomEventBundle()
+        {
+            var eventKeys = OptionMap.Keys.Where(k => k.StartsWith("event_")).ToList();
+            if (eventKeys.Count == 0)
+                throw new Exception("no event loaded");
+            var randomKey = eventKeys[Random.Range(0, eventKeys.Count)];
+            return OptionMap[randomKey];
         }
     }
 }
