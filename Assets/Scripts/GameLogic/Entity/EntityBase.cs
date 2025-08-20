@@ -328,7 +328,7 @@ namespace GameLogic.Entity
                         {
                             new CausedDamageEffectRule
                             {
-                                ArithmeticOperator = ArithmeticOperator.Minus,
+                                Operator = ArithmeticOperator.Minus,
                                 Value = negativeValue
                             }
                         }
@@ -345,7 +345,7 @@ namespace GameLogic.Entity
                         {
                             new CausedDamageEffectRule
                             {
-                                ArithmeticOperator = ArithmeticOperator.Add,
+                                Operator = ArithmeticOperator.Add,
                                 Value = negativeValue
                             }
                         }

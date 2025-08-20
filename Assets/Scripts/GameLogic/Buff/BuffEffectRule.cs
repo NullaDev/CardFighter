@@ -12,20 +12,20 @@ namespace GameLogic.Buff
 
     public interface IOperatorEffect
     {
-        public ArithmeticOperator ArithmeticOperator { get; set; }
+        public ArithmeticOperator Operator { get; set; }
         public float Value { get; set; }
 
         public static void ApplyBuffEffect(ref int value, ref double additiveModifier, ref double multipleModifier, IOperatorEffect effect)
         {
-            switch (effect.ArithmeticOperator)
+            switch (effect.Operator)
             {
                 case ArithmeticOperator.Add:
                 case ArithmeticOperator.Minus:
-                    additiveModifier = OperatorUtils.ApplyOperator(additiveModifier, effect.ArithmeticOperator, effect.Value);
+                    additiveModifier = OperatorUtils.ApplyOperator(additiveModifier, effect.Operator, effect.Value);
                     break;
                 case ArithmeticOperator.Multiply:
                 case ArithmeticOperator.Divide:
-                    multipleModifier = OperatorUtils.ApplyOperator(multipleModifier, effect.ArithmeticOperator, effect.Value);
+                    multipleModifier = OperatorUtils.ApplyOperator(multipleModifier, effect.Operator, effect.Value);
                     break;
                 case ArithmeticOperator.Set:
                     value = (int)effect.Value;
@@ -108,7 +108,7 @@ namespace GameLogic.Buff
 
     public class CausedDamageEffectRule : BuffEffectRule, IOperatorEffect, IBuffFilterEffect, IConditionFilterEffect
     {
-        public ArithmeticOperator ArithmeticOperator { get; set; }
+        public ArithmeticOperator Operator { get; set; }
         public float Value { get; set; }
         public int RemainingTimes { get; set; } = -1;
 
@@ -124,7 +124,7 @@ namespace GameLogic.Buff
         {
             return new CausedDamageEffectRule
             {
-                ArithmeticOperator = this.ArithmeticOperator,
+                Operator = this.Operator,
                 Value = this.Value,
                 RemainingTimes = this.RemainingTimes,
                 TargetTags = new List<string>(this.TargetTags),
@@ -139,7 +139,7 @@ namespace GameLogic.Buff
 
     public class ReceivedDamageEffectRule : BuffEffectRule, IOperatorEffect, IBuffFilterEffect, IConditionFilterEffect
     {
-        public ArithmeticOperator ArithmeticOperator { get; set; }
+        public ArithmeticOperator Operator { get; set; }
         public float Value { get; set; }
         public int RemainingTimes { get; set; } = -1;
 
@@ -155,7 +155,7 @@ namespace GameLogic.Buff
         {
             return new ReceivedDamageEffectRule
             {
-                ArithmeticOperator = this.ArithmeticOperator,
+                Operator = this.Operator,
                 Value = this.Value,
                 RemainingTimes = this.RemainingTimes,
                 TargetTags = new List<string>(this.TargetTags),
@@ -170,7 +170,7 @@ namespace GameLogic.Buff
     
     public class CardCostEffectRule : BuffEffectRule, IOperatorEffect, IBuffFilterEffect
     {
-        public ArithmeticOperator ArithmeticOperator { get; set; }
+        public ArithmeticOperator Operator { get; set; }
         public float Value { get; set; }
 
         public bool AffectAllCards { get; set; } = false;
@@ -183,7 +183,7 @@ namespace GameLogic.Buff
         {
             return new CardCostEffectRule
             {
-                ArithmeticOperator = this.ArithmeticOperator,
+                Operator = this.Operator,
                 Value = this.Value,
                 AffectAllCards = this.AffectAllCards,
                 AffectedCardIds = new List<string>(this.AffectedCardIds),
