@@ -60,7 +60,7 @@ namespace Registry.Data
                 TextureName = "Arts/Entities/" + TextureName,
                 Facing = IHasFacing.ParseFacing(this.AppearFacing),
                 HeldCard = StaticDataManager.CardDataManager.Find(Card)
-            };
+            }.InitializeBehaviors();
         }
     }
     
@@ -77,7 +77,7 @@ namespace Registry.Data
                 TextureName = "Arts/Entities/" + TextureName,
                 Facing = IHasFacing.ParseFacing(this.AppearFacing),
                 HeldCard = StaticDataManager.CardDataManager.Find(Card)
-            };
+            }.InitializeBehaviors();
         }
     }
 
@@ -94,7 +94,7 @@ namespace Registry.Data
                 TextureName = "Arts/Entities/" + TextureName,
                 Facing = IHasFacing.ParseFacing(this.AppearFacing),
                 HeldCards = Cards.Select(card => StaticDataManager.CardDataManager.Find(card)).ToList()
-            };
+            }.InitializeBehaviors();
         }
     }
 }

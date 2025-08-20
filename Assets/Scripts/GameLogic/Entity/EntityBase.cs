@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using GameLogic.Buff;
-using Newtonsoft.Json;
 using Registry.Data;
 
 namespace GameLogic.Entity
@@ -13,12 +12,12 @@ namespace GameLogic.Entity
         public int MaxHP;
         public string Name = "";
         public string TextureName = "";
-        [JsonIgnore] public int Armor = 0;
-        [JsonIgnore] public bool IsDead = false;
-        [JsonIgnore] public bool DamageDealtThisTurn = false;
-        [JsonIgnore] public List<EntityBuff> Buffs = new();
+        public int Armor = 0;
+        public bool IsDead = false;
+        public bool DamageDealtThisTurn = false;
+        public List<EntityBuff> Buffs = new();
 
-        [JsonIgnore] public EntityFacing Facing = EntityFacing.Default;
+        public EntityFacing Facing = EntityFacing.Default;
 
         public EntityBase(int hp)
         {
