@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Registry;
 
@@ -13,14 +14,12 @@ namespace GameLogic.Option
         
         public List<Option> GetOptions(PlayerData playerData, int maxLen = 3)
         {
-            var guaranteed = GuaranteedOptions
-                .Where(opt => opt.PlayerClass == "generic" || opt.PlayerClass == playerData.PlayerClass.ToString())
-                .ToList();
-
+            var guaranteed = GuaranteedOptions.Where(o => o.Passes(playerData)).ToList();
+            var remain = Math.Max(0, maxLen - guaranteed.Count);
             var optional = OptionalOptions
-                .Where(opt => opt.PlayerClass == "generic" || opt.PlayerClass == playerData.PlayerClass.ToString())
+                .Where(o => o.Passes(playerData))
                 .OrderBy(_ => playerData.Random.Next())
-                .Take(maxLen - guaranteed.Count)
+                .Take(remain)
                 .ToList();
 
             return guaranteed.Concat(optional).ToList();

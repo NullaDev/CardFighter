@@ -15,40 +15,40 @@ namespace GameLogic.Option
     
     public class GoldChangeAction : OptionAction
     {
-        public Operator Operator { get; set; }
+        public ArithmeticOperator ArithmeticOperator { get; set; }
         public float Amount { get; set; }
     
         public override void Execute(PlayerData player)
         {
-            player.InGameGold = (int)OperatorUtils.ApplyOperator(player.InGameGold, Operator, Amount);
+            player.InGameGold = (int)OperatorUtils.ApplyOperator(player.InGameGold, ArithmeticOperator, Amount);
             player.InGameGold = Math.Max(player.InGameGold, 0);
         }
     }
     
     public class HpChangeAction : OptionAction
     {
-        public Operator Operator { get; set; }
+        public ArithmeticOperator ArithmeticOperator { get; set; }
         public float Amount { get; set; }
     
         public override void Execute(PlayerData player)
         {
-            player.Hp = (int)OperatorUtils.ApplyOperator(player.Hp, Operator, Amount);
+            player.Hp = (int)OperatorUtils.ApplyOperator(player.Hp, ArithmeticOperator, Amount);
             player.UpdateHp();
         }
     }
     
     public class HpRestoreAction : OptionAction
     {
-        public Operator Operator { get; set; }
+        public ArithmeticOperator ArithmeticOperator { get; set; }
         public float Amount { get; set; }
     
         public override void Execute(PlayerData player)
         {
-            player.Hp += Operator switch
+            player.Hp += ArithmeticOperator switch
             {
-                Operator.Add => (int)Amount,
-                Operator.Multiply or Operator.Divide =>
-                    (int)OperatorUtils.ApplyOperator(player.MaxHp, Operator, Amount),
+                ArithmeticOperator.Add => (int)Amount,
+                ArithmeticOperator.Multiply or ArithmeticOperator.Divide =>
+                    (int)OperatorUtils.ApplyOperator(player.MaxHp, ArithmeticOperator, Amount),
                 _ => throw new Exception("Inappropriate operator")
             };
             player.UpdateHp();
@@ -57,12 +57,12 @@ namespace GameLogic.Option
     
     public class MaxHpChangeAction  : OptionAction
     {
-        public Operator Operator { get; set; }
+        public ArithmeticOperator ArithmeticOperator { get; set; }
         public float Amount { get; set; }
     
         public override void Execute(PlayerData player)
         {
-            player.MaxHp = (int)OperatorUtils.ApplyOperator(player.MaxHp, Operator, Amount);
+            player.MaxHp = (int)OperatorUtils.ApplyOperator(player.MaxHp, ArithmeticOperator, Amount);
             player.UpdateHp();
         }
     }
