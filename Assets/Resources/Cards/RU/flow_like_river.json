@@ -11,7 +11,7 @@
         { "Type": "exclude_self" },
         { "Type": "is_alive" },
         { "Type": "entity_type", "MatchTypes": ["enemy"] },
-        { "Type": "health", "Operator": "<=", "Value": 4 }
+        { "Type": "health", "Operator": "LessOrEqual", "Value": 4 }
       ],
       "Processors": [
         { "Type": "kill" }
