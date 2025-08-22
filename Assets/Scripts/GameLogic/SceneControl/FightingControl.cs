@@ -142,9 +142,9 @@ namespace GameLogic.SceneControl
             for (var i = 0; i < this.BattleField.Size; i++)
             {
                 var entity = this.BattleField.ListEntities[i];
-                if (entity is Enemy enemy)
+                if (entity is IActionableEntity actionableEntity)
                 {
-                    enemy.NextTurnCard = enemy.ThinkNextTurnCard(this);
+                    actionableEntity.NextTurnCard = actionableEntity.ThinkNextTurnCard(this);
                 }
             }
         }

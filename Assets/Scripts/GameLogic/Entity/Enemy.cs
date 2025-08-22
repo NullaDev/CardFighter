@@ -9,12 +9,13 @@ namespace GameLogic.Entity
     public abstract class Enemy: EntityBase, IActionableEntity
     {
         public SortedDictionary<int, EntityBehavior> Behaviors { get; set; } = new();
-        public CardInstance NextTurnCard = null;
+        public CardInstance NextTurnCard { get; set; } = null;
         public bool DealtDamageToPlayer = false;
         public Enemy(int hp) : base(hp) {}
 
         public virtual EntityBase InitializeBehaviors()
         {
+            Behaviors.Add(0, new IdleBehavior());
             return this;
         }
 
