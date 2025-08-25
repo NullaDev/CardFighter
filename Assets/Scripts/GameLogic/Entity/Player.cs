@@ -2,6 +2,8 @@
 {
     public class Player: EntityBase
     {
+        public override bool HasValidFacing => true;
+
         public Player(int hp, int maxHp) : base(maxHp)
         {
             this.HP = hp;

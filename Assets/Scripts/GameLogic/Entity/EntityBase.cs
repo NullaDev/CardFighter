@@ -18,6 +18,7 @@ namespace GameLogic.Entity
         public List<EntityBuff> Buffs = new();
 
         public EntityFacing Facing = EntityFacing.Default;
+        public virtual bool HasValidFacing => false;
 
         public EntityBase(int hp)
         {

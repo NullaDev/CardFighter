@@ -6,7 +6,7 @@ using GameLogic.Entity;
 
 namespace Registry.Data
 {
-    public interface IHasFacing
+    public interface IFacingConfig
     {
         string AppearFacing { get; set; }
 
@@ -47,7 +47,7 @@ namespace Registry.Data
         }
     }
     
-    public class SimpleEnemyConfig : EntityConfig, IHasFacing
+    public class SimpleEnemyConfig : EntityConfig, IFacingConfig
     {
         public string AppearFacing { get; set; } = "auto";
         public string Card { get; set; }
@@ -58,13 +58,13 @@ namespace Registry.Data
             {
                 Name = Name,
                 TextureName = "Arts/Entities/" + TextureName,
-                Facing = IHasFacing.ParseFacing(this.AppearFacing),
+                Facing = IFacingConfig.ParseFacing(this.AppearFacing),
                 HeldCard = StaticDataManager.CardDataManager.Find(Card)
-            }.InitializeBehaviors();
+            };
         }
     }
     
-    public class StationaryEnemyConfig : EntityConfig, IHasFacing
+    public class StationaryEnemyConfig : EntityConfig, IFacingConfig
     {
         public string AppearFacing { get; set; } = "auto";
         public string Card { get; set; }
@@ -75,13 +75,13 @@ namespace Registry.Data
             {
                 Name = Name,
                 TextureName = "Arts/Entities/" + TextureName,
-                Facing = IHasFacing.ParseFacing(this.AppearFacing),
+                Facing = IFacingConfig.ParseFacing(this.AppearFacing),
                 HeldCard = StaticDataManager.CardDataManager.Find(Card)
-            }.InitializeBehaviors();
+            };
         }
     }
 
-    public class EliteEntityConfig : EntityConfig, IHasFacing
+    public class EliteEntityConfig : EntityConfig, IFacingConfig
     {
         public string AppearFacing { get; set; } = "auto";
         public List<string> Cards { get; set; }
@@ -92,9 +92,9 @@ namespace Registry.Data
             {
                 Name = Name,
                 TextureName = "Arts/Entities/" + TextureName,
-                Facing = IHasFacing.ParseFacing(this.AppearFacing),
+                Facing = IFacingConfig.ParseFacing(this.AppearFacing),
                 HeldCards = Cards.Select(card => StaticDataManager.CardDataManager.Find(card)).ToList()
-            }.InitializeBehaviors();
+            };
         }
     }
 }

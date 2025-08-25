@@ -8,6 +8,8 @@ namespace GameLogic.Entity
 {
     public abstract class Enemy: EntityBase, IActionableEntity
     {
+        public override bool HasValidFacing => true;
+        
         public SortedDictionary<int, EntityBehavior> Behaviors { get; set; } = new();
         public CardInstance NextTurnCard { get; set; } = null;
         public bool DealtDamageToPlayer = false;

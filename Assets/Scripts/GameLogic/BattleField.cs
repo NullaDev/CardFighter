@@ -75,9 +75,13 @@ namespace GameLogic
             if (this.ListEntities[pos] == null)
             {
                 this.ListEntities[pos] = entity;
-                if (entity is Enemy { Facing: EntityFacing.Default } enemy)
+                if (entity.HasValidFacing && entity.Facing == EntityFacing.Default)
                 {
-                    enemy.Facing = FacingHelper.GetFacing(GetPlayerIndex() - pos);
+                    entity.Facing = FacingHelper.GetFacing(GetPlayerIndex() - pos);
+                }
+                if (entity is IActionableEntity actionableEntity)
+                {
+                    actionableEntity.InitializeBehaviors();
                 }
                 return true;
             }

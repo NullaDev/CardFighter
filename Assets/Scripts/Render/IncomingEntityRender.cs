@@ -32,9 +32,9 @@ namespace Render
             if (entity.TextureName != "")
             {
                 var sprite = Resources.Load<Sprite>("Arts/Entities/" + entity.TextureName);
-                if (entity is IHasFacing facingEntity)
+                if (entity is IFacingConfig facingEntity)
                 {
-                    var facing = IHasFacing.ParseFacing(facingEntity.AppearFacing);
+                    var facing = IFacingConfig.ParseFacing(facingEntity.AppearFacing);
                     if (facing == EntityFacing.Default)
                     {
                         facing = FacingHelper.GetFacing(map.GetPlayerIndex() - entity.AppearPos);

@@ -51,14 +51,9 @@ namespace Render
             {
                 var sprite = Resources.Load<Sprite>(entity.TextureName);
                 _entityImage.sprite = sprite;
-                if (entity.Facing == EntityFacing.Left)
-                {
-                    _entityImage.transform.localScale = new Vector3(-1f, 1f, 1f);;
-                }
-                else
-                {
-                    _entityImage.transform.localScale = new Vector3(1f, 1f, 1f);;
-                }
+                
+                if (!entity.HasValidFacing) return;
+                _entityImage.transform.localScale = entity.Facing == EntityFacing.Left ? new Vector3(-1f, 1f, 1f) : new Vector3(1f, 1f, 1f);
             }
 
             RenderHpBar(entity);
