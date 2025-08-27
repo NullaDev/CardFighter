@@ -2,7 +2,7 @@
   "ID": "calligraphy",
   "Name": "书",
   "TextureName": "Arts/Cards/RU/calligraphy",
-  "Desc": "切换当前六艺状态至「书」。",
+  "Desc": "切换当前六艺状态至「书」",
   "Cost": 1,
   "Actions": [
     {
@@ -17,10 +17,7 @@
               "Rules": [
                 {
                   "RuleType": "misc",
-                  "Parameters": {
-                    "calligraphy_positive_value": 1,
-                    "calligraphy_negative_value": 3
-                  }
+                  "Parameters": { "calligraphy_positive_value": 1, "calligraphy_negative_value": 3 }
                 }
               ]
             }

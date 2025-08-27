@@ -8,6 +8,7 @@
         {
             this.HP = hp;
             this.TextureName = "Arts/Entities/player";
+            this.Name = "你";
         }
 
         public override void Hurt(EntityBase source, int value, BattleField battleField)

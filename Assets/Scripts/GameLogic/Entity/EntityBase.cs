@@ -14,7 +14,8 @@ namespace GameLogic.Entity
         public string TextureName = "";
         public int Armor = 0;
         public bool IsDead = false;
-        public bool DamageDealtThisTurn = false;
+        public bool DealtDamageToPlayer = false;
+        public bool DealtDamageThisTurn = false;
         public List<EntityBuff> Buffs = new();
 
         public EntityFacing Facing = EntityFacing.Default;
@@ -68,7 +69,7 @@ namespace GameLogic.Entity
                 target.TryHurtFrom(this, value, battleField, damageTags);
             }
             if (!damageTags.Contains(DamageTypeNames.CounterAttack))
-                this.DamageDealtThisTurn = true;
+                this.DealtDamageThisTurn = true;
         }
 
         public void TryHurtFrom(EntityBase source, int value, BattleField battleField, List<string> damageTags)
@@ -152,9 +153,9 @@ namespace GameLogic.Entity
 
                 this.Hurt(source, value, battleField);
 
-                if (this is Player && source is Enemy enemy)
+                if (this is Player)
                 {
-                    enemy.DealtDamageToPlayer = true;
+                    source.DealtDamageToPlayer = true;
                 }
 
                 foreach (var rule in this.Buffs.ToList().SelectMany(buff => buff.EffectRules))
@@ -316,7 +317,7 @@ namespace GameLogic.Entity
                 var positiveValue = Convert.ToInt32(posObj ?? 0);
                 var negativeValue = Convert.ToInt32(negObj ?? 0);
 
-                if (this.DamageDealtThisTurn)
+                if (this.DealtDamageThisTurn)
                 {
                     if (this.HasBuff(EntityBuffManager.FollowHeart)) return;
 
@@ -353,7 +354,7 @@ namespace GameLogic.Entity
                     this.AddOrUpdateBuff(buff);
                 }
             }
-            this.DamageDealtThisTurn = false;
+            this.DealtDamageThisTurn = false;
 
             this.Armor = 0;
         }

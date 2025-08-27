@@ -1,0 +1,31 @@
+﻿{
+  "ID": "inspire",
+  "Name": "鼓舞",
+  "TextureName": "Arts/Cards/Misc/inspire",
+  "Desc": "使全场其他所有友军获得一次伤害+1，直到其回合结束",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "all" },
+      "Filters": [
+        { "Type": "exclude_self" },
+        { "Type": "is_alive" },
+        { "Type": "entity_type", "MatchTypes": ["enemy"] }
+      ],
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "inspired",
+              "Turn": 1,
+              "Rules": [
+                { "RuleType": "damage_caused", "Operator": "Add", "Value": 1, "RemainingTimes": 1 }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

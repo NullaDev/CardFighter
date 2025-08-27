@@ -2,7 +2,7 @@
   "ID": "music",
   "Name": "乐",
   "TextureName": "Arts/Cards/RU/music",
-  "Desc": "切换当前六艺状态至「乐」。",
+  "Desc": "切换当前六艺状态至「乐」",
   "Cost": 1,
   "Actions": [
     {

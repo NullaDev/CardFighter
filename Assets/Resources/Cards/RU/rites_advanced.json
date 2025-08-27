@@ -2,7 +2,7 @@
   "ID": "rites_advanced",
   "Name": "君子六艺「礼」",
   "TextureName": "Arts/Cards/RU/rites",
-  "Desc": "切换当前六艺状态至加强版「礼」。",
+  "Desc": "切换当前六艺状态至加强版的「礼」",
   "Cost": 1,
   "Actions": [
     {

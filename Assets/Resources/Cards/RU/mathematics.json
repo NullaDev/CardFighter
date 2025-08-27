@@ -2,7 +2,7 @@
   "ID": "mathematics",
   "Name": "数",
   "TextureName": "Arts/Cards/RU/mathematics",
-  "Desc": "切换当前六艺状态至「数」。",
+  "Desc": "切换当前六艺状态至「数」",
   "Cost": 1,
   "Actions": [
     {

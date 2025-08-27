@@ -280,5 +280,28 @@ namespace GameLogic.Entity
             return null;
         }
     }
+    
+    public class BuffOnEnemyTargetBehavior : EntityBehavior
+    {
+        public BuffOnEnemyTargetBehavior(CardPrototype card) : base(card) { }
+
+        public override CardInstance TryExecute(EntityBase entity, FightingControl fc)
+        {
+            if (Card?.Actions == null || Card.Actions.Count == 0) return null;
+
+            foreach (var action in Card.Actions)
+            {
+                var targets = action.Selector.Select(fc, entity);
+                targets = action.Filters.Aggregate(targets, (cur, f) => f.Apply(cur, entity));
+
+                if (targets.Any(t => t is Enemy))
+                {
+                    return new CardInstance(Card);
+                }
+            }
+
+            return null;
+        }
+    }
 
 }

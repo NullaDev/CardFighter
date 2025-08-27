@@ -2,7 +2,7 @@
   "ID": "crossroad_maneuvering",
   "Name": "舞交衢",
   "TextureName": "Arts/Cards/RU/crossroad_maneuvering",
-  "Desc": "转身并前进1格。若处于「御」状态还会沿途造成2点伤害",
+  "Desc": "转身并前进1格，处于「御」状态时还会沿途造成2点伤害",
   "Cost": 2,
   "Actions": [
     {

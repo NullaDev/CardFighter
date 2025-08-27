@@ -9,16 +9,14 @@ namespace GameLogic.Entity
     public abstract class Enemy: EntityBase, IActionableEntity
     {
         public override bool HasValidFacing => true;
-        
         public SortedDictionary<int, EntityBehavior> Behaviors { get; set; } = new();
         public CardInstance NextTurnCard { get; set; } = null;
-        public bool DealtDamageToPlayer = false;
+        
         public Enemy(int hp) : base(hp) {}
 
-        public virtual EntityBase InitializeBehaviors()
+        public virtual void InitializeBehaviors()
         {
             Behaviors.Add(0, new IdleBehavior());
-            return this;
         }
 
         public CardInstance ThinkNextTurnCard(FightingControl fc)
@@ -46,7 +44,7 @@ namespace GameLogic.Entity
         public CardPrototype HeldCard;
         public SimpleEnemy(int hp) : base(hp) {}
 
-        public override EntityBase InitializeBehaviors()
+        public override void InitializeBehaviors()
         {
             Behaviors.Add(0, new SimpleAttackPlayerBehavior(HeldCard));
             Behaviors.Add(1, new SimpleAttackPassiveBehavior(HeldCard));
@@ -55,7 +53,6 @@ namespace GameLogic.Entity
             Behaviors.Add(4, new ApproachPlayerBehavior());
             Behaviors.Add(5, new BlindAttackBehavior(HeldCard));
             Behaviors.Add(6, new IdleBehavior());
-            return this;
         }
 
     }
@@ -65,24 +62,22 @@ namespace GameLogic.Entity
         public CardPrototype HeldCard;
         public StationaryEnemy(int hp) : base(hp) {}
         
-        public override EntityBase InitializeBehaviors()
+        public override void InitializeBehaviors()
         {
             Behaviors.Add(0, new SimpleAttackPlayerBehavior(HeldCard));
             Behaviors.Add(1, new SimpleAttackPassiveBehavior(HeldCard));
             Behaviors.Add(2, new FacePlayerTurnBehavior());
             Behaviors.Add(3, new BlindAttackBehavior(HeldCard));
             Behaviors.Add(4, new IdleBehavior());
-            return this;
         }
     }
-
     
     public class EliteEnemy : Enemy
     {
         public List<CardPrototype> HeldCards;
         public EliteEnemy(int hp) : base(hp) {}
 
-        public override EntityBase InitializeBehaviors()
+        public override void InitializeBehaviors()
         {
             Behaviors.Add(0, new ComplexAttackPlayerBehavior(HeldCards));
             Behaviors.Add(1, new ComplexAttackPassiveBehavior(HeldCards));
@@ -90,7 +85,18 @@ namespace GameLogic.Entity
             Behaviors.Add(3, new FacePlayerTurnBehavior());
             Behaviors.Add(4, new ApproachPlayerBehavior());
             Behaviors.Add(5, new IdleBehavior());
-            return this;
+        }
+    }
+    
+    public class StationaryBuffEnemy : Enemy
+    {
+        public CardPrototype HeldCard;
+        public StationaryBuffEnemy(int hp) : base(hp) { }
+
+        public override void InitializeBehaviors()
+        {
+            Behaviors.Add(0, new BuffOnEnemyTargetBehavior(HeldCard));
+            Behaviors.Add(1, new IdleBehavior());
         }
     }
 }

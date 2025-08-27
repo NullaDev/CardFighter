@@ -2,7 +2,7 @@
   "ID": "brave_fearless",
   "Name": "勇者不惧",
   "Cost": 2,
-  "Desc": "获得2回合霸体，下回合首次攻击伤害+2",
+  "Desc": "获得2回合霸体，下回合结束前的首次攻击伤害+2",
   "TextureName": "Arts/Cards/ru/brave_fearless",
   "Actions": [
     {

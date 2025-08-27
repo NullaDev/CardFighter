@@ -80,11 +80,28 @@ namespace Registry.Data
             };
         }
     }
+    
+    public class StationaryBuffEnemyConfig : EntityConfig, IFacingConfig
+    {
+        public string AppearFacing { get; set; } = "auto";
+        public string Card { get; set; }
+
+        public override EntityBase GenEntity()
+        {
+            return new StationaryBuffEnemy(Hp)
+            {
+                Name = Name,
+                TextureName = "Arts/Entities/" + TextureName,
+                Facing = IFacingConfig.ParseFacing(this.AppearFacing),
+                HeldCard = StaticDataManager.CardDataManager.Find(Card)
+            };
+        }
+    }
 
     public class EliteEntityConfig : EntityConfig, IFacingConfig
     {
         public string AppearFacing { get; set; } = "auto";
-        public List<string> Cards { get; set; }
+        public List<string> Cards { get; set; } = new();
 
         public override EntityBase GenEntity()
         {

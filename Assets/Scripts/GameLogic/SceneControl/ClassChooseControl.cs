@@ -31,7 +31,7 @@ namespace GameLogic.SceneControl
             playerData.CardOperations.SetTurnSlot(CommonCards.TurnBack);
             
             playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("focus_energy"));
-            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("observe"));
+            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("reflect_on_myself"));
             playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("archery"));
             playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("fourfold_strike"));
             playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("teacher_say"));
@@ -39,7 +39,7 @@ namespace GameLogic.SceneControl
             
             var stageData = StaticDataManager.StageDataManager;
             // playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("dummy"));
-            playerData.CurrentStage = stageData.NormalStages[2].Find(s=>s.ID.Equals("village_challenge_2"));
+            playerData.CurrentStage = stageData.NormalStages[2].Find(s=>s.ID.Equals("chu_warrior_2"));
             
             SceneManager.LoadScene("Fighting");
         }

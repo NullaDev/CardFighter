@@ -1,42 +1,17 @@
-using UnityEngine;
-
 namespace Registry
 {
     // This script manages the "global" information of the player, such as class unlocks.
-    public class SaveData : MonoBehaviour
+    public class SaveData
     {
-        public static SaveData Instance;
+        public static readonly SaveData Instance = new();
 
         // Some saved data
-        public int gold;
-    
-        void Start()
-        {
-        
-        }
-
-        void Update()
-        {
-        
-        }
-    
-        private void Awake()
-        {
-            if (Instance != null && Instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            Instance = this;
-            LoadFromFile();
-            DontDestroyOnLoad(gameObject);
-        }
+        public int Gold;
 
         private void LoadFromFile()
         {
             // TODO parse local json
-            this.gold = 0;
+            this.Gold = 0;
         }
     
         private void SaveToFile()

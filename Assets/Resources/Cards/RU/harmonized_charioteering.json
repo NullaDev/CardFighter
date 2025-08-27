@@ -2,7 +2,7 @@
   "ID": "harmonized_charioteering",
   "Name": "鸣和鸾",
   "TextureName": "Arts/Cards/RU/harmonized_charioteering",
-  "Desc": "前进1格，若处于「御」状态额外获得1点费用",
+  "Desc": "前进1格，处于「御」状态时额外获得1点费用",
   "Cost": 1,
   "Actions": [
     {

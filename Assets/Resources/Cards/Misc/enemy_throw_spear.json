@@ -1,8 +1,8 @@
 ﻿{
-  "ID": "throw_spear",
+  "ID": "enemy_throw_spear",
   "Name": "投枪",
   "TextureName": "Arts/Cards/Generic/AdvancedAttack/throw_spear",
-  "Desc": "对1-3格内的前2个目标造成3点伤害",
+  "Desc": "对1-3格内的前2个目标中的非友方造成3点伤害",
   "Cost": 2,
   "Actions": [
     {
@@ -10,10 +10,11 @@
       "Filters": [
         { "Type": "exclude_self" },
         { "Type": "is_alive" },
-        { "Type": "first_n", "Value": 2 }
+        { "Type": "first_n", "Value": 2 },
+        { "Type": "entity_type", "MatchTypes": ["enemy"], "Not": true }
       ],
       "Processors": [
-        { "Type": "damage", "Value": 3, "Tags": ["ranged", "weapon"] }
+        { "Type": "damage", "Value": 3, "Tags": ["melee", "weapon"] }
       ]
     }
   ]

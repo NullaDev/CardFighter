@@ -10,6 +10,6 @@ namespace GameLogic.Entity
         SortedDictionary<int, EntityBehavior> Behaviors { get; set; } 
         CardInstance ThinkNextTurnCard(FightingControl fc);
 
-        public abstract EntityBase InitializeBehaviors();
+        public abstract void InitializeBehaviors();
     }
 }

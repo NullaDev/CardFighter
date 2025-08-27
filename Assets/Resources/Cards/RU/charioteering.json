@@ -2,7 +2,7 @@
   "ID": "charioteering",
   "Name": "御",
   "TextureName": "Arts/Cards/RU/charioteering",
-  "Desc": "切换当前六艺状态至「御」。",
+  "Desc": "切换当前六艺状态至「御」",
   "Cost": 1,
   "Actions": [
     {

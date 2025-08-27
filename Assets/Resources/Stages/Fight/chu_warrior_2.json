@@ -1,0 +1,41 @@
+﻿{
+  "ID": "chu_warrior_2",
+  "Name": "楚地猛士-难度2",
+  "Type": "Fight",
+  "Difficulty": 2,
+  "Size": 6,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    {
+      "Type": "simple_enemy",
+      "AppearTurn": 0,
+      "AppearPos": 4,
+      "AppearFacing": "left",
+      "Name": "楚地勇士",
+      "TextureName": "soldier_axe",
+      "HP": 6,
+      "Card": "axe"
+    },
+    {
+      "Type": "simple_enemy",
+      "AppearTurn": 2,
+      "AppearPos": 5,
+      "AppearFacing": "auto",
+      "Name": "楚地勇士副手",
+      "TextureName": "soldier_spear",
+      "HP": 4,
+      "Card": "enemy_throw_spear"
+    },
+    {
+      "Type": "stationary_buff_enemy",
+      "AppearTurn": 4,
+      "AppearPos": 0,
+      "AppearFacing": "right",
+      "Name": "楚地鼓手",
+      "TextureName": "soldier_drum",
+      "HP": 3,
+      "Card": "inspire"
+    }
+  ]
+}

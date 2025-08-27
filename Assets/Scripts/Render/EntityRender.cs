@@ -12,6 +12,7 @@ namespace Render
     public class EntityRender : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         private Image _entityImage;
+        private Text _name;
         private Image _hpBack;
         private Image _hpFront;
         private Text _hpText;
@@ -22,6 +23,7 @@ namespace Render
         void Awake()
         {
             _entityImage = transform.Find("EntityImage").GetComponent<Image>();
+            _name =  transform.Find("Name").GetComponent<Text>();
 
             var hpBar = transform.Find("HPBar").gameObject;
             if (hpBar != null)
@@ -38,6 +40,7 @@ namespace Render
         public void RenderEmpty()
         {
             _entityImage.enabled = false;
+            _name.enabled = false;
             _hpBack.enabled = false;
             _hpFront.enabled = false;
             _hpText.enabled = false;
@@ -46,7 +49,6 @@ namespace Render
         public void RenderEntity(EntityBase entity)
         {
             _entityImage.enabled = true;
-
             if (entity.TextureName != "")
             {
                 var sprite = Resources.Load<Sprite>(entity.TextureName);
@@ -55,15 +57,25 @@ namespace Render
                 if (!entity.HasValidFacing) return;
                 _entityImage.transform.localScale = entity.Facing == EntityFacing.Left ? new Vector3(-1f, 1f, 1f) : new Vector3(1f, 1f, 1f);
             }
+            
+            _name.enabled = true;
+            _name.text = entity.Name;
+            _name.color = entity switch
+            {
+                Enemy         => Color.red,
+                PassiveEntity => Color.black,
+                Player        => Color.green,
+                _             => Color.gray
+            };
 
             RenderHpBar(entity);
 
-            if (entity is Enemy enemy)
+            if (entity is IActionableEntity actionableEntity)
             {
-                if (enemy.NextTurnCard != null)
+                if (actionableEntity.NextTurnCard != null)
                 {
-                    Console.WriteLine(enemy.NextTurnCard.Prototype.Name);
-                    this._cardToUse = enemy.NextTurnCard;
+                    Console.WriteLine(actionableEntity.NextTurnCard.Prototype.Name);
+                    this._cardToUse = actionableEntity.NextTurnCard;
                 }
             }
         }

@@ -1,0 +1,7 @@
+﻿{
+  "ID": "inspired",
+  "Name": "受鼓舞",
+  "TextureName": "Arts/Cards/Misc/inspire",
+  "EffectText": "你造成的下一次伤害增加{value}。",
+  "ExtraText": "这个单位被鼓舞了。"
+}

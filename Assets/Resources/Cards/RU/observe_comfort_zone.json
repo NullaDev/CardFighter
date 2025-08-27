@@ -2,7 +2,7 @@
   "ID": "observe_comfort_zone",
   "Name": "察其所安",
   "TextureName": "Arts/Cards/RU/observe_comfort_zone",
-  "Desc": "在3回合内你具有洞察，场上其他所有敌人受伤+2",
+  "Desc": "在3回合内你具有洞察，场上其他所有敌人获得受伤+2",
   "Cost": 1,
   "Actions": [
     {
