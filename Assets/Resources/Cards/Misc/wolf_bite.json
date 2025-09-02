@@ -1,7 +1,7 @@
 ﻿{
-  "ID": "bite",
+  "ID": "wolf_bite",
   "Name": "咬你一口",
-  "TextureName": "Arts/Cards/Misc/bite",
+  "TextureName": "Arts/Cards/Misc/wolf_bite",
   "Desc": "对1格内的敌人造成2点伤害",
   "Cost": 1,
   "Actions": [

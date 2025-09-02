@@ -1,0 +1,23 @@
+﻿{
+  "ID": "enemy_summon_paper_doll",
+  "Name": "纸人役使之术",
+  "TextureName": "Arts/Entities/paper_doll",
+  "Desc": "在自身面前1格召唤一个小纸人",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [],
+      "Processors": [
+        {
+          "Type": "summon",
+          "Mode": "simple_enemy",
+          "Name": "小纸人",
+          "TextureName": "paper_doll",
+          "Hp": 2,
+          "Card": "paper_doll_attack"
+        }
+      ]
+    }
+  ]
+}

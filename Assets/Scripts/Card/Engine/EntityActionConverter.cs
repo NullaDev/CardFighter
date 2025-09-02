@@ -74,6 +74,7 @@ namespace Card.Engine
                         "move_attack" => p.ToObject<MoveAttackProcessor>(serializer),
                         "kill" => p.ToObject<KillProcessor>(serializer),
                         "clear_buff" => p.ToObject<ClearBuffProcessor>(serializer),
+                        "summon" => p.ToObject<SummonProcessor>(serializer),
                         "execute_action" => new ExecuteActionProcessor
                         {
                             Action = p["Action"]?.ToObject<EntityAction>(serializer)

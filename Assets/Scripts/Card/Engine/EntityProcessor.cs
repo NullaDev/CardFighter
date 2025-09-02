@@ -5,7 +5,9 @@ using GameLogic;
 using GameLogic.Buff;
 using GameLogic.Entity;
 using GameLogic.SceneControl;
+using Registry;
 using Registry.Data;
+using UnityEngine;
 
 namespace Card.Engine
 {
@@ -228,6 +230,74 @@ namespace Card.Engine
             {
                 target.Buffs.Remove(b);
             }
+        }
+    }
+    
+    public class SummonProcessor : EntityProcessor
+    {
+        public string Mode { get; set; }
+        public int Position { get; set; } = 1;
+        public int Hp { get; set; }
+        public string Name { get; set; }
+        public string TextureName { get; set; }
+        public string Card { get; set; }
+        public int TurnsPerAction { get; set; } = -1;
+        public int InitialActionTick { get; set; } = 0;
+
+        public override void Process(FightingControl fc, EntityBase user, EntityBase target)
+        {
+            var map = fc.BattleField;
+            var targetIndex = map.GetEntityIndex(target);
+            if (targetIndex < 0)
+                throw new Exception("Can't find target when executing Summon.");
+
+            var dir = (int)target.Facing;
+            var spawnIndex = targetIndex + dir * Position;
+
+            if (spawnIndex < 0 || spawnIndex >= map.Size)
+                return;
+            if (map.ListEntities[spawnIndex] != null)
+                return;
+
+            EntityBase entity = Mode switch
+            {
+                "passive"               => new PassiveEntity(Hp),
+                "simple_enemy"          => new SimpleEnemy(Hp),
+                "stationary_enemy"      => new StationaryEnemy(Hp),
+                "stationary_buff_enemy" => new StationaryBuffEnemy(Hp),
+                "fixed_card_enemy"      => new FixedCardEnemy(Hp),
+                _ => throw new ArgumentException($"Unsupported SummonProcessor mode: {Mode}")
+            };
+
+            entity.Name = this.Name;
+            entity.TextureName = "Arts/Entities/" + this.TextureName;
+            entity.Facing = entity is PassiveEntity? EntityFacing.Default : user.Facing;
+
+            switch (entity)
+            {
+                case SimpleEnemy e:
+                    e.HeldCard = StaticDataManager.CardDataManager.Find(this.Card);
+                    e.TurnsPerAction = this.TurnsPerAction;
+                    e.ActionTick = this.InitialActionTick;
+                    break;
+                case StationaryEnemy e:
+                    e.HeldCard = StaticDataManager.CardDataManager.Find(this.Card);
+                    e.TurnsPerAction = this.TurnsPerAction;
+                    e.ActionTick = this.InitialActionTick;
+                    break;
+                case StationaryBuffEnemy e:
+                    e.HeldCard = StaticDataManager.CardDataManager.Find(this.Card);
+                    e.TurnsPerAction = this.TurnsPerAction;
+                    e.ActionTick = this.InitialActionTick;
+                    break;
+                case FixedCardEnemy e:
+                    e.HeldCard = StaticDataManager.CardDataManager.Find(this.Card);
+                    e.TurnsPerAction = this.TurnsPerAction;
+                    e.ActionTick = this.InitialActionTick;
+                    break;
+            }
+
+            map.AddEntityToMap(entity, spawnIndex);
         }
     }
     

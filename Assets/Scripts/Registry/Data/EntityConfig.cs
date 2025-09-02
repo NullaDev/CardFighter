@@ -58,10 +58,10 @@ namespace Registry.Data
         {
             return new SimpleEnemy(Hp)
             {
-                Name = Name,
-                TextureName = "Arts/Entities/" + TextureName,
+                Name = this.Name,
+                TextureName = "Arts/Entities/" + this.TextureName,
                 Facing = IFacingConfig.ParseFacing(this.AppearFacing),
-                HeldCard = StaticDataManager.CardDataManager.Find(Card),
+                HeldCard = StaticDataManager.CardDataManager.Find(this.Card),
                 TurnsPerAction = this.TurnsPerAction,
                 ActionTick = this.InitialActionTick
             };
@@ -77,10 +77,10 @@ namespace Registry.Data
         {
             return new StationaryEnemy(Hp)
             {
-                Name = Name,
-                TextureName = "Arts/Entities/" + TextureName,
+                Name = this.Name,
+                TextureName = "Arts/Entities/" + this.TextureName,
                 Facing = IFacingConfig.ParseFacing(this.AppearFacing),
-                HeldCard = StaticDataManager.CardDataManager.Find(Card),
+                HeldCard = StaticDataManager.CardDataManager.Find(this.Card),
                 TurnsPerAction = this.TurnsPerAction,
                 ActionTick = this.InitialActionTick
             };
@@ -96,10 +96,10 @@ namespace Registry.Data
         {
             return new StationaryBuffEnemy(Hp)
             {
-                Name = Name,
-                TextureName = "Arts/Entities/" + TextureName,
+                Name = this.Name,
+                TextureName = "Arts/Entities/" + this.TextureName,
                 Facing = IFacingConfig.ParseFacing(this.AppearFacing),
-                HeldCard = StaticDataManager.CardDataManager.Find(Card),
+                HeldCard = StaticDataManager.CardDataManager.Find(this.Card),
                 TurnsPerAction = this.TurnsPerAction,
                 ActionTick = this.InitialActionTick
             };
@@ -115,10 +115,10 @@ namespace Registry.Data
         {
             return new FixedCardEnemy(Hp)
             {
-                Name = Name,
-                TextureName = "Arts/Entities/" + TextureName,
+                Name = this.Name,
+                TextureName = "Arts/Entities/" + this.TextureName,
                 Facing = IFacingConfig.ParseFacing(this.AppearFacing),
-                HeldCard = StaticDataManager.CardDataManager.Find(Card),
+                HeldCard = StaticDataManager.CardDataManager.Find(this.Card),
                 TurnsPerAction = this.TurnsPerAction,
                 ActionTick = this.InitialActionTick
             };
@@ -134,10 +134,10 @@ namespace Registry.Data
         {
             return new EliteEnemy(Hp)
             {
-                Name = Name,
-                TextureName = "Arts/Entities/" + TextureName,
+                Name = this.Name,
+                TextureName = "Arts/Entities/" + this.TextureName,
                 Facing = IFacingConfig.ParseFacing(this.AppearFacing),
-                HeldCards = Cards.Select(card => StaticDataManager.CardDataManager.Find(card)).ToList(),
+                HeldCards = this.Cards.Select(card => StaticDataManager.CardDataManager.Find(card)).ToList(),
                 TurnsPerAction = this.TurnsPerAction,
                 ActionTick = this.InitialActionTick
             };

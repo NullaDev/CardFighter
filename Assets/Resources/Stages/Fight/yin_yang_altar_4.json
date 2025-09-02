@@ -1,0 +1,55 @@
+﻿{
+  "ID": "yin_yang_altar_4",
+  "Name": "阴阳祭坛-难度4",
+  "Type": "Fight",
+  "Difficulty": 4,
+  "Size": 7,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    {
+      "Type": "fixed_card_enemy",
+      "AppearTurn": 0,
+      "AppearPos": 5,
+      "AppearFacing": "left",
+      "Name": "阴阳祭坛",
+      "TextureName": "yin_yang_altar",
+      "HP": 8,
+      "Card": "enemy_summon_paper_doll",
+      "TurnsPerAction": 2,
+      "InitialActionTick": 2
+    },
+    {
+      "Type": "stationary_enemy",
+      "AppearTurn": 0,
+      "AppearPos": 6,
+      "AppearFacing": "left",
+      "Name": "阴阳祭司",
+      "TextureName": "yin_yang_priest",
+      "HP": 6,
+      "Card": "enemy_thunder",
+      "TurnsPerAction": 2,
+      "InitialActionTick": 2
+    },
+    {
+      "Type": "simple_enemy",
+      "AppearTurn": 0,
+      "AppearPos": 4,
+      "AppearFacing": "left",
+      "Name": "式神·纸人",
+      "TextureName": "paper_doll",
+      "HP": 2,
+      "Card": "paper_doll_attack"
+    },
+    {
+      "Type": "simple_enemy",
+      "AppearTurn": 0,
+      "AppearPos": 0,
+      "AppearFacing": "right",
+      "Name": "式神·暴鬼",
+      "TextureName": "raging_ghost",
+      "HP": 4,
+      "Card": "raging_ghost_attack"
+    }
+  ]
+}

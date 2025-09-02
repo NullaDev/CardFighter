@@ -23,7 +23,7 @@
       "Name": "狼1",
       "TextureName": "wolf",
       "HP": 4,
-      "Card": "bite"
+      "Card": "wolf_bite"
     },
     {
       "Type": "simple_enemy",
@@ -33,7 +33,7 @@
       "Name": "狼2",
       "TextureName": "wolf",
       "HP": 4,
-      "Card": "bite"
+      "Card": "wolf_bite"
     }
   ]
 }

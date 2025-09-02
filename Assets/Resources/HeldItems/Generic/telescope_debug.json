@@ -1,0 +1,15 @@
+﻿{
+  "ID": "telescope_debug",
+  "Name": "望远镜",
+  "TextureName": "Arts/HeldItems/telescope",
+  "EffectText": "入场时获得永久洞察。",
+  "ExtraText": "",
+  "Effects": [
+    {
+      "EffectType": "starting_buff",
+      "Buffs": [
+        { "BuffName": "insight", "Turn": -1 }
+      ]
+    }
+  ]
+}
