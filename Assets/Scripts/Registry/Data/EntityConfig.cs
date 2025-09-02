@@ -30,6 +30,8 @@ namespace Registry.Data
         public string Name { get; set; }
         public string TextureName { get; set; }
         public int Hp { get; set; }
+        public int TurnsPerAction { get; set; } = -1;
+        public int InitialActionTick { get; set; } = 0;
 
         public abstract EntityBase GenEntity();
     }
@@ -59,7 +61,9 @@ namespace Registry.Data
                 Name = Name,
                 TextureName = "Arts/Entities/" + TextureName,
                 Facing = IFacingConfig.ParseFacing(this.AppearFacing),
-                HeldCard = StaticDataManager.CardDataManager.Find(Card)
+                HeldCard = StaticDataManager.CardDataManager.Find(Card),
+                TurnsPerAction = this.TurnsPerAction,
+                ActionTick = this.InitialActionTick
             };
         }
     }
@@ -76,7 +80,9 @@ namespace Registry.Data
                 Name = Name,
                 TextureName = "Arts/Entities/" + TextureName,
                 Facing = IFacingConfig.ParseFacing(this.AppearFacing),
-                HeldCard = StaticDataManager.CardDataManager.Find(Card)
+                HeldCard = StaticDataManager.CardDataManager.Find(Card),
+                TurnsPerAction = this.TurnsPerAction,
+                ActionTick = this.InitialActionTick
             };
         }
     }
@@ -93,7 +99,28 @@ namespace Registry.Data
                 Name = Name,
                 TextureName = "Arts/Entities/" + TextureName,
                 Facing = IFacingConfig.ParseFacing(this.AppearFacing),
-                HeldCard = StaticDataManager.CardDataManager.Find(Card)
+                HeldCard = StaticDataManager.CardDataManager.Find(Card),
+                TurnsPerAction = this.TurnsPerAction,
+                ActionTick = this.InitialActionTick
+            };
+        }
+    }
+    
+    public class FixedCardEnemyConfig : EntityConfig, IFacingConfig
+    {
+        public string AppearFacing { get; set; } = "auto";
+        public string Card { get; set; }
+
+        public override EntityBase GenEntity()
+        {
+            return new FixedCardEnemy(Hp)
+            {
+                Name = Name,
+                TextureName = "Arts/Entities/" + TextureName,
+                Facing = IFacingConfig.ParseFacing(this.AppearFacing),
+                HeldCard = StaticDataManager.CardDataManager.Find(Card),
+                TurnsPerAction = this.TurnsPerAction,
+                ActionTick = this.InitialActionTick
             };
         }
     }
@@ -110,7 +137,9 @@ namespace Registry.Data
                 Name = Name,
                 TextureName = "Arts/Entities/" + TextureName,
                 Facing = IFacingConfig.ParseFacing(this.AppearFacing),
-                HeldCards = Cards.Select(card => StaticDataManager.CardDataManager.Find(card)).ToList()
+                HeldCards = Cards.Select(card => StaticDataManager.CardDataManager.Find(card)).ToList(),
+                TurnsPerAction = this.TurnsPerAction,
+                ActionTick = this.InitialActionTick
             };
         }
     }

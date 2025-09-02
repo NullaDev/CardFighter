@@ -22,6 +22,7 @@ namespace GameLogic.Entity
                 "simple_enemy" => new SimpleEnemyConfig(),
                 "stationary_enemy" => new StationaryEnemyConfig(),
                 "stationary_buff_enemy" => new StationaryBuffEnemyConfig(),
+                "fixed_card_enemy" => new FixedCardEnemyConfig(),
                 "elite_enemy" => new EliteEntityConfig(),
                 _ => throw new Exception("Unknown entity type")
             };

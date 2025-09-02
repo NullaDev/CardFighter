@@ -303,5 +303,15 @@ namespace GameLogic.Entity
             return null;
         }
     }
+    
+    public class AlwaysPlayBehavior : EntityBehavior
+    {
+        public AlwaysPlayBehavior(CardPrototype card) : base(card) { }
+
+        public override CardInstance TryExecute(EntityBase entity, FightingControl fc)
+        {
+            return Card == null ? null : new CardInstance(Card);
+        }
+    }
 
 }

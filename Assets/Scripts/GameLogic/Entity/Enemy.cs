@@ -11,6 +11,8 @@ namespace GameLogic.Entity
         public override bool HasValidFacing => true;
         public SortedDictionary<int, EntityBehavior> Behaviors { get; set; } = new();
         public CardInstance NextTurnCard { get; set; } = null;
+        public int TurnsPerAction { get; set; } = -1;
+        public int ActionTick { get; set; } = 0;
         
         public Enemy(int hp) : base(hp) {}
 
@@ -21,6 +23,13 @@ namespace GameLogic.Entity
 
         public CardInstance ThinkNextTurnCard(FightingControl fc)
         {
+            var canActThisTurn = ActionTick++ >= TurnsPerAction;
+            if (!canActThisTurn)
+            {
+                return new CardInstance(CommonCards.DoNothing);
+            }
+            ActionTick = 0;
+            
             foreach (var kv in Behaviors)
             {
                 var action = kv.Value.TryExecute(this, fc);
@@ -96,6 +105,19 @@ namespace GameLogic.Entity
         public override void InitializeBehaviors()
         {
             Behaviors.Add(0, new BuffOnEnemyTargetBehavior(HeldCard));
+            Behaviors.Add(1, new IdleBehavior());
+        }
+    }
+    
+    public class FixedCardEnemy : Enemy
+    {
+        public CardPrototype HeldCard;
+
+        public FixedCardEnemy(int hp) : base(hp) {}
+
+        public override void InitializeBehaviors()
+        {
+            Behaviors.Add(0, new AlwaysPlayBehavior(HeldCard));
             Behaviors.Add(1, new IdleBehavior());
         }
     }
