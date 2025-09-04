@@ -1,0 +1,21 @@
+﻿{
+  "ID": "sunzi_fake_0",
+  "Name": "孙武（伪）-精英难度0",
+  "Type": "Elite",
+  "Difficulty": 0,
+  "Size": 6,
+  "PlayerSpawnPos": 0,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    {
+      "Type": "elite_enemy",
+      "AppearTurn": 0,
+      "AppearPos": 4,
+      "AppearFacing": "left",
+      "Name": "孙武（伪）",
+      "TextureName": "sunzi",
+      "HP": 10,
+      "Cards": [ "sunzi_voice", "sunzi_summon_catapult", "sunzi_backstab", "sunzi_rush", "sunzi_slash" ]
+    }
+  ]
+}

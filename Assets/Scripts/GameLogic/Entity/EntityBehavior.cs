@@ -31,7 +31,7 @@ namespace GameLogic.Entity
             if (action == null) return null;
 
             var targets = action.Selector.Select(fc, entity);
-            targets = action.Filters.Aggregate(targets, (cur, f) => f.Apply(cur, entity));
+            targets = action.Filters.Aggregate(targets, (cur, f) => f.Apply(cur, entity, fc));
 
             if (targets.Any(t => t is Player))
                 return new CardInstance(Card);
@@ -50,7 +50,7 @@ namespace GameLogic.Entity
             if (action == null) return null;
 
             var targets = action.Selector.Select(fc, entity);
-            targets = action.Filters.Aggregate(targets, (cur, f) => f.Apply(cur, entity));
+            targets = action.Filters.Aggregate(targets, (cur, f) => f.Apply(cur, entity, fc));
 
             if (targets.Count > 0 && targets.All(t => t is PassiveEntity))
                 return new CardInstance(Card);
@@ -106,9 +106,12 @@ namespace GameLogic.Entity
             var pos = bf.GetEntityIndex(entity);
             var playerPos = bf.GetPlayerIndex();
             var dir = entity.Facing == EntityFacing.Right ? 1 : -1;
+            
+            if ((playerPos - pos) * dir <= 0)
+                return null;
 
             var nextPos = pos + dir;
-            if (nextPos >= 0 && nextPos < bf.Size && bf.ListEntities[nextPos] == null)
+            if (nextPos > 0 && nextPos < bf.Size && bf.ListEntities[nextPos] == null)
             {
                 return new CardInstance(Card);
             }
@@ -172,7 +175,7 @@ namespace GameLogic.Entity
             if (action == null) return null;
 
             var targets = action.Selector.Select(fc, entity);
-            targets = action.Filters.Aggregate(targets, (cur, f) => f.Apply(cur, entity));
+            targets = action.Filters.Aggregate(targets, (cur, f) => f.Apply(cur, entity, fc));
 
             if (targets.All(t => t is not Enemy) && targets.Count > 0)
                 return new CardInstance(Card);
@@ -211,7 +214,7 @@ namespace GameLogic.Entity
                 foreach (var action in card.Actions.Where(a => a.Processors.Any(p => p is DamageProcessor)))
                 {
                     var targets = action.Selector.Select(fc, entity);
-                    targets = action.Filters.Aggregate(targets, (cur, f) => f.Apply(cur, entity));
+                    targets = action.Filters.Aggregate(targets, (cur, f) => f.Apply(cur, entity, fc));
 
                     if (targets.Any(t => t is Player))
                     {
@@ -253,7 +256,7 @@ namespace GameLogic.Entity
                 foreach (var action in card.Actions.Where(a => a.Processors.Any(p => p is DamageProcessor)))
                 {
                     var targets = action.Selector.Select(fc, entity);
-                    targets = action.Filters.Aggregate(targets, (cur, f) => f.Apply(cur, entity));
+                    targets = action.Filters.Aggregate(targets, (cur, f) => f.Apply(cur, entity, fc));
 
                     if (targets.Any(t => t is Enemy))
                     {
@@ -281,6 +284,50 @@ namespace GameLogic.Entity
         }
     }
     
+    public class ComplexSummonBehavior : EntityBehavior
+    {
+        private readonly List<CardPrototype> _cards;
+
+        public ComplexSummonBehavior(List<CardPrototype> cards) : base(null)
+        {
+            _cards = cards ?? new List<CardPrototype>();
+        }
+
+        public override CardInstance TryExecute(EntityBase entity, FightingControl fc)
+        {
+            var map = fc.BattleField;
+            var selfIndex = map.GetEntityIndex(entity);
+            if (selfIndex < 0) return null;
+
+            var dir = (int)entity.Facing;
+
+            foreach (var card in _cards)
+            {
+                if (card?.Actions == null || card.Actions.Count == 0) continue;
+                
+                foreach (var action in card.Actions)
+                {
+                    var summons = action.Processors?.OfType<SummonProcessor>();
+                    if (summons == null) continue;
+
+                    foreach (var sp in summons)
+                    {
+                        var spawnIndex = selfIndex + dir * sp.Position;
+
+                        if (spawnIndex < 0 || spawnIndex >= map.Size)
+                            continue;
+                        if (map.ListEntities[spawnIndex] != null)
+                            continue;
+
+                        return new CardInstance(card);
+                    }
+                }
+            }
+
+            return null;
+        }
+    }
+    
     public class BuffOnEnemyTargetBehavior : EntityBehavior
     {
         public BuffOnEnemyTargetBehavior(CardPrototype card) : base(card) { }
@@ -292,7 +339,7 @@ namespace GameLogic.Entity
             foreach (var action in Card.Actions)
             {
                 var targets = action.Selector.Select(fc, entity);
-                targets = action.Filters.Aggregate(targets, (cur, f) => f.Apply(cur, entity));
+                targets = action.Filters.Aggregate(targets, (cur, f) => f.Apply(cur, entity, fc));
 
                 if (targets.Any(t => t is Enemy))
                 {

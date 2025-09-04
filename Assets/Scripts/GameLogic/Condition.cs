@@ -20,6 +20,22 @@ namespace GameLogic
                         (selfIndex > targetIndex && self.Facing == EntityFacing.Left && target.Facing == EntityFacing.Right);
 
                     return isFacingEachOther;
+                
+                case "target_facing_me":
+                    selfIndex = battleField.GetEntityIndex(self);
+                    targetIndex = battleField.GetEntityIndex(target);
+
+                    if (target.Facing == EntityFacing.Default)
+                        return false;
+
+                    var targetFacingMe =
+                        (selfIndex < targetIndex && target.Facing == EntityFacing.Left) ||
+                        (selfIndex > targetIndex && target.Facing == EntityFacing.Right);
+
+                    return targetFacingMe;
+                
+                case "dealt_damage_to_player":
+                    return target is Enemy { DealtDamageToPlayer: true };
 
                 // case "is_in_insight": ...
                 // case "is_super_armor": ...

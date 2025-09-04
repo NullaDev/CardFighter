@@ -1,0 +1,15 @@
+﻿{
+  "ID": "sunzi_rush",
+  "Name": "其疾如疯",
+  "TextureName": "Arts/Cards/Misc/sunzi_rush",
+  "Desc": "前进2格，沿途造成4点伤害",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        { "Type": "move_attack", "Value": 2, "Damage": 4 }
+      ]
+    }
+  ]
+}

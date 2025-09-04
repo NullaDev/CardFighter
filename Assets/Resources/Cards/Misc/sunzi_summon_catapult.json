@@ -1,0 +1,24 @@
+﻿{
+  "ID": "sunzi_summon_catapult",
+  "Name": "兵者，轨道也",
+  "TextureName": "Arts/Entities/catapult",
+  "Desc": "在自身身后1格召唤一个投石机",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [],
+      "Processors": [
+        {
+          "Type": "summon",
+          "Position": -1,
+          "Mode": "stationary_enemy",
+          "Name": "投石机",
+          "TextureName": "catapult",
+          "Hp": 4,
+          "Card": "catapult_attack"
+        }
+      ]
+    }
+  ]
+}

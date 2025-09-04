@@ -43,7 +43,7 @@
     },
     {
       "Type": "simple_enemy",
-      "AppearTurn": 0,
+      "AppearTurn": 2,
       "AppearPos": 0,
       "AppearFacing": "right",
       "Name": "式神·暴鬼",

@@ -14,7 +14,7 @@ namespace Card.Engine
         public void Execute(FightingControl fc, EntityBase user)
         {
             var targets = Selector.Select(fc, user);
-            targets = Filters.Aggregate(targets, (current, filter) => filter.Apply(current, user));
+            targets = Filters.Aggregate(targets, (current, filter) => filter.Apply(current, user, fc));
 
             foreach (var target in targets)
             {

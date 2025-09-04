@@ -90,10 +90,11 @@ namespace GameLogic.Entity
         {
             Behaviors.Add(0, new ComplexAttackPlayerBehavior(HeldCards));
             Behaviors.Add(1, new ComplexAttackPassiveBehavior(HeldCards));
-            Behaviors.Add(2, new BoundaryTurnBackBehavior());
-            Behaviors.Add(3, new FacePlayerTurnBehavior());
-            Behaviors.Add(4, new ApproachPlayerBehavior());
-            Behaviors.Add(5, new IdleBehavior());
+            Behaviors.Add(2, new ComplexSummonBehavior(HeldCards));
+            Behaviors.Add(3, new BoundaryTurnBackBehavior());
+            Behaviors.Add(4, new FacePlayerTurnBehavior());
+            Behaviors.Add(5, new ApproachPlayerBehavior());
+            Behaviors.Add(6, new IdleBehavior());
         }
     }
     

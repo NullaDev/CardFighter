@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using GameLogic;
 using GameLogic.Entity;
+using GameLogic.SceneControl;
 
 namespace Card.Engine
 {
     public abstract class EntityFilter
     {
-        public abstract List<EntityBase> Apply(List<EntityBase> targets, EntityBase self);
+        public abstract List<EntityBase> Apply(List<EntityBase> targets, EntityBase self, FightingControl fc);
     }
     
     public class FirstNFilter : EntityFilter
     {
         public int Value { get; set; } = 1;
 
-        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self)
+        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self, FightingControl fc)
         {
             return targets.Take(Value).ToList();
         }
@@ -25,7 +26,7 @@ namespace Card.Engine
     {
         public int Value { get; set; } = 1;
 
-        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self)
+        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self, FightingControl fc)
         {
             return targets.Skip(Math.Max(0, targets.Count - Value)).ToList();
         }
@@ -33,7 +34,7 @@ namespace Card.Engine
 
     public class ExcludeSelfFilter : EntityFilter
     {
-        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self)
+        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self, FightingControl fc)
         {
             return targets.Where(e => e != self).ToList();
         }
@@ -41,7 +42,7 @@ namespace Card.Engine
 
     public class IsAliveFilter : EntityFilter
     {
-        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self)
+        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self, FightingControl fc)
         {
             return targets.Where(e => !e.IsDead).ToList();
         }
@@ -52,7 +53,7 @@ namespace Card.Engine
         public RelationalOperator Operator { get; set; }
         public int Value { get; set; }
 
-        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self)
+        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self, FightingControl fc)
         {
             return targets.Where(e => OperatorUtils.Compare(e.HP, Operator, Value)).ToList();
         }
@@ -63,7 +64,7 @@ namespace Card.Engine
         public List<string> MatchTypes { get; set; } = new();
         public bool Not { get; set; } = false;
 
-        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self)
+        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self, FightingControl fc)
         {
             return targets.Where(e =>
             {
@@ -81,15 +82,19 @@ namespace Card.Engine
         }
     }
     
-    public class DealtDamageToPlayerFilter : EntityFilter
+    public class ConditionFilter : EntityFilter
     {
-        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self)
+        public string ConditionName { get; set; }
+        public bool Not { get; set; } = false;
+
+        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self, FightingControl fc)
         {
             return targets
-                .OfType<Enemy>()
-                .Where(e => e.DealtDamageToPlayer)
-                .Cast<EntityBase>()
-                .ToList();
+                .Where(t =>
+                {
+                    var ok = Condition.CheckCondition(ConditionName, self, t, fc.BattleField);
+                    return Not ? !ok : ok;
+                }).ToList();
         }
     }
     
@@ -98,7 +103,7 @@ namespace Card.Engine
         public string BuffName { get; set; }
         public bool HasBuff { get; set; } = true;
 
-        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self)
+        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self, FightingControl fc)
         {
             return targets.Where(e =>
             {

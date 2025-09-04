@@ -1,8 +1,8 @@
 ﻿{
-  "ID": "paper_doll_attack",
-  "Name": "纸人冲击",
-  "TextureName": "Arts/Cards/Misc/paper_doll_attack",
-  "Desc": "对1格内的目标造成1点伤害",
+  "ID": "sunzi_slash",
+  "Name": "直劈知己",
+  "TextureName": "Arts/Cards/Misc/sunzi_slash",
+  "Desc": "对1格内的目标造成5点伤害",
   "Cost": 1,
   "Actions": [
     {
@@ -13,7 +13,7 @@
         { "Type": "first_n", "Value": 1 }
       ],
       "Processors": [
-        { "Type": "damage", "Value": 1, "Tags": ["melee"] }
+        { "Type": "damage", "Value": 5, "Tags": ["melee", "weapon"] }
       ]
     }
   ]

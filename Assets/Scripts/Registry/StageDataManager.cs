@@ -82,7 +82,7 @@ namespace Registry
         
         public StageConfig GetEliteStage(int layer)
         {
-            var difficulty = layer / 4;
+            var difficulty = (layer - 2) / 5;
             var listStage = EliteStages[difficulty];
             return listStage[Random.Range(0, listStage.Count)];
         }

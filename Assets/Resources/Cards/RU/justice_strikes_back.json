@@ -10,7 +10,7 @@
       "Filters": [
         { "Type": "exclude_self" },
         { "Type": "is_alive" },
-        { "Type": "dealt_damage_to_player" }
+        { "Type": "condition", "ConditionName": "dealt_damage_to_player" }
       ],
       "Processors": [
         {

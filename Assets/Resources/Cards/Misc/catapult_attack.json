@@ -1,12 +1,12 @@
 ﻿{
-  "ID": "enemy_throw_stone",
-  "Name": "投掷",
-  "TextureName": "Arts/Cards/Generic/BasicAttack/throw_stone",
-  "Desc": "对2格内的玩家造成2点伤害",
+  "ID": "catapult_attack",
+  "Name": "投石攻击",
+  "TextureName": "Arts/Cards/Misc/catapult_attack",
+  "Desc": "对2-4格内的首个玩家造成2点伤害",
   "Cost": 1,
   "Actions": [
     {
-      "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 2 },
+      "Selector": { "Type": "range", "RangeMin": 2, "RangeMax": 4 },
       "Filters": [
         { "Type": "exclude_self" },
         { "Type": "is_alive" },

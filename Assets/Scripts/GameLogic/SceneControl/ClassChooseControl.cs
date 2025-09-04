@@ -25,6 +25,7 @@ namespace GameLogic.SceneControl
         public void DirectEnterTestStage()
         {
             var playerData = PlayerData.Instance;
+            playerData.MaxHp = playerData.Hp = 255;
             playerData.HeldItems.Add(StaticDataManager.HeldItemDataManager.Find("telescope_debug"));
 
             playerData.CardOperations.Clear();
@@ -40,7 +41,8 @@ namespace GameLogic.SceneControl
             
             var stageData = StaticDataManager.StageDataManager;
             // playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("dummy"));
-            playerData.CurrentStage = stageData.NormalStages[3].Find(s=>s.ID.Equals("yin_yang_altar_3"));
+            // playerData.CurrentStage = stageData.NormalStages[3].Find(s=>s.ID.Equals("yin_yang_altar_3"));
+            playerData.CurrentStage = stageData.EliteStages[0].Find(s=>s.ID.Equals("sunzi_fake_0"));
             
             SceneManager.LoadScene("Fighting");
         }

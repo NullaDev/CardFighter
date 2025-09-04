@@ -2,7 +2,7 @@
   "ID": "raging_ghost_attack",
   "Name": "暴鬼冲击",
   "TextureName": "Arts/Cards/Misc/raging_ghost_attack",
-  "Desc": "对1格内的敌人造成3点伤害",
+  "Desc": "对1格内的目标造成3点伤害",
   "Cost": 1,
   "Actions": [
     {
