@@ -20,7 +20,7 @@
       "AppearTurn": 0,
       "AppearPos": 0,
       "AppearFacing": "right",
-      "Name": "狼1",
+      "Name": "狼甲",
       "TextureName": "wolf",
       "HP": 3,
       "Card": "wolf_bite"
@@ -30,7 +30,7 @@
       "AppearTurn": 3,
       "AppearPos": 5,
       "AppearFacing": "left",
-      "Name": "狼2",
+      "Name": "狼乙",
       "TextureName": "wolf",
       "HP": 3,
       "Card": "wolf_bite"

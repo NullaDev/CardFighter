@@ -33,11 +33,11 @@ namespace GameLogic.SceneControl
             playerData.CardOperations.SetTurnSlot(CommonCards.TurnBack);
             
             playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("focus_energy"));
-            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("reflect_on_myself"));
+            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("observe"));
             playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("archery"));
             playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("fourfold_strike"));
-            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("teacher_say"));
-            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("stone_probe"));
+            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("study_and_practice"));
+            playerData.CardOperations.AddCard(StaticDataManager.CardDataManager.Find("throw_stone"));
             
             var stageData = StaticDataManager.StageDataManager;
             // playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals("dummy"));

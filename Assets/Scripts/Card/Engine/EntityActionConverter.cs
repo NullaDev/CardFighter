@@ -48,6 +48,7 @@ namespace Card.Engine
                         "entity_type" => f.ToObject<TypeFilter>(serializer),
                         "condition" => f.ToObject<ConditionFilter>(serializer),
                         "has_buff" => f.ToObject<HasBuffFilter>(serializer),
+                        "name" => f.ToObject<NameFilter>(serializer),
                         _ => throw new Exception("Unknown filter type: " + type)
                     };
                     action.Filters.Add(filter);

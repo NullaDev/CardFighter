@@ -20,7 +20,7 @@
       "AppearTurn": 0,
       "AppearPos": 3,
       "AppearFacing": "left",
-      "Name": "村民1",
+      "Name": "村民甲",
       "TextureName": "villager1",
       "HP": 4,
       "Card": "punch"
@@ -30,7 +30,7 @@
       "AppearTurn": 0,
       "AppearPos": 4,
       "AppearFacing": "left",
-      "Name": "村民2",
+      "Name": "村民乙",
       "TextureName": "villager2",
       "HP": 3,
       "Card": "enemy_throw_stone"
@@ -40,7 +40,7 @@
       "AppearTurn": 2,
       "AppearPos": 3,
       "AppearFacing": "left",
-      "Name": "村民3",
+      "Name": "村民丙",
       "TextureName": "villager1",
       "HP": 4,
       "Card": "punch"
@@ -50,7 +50,7 @@
       "AppearTurn": 2,
       "AppearPos": 4,
       "AppearFacing": "left",
-      "Name": "村民4",
+      "Name": "村民丁",
       "TextureName": "villager2",
       "HP": 3,
       "Card": "enemy_throw_stone"

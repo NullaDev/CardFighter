@@ -20,7 +20,7 @@
       "AppearTurn": 0,
       "AppearPos": 4,
       "AppearFacing": "left",
-      "Name": "哨兵1",
+      "Name": "哨兵",
       "TextureName": "sentry",
       "HP": 3,
       "Card": "enemy_spear"

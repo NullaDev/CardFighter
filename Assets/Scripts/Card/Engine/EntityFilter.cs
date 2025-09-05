@@ -112,5 +112,20 @@ namespace Card.Engine
             }).ToList();
         }
     }
+    
+    public class NameFilter : EntityFilter
+    {
+        public List<string> MatchNames { get; set; } = new();
+        public bool Not { get; set; } = false;
+
+        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self, FightingControl fc)
+        {
+            return targets.Where(e =>
+            {
+                var match = MatchNames.Contains(e.TextureName);
+                return Not ? !match : match;
+            }).ToList();
+        }
+    }
 
 }
