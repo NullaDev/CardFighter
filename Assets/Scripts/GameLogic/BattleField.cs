@@ -17,6 +17,7 @@ namespace GameLogic
         public int Size;
         [ItemCanBeNull] public EntityBase[] ListEntities;
         private readonly HashSet<EntityConfig> _spawnedEntities = new();
+        public int PlayerPosCache { get; private set; } = -1;
 
         public BattleField(StageConfig config, PlayerData pData)
         {
@@ -160,6 +161,12 @@ namespace GameLogic
             return this._config.Entities
                 .Any(e => !_spawnedEntities.Contains(e) &&
                           e.Type is "simple_enemy" or "elite_enemy" or "stationary_enemy");
+        }
+        
+        public void CachePlayerPos()
+        {
+            var idx = GetPlayerIndex();
+            PlayerPosCache = idx;
         }
     }
 }

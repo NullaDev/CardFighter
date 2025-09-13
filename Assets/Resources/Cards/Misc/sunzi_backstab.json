@@ -10,7 +10,6 @@
       "Filters": [
         { "Type": "exclude_self" },
         { "Type": "is_alive" },
-        { "Type": "entity_type", "MatchTypes": ["enemy"], "Not": true },
         { "Type": "first_n", "Value": 1 },
         { "Type": "condition", "ConditionName": "target_facing_me", "Not": true }
       ],

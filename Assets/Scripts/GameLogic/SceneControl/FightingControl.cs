@@ -29,7 +29,8 @@ namespace GameLogic.SceneControl
             this.BattleField = new BattleField(playerData.CurrentStage, playerData);
             this.BattleField.SpawnEntitiesAtTurn(0);
             this.FightingData = FightingData.FromPlayerData(playerData);
-            
+
+            BattleField.CachePlayerPos();
             EntitiesThink();
             
             Rerender();
@@ -91,6 +92,7 @@ namespace GameLogic.SceneControl
             NextTurn();
             ResolveEntityActions();
             UpdatePlayerStatus();
+            BattleField.CachePlayerPos();
             EntitiesThink();
             Rerender();
         }

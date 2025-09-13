@@ -2,7 +2,7 @@
   "ID": "enemy_throw_stone",
   "Name": "投掷",
   "TextureName": "Arts/Cards/Generic/BasicAttack/throw_stone",
-  "Desc": "对2格内的玩家造成2点伤害",
+  "Desc": "对2格内的玩家位置造成2点伤害",
   "Cost": 1,
   "Actions": [
     {
@@ -10,8 +10,7 @@
       "Filters": [
         { "Type": "exclude_self" },
         { "Type": "is_alive" },
-        { "Type": "entity_type", "MatchTypes": ["player"] },
-        { "Type": "first_n", "Value": 1 }
+        { "Type": "at_player_cached_pos" }
       ],
       "Processors": [
         { "Type": "damage", "Value": 2, "Tags": ["ranged", "weapon"] }

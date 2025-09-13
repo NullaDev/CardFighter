@@ -2,7 +2,7 @@
   "ID": "enemy_thunder",
   "Name": "雷击",
   "TextureName": "Arts/Cards/Misc/thunder",
-  "Desc": "对场上的玩家造成2点伤害",
+  "Desc": "对场上的玩家位置造成3点伤害",
   "Cost": 1,
   "Actions": [
     {
@@ -10,10 +10,10 @@
       "Filters": [
         { "Type": "exclude_self" },
         { "Type": "is_alive" },
-        { "Type": "entity_type", "MatchTypes": ["player"] }
+        { "Type": "at_player_cached_pos" }
       ],
       "Processors": [
-        { "Type": "damage", "Value": 2, "Tags": ["spell"] }
+        { "Type": "damage", "Value": 3, "Tags": ["spell"] }
       ]
     }
   ]

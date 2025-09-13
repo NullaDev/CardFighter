@@ -2,7 +2,7 @@
   "ID": "catapult_attack",
   "Name": "投石攻击",
   "TextureName": "Arts/Cards/Misc/catapult_attack",
-  "Desc": "对2-4格内的首个玩家造成2点伤害",
+  "Desc": "对2-4格内的玩家位置造成2点伤害",
   "Cost": 1,
   "Actions": [
     {
@@ -10,8 +10,7 @@
       "Filters": [
         { "Type": "exclude_self" },
         { "Type": "is_alive" },
-        { "Type": "entity_type", "MatchTypes": ["player"] },
-        { "Type": "first_n", "Value": 1 }
+        { "Type": "at_player_cached_pos" }
       ],
       "Processors": [
         { "Type": "damage", "Value": 2, "Tags": ["ranged", "weapon"] }

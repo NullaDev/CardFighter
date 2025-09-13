@@ -127,5 +127,22 @@ namespace Card.Engine
             }).ToList();
         }
     }
+    
+    public class AtPlayerCachedPosFilter : EntityFilter
+    {
+        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self, FightingControl fc)
+        {
+            var bf = fc.BattleField;
+            var cached = bf.PlayerPosCache;
+            if (cached < 0 || cached >= bf.Size || targets == null || targets.Count == 0)
+                return new List<EntityBase>();
+
+            foreach (var e in targets.Where(e => e != null).Where(e => bf.GetEntityIndex(e) == cached))
+            {
+                return new List<EntityBase> {e};
+            }
+            return new List<EntityBase>();
+        }
+    }
 
 }
