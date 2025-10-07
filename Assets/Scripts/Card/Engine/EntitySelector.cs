@@ -33,6 +33,14 @@ namespace Card.Engine
             return new List<EntityBase> { user };
         }
     }
+    
+    public class PlayerSelector : EntitySelector
+    {
+        public override List<EntityBase> Select(FightingControl fc, EntityBase user)
+        {
+            return new List<EntityBase> { fc.BattleField.GetPlayerFromMap() };
+        }
+    }
 
     public class RangeSelector : EntitySelector
     {

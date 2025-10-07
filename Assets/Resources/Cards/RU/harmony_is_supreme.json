@@ -1,0 +1,50 @@
+﻿{
+  "ID": "peace_is_supreme",
+  "Name": "和为贵",
+  "TextureName": "Arts/Cards/RU/peace_is_supreme",
+  "Desc": "1回合内，来自面对面敌人的伤害-2点。消耗「礼」状态以延长1回合",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "rites", "HasBuff": false }
+      ],
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "peace",
+              "Turn": 1,
+              "Rules": [
+                { "RuleType": "damage_received", "Operator": "Minus", "Value": 2, "WithCondition": ["face_to_face"] }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "rites", "HasBuff": true }
+      ],
+      "Processors": [
+        { "Type": "remove_buff", "Buffs": ["rites"] },
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "peace",
+              "Turn": 2,
+              "Rules": [
+                { "RuleType": "damage_received", "Operator": "Minus", "Value": 2, "WithCondition": ["face_to_face"] }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

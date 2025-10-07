@@ -1,0 +1,7 @@
+﻿{
+  "ID": "bound_by_rites",
+  "Name": "约之以礼",
+  "TextureName": "Arts/Cards/RU/bound_by_rites",
+  "EffectText": "你的攻击总是视为满足「礼」。",
+  "ExtraText": "子曰：。"
+}

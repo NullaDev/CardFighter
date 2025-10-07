@@ -16,7 +16,8 @@
               "Turn": -1,
               "Rules": [
                 { "RuleType": "damage_caused", "Operator": "Add", "Value": 1, "WithCondition": ["face_to_face"] },
-                { "RuleType": "damage_caused", "Operator": "Multiply", "Value": 0, "WithoutCondition": ["face_to_face"], "WithoutBuff": ["follow_heart"] }
+                { "RuleType": "damage_caused", "Operator": "Add", "Value": 1, "WithBuff": ["bound_by_rites"], "WithoutCondition": ["face_to_face"] },
+                { "RuleType": "damage_caused", "Operator": "Multiply", "Value": 0, "WithoutCondition": ["face_to_face"], "WithoutBuff": ["follow_heart", "bound_by_rites"] }
               ]
             }
           ]

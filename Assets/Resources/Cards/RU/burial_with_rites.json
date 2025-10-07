@@ -1,0 +1,56 @@
+﻿{
+  "ID": "burial_with_rites",
+  "Name": "葬之以礼",
+  "TextureName": "Arts/Cards/RU/burial_with_rites",
+  "Desc": "对1格内血量低于5的敌人处决。消耗「礼」状态使点数加倍",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "rites", "HasBuff": false }
+      ],
+      "Processors": [
+        {
+          "Type": "execute_action",
+          "Action": {
+            "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 1 },
+            "Filters": [
+              { "Type": "exclude_self" },
+              { "Type": "is_alive" },
+              { "Type": "entity_type", "MatchTypes": ["enemy"] },
+              { "Type": "health", "Operator": "LessOrEqual", "Value": 5 }
+            ],
+            "Processors": [
+              { "Type": "kill" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "rites", "HasBuff": true }
+      ],
+      "Processors": [
+        { "Type": "remove_buff", "Buffs": ["rites"] },
+        {
+          "Type": "execute_action",
+          "Action": {
+            "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 1 },
+            "Filters": [
+              { "Type": "exclude_self" },
+              { "Type": "is_alive" },
+              { "Type": "entity_type", "MatchTypes": ["enemy"] },
+              { "Type": "health", "Operator": "LessOrEqual", "Value": 10 }
+            ],
+            "Processors": [
+              { "Type": "kill" }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

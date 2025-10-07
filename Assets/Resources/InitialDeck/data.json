@@ -86,6 +86,16 @@
     "gentleman_upright": 3,
     "noble_abstains_from_kitchen": 2,
 
+    "self_restraint": 4,
+    "peace_is_supreme": 3,
+    "burial_with_rites": 3,
+    "no_standing": 3,
+    "prefer_frugality": 2,
+    "bound_by_rites": 2,
+    "no_rites_no_vision": 2,
+    "no_rites_no_speech": 2,
+    "no_rites_no_motion": 2,
+
     "white_arrow": 3,
     "triple_strike": 3,
     "fourfold_strike": 3,
@@ -97,10 +107,6 @@
     "pass_the_regal": 3,
     "crossroad_maneuvering": 3,
     "leftward_pursuit": 3,
-
-    "no_rites_no_vision": 2,
-    "no_rites_no_speech": 2,
-    "no_rites_no_motion": 2,
 
     "wise_unconfused": 3,
     "kind_unworried": 3,

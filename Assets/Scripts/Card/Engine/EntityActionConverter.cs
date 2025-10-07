@@ -23,6 +23,7 @@ namespace Card.Engine
                     "empty" => selectorToken.ToObject<EmptySelector>(serializer),
                     "all" => selectorToken.ToObject<AllSelector>(serializer),
                     "self" => selectorToken.ToObject<SelfSelector>(serializer),
+                    "player" => selectorToken.ToObject<PlayerSelector>(serializer),
                     "range" => selectorToken.ToObject<RangeSelector>(serializer),
                     _ => throw new Exception("Unknown selector type: " + selectorType)
                 };
@@ -76,6 +77,7 @@ namespace Card.Engine
                         "move_attack" => p.ToObject<MoveAttackProcessor>(serializer),
                         "kill" => p.ToObject<KillProcessor>(serializer),
                         "clear_buff" => p.ToObject<ClearBuffProcessor>(serializer),
+                        "remove_buff" => p.ToObject<RemoveBuffProcessor>(serializer),
                         "summon" => p.ToObject<SummonProcessor>(serializer),
                         "execute_action" => new ExecuteActionProcessor
                         {

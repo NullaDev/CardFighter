@@ -7,7 +7,6 @@ using GameLogic.Entity;
 using GameLogic.SceneControl;
 using Registry;
 using Registry.Data;
-using UnityEngine;
 
 namespace Card.Engine
 {
@@ -32,7 +31,7 @@ namespace Card.Engine
                 throw new Exception("Can't find one or more entity when executing Move.");
             }
             
-            if (Mode is "auto")
+            if (Mode is "forward")
             {
                 if (target.HasBuff(EntityBuffManager.Rooted)) return;
             }
@@ -230,6 +229,18 @@ namespace Card.Engine
             {
                 target.Buffs.Remove(b);
             }
+        }
+    }
+    
+    public class RemoveBuffProcessor : EntityProcessor
+    {
+        public List<string> Buffs { get; set; } = new();
+
+        public override void Process(FightingControl fc, EntityBase user, EntityBase target)
+        {
+            if (target.Buffs == null || target.Buffs.Count == 0) return;
+
+            target.Buffs.RemoveAll(b => Buffs.Contains(b.Name));
         }
     }
     
