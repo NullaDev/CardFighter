@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using Card.Engine;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Registry.Data;
@@ -14,22 +14,37 @@ namespace Registry
         private bool _hasLoaded = false;
         private readonly List<RecipeTemplate> _recipes = new();
 
-        public const string RecipeFilePath = "Recipes/recipe_list";
+        public static readonly string RecipeFilePath = Path.Combine(Application.dataPath, "../GameData/Recipes/recipe_list.json");
 
         public void LoadFromFile()
         {
             if (_hasLoaded) return;
             _hasLoaded = true;
 
-            TextAsset jsonFile = Resources.Load<TextAsset>(RecipeFilePath);
-            if (jsonFile == null)
+            if (!File.Exists(RecipeFilePath))
             {
-                Debug.LogError("Recipe JSON file not found at path: " + RecipeFilePath);
+                Debug.LogError($"[RecipeDataManager] Recipe JSON file not found in path: {RecipeFilePath}");
                 return;
             }
 
-            _recipes.AddRange(JsonConvert.DeserializeObject<List<RecipeTemplate>>(jsonFile.text));
-            Debug.Log("Loaded " + _recipes.Count + " recipe templates.");
+            try
+            {
+                var jsonText = File.ReadAllText(RecipeFilePath);
+                var list = JsonConvert.DeserializeObject<List<RecipeTemplate>>(jsonText);
+                if (list != null)
+                {
+                    _recipes.AddRange(list);
+                    Debug.Log($"[RecipeDataManager] Loaded {_recipes.Count} recipe templates.");
+                }
+                else
+                {
+                    Debug.LogWarning("[RecipeDataManager] JSON file is empty or invalid.");
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[RecipeDataManager] Error loading recipe file: {e.Message}");
+            }
         }
         
         [CanBeNull]

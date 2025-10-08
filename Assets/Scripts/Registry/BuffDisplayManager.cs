@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using Registry.Data;
 using UnityEngine;
 
@@ -8,15 +10,15 @@ namespace Registry
     {
         public bool HasLoaded = false;
 
-        private const string BuffFolderRoot = "Buffs/";
+        private static readonly string BuffFolderRoot = Path.Combine(Application.dataPath, "../GameData/Buffs");
         private readonly List<BuffDisplayInfo> _listBuffInfos = new();
 
         public void DebugLoadedBuffInfo()
         {
-            Debug.Log("Loading buffs, total number:" + this._listBuffInfos.Count);
+            Debug.Log($"[BuffDisplayManager] Loaded {this._listBuffInfos.Count} buffs.");
             // foreach (var buff in this._listBuffInfos)
             // {
-            //     Debug.Log("name:" + buff.Name);
+            //     Debug.Log($"name: {buff.Name}");
             // }
         }
         
@@ -25,11 +27,36 @@ namespace Registry
             if (HasLoaded) return;
             this.HasLoaded = true;
 
-            var buffList = Resources.LoadAll<TextAsset>(BuffFolderRoot);
-            foreach (var buff in buffList)
+            if (!Directory.Exists(BuffFolderRoot))
             {
-                this._listBuffInfos.Add(BuffDisplayInfo.CreateFromJson(buff.text));
-            }    
+                Debug.LogError($"[BuffDisplayManager] Buff folder not found: {BuffFolderRoot}");
+                return;
+            }
+
+            var jsonFiles = Directory.GetFiles(BuffFolderRoot, "*.json", SearchOption.AllDirectories);
+            if (jsonFiles.Length == 0)
+            {
+                Debug.LogWarning($"[CardDataManager] No buff json files found in {BuffFolderRoot}");
+                return;
+            }
+            
+            foreach (var file in jsonFiles)
+            {
+                try
+                {
+                    var jsonText = File.ReadAllText(file);
+                    var buff = BuffDisplayInfo.CreateFromJson(jsonText);
+                    if (buff != null)
+                        _listBuffInfos.Add(buff);
+                    else
+                        Debug.LogWarning($"[BuffDisplayManager] Failed to parse buff file: {file}");
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"[BuffDisplayManager] Error loading {file}: {e.Message}");
+                }
+            }
+
             DebugLoadedBuffInfo();
         }
         

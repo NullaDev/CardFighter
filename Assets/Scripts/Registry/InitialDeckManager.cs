@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -22,41 +23,55 @@ namespace Registry
     public class InitialDeckManager
     {
         private bool _hasLoaded = false;
-        private const string DeckJsonPath = "InitialDeck/data";
+        private static readonly string DeckJsonPath = Path.Combine(Application.dataPath, "../GameData/InitialDeck/data.json");
         private readonly Dictionary<PlayerClass, Dictionary<string, int>> _deckDict = new();
         
         public void DebugLoadedDeckInfo()
         {
-            Debug.Log("Loading initial deck configs, total number:" + this._deckDict.Count);
-            foreach (var kv in this._deckDict)
-            {
-                Debug.Log("name: " + kv.Key + ", cards: " + kv.Value.Count);
-            }
+            Debug.Log($"[InitialDeckManager] Loaded deck configs, total number: {_deckDict.Count}");
+            // foreach (var kv in _deckDict)
+            // {
+            //     Debug.Log($"  - Class: {kv.Key}, Cards: {kv.Value.Count}");
+            // }
         }
 
         public void LoadFromFile()
         {
             if (_hasLoaded) return;
             _hasLoaded = true;
-
-            var deckAsset = Resources.Load<TextAsset>(DeckJsonPath);
-            if (deckAsset == null)
+            
+            if (!File.Exists(DeckJsonPath))
             {
-                Debug.LogError("Failed to load InitialDeck/data.json from Resources.");
+                Debug.LogError($"[InitialDeckManager] Deck file not found in path: {DeckJsonPath}");
                 return;
             }
 
-            var rawDict = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, int>>>(deckAsset.text);
-            foreach (var kvp in rawDict)
+            try
             {
-                if (TryParsePlayerClass(kvp.Key, out var pClass))
+                var jsonText = File.ReadAllText(DeckJsonPath);
+                var rawDict = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, int>>>(jsonText);
+
+                if (rawDict == null)
                 {
-                    _deckDict[pClass] = kvp.Value;
+                    Debug.LogError($"[InitialDeckManager] Invalid JSON structure in {DeckJsonPath}");
+                    return;
                 }
-                else
+
+                foreach (var kvp in rawDict)
                 {
-                    Debug.LogWarning($"Unknown PlayerClass: {kvp.Key}");
+                    if (TryParsePlayerClass(kvp.Key, out var pClass))
+                    {
+                        _deckDict[pClass] = kvp.Value;
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"[InitialDeckManager] Unknown PlayerClass: {kvp.Key}");
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[InitialDeckManager] Failed to read deck file: {DeckJsonPath}\n{e}");
             }
 
             this.DebugLoadedDeckInfo();

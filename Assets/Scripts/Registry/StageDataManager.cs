@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using Registry.Data;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Registry
 {
@@ -8,8 +11,7 @@ namespace Registry
     {
         private bool _hasLoaded = false;
 
-        private const string StageFolderRoot = "Stages/";
-        public static string[] SubFolders = {"Tutorial", "Fight", "Elite", "Boss", "Test"};
+        private static readonly string StageFolderRoot = Path.Combine(Application.dataPath, "../GameData/Stages");
 
         public readonly Dictionary<int, List<StageConfig>> NormalStages = new();
         public readonly Dictionary<int, List<StageConfig>> EliteStages = new();
@@ -18,17 +20,17 @@ namespace Registry
         
         public void DebugLoadedStageInfo()
         {
-            Debug.Log("Loading stages...");
+            Debug.Log($"[StageDataManager] Loaded stages from: {StageFolderRoot}");
             Debug.Log("Normal stages:");
-            foreach (var (difficulty, stages) in this.NormalStages)
-            {
-                Debug.Log("difficulty: " + difficulty + ", stage num: " + stages.Count);
-            }
+            foreach (var (difficulty, stages) in NormalStages)
+                Debug.Log($"  difficulty: {difficulty}, count: {stages.Count}");
+
             Debug.Log("Elite stages:");
-            foreach (var (difficulty, stages) in this.EliteStages)
-            {
-                Debug.Log("difficulty: " + difficulty + ", stage num: " + stages.Count);
-            }
+            foreach (var (difficulty, stages) in EliteStages)
+                Debug.Log($"  difficulty: {difficulty}, count: {stages.Count}");
+
+            Debug.Log($"Boss stages: {BossStages.Count}");
+            Debug.Log($"Misc stages: {MiscStages.Count}");
 
         }
         
@@ -36,28 +38,42 @@ namespace Registry
         {
             if (_hasLoaded) return;
             this._hasLoaded = true;
-            foreach (var subFolder in SubFolders)
+            if (!Directory.Exists(StageFolderRoot))
             {
-                var fullPath = StageFolderRoot + subFolder;
-                var stageList = Resources.LoadAll<TextAsset>(fullPath);
-                foreach (var stageTxt in stageList)
+                Debug.LogError($"[StageDataManager] Folder not found: {StageFolderRoot}");
+                return;
+            }
+
+            var jsonFiles = Directory.GetFiles(StageFolderRoot, "*.json", SearchOption.AllDirectories);
+            if (jsonFiles.Length == 0)
+            {
+                Debug.LogWarning($"[StageDataManager] No stage json files found in {StageFolderRoot}");
+                return;
+            }
+
+            foreach (var file in jsonFiles)
+            {
+                try
                 {
-                    var config = StageConfig.CreateFromJson(stageTxt.text);
+                    var json = File.ReadAllText(file);
+                    var config = StageConfig.CreateFromJson(json);
+                    if (config == null)
+                    {
+                        Debug.LogWarning($"[StageDataManager] Failed to parse stage: {file}");
+                        continue;
+                    }
+
                     var difficulty = config.Difficulty;
                     switch (config.Type)
                     {
                         case "Fight":
                             if (!NormalStages.ContainsKey(difficulty))
-                            {
                                 NormalStages[difficulty] = new List<StageConfig>();
-                            }
                             NormalStages[difficulty].Add(config);
                             break;
                         case "Elite":
                             if (!EliteStages.ContainsKey(difficulty))
-                            {
                                 EliteStages[difficulty] = new List<StageConfig>();
-                            }
                             EliteStages[difficulty].Add(config);
                             break;
                         case "Boss":
@@ -67,6 +83,10 @@ namespace Registry
                             MiscStages.Add(config);
                             break;
                     }
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"[StageDataManager] Error loading {file}: {e.Message}");
                 }
             }
 

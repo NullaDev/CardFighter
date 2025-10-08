@@ -1,4 +1,5 @@
 ﻿using Registry;
+using Render;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,9 +7,11 @@ namespace GameLogic.SceneControl
 {
     public class ClassChooseControl: MonoBehaviour
     {
-        private void Awake()
+        private async void Awake()
         {
+            // 暂时写在这
             StaticDataManager.LoadAll();
+            await TextureCache.PreloadAllAsync();
         }
 
         public void ChooseClassRU()

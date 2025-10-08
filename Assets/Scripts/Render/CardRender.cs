@@ -21,9 +21,9 @@ namespace Render
         
         public void RenderCard(CardInstance card, int? cost=null)
         {
-            if (card.Prototype.TextureName != "")
+            if (!string.IsNullOrEmpty(card.Prototype.TextureName))
             {
-                var sprite = Resources.Load<Sprite>(card.Prototype.TextureName);
+                var sprite = TextureCache.GetSprite(card.Prototype.TextureName);
                 _cardImage.sprite = sprite;
             }
             else

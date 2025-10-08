@@ -33,9 +33,9 @@ namespace Render
             };
             
             var buffInfo = StaticDataManager.BuffDisplayManager.Find(buff.Name);
-            if (buffInfo.TextureName != "")
+            var sprite = TextureCache.GetSprite(buffInfo.TextureName);
+            if (sprite != null)
             {
-                var sprite = Resources.Load<Sprite>(buffInfo.TextureName);
                 _buffTexture.sprite = sprite;
             }
 

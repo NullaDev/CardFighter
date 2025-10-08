@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using GameLogic.Option;
 using JetBrains.Annotations;
@@ -14,16 +15,15 @@ namespace Registry
         private bool _hasLoaded = false;
         public readonly Dictionary<string, OptionBundle> OptionMap = new();
         
-        private const string OptionFolderRoot = "Options";
+        private static readonly string OptionFolderRoot = Path.Combine(Application.dataPath, "../GameData/Options");
         
         public void DebugLoadedOptionInfo()
         {
-            Debug.Log("Loading options...");
-            
+            Debug.Log($"[OptionDataManager] Loaded options from: {OptionFolderRoot}");
             var keyCount = OptionMap.Count;
             var optionCount = OptionMap.Sum(kv => kv.Value.GuaranteedOptions.Count + kv.Value.OptionalOptions.Count);
-            Debug.Log($"Total option types: {keyCount}");
-            Debug.Log($"Total options: {optionCount}");
+            Debug.Log($"[OptionDataManager] Total option bundles: {keyCount}");
+            Debug.Log($"[OptionDataManager] Total individual options: {optionCount}");
         }
         
         public void LoadFromFile()
@@ -31,7 +31,19 @@ namespace Registry
             if (_hasLoaded) return;
             this._hasLoaded = true;
 
-            var jsonFiles = Resources.LoadAll<TextAsset>(OptionFolderRoot);
+            if (!Directory.Exists(OptionFolderRoot))
+            {
+                Debug.LogError($"[OptionDataManager] Folder not found: {OptionFolderRoot}");
+                return;
+            }
+
+            var jsonFiles = Directory.GetFiles(OptionFolderRoot, "*.json", SearchOption.AllDirectories);
+            if (jsonFiles.Length == 0)
+            {
+                Debug.LogWarning($"[OptionDataManager] No option json files found in {OptionFolderRoot}");
+                return;
+            }
+
             var settings = new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto,
@@ -40,10 +52,25 @@ namespace Registry
 
             foreach (var file in jsonFiles)
             {
-                var dict = JsonConvert.DeserializeObject<Dictionary<string, OptionBundle>>(file.text, settings);
-                foreach (var kv in dict)
+                try
                 {
-                    OptionMap[kv.Key] = kv.Value;
+                    var json = File.ReadAllText(file);
+                    var dict = JsonConvert.DeserializeObject<Dictionary<string, OptionBundle>>(json, settings);
+
+                    if (dict == null)
+                    {
+                        Debug.LogWarning($"[OptionDataManager] Failed to parse {file}");
+                        continue;
+                    }
+
+                    foreach (var kv in dict)
+                    {
+                        OptionMap[kv.Key] = kv.Value;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"[OptionDataManager] Error loading {file}: {e.Message}");
                 }
             }
 

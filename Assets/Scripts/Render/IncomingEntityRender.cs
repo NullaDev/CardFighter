@@ -29,9 +29,9 @@ namespace Render
             _entityImage.enabled = true;
             _downArrow.enabled = true;
 
-            if (entity.TextureName != "")
+            var sprite = TextureCache.GetSprite("Arts/Entities/" + entity.TextureName);
+            if (sprite != null)
             {
-                var sprite = Resources.Load<Sprite>("Arts/Entities/" + entity.TextureName);
                 if (entity is IFacingConfig facingEntity)
                 {
                     var facing = IFacingConfig.ParseFacing(facingEntity.AppearFacing);
@@ -39,19 +39,13 @@ namespace Render
                     {
                         facing = FacingHelper.GetFacing(map.GetPlayerIndex() - entity.AppearPos);
                     }
-                    
-                    switch (facing)
+
+                    _entityImage.transform.localScale = facing switch
                     {
-                        case EntityFacing.Left:
-                            _entityImage.transform.localScale = new Vector3(-1f, 1f, 1f);;
-                            break;
-                        case EntityFacing.Right:
-                        case EntityFacing.Default:
-                            _entityImage.transform.localScale = new Vector3(1f, 1f, 1f);;
-                            break;
-                        default:
-                            throw new NotImplementedException();
-                    }
+                        EntityFacing.Left => new Vector3(-1f, 1f, 1f),
+                        EntityFacing.Right or EntityFacing.Default => new Vector3(1f, 1f, 1f),
+                        _ => throw new NotImplementedException()
+                    };
                 }
                 _entityImage.sprite = sprite;
             }

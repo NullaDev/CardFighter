@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using Registry.Data;
 using UnityEngine;
 
@@ -8,16 +10,15 @@ namespace Registry
     {
         private bool _hasLoaded = false;
 
-        public const string CardFolderRoot = "Cards/";
-        public static string[] SubFolders = {"Generic/Misc", "Generic/BasicAttack", "Generic/AdvancedAttack", "Misc", "RU", "Test"};
+        public static readonly string CardFolderRoot = Path.Combine(Application.dataPath, "../GameData/Cards");
         private readonly List<CardPrototype> _listCards = new();
 
         public void DebugLoadedCardInfo()
         {
-            Debug.Log("Loading cards, total number:" + this._listCards.Count);
+            Debug.Log($"[CardDataManager] Loaded {this._listCards.Count} cards.");
             // foreach (var card in this._listCards)
             // {
-            //     Debug.Log("name:" + card.Name);
+            //     Debug.Log($"[CardDataManager] name: {card.Name}");
             // }
         }
 
@@ -25,13 +26,34 @@ namespace Registry
         {
             if (_hasLoaded) return;
             this._hasLoaded = true;
-            foreach (var subFolder in SubFolders)
+            
+            if (!Directory.Exists(CardFolderRoot))
             {
-                var fullPath = CardFolderRoot + subFolder;
-                var cardList = Resources.LoadAll<TextAsset>(fullPath);
-                foreach (var card in cardList)
+                Debug.LogError($"[CardDataManager] Card folder not found in path: {CardFolderRoot}");
+                return;
+            }
+
+            var jsonFiles = Directory.GetFiles(CardFolderRoot, "*.json", SearchOption.AllDirectories);
+            if (jsonFiles.Length == 0)
+            {
+                Debug.LogWarning($"[CardDataManager] No card json files found in {CardFolderRoot}");
+                return;
+            }
+            
+            foreach (var file in jsonFiles)
+            {
+                try
                 {
-                    this._listCards.Add(CardPrototype.CreateFromJson(card.text));
+                    var jsonText = File.ReadAllText(file);
+                    var card = CardPrototype.CreateFromJson(jsonText);
+                    if (card != null)
+                        _listCards.Add(card);
+                    else
+                        Debug.LogWarning($"[CardDataManager] Failed to parse card file: {file}");
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"[CardDataManager] Error loading {file}: {e.Message}");
                 }
             }
 

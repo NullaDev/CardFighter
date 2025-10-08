@@ -49,9 +49,9 @@ namespace Render
         public void RenderEntity(EntityBase entity)
         {
             _entityImage.enabled = true;
-            if (entity.TextureName != "")
+            var sprite = TextureCache.GetSprite(entity.TextureName);
+            if (sprite != null)
             {
-                var sprite = Resources.Load<Sprite>(entity.TextureName);
                 _entityImage.sprite = sprite;
                 
                 if (entity.HasValidFacing)
