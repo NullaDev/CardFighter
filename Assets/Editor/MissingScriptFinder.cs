@@ -9,16 +9,16 @@ namespace Editor
         [MenuItem("Tools/Find Missing Scripts in Scene")]
         public static void FindMissingScripts()
         {
-            int goCount = 0;
-            int componentsCount = 0;
-            int missingCount = 0;
+            var goCount = 0;
+            var componentsCount = 0;
+            var missingCount = 0;
 
-            foreach (GameObject go in GameObject.FindObjectsByType<GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            foreach (var go in GameObject.FindObjectsByType<GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.None))
             {
                 goCount++;
-                Component[] components = go.GetComponents<Component>();
+                var components = go.GetComponents<Component>();
 
-                for (int i = 0; i < components.Length; i++)
+                for (var i = 0; i < components.Length; i++)
                 {
                     componentsCount++;
                     if (components[i] == null)

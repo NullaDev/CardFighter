@@ -7,13 +7,6 @@ namespace GameLogic.SceneControl
 {
     public class ClassChooseControl: MonoBehaviour
     {
-        private async void Awake()
-        {
-            // 暂时写在这
-            StaticDataManager.LoadAll();
-            await TextureCache.PreloadAllAsync();
-        }
-
         public void ChooseClassRU()
         {
             var playerData = PlayerData.Instance;

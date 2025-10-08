@@ -23,18 +23,18 @@ namespace Render
             if (progressBar != null && progressText != null)
             {
                 progressBar.value = 0f;
-                if (progressText) progressText.text = "正在加载贴图...";
+                if (progressText) progressText.text = "Loading textures...";
 
                 await PreloadAllAsync(
                     progress =>
                     {
                         progressBar.value = progress;
-                        if (progressText) progressText.text = $"加载贴图中... {(progress * 100f):F0}%";
+                        if (progressText) progressText.text = $"Loading textures... {(progress * 100f):F0}%";
                     },
                     () =>
                     {
                         progressBar.value = 1f;
-                        if (progressText) progressText.text = "贴图加载完成！";
+                        if (progressText) progressText.text = "Loading textures complete";
                     }
                 );
             }
