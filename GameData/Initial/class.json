@@ -1,0 +1,11 @@
+{
+  "RU": {
+    "MaxHP": 30,
+    "InitialInGameCost": 1,
+    "MaxInGameCost": 5,
+    "MaxCarryCost": 10
+  },
+  "GENERIC": {
+
+  }
+}

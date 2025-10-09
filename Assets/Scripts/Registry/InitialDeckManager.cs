@@ -23,7 +23,7 @@ namespace Registry
     public class InitialDeckManager
     {
         private bool _hasLoaded = false;
-        private static readonly string DeckJsonPath = Path.Combine(Application.dataPath, "../GameData/InitialDeck/data.json");
+        private static readonly string DeckJsonPath = Path.Combine(Application.dataPath, "../GameData/Initial/deck.json");
         private readonly Dictionary<PlayerClass, Dictionary<string, int>> _deckDict = new();
         
         public void DebugLoadedDeckInfo()

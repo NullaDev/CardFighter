@@ -15,12 +15,12 @@ namespace Registry
         public static readonly PlayerData Instance = new();
 
         public PlayerClass PlayerClass { get; set; } = PlayerClass.GENERIC;
-        public int Hp { get; set; } = 20;
-        public int MaxHp { get; set; } = 20;
-        public int InitialInGameCost { get; set; } = 1;
-        public int MaxInGameCost { get; set; } = 5;
-        public int MaxCarryCost { get; set; } = 10;
-        public int InGameGold { get; set; } = 0;
+        public int Hp { get; set; }
+        public int MaxHp { get; set; }
+        public int InitialInGameCost { get; set; }
+        public int MaxInGameCost { get; set; }
+        public int MaxCarryCost { get; set; }
+        public int InGameGold { get; set; }
 
         public readonly Dictionary<CardPrototype, int> HeldCards = new();
         public readonly CardOperationsInBattle CardOperations = new();
@@ -31,6 +31,16 @@ namespace Registry
         public int CurrentLayerDifficulty = 0;
         [CanBeNull] public StageConfig CurrentStage = null;
         [CanBeNull] public OptionBundle OptionBundle = null;
+
+        public void InitFromConfig(PlayerClass playerClass, PlayerClassConfig config)
+        {
+            this.PlayerClass = playerClass;
+            this.MaxHp = this.Hp = config.MaxHP;
+            this.InitialInGameCost = config.InitialInGameCost;
+            this.MaxInGameCost = config.MaxInGameCost;
+            this.MaxCarryCost = config.MaxCarryCost;
+            this.InGameGold = this.InitialInGameCost;
+        }
         
         public void InitCardOperationsFromHeld()
         {

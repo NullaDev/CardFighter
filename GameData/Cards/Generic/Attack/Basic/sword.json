@@ -13,7 +13,7 @@
         { "Type": "first_n", "Value": 1 }
       ],
       "Processors": [
-        { "Type": "damage", "Value": 3, "Tags": ["melee", "weapon", "ignore_armor"] }
+        { "Type": "damage", "Value": 2, "Tags": ["melee", "weapon", "ignore_armor"] }
       ]
     }
   ]

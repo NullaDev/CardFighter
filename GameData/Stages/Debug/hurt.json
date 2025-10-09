@@ -1,7 +1,7 @@
 ﻿{
   "ID": "hurt",
   "Name": "受伤测试",
-  "Type": "Test",
+  "Type": "Debug",
   "Difficulty": 0,
   "Size": 6,
   "PlayerSpawnPos": 0,

@@ -1,7 +1,7 @@
 ﻿{
   "ID": "dummy",
   "Name": "Dummy",
-  "Type": "Test",
+  "Type": "Debug",
   "Difficulty": -1,
   "Size": 7,
   "PlayerSpawnPos": 1,
@@ -11,19 +11,19 @@
       "Type": "passive",
       "AppearTurn": 0,
       "AppearPos": 4,
-      "Name": "bucket",
+      "Name": "桶",
       "TextureName": "bucket",
-      "HP": 30
+      "HP": 255
     },
     {
       "Type": "stationary_enemy",
       "AppearTurn": 0,
       "AppearPos": 5,
       "AppearFacing": "auto",
-      "Name": "mob1",
-      "TextureName": "robber",
-      "HP": 30,
-      "Card": "sword"
+      "Name": "怪",
+      "TextureName": "bandit1",
+      "HP": 255,
+      "Card": "broadsword"
     }
   ]
 }

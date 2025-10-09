@@ -1,0 +1,14 @@
+﻿{
+  "DebugStageID": "dummy",
+  "DebugCards": [
+    "focus_energy",
+    "observe",
+    "archery",
+    "fourfold_strike",
+    "study_and_practice",
+    "throw_stone"
+  ],
+  "DebugItems": [
+    "telescope_debug"
+  ]
+}

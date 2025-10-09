@@ -9,6 +9,7 @@
         public static readonly BuffDisplayManager BuffDisplayManager = new();
         public static readonly RecipeDataManager RecipeDataManager = new();
         public static readonly OptionDataManager OptionDataManager = new();
+        public static readonly InitialConfigManager InitialConfigManager = new();
 
         public static void LoadAll()
         {
@@ -19,6 +20,7 @@
             BuffDisplayManager.LoadFromFile();
             RecipeDataManager.LoadFromFile();
             OptionDataManager.LoadFromFile();
+            InitialConfigManager.LoadFromFile();
             CommonCards.Init();
         }
     }

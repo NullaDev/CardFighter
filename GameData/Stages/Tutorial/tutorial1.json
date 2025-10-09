@@ -1,7 +1,7 @@
 ﻿{
   "ID": "tutorial1",
   "Name": "教程1",
-  "Type": "Test",
+  "Type": "Tutorial",
   "Difficulty": -1,
   "Size": 4,
   "PlayerSpawnPos": 1,
@@ -12,8 +12,8 @@
       "AppearTurn": 0,
       "AppearPos": 3,
       "AppearFacing": "auto",
-      "Name": "mob1",
-      "TextureName": "robber",
+      "Name": "怪1",
+      "TextureName": "bandit1",
       "HP": 3,
       "Card": "kick"
     },
@@ -22,8 +22,8 @@
       "AppearTurn": 2,
       "AppearPos": 1,
       "AppearFacing": "right",
-      "Name": "mob2",
-      "TextureName": "robber",
+      "Name": "怪",
+      "TextureName": "bandit1",
       "HP": 3,
       "Card": "punch"
     }
