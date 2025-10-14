@@ -1,0 +1,30 @@
+{
+  "ID": "confucius_lu_outskirts_1",
+  "Name": "鲁国郊外",
+  "Type": "Fight",
+  "Difficulty": 1,
+  "Size": 7,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    {
+      "Type": "passive",
+      "AppearTurn": 0,
+      "AppearPos": 3,
+      "Name": "柴垛",
+      "TextureName": "woodpile",
+      "HP": 4
+    },
+    {
+      "Type": "simple_enemy",
+      "AppearTurn": 1,
+      "AppearPos": 5,
+      "AppearFacing": "left",
+      "Name": "鲁地巡丁",
+      "TextureName": "soldier_broadsword",
+      "HP": 5,
+      "Card": "broadsword"
+    }
+  ]
+}
+

@@ -1,0 +1,50 @@
+{
+  "ID": "confucius_chencai_3",
+  "Name": "陈蔡绝粮",
+  "Type": "Fight",
+  "Difficulty": 3,
+  "Size": 8,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    {
+      "Type": "passive",
+      "AppearTurn": 0,
+      "AppearPos": 2,
+      "Name": "柴垛",
+      "TextureName": "woodpile",
+      "HP": 3
+    },
+    {
+      "Type": "simple_enemy",
+      "AppearTurn": 1,
+      "AppearPos": 5,
+      "AppearFacing": "left",
+      "Name": "陈兵斥候",
+      "TextureName": "soldier_broadsword",
+      "HP": 6,
+      "Card": "broadsword"
+    },
+    {
+      "Type": "simple_enemy",
+      "AppearTurn": 3,
+      "AppearPos": 6,
+      "AppearFacing": "left",
+      "Name": "蔡兵弓手",
+      "TextureName": "soldier_bow",
+      "HP": 5,
+      "Card": "kick"
+    },
+    {
+      "Type": "stationary_enemy",
+      "AppearTurn": 4,
+      "AppearPos": 0,
+      "AppearFacing": "right",
+      "Name": "陈蔡堵截",
+      "TextureName": "gate1",
+      "HP": 7,
+      "Card": "spear"
+    }
+  ]
+}
+

@@ -1,0 +1,40 @@
+{
+  "ID": "confucius_wei_gate_2",
+  "Name": "卫国城门争端",
+  "Type": "Fight",
+  "Difficulty": 2,
+  "Size": 7,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    {
+      "Type": "passive",
+      "AppearTurn": 0,
+      "AppearPos": 4,
+      "Name": "城门",
+      "TextureName": "gate2",
+      "HP": 5
+    },
+    {
+      "Type": "stationary_enemy",
+      "AppearTurn": 0,
+      "AppearPos": 5,
+      "AppearFacing": "left",
+      "Name": "卫国守军",
+      "TextureName": "soldier_spear",
+      "HP": 6,
+      "Card": "spear"
+    },
+    {
+      "Type": "simple_enemy",
+      "AppearTurn": 3,
+      "AppearPos": 2,
+      "AppearFacing": "auto",
+      "Name": "城门校尉",
+      "TextureName": "soldier_bow",
+      "HP": 5,
+      "Card": "punch"
+    }
+  ]
+}
+
