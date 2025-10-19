@@ -1,0 +1,15 @@
+{
+  "ID": "fs_return_2",
+  "Name": "曲阜·讲学",
+  "Type": "Fight",
+  "Difficulty": 6,
+  "Size": 7,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 2, "Name": "石碑", "TextureName": "stone2", "HP": 3 },
+    { "Type": "simple_enemy", "AppearTurn": 1, "AppearPos": 4, "AppearFacing": "left", "Name": "求教之士", "TextureName": "villager1", "HP": 7, "Card": "punch" },
+    { "Type": "simple_enemy", "AppearTurn": 3, "AppearPos": 6, "AppearFacing": "left", "Name": "学宫执事", "TextureName": "villager2", "HP": 7, "Card": "kick" }
+  ]
+}
+

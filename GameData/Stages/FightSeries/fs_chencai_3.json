@@ -1,0 +1,15 @@
+{
+  "ID": "fs_chencai_3",
+  "Name": "围困·绝粮之苦",
+  "Type": "Fight",
+  "Difficulty": 5,
+  "Size": 8,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 2, "Name": "木料", "TextureName": "woodpile", "HP": 3 },
+    { "Type": "simple_enemy", "AppearTurn": 1, "AppearPos": 6, "AppearFacing": "left", "Name": "陈国斥候", "TextureName": "soldier_broadsword", "HP": 8, "Card": "broadsword" },
+    { "Type": "simple_enemy", "AppearTurn": 3, "AppearPos": 7, "AppearFacing": "left", "Name": "蔡国弓手", "TextureName": "soldier_bow", "HP": 7, "Card": "enemy_bow" }
+  ]
+}
+

@@ -1,0 +1,15 @@
+{
+  "ID": "fs_qi_5",
+  "Name": "齐国·观兵礼",
+  "Type": "Fight",
+  "Difficulty": 4,
+  "Size": 7,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 3, "Name": "军旗", "TextureName": "woodpile", "HP": 3 },
+    { "Type": "simple_enemy", "AppearTurn": 1, "AppearPos": 5, "AppearFacing": "left", "Name": "齐国武卒", "TextureName": "soldier_axe", "HP": 7, "Card": "axe" },
+    { "Type": "simple_enemy", "AppearTurn": 3, "AppearPos": 6, "AppearFacing": "left", "Name": "齐国枪阵", "TextureName": "soldier_spear", "HP": 7, "Card": "enemy_spear" }
+  ]
+}
+

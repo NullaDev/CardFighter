@@ -1,0 +1,14 @@
+{
+  "ID": "fs_chencai_1",
+  "Name": "陈蔡·路断初现",
+  "Type": "Fight",
+  "Difficulty": 4,
+  "Size": 8,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 2, "Name": "木柴", "TextureName": "woodpile", "HP": 3 },
+    { "Type": "simple_enemy", "AppearTurn": 1, "AppearPos": 6, "AppearFacing": "left", "Name": "陈兵斥候", "TextureName": "soldier_broadsword", "HP": 7, "Card": "broadsword" }
+  ]
+}
+

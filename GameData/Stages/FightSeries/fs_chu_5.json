@@ -1,0 +1,15 @@
+{
+  "ID": "fs_chu_5",
+  "Name": "楚地·襄王行",
+  "Type": "Fight",
+  "Difficulty": 7,
+  "Size": 8,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 4, "Name": "仪仗", "TextureName": "woodpile", "HP": 3 },
+    { "Type": "simple_enemy", "AppearTurn": 1, "AppearPos": 6, "AppearFacing": "left", "Name": "楚军精锐", "TextureName": "soldier_axe", "HP": 10, "Card": "axe" },
+    { "Type": "stationary_enemy", "AppearTurn": 2, "AppearPos": 7, "AppearFacing": "left", "Name": "殿后枪阵", "TextureName": "soldier_spear", "HP": 10, "Card": "enemy_spear" }
+  ]
+}
+

@@ -1,0 +1,15 @@
+{
+  "ID": "fs_chu_3",
+  "Name": "楚军·鼓舞",
+  "Type": "Fight",
+  "Difficulty": 6,
+  "Size": 8,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 3, "Name": "军鼓", "TextureName": "woodpile", "HP": 3 },
+    { "Type": "stationary_enemy", "AppearTurn": 0, "AppearPos": 6, "AppearFacing": "left", "Name": "鼓手", "TextureName": "soldier_drum", "HP": 7, "Card": "inspire" },
+    { "Type": "simple_enemy", "AppearTurn": 2, "AppearPos": 5, "AppearFacing": "left", "Name": "楚军轻勇", "TextureName": "soldier_broadsword", "HP": 8, "Card": "broadsword" }
+  ]
+}
+

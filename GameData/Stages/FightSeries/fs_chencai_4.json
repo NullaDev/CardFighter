@@ -1,0 +1,15 @@
+{
+  "ID": "fs_chencai_4",
+  "Name": "突围·鼓而进",
+  "Type": "Fight",
+  "Difficulty": 5,
+  "Size": 8,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 3, "Name": "鼓台", "TextureName": "woodpile", "HP": 3 },
+    { "Type": "simple_enemy", "AppearTurn": 1, "AppearPos": 6, "AppearFacing": "left", "Name": "陈兵披甲", "TextureName": "soldier_axe", "HP": 8, "Card": "axe" },
+    { "Type": "simple_enemy", "AppearTurn": 3, "AppearPos": 7, "AppearFacing": "left", "Name": "蔡兵枪阵", "TextureName": "soldier_spear", "HP": 8, "Card": "enemy_spear" }
+  ]
+}
+

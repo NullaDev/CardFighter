@@ -1,0 +1,15 @@
+{
+  "ID": "fs_wei_4",
+  "Name": "卫境·守备森严",
+  "Type": "Fight",
+  "Difficulty": 4,
+  "Size": 7,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 2, "Name": "栅栏", "TextureName": "gate1", "HP": 4 },
+    { "Type": "stationary_enemy", "AppearTurn": 0, "AppearPos": 5, "AppearFacing": "left", "Name": "城垛弓台", "TextureName": "soldier_bow", "HP": 7, "Card": "enemy_bow" },
+    { "Type": "simple_enemy", "AppearTurn": 2, "AppearPos": 4, "AppearFacing": "left", "Name": "卫士巡弋", "TextureName": "soldier_broadsword", "HP": 7, "Card": "broadsword" }
+  ]
+}
+

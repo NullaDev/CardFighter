@@ -1,0 +1,15 @@
+{
+  "ID": "fs_lu_4",
+  "Name": "鲁郊·护送",
+  "Type": "Fight",
+  "Difficulty": 2,
+  "Size": 7,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 2, "Name": "木柴", "TextureName": "woodpile", "HP": 3 },
+    { "Type": "stationary_enemy", "AppearTurn": 0, "AppearPos": 5, "AppearFacing": "left", "Name": "鲁郊关隘", "TextureName": "gate1", "HP": 5, "Card": "spear" },
+    { "Type": "simple_enemy", "AppearTurn": 2, "AppearPos": 4, "AppearFacing": "left", "Name": "鲁国弓手", "TextureName": "soldier_bow", "HP": 4, "Card": "enemy_bow" }
+  ]
+}
+

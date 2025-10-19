@@ -1,0 +1,15 @@
+{
+  "ID": "fs_chencai_5",
+  "Name": "陈蔡·得济",
+  "Type": "Fight",
+  "Difficulty": 6,
+  "Size": 8,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 4, "Name": "桥栅", "TextureName": "gate2", "HP": 5 },
+    { "Type": "stationary_enemy", "AppearTurn": 0, "AppearPos": 6, "AppearFacing": "left", "Name": "堵截队", "TextureName": "sentry", "HP": 9, "Card": "enemy_spear" },
+    { "Type": "simple_enemy", "AppearTurn": 2, "AppearPos": 5, "AppearFacing": "left", "Name": "落后追兵", "TextureName": "soldier_broadsword", "HP": 8, "Card": "broadsword" }
+  ]
+}
+

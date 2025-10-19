@@ -1,0 +1,15 @@
+{
+  "ID": "fs_return_5",
+  "Name": "杏坛·诗书礼乐",
+  "Type": "Fight",
+  "Difficulty": 8,
+  "Size": 7,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 3, "Name": "杏坛", "TextureName": "stone1", "HP": 3 },
+    { "Type": "simple_enemy", "AppearTurn": 1, "AppearPos": 5, "AppearFacing": "left", "Name": "执礼者", "TextureName": "villager1", "HP": 9, "Card": "punch" },
+    { "Type": "simple_enemy", "AppearTurn": 3, "AppearPos": 6, "AppearFacing": "left", "Name": "守学官", "TextureName": "villager2", "HP": 9, "Card": "kick" }
+  ]
+}
+

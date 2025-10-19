@@ -1,0 +1,14 @@
+{
+  "ID": "fs_chu_1",
+  "Name": "楚地·山泽陌路",
+  "Type": "Fight",
+  "Difficulty": 5,
+  "Size": 8,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 3, "Name": "石堆", "TextureName": "stone2", "HP": 3 },
+    { "Type": "simple_enemy", "AppearTurn": 1, "AppearPos": 6, "AppearFacing": "left", "Name": "楚地勇士", "TextureName": "soldier_axe", "HP": 8, "Card": "axe" }
+  ]
+}
+

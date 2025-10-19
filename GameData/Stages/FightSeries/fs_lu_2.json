@@ -1,0 +1,15 @@
+{
+  "ID": "fs_lu_2",
+  "Name": "阙里·乡辩",
+  "Type": "Fight",
+  "Difficulty": 1,
+  "Size": 7,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 2, "Name": "石堆", "TextureName": "stone1", "HP": 3 },
+    { "Type": "simple_enemy", "AppearTurn": 1, "AppearPos": 5, "AppearFacing": "left", "Name": "好辩之徒", "TextureName": "villager1", "HP": 4, "Card": "punch" },
+    { "Type": "simple_enemy", "AppearTurn": 3, "AppearPos": 6, "AppearFacing": "left", "Name": "挑衅者", "TextureName": "villager2", "HP": 4, "Card": "kick" }
+  ]
+}
+

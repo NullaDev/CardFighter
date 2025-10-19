@@ -1,0 +1,15 @@
+{
+  "ID": "fs_chu_4",
+  "Name": "荆楚·山道设伏",
+  "Type": "Fight",
+  "Difficulty": 6,
+  "Size": 8,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 2, "Name": "石阵", "TextureName": "stone1", "HP": 3 },
+    { "Type": "simple_enemy", "AppearTurn": 1, "AppearPos": 6, "AppearFacing": "left", "Name": "楚军刀手", "TextureName": "soldier_broadsword", "HP": 9, "Card": "broadsword" },
+    { "Type": "simple_enemy", "AppearTurn": 3, "AppearPos": 7, "AppearFacing": "left", "Name": "楚军枪卒", "TextureName": "soldier_spear", "HP": 9, "Card": "enemy_spear" }
+  ]
+}
+

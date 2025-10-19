@@ -1,0 +1,15 @@
+{
+  "ID": "fs_qi_3",
+  "Name": "齐廷·礼与兵",
+  "Type": "Fight",
+  "Difficulty": 3,
+  "Size": 7,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 3, "Name": "鼓台", "TextureName": "woodpile", "HP": 3 },
+    { "Type": "simple_enemy", "AppearTurn": 1, "AppearPos": 5, "AppearFacing": "left", "Name": "齐国武士", "TextureName": "soldier_axe", "HP": 6, "Card": "axe" },
+    { "Type": "simple_enemy", "AppearTurn": 3, "AppearPos": 6, "AppearFacing": "left", "Name": "齐国枪卒", "TextureName": "soldier_spear", "HP": 6, "Card": "enemy_spear" }
+  ]
+}
+

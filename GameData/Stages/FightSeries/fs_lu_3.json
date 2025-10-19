@@ -1,0 +1,15 @@
+{
+  "ID": "fs_lu_3",
+  "Name": "曲阜·学宫前",
+  "Type": "Fight",
+  "Difficulty": 1,
+  "Size": 7,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 3, "Name": "木桩", "TextureName": "stone2", "HP": 3 },
+    { "Type": "simple_enemy", "AppearTurn": 1, "AppearPos": 4, "AppearFacing": "left", "Name": "不服之徒", "TextureName": "villager2", "HP": 4, "Card": "punch" },
+    { "Type": "simple_enemy", "AppearTurn": 3, "AppearPos": 6, "AppearFacing": "left", "Name": "鲁地轻勇", "TextureName": "soldier_broadsword", "HP": 5, "Card": "broadsword" }
+  ]
+}
+

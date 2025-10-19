@@ -1,0 +1,15 @@
+{
+  "ID": "fs_wei_2",
+  "Name": "卫国·街巷扰攘",
+  "Type": "Fight",
+  "Difficulty": 3,
+  "Size": 7,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 2, "Name": "木栅", "TextureName": "gate1", "HP": 4 },
+    { "Type": "simple_enemy", "AppearTurn": 1, "AppearPos": 4, "AppearFacing": "left", "Name": "卫士刀手", "TextureName": "soldier_broadsword", "HP": 6, "Card": "broadsword" },
+    { "Type": "simple_enemy", "AppearTurn": 3, "AppearPos": 6, "AppearFacing": "left", "Name": "卫士弓手", "TextureName": "soldier_bow", "HP": 5, "Card": "enemy_bow" }
+  ]
+}
+

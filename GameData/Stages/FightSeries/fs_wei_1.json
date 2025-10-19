@@ -1,0 +1,15 @@
+{
+  "ID": "fs_wei_1",
+  "Name": "卫都·城门口",
+  "Type": "Fight",
+  "Difficulty": 3,
+  "Size": 7,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 4, "Name": "城门", "TextureName": "gate2", "HP": 5 },
+    { "Type": "stationary_enemy", "AppearTurn": 0, "AppearPos": 5, "AppearFacing": "left", "Name": "门卒", "TextureName": "sentry", "HP": 6, "Card": "enemy_spear" },
+    { "Type": "simple_enemy", "AppearTurn": 2, "AppearPos": 2, "AppearFacing": "auto", "Name": "巡逻卒", "TextureName": "soldier_broadsword", "HP": 5, "Card": "broadsword" }
+  ]
+}
+

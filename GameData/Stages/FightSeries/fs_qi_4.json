@@ -1,0 +1,15 @@
+{
+  "ID": "fs_qi_4",
+  "Name": "临淄·士卒巡逻",
+  "Type": "Fight",
+  "Difficulty": 3,
+  "Size": 7,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 2, "Name": "栅栏", "TextureName": "gate1", "HP": 4 },
+    { "Type": "stationary_enemy", "AppearTurn": 0, "AppearPos": 5, "AppearFacing": "left", "Name": "城门箭台", "TextureName": "soldier_bow", "HP": 6, "Card": "enemy_bow" },
+    { "Type": "simple_enemy", "AppearTurn": 2, "AppearPos": 4, "AppearFacing": "left", "Name": "齐卒巡逻", "TextureName": "soldier_broadsword", "HP": 6, "Card": "broadsword" }
+  ]
+}
+

@@ -1,0 +1,15 @@
+{
+  "ID": "fs_qi_2",
+  "Name": "稷下·学宫前",
+  "Type": "Fight",
+  "Difficulty": 2,
+  "Size": 7,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 2, "Name": "石碑", "TextureName": "stone1", "HP": 3 },
+    { "Type": "simple_enemy", "AppearTurn": 1, "AppearPos": 4, "AppearFacing": "left", "Name": "稷下学徒", "TextureName": "villager2", "HP": 5, "Card": "kick" },
+    { "Type": "stationary_enemy", "AppearTurn": 2, "AppearPos": 6, "AppearFacing": "left", "Name": "学宫门卫", "TextureName": "sentry", "HP": 6, "Card": "enemy_spear" }
+  ]
+}
+

@@ -1,0 +1,15 @@
+{
+  "ID": "fs_chencai_2",
+  "Name": "蔡地·粮道被断",
+  "Type": "Fight",
+  "Difficulty": 4,
+  "Size": 8,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 3, "Name": "木栅", "TextureName": "gate1", "HP": 4 },
+    { "Type": "stationary_enemy", "AppearTurn": 0, "AppearPos": 5, "AppearFacing": "left", "Name": "箭楼", "TextureName": "soldier_bow", "HP": 7, "Card": "enemy_bow" },
+    { "Type": "simple_enemy", "AppearTurn": 2, "AppearPos": 6, "AppearFacing": "left", "Name": "蔡兵巡逻", "TextureName": "soldier_spear", "HP": 7, "Card": "enemy_spear" }
+  ]
+}
+

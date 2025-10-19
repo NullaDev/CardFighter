@@ -1,0 +1,15 @@
+{
+  "ID": "fs_return_3",
+  "Name": "鲁国·再整甲兵",
+  "Type": "Fight",
+  "Difficulty": 7,
+  "Size": 7,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 3, "Name": "旗鼓", "TextureName": "woodpile", "HP": 3 },
+    { "Type": "simple_enemy", "AppearTurn": 1, "AppearPos": 5, "AppearFacing": "left", "Name": "鲁军刀手", "TextureName": "soldier_broadsword", "HP": 9, "Card": "broadsword" },
+    { "Type": "simple_enemy", "AppearTurn": 3, "AppearPos": 6, "AppearFacing": "left", "Name": "鲁军枪手", "TextureName": "soldier_spear", "HP": 9, "Card": "enemy_spear" }
+  ]
+}
+

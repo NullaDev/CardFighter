@@ -1,0 +1,15 @@
+{
+  "ID": "fs_return_4",
+  "Name": "鲁地·复礼",
+  "Type": "Fight",
+  "Difficulty": 7,
+  "Size": 7,
+  "PlayerSpawnPos": 1,
+  "PlayerSpawnFacing": "right",
+  "Entities": [
+    { "Type": "passive", "AppearTurn": 0, "AppearPos": 2, "Name": "礼器", "TextureName": "woodpile", "HP": 3 },
+    { "Type": "simple_enemy", "AppearTurn": 1, "AppearPos": 4, "AppearFacing": "left", "Name": "礼官随从", "TextureName": "villager2", "HP": 8, "Card": "kick" },
+    { "Type": "stationary_enemy", "AppearTurn": 2, "AppearPos": 6, "AppearFacing": "left", "Name": "礼门守卫", "TextureName": "sentry", "HP": 10, "Card": "enemy_spear" }
+  ]
+}
+
