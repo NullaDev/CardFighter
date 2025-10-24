@@ -79,6 +79,11 @@ namespace GameLogic.Buff
                     BuffName = buffToken["BuffName"]?.ToString(),
                     BuffType = buffToken["BuffType"]?.ToString() ?? "Positive",
                     Turn = buffToken["Turn"]?.ToObject<int>() ?? 1,
+                    ImmunityTo = buffToken["ImmunityTo"]?.ToObject<List<string>>(serializer) ?? new List<string>(),
+                    ConflictsWith = buffToken["ConflictsWith"]?.ToObject<List<string>>(serializer) ?? new List<string>(),
+                    IsToggle = buffToken["IsToggle"]?.ToObject<bool>() ?? false,
+                    IsStackable = buffToken["IsStackable"]?.ToObject<bool>() ?? false,
+                    StackableParams = buffToken["StackableParams"]?.ToObject<List<string>>(serializer) ?? new List<string>(),
                     Rules = new List<BuffEffectRule>()
                 };
 

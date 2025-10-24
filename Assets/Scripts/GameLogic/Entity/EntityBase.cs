@@ -195,10 +195,8 @@ namespace GameLogic.Entity
         
         public bool AddOrUpdateBuff(EntityBuff newBuff)
         {
-            if (EntityBuffManager.BuffImmunityGroups.Any(kvp => Buffs.Any(b => b.Name == kvp.Key) && kvp.Value.Contains(newBuff.Name)))
-            {
+            if (Buffs.Any(existing => existing.ImmunityTo.Contains(newBuff.Name)))
                 return false;
-            }
             
             if (this.HasBuff(EntityBuffManager.Calligraphy) && newBuff.BuffType == EntityBuffManager.BuffType.Positive)
             {
@@ -223,60 +221,22 @@ namespace GameLogic.Entity
                 }
             }
             
-            foreach (var conflictingBuff in from @group in EntityBuffManager.BuffConflictGroups where @group.Contains(newBuff.Name) select Buffs.FirstOrDefault(b => @group.Contains(b.Name)) into conflictingBuff where conflictingBuff != null select conflictingBuff)
+            foreach (var conflicting in Buffs.Where(b => b.ConflictsWith.Contains(newBuff.Name)).ToList())
             {
-                if (conflictingBuff.Name != newBuff.Name) Buffs.Remove(conflictingBuff);
+                Buffs.Remove(conflicting);
             }
             
             var existing = Buffs.FirstOrDefault(b => b.Name == newBuff.Name);
             if (existing != null)
             {
-                if (EntityBuffManager.ToggleBuffs.Contains(newBuff.Name))
+                if (newBuff.IsToggle)
                 {
                     Buffs.Remove(existing);
                     return true;
                 }
-                if (EntityBuffManager.StackableBuffs.TryGetValue(newBuff.Name, out var stackParams))
+                if (newBuff.IsStackable)
                 {
-                    foreach (var param in stackParams)
-                    {
-                        foreach (var rule in existing.EffectRules)
-                        {
-                            if (rule is CausedDamageEffectRule causedRule && param == EntityBuffManager.GenericValueKey)
-                            {
-                                var newVal = newBuff.EffectRules
-                                    .OfType<CausedDamageEffectRule>()
-                                    .Select(r => r.Value)
-                                    .FirstOrDefault();
-
-                                causedRule.Value += newVal;
-                            }
-                            else if (rule is ReceivedDamageEffectRule receivedRule && param == EntityBuffManager.GenericValueKey)
-                            {
-                                var newVal = newBuff.EffectRules
-                                    .OfType<ReceivedDamageEffectRule>()
-                                    .Select(r => r.Value)
-                                    .FirstOrDefault();
-
-                                receivedRule.Value += newVal;
-                            }
-                            else if (rule is MiscEffectRule miscRule)
-                            {
-                                if (miscRule.Parameters.TryGetValue(param, out var existingValObj))
-                                {
-                                    var existingVal = Convert.ToInt32(existingValObj);
-                                    var newVal = newBuff.EffectRules
-                                        .OfType<MiscEffectRule>()
-                                        .Select(r => r.Parameters.TryGetValue(param, out var vObj) ? Convert.ToInt32(vObj) : 0)
-                                        .FirstOrDefault();
-
-                                    miscRule.Parameters[param] = existingVal + newVal;
-                                }
-                            }
-                        }
-                    }
-
-                    existing.Duration = newBuff.Duration;
+                    EntityBuffManager.Merge(existing, newBuff);
                     return true;
                 }
                 if (existing.Duration == -1 || newBuff.Duration <= existing.Duration && newBuff.Duration != -1)
@@ -324,6 +284,7 @@ namespace GameLogic.Entity
                     var buff = new EntityBuff(new BuffData
                     {
                         BuffName = EntityBuffManager.Chaos,
+                        BuffType = "Negative",
                         Turn = 1,
                         Rules = new List<BuffEffectRule>
                         {
@@ -347,7 +308,7 @@ namespace GameLogic.Entity
                             new CausedDamageEffectRule
                             {
                                 Operator = ArithmeticOperator.Add,
-                                Value = negativeValue
+                                Value = positiveValue
                             }
                         }
                     });

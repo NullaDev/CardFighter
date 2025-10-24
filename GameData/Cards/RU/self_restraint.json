@@ -23,6 +23,8 @@
             {
               "BuffName": "rites",
               "Turn": -1,
+              "ConflictsWith": ["music", "archery", "charioteering", "calligraphy", "mathematics"],
+              "IsToggle": true,
               "Rules": [
                 { "RuleType": "damage_caused", "Operator": "Add", "Value": 1, "WithCondition": ["face_to_face"] },
                 { "RuleType": "damage_caused", "Operator": "Multiply", "Value": 0, "WithoutCondition": ["face_to_face"], "WithoutBuff": ["follow_heart"] }

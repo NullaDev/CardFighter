@@ -15,6 +15,7 @@
               "BuffName": "noble_unarmed",
               "BuffType": "Neutral",
               "Turn": -1,
+              "IsToggle": true,
               "Rules": [
                 { "RuleType": "damage_caused", "Operator": "Add", "Value": 2, "TargetTags": ["unarmed"] },
                 { "RuleType": "damage_caused", "Operator": "Multiply", "Value": 0, "TargetTags": ["weapon"] }

@@ -34,6 +34,19 @@ namespace GameLogic
 
                     return targetFacingMe;
                 
+                case "target_back_to_me":
+                    selfIndex = battleField.GetEntityIndex(self);
+                    targetIndex = battleField.GetEntityIndex(target);
+
+                    if (target.Facing == EntityFacing.Default)
+                        return false;
+
+                    var targetBackToMe =
+                        (selfIndex < targetIndex && target.Facing == EntityFacing.Right) ||
+                        (selfIndex > targetIndex && target.Facing == EntityFacing.Left);
+
+                    return targetBackToMe;
+                
                 case "dealt_damage_to_player":
                     return target is Enemy { DealtDamageToPlayer: true };
 

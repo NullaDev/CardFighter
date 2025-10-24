@@ -1,4 +1,5 @@
-﻿using Registry;
+﻿using System.Linq;
+using Registry;
 using Render;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -37,7 +38,14 @@ namespace GameLogic.SceneControl
             }
             
             var stageData = StaticDataManager.StageDataManager;
-            playerData.CurrentStage = stageData.MiscStages.Find(s=>s.ID.Equals(debug.DebugStageID));
+            var stageList = debug.DebugStageType switch
+            {
+                "normal" => stageData.NormalStages.SelectMany(kv => kv.Value).ToList(),
+                "elite" => stageData.EliteStages.SelectMany(kv => kv.Value).ToList(),
+                "boss" => stageData.BossStages,
+                _ => stageData.MiscStages,
+            };
+            playerData.CurrentStage = stageList.Find(s=>s.ID.Equals(debug.DebugStageID));
             
             SceneManager.LoadScene("Fighting");
         }

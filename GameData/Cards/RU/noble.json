@@ -14,6 +14,7 @@
             {
               "BuffName": "noble",
               "Turn": -1,
+              "IsStackable": true,
               "Rules": [
                 { "RuleType": "damage_caused", "Operator": "Add", "Value": 1 }
               ]

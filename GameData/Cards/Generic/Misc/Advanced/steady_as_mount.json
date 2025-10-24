@@ -11,7 +11,7 @@
         {
           "Type": "add_buff",
           "Buffs": [
-            { "BuffName": "super_armor", "Turn": 1 },
+            { "BuffName": "super_armor", "Turn": 1, "ImmunityTo": ["stunned", "rooted", "locked_facing"] },
             {
               "BuffName": "block",
               "Turn": 1,

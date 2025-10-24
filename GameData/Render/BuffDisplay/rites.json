@@ -2,6 +2,6 @@
   "ID": "rites",
   "Name": "礼仪",
   "TextureName": "Arts/Cards/RU/rites",
-  "EffectText": "对面朝你的敌人造成伤害增加{rites_positive_value}点，否则造成伤害乘以{rites_negative_value}。",
+  "EffectText": "对面对面的敌人造成伤害增加{value}点，若背对你则造成伤害乘以{value3}。",
   "ExtraText": "子曰：只有你面朝我，我才会出手。"
 }

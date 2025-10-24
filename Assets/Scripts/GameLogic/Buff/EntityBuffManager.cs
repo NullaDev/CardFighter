@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
 
 namespace GameLogic.Buff
 {
@@ -25,33 +25,102 @@ namespace GameLogic.Buff
             }
         }
         
-        public static readonly List<HashSet<string>> BuffConflictGroups = new()
+        public static void Merge(EntityBuff existing, EntityBuff newBuff)
         {
-            new HashSet<string> { Rites, Music, Archery, Charioteering, Calligraphy, Mathematics }
-        };
-        
-        public static readonly Dictionary<string, HashSet<string>> BuffImmunityGroups = new()
-        {
-            { SuperArmor, new HashSet<string> { Stunned, Rooted, LockedFacing } }
-        };
+            if (existing == null || newBuff == null)
+                throw new ArgumentNullException();
 
-        public static readonly HashSet<string> ToggleBuffs = new()
-        {
-            Rites, Music, Archery, Charioteering, Calligraphy, Mathematics, NobleUnarmed
-        };
-        
-        public static readonly Dictionary<string, HashSet<string>> StackableBuffs = new()
-        {
-            { Noble , new HashSet<string> { GenericValueKey } },
-            { Vulnerable, new HashSet<string> { GenericValueKey } }
-        };
+            var stackableParams = newBuff.StackableParams;
+
+            foreach (var newRule in newBuff.EffectRules)
+            {
+                switch (newRule)
+                {
+                    case IOperatorEffect newOp and BuffEffectRule:
+                    {
+                        var oldRule = existing.EffectRules.FirstOrDefault(r => r.GetType() == newRule.GetType());
+                        if (oldRule is IOperatorEffect oldOp)
+                        {
+                            if (IsAdditiveOperator(newOp.Operator) && IsAdditiveOperator(oldOp.Operator))
+                            {
+                                var oldSigned = oldOp.Operator == ArithmeticOperator.Minus ? -oldOp.Value : oldOp.Value;
+                                var newSigned = newOp.Operator == ArithmeticOperator.Minus ? -newOp.Value : newOp.Value;
+                                var merged = oldSigned + newSigned;
+                                if (merged >= 0)
+                                {
+                                    oldOp.Operator = ArithmeticOperator.Add;
+                                    oldOp.Value = merged;
+                                }
+                                else
+                                {
+                                    oldOp.Operator = ArithmeticOperator.Minus;
+                                    oldOp.Value = Math.Abs(merged);
+                                }
+                            }
+                            else if (IsMultiplicativeOperator(newOp.Operator) && IsMultiplicativeOperator(oldOp.Operator))
+                            {
+                                var oldFactor = oldOp.Operator == ArithmeticOperator.Divide ? 1 / oldOp.Value : oldOp.Value;
+                                var newFactor = newOp.Operator == ArithmeticOperator.Divide ? 1 / newOp.Value : newOp.Value;
+                                var merged = oldFactor * newFactor;
+                                oldOp.Operator = ArithmeticOperator.Multiply;
+                                oldOp.Value = merged;
+                            }
+                        }
+                        else
+                        {
+                            existing.EffectRules.Add(newRule.Clone());
+                        }
+
+                        break;
+                    }
+
+                    case BlockEffectRule:
+                        break;
+
+                    case MiscEffectRule newMisc:
+                    {
+                        var oldMisc = existing.EffectRules.OfType<MiscEffectRule>().FirstOrDefault();
+                        if (oldMisc == null)
+                        {
+                            existing.EffectRules.Add(newMisc.Clone());
+                            break;
+                        }
+
+                        foreach (var (key, newValObj) in newMisc.Parameters)
+                        {
+                            if (!stackableParams.Contains(key))
+                                continue;
+
+                            var oldVal = oldMisc.Parameters.TryGetValue(key, out var oldValObj)
+                                ? Convert.ToSingle(oldValObj)
+                                : 0f;
+
+                            var newVal = Convert.ToSingle(newValObj);
+                            oldMisc.Parameters[key] = oldVal + newVal;
+                        }
+
+                        break;
+                    }
+
+                    default:
+                        existing.EffectRules.Add(newRule.Clone());
+                        break;
+                }
+            }
+
+            existing.Duration = newBuff.Duration;
+        }
+
+        private static bool IsAdditiveOperator(ArithmeticOperator op)
+            => op is ArithmeticOperator.Add or ArithmeticOperator.Minus;
+
+        private static bool IsMultiplicativeOperator(ArithmeticOperator op)
+            => op is ArithmeticOperator.Multiply or ArithmeticOperator.Divide;
         
         public const string Insight = "insight";
         public const string Stunned = "stunned";
-        public const string Block = "block";
         public const string CounterAttack = "counter_attack";
         public const string Initiative = "initiative";
-        public const string Vulnerable = "vulnerable";
         public const string SuperArmor = "super_armor";
         public const string Rooted = "rooted";
         public const string LockedFacing = "locked_facing";
@@ -69,13 +138,8 @@ namespace GameLogic.Buff
             public const string CalligraphyNegativeValue = "calligraphy_negative_value";
         public const string Mathematics = "mathematics";
         
-        public const string Noble = "noble";
         public const string FollowHeart = "follow_heart";
         public const string Practice = "practice";
             public const string PracticeValue = "practice_value";
-        public const string NobleUnarmed = "noble_unarmed";
-
-        public const string GenericValueKey = "value";
-
     }
 }

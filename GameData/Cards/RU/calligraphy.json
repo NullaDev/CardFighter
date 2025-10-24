@@ -15,6 +15,8 @@
               "BuffName": "calligraphy",
               "BuffType": "Neutral",
               "Turn": -1,
+              "ConflictsWith": ["rites", "music", "archery", "charioteering", "mathematics"],
+              "IsToggle": true,
               "Rules": [
                 {
                   "RuleType": "misc",

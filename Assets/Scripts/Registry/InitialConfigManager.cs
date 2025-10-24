@@ -17,6 +17,7 @@ namespace Registry
     
     public class DebugConfig
     {
+        public string DebugStageType;
         public string DebugStageID;
         public List<string> DebugCards = new List<string>();
         public List<string> DebugItems = new List<string>();
