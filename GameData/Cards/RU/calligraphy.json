@@ -13,6 +13,7 @@
           "Buffs": [
             {
               "BuffName": "calligraphy",
+              "BuffType": "Neutral",
               "Turn": -1,
               "Rules": [
                 {

@@ -16,8 +16,8 @@
         {
           "Type": "add_buff",
           "Buffs": [
-            { "BuffName": "rooted", "Turn": 1 },
-            { "BuffName": "locked_facing", "Turn": 1 }
+            { "BuffName": "rooted", "BuffType": "Negative", "Turn": 1 },
+            { "BuffName": "locked_facing", "BuffType": "Negative", "Turn": 1 }
           ]
         }
       ]

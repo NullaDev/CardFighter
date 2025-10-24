@@ -24,7 +24,7 @@ namespace Render
 
         public void RenderBuff(EntityBuff buff)
         {
-            _buffBG.color = EntityBuffManager.GetBuffType(buff.Name) switch
+            _buffBG.color = buff.BuffType switch
             {
                 EntityBuffManager.BuffType.Positive => Color.green,
                 EntityBuffManager.BuffType.Neutral  => Color.yellow,

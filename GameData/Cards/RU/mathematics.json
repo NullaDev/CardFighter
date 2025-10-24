@@ -13,6 +13,7 @@
           "Buffs": [
             {
               "BuffName": "mathematics",
+              "BuffType": "Neutral",
               "Turn": -1,
               "Rules": [
                 { "RuleType": "damage_received", "Operator": "Minus", "Value": 1, "WithBuff": ["insight"] },

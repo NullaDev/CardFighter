@@ -13,6 +13,7 @@
           "Buffs": [
             {
               "BuffName": "rites",
+              "BuffType": "Neutral",
               "Turn": -1,
               "Rules": [
                 { "RuleType": "damage_caused", "Operator": "Add", "Value": 1, "WithCondition": ["face_to_face"] },

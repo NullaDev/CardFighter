@@ -13,6 +13,7 @@
           "Buffs": [
             {
               "BuffName": "archery",
+              "BuffType": "Neutral",
               "Turn": -1,
               "Rules": [
                 { "RuleType": "damage_caused", "Operator": "Add", "Value": 1, "TargetTags": ["ranged"] },

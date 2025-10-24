@@ -22,7 +22,7 @@
         {
           "Type": "add_buff",
           "Buffs": [
-            { "BuffName": "stunned", "Turn": 2 }
+            { "BuffName": "stunned", "BuffType": "Negative", "Turn": 2 }
           ]
         }
       ]

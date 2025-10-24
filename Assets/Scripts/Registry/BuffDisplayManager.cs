@@ -10,7 +10,7 @@ namespace Registry
     {
         public bool HasLoaded = false;
 
-        private static readonly string BuffFolderRoot = Path.Combine(Application.dataPath, "../GameData/Buffs");
+        private static readonly string BuffFolderRoot = Path.Combine(Application.dataPath, "../GameData/Render/BuffDisplay");
         private readonly List<BuffDisplayInfo> _listBuffInfos = new();
 
         public void DebugLoadedBuffInfo()

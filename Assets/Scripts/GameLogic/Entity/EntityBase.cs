@@ -200,10 +200,10 @@ namespace GameLogic.Entity
                 return false;
             }
             
-            if (this.HasBuff(EntityBuffManager.Calligraphy) && EntityBuffManager.GetBuffType(newBuff.Name) == EntityBuffManager.BuffType.Positive)
+            if (this.HasBuff(EntityBuffManager.Calligraphy) && newBuff.BuffType == EntityBuffManager.BuffType.Positive)
             {
                 var calligraphyBuff = this.GetBuff(EntityBuffManager.Calligraphy);
-                var currentPositiveBuffs = Buffs.Count(b => EntityBuffManager.GetBuffType(b.Name) == EntityBuffManager.BuffType.Positive);
+                var currentPositiveBuffs = Buffs.Count(b => b.BuffType == EntityBuffManager.BuffType.Positive);
                 var maxPositive = calligraphyBuff.EffectRules
                     .OfType<MiscEffectRule>()
                     .Select(r => r.Parameters.TryGetValue(EntityBuffManager.CalligraphyNegativeValue, out var maxPosObj) ? Convert.ToInt32(maxPosObj) : int.MaxValue)

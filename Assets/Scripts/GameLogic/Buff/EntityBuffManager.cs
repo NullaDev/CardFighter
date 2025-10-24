@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace GameLogic.Buff
 {
@@ -11,24 +12,18 @@ namespace GameLogic.Buff
             Neutral,
             Negative
         }
-        
-        public static readonly HashSet<string> PositiveBuffs = new()
+
+        public static BuffType FromString(string buffName)
         {
-            Insight, Block, CounterAttack, Initiative, HoneSword, SuperArmor,
-            Noble, HonestWord, FollowHeart, Practice, HiddenWeapon, GoodAtTools, KindHeart, Fearless
-        };
-        
-        public static readonly HashSet<string> NeutralBuffs = new()
-        {
-            Rites, Music, Archery, Charioteering, Calligraphy, Mathematics,
-            NobleUnarmed
-        };
-        
-        public static readonly HashSet<string> NegativeBuffs = new()
-        {
-            Stunned, Vulnerable, Rooted, LockedFacing,
-            NowhereToHide
-        };
+            if (Enum.TryParse<BuffType>(buffName, true, out var buffType))
+            {
+                return buffType;
+            }
+            else
+            {
+                throw new ArgumentException($"Invalid BuffType: {buffName}");
+            }
+        }
         
         public static readonly List<HashSet<string>> BuffConflictGroups = new()
         {
@@ -56,7 +51,6 @@ namespace GameLogic.Buff
         public const string Block = "block";
         public const string CounterAttack = "counter_attack";
         public const string Initiative = "initiative";
-        public const string HoneSword = "hone_sword";
         public const string Vulnerable = "vulnerable";
         public const string SuperArmor = "super_armor";
         public const string Rooted = "rooted";
@@ -76,29 +70,12 @@ namespace GameLogic.Buff
         public const string Mathematics = "mathematics";
         
         public const string Noble = "noble";
-        public const string HonestWord = "honest_word";
         public const string FollowHeart = "follow_heart";
         public const string Practice = "practice";
             public const string PracticeValue = "practice_value";
-        public const string HiddenWeapon = "hidden_weapon";
         public const string NobleUnarmed = "noble_unarmed";
-        public const string GoodAtTools = "good_at_tools";
-        public const string NowhereToHide = "nowhere_to_hide";
-        public const string KindHeart = "kind_heart";
-        public const string Fearless = "fearless";
 
         public const string GenericValueKey = "value";
-            
-        public static BuffType GetBuffType(string buffName)
-        {
-            if (PositiveBuffs.Contains(buffName))
-                return BuffType.Positive;
-            if (NeutralBuffs.Contains(buffName))
-                return BuffType.Neutral;
-            if (NegativeBuffs.Contains(buffName))
-                return BuffType.Negative;
-            throw new Exception($"Unknown buff name: {buffName}");
-        }
 
     }
 }

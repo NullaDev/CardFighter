@@ -13,6 +13,7 @@
           "Buffs": [
             {
               "BuffName": "music",
+              "BuffType": "Neutral",
               "Turn": -1,
               "Rules": [
                 {

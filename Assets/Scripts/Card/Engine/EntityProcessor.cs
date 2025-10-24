@@ -212,12 +212,11 @@ namespace Card.Engine
             var toRemove = target.Buffs
                 .Where(b =>
                 {
-                    var type = EntityBuffManager.GetBuffType(b.Name);
                     return BuffType switch
                     {
-                        "positive" => type == EntityBuffManager.BuffType.Positive,
-                        "negative" => type == EntityBuffManager.BuffType.Negative,
-                        "neutral" => type == EntityBuffManager.BuffType.Neutral,
+                        "positive" => b.BuffType == EntityBuffManager.BuffType.Positive,
+                        "negative" => b.BuffType == EntityBuffManager.BuffType.Negative,
+                        "neutral" => b.BuffType == EntityBuffManager.BuffType.Neutral,
                         "all" => true,
                         _ => false
                     };

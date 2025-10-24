@@ -13,6 +13,7 @@
           "Buffs": [
             {
               "BuffName": "noble_unarmed",
+              "BuffType": "Neutral",
               "Turn": -1,
               "Rules": [
                 { "RuleType": "damage_caused", "Operator": "Add", "Value": 2, "TargetTags": ["unarmed"] },

@@ -77,7 +77,8 @@ namespace GameLogic.Buff
                 var buffData = new BuffData
                 {
                     BuffName = buffToken["BuffName"]?.ToString(),
-                    Turn = buffToken["Turn"]?.ToObject<int>() ?? 0,
+                    BuffType = buffToken["BuffType"]?.ToString() ?? "Positive",
+                    Turn = buffToken["Turn"]?.ToObject<int>() ?? 1,
                     Rules = new List<BuffEffectRule>()
                 };
 

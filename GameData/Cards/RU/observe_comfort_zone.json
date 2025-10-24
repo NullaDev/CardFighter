@@ -28,6 +28,7 @@
           "Buffs": [
             {
               "BuffName": "nowhere_to_hide",
+              "BuffType": "Negative",
               "Turn": 3,
               "Rules": [
                 { "RuleType": "damage_received", "Operator": "Add", "Value": 2 }
