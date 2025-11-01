@@ -1,0 +1,71 @@
+﻿{
+  "ID": "music_3",
+  "Name": "角",
+  "TextureName": "Arts/Cards/ru/music_3",
+  "Desc": "直到下回合所有伤害+2，终曲：并获得霸体",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "uplifted",
+              "Turn": 2,
+              "Rules": [
+                { "RuleType": "damage_caused", "Operator": "Add", "Value": 2 }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "music" }
+      ],
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "movement",
+              "Turn": 2,
+              "IsStackable": true,
+              "StackableParams": ["movement_count"],
+              "Rules": [
+                {
+                  "RuleType": "misc",
+                  "Parameters": { "movement_count": 1 }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { 
+          "Type": "buff_param", 
+          "BuffName": "movement", 
+          "ParamKey": "movement_count", 
+          "Operator": "GreaterOrEqual", 
+          "Value": 4
+        }
+      ],
+      "Processors": [
+        { "Type": "remove_buff", "Buffs": ["movement"] },
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            { "BuffName": "super_armor", "Turn": 2, "ImmunityTo": ["stunned", "rooted", "locked_facing"] }
+          ]
+        }      ]
+    }
+  ]
+}

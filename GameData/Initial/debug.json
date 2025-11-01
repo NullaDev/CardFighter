@@ -2,12 +2,12 @@
   "DebugStageType": "misc",
   "DebugStageID": "dummy",
   "DebugCards": [
-    "focus_energy",
-    "observe",
-    "archery",
-    "rites",
-    "noble",
-    "throw_stone"
+    "music",
+    "music_1",
+    "music_2",
+    "music_3",
+    "music_5",
+    "music_6"
   ],
   "DebugItems": [
     "telescope_debug"

@@ -1,0 +1,90 @@
+﻿{
+  "ID": "music_6",
+  "Name": "羽",
+  "TextureName": "Arts/Cards/ru/music_6",
+  "Desc": "使前后1格内敌人定身1回合，终曲：并且造成伤害减半",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "range", "RangeMin": -1, "RangeMax": 1 },
+      "Filters": [
+        { "Type": "exclude_self" },
+        { "Type": "is_alive" },
+        { "Type": "entity_type", "MatchTypes": ["enemy"] }
+      ],
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            { "BuffName": "rooted", "BuffType": "Negative", "Turn": 1 }
+          ]
+        }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "music" }
+      ],
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "movement",
+              "Turn": 2,
+              "IsStackable": true,
+              "StackableParams": ["movement_count"],
+              "Rules": [
+                {
+                  "RuleType": "misc",
+                  "Parameters": { "movement_count": 1 }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { 
+          "Type": "buff_param", 
+          "BuffName": "movement", 
+          "ParamKey": "movement_count", 
+          "Operator": "GreaterOrEqual", 
+          "Value": 4
+        }
+      ],
+      "Processors": [
+        {
+          "Type": "execute_action",
+          "Action": {
+            "Selector": { "Type": "range", "RangeMin": -1, "RangeMax": 1 },
+            "Filters": [
+              { "Type": "exclude_self" },
+              { "Type": "is_alive" },
+              { "Type": "entity_type", "MatchTypes": ["enemy"] }
+            ],
+            "Processors": [
+              {
+                "Type": "add_buff",
+                "Buffs": [
+                  {
+                    "BuffName": "swirl", 
+                    "BuffType": "Negative", 
+                    "Turn": 1,
+                    "Rules": [
+                      { "RuleType": "damage_caused", "Operator": "Divide", "Value": 2 }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

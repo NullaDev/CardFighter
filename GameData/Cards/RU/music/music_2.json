@@ -1,0 +1,92 @@
+﻿{
+  "ID": "music_2",
+  "Name": "商",
+  "TextureName": "Arts/Cards/ru/music_2",
+  "Desc": "对1至2格内敌人造成2点伤害，终曲：并击退1格",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "music" }
+      ],
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "movement",
+              "Turn": 2,
+              "IsStackable": true,
+              "StackableParams": ["movement_count"],
+              "Rules": [
+                {
+                  "RuleType": "misc",
+                  "Parameters": { "movement_count": 1 }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        {
+          "Type": "buff_param",
+          "BuffName": "movement",
+          "ParamKey": "movement_count",
+          "Operator": "LessThan",
+          "Value": 4
+        }
+      ],
+      "Processors": [
+        {
+          "Type": "execute_action",
+          "Action": {
+            "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 2 },
+            "Filters": [
+              { "Type": "exclude_self" },
+              { "Type": "is_alive" },
+              { "Type": "entity_type", "MatchTypes": ["enemy"] }
+            ],
+            "Processors": [
+              { "Type": "damage", "Value": 2, "Tags": ["ranged"] }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        {
+          "Type": "buff_param",
+          "BuffName": "movement",
+          "ParamKey": "movement_count",
+          "Operator": "GreaterOrEqual",
+          "Value": 4
+        }
+      ],
+      "Processors": [
+        { "Type": "remove_buff", "Buffs": ["movement"] },
+        {
+          "Type": "execute_action",
+          "Action": {
+            "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 2, "Reversed": true },
+            "Filters": [
+              { "Type": "exclude_self" },
+              { "Type": "is_alive" },
+              { "Type": "entity_type", "MatchTypes": ["enemy"] }
+            ],
+            "Processors": [
+              { "Type": "damage", "Value": 2, "Tags": ["ranged"] },
+              { "Type": "move", "Mode": "push", "Value": 1 }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

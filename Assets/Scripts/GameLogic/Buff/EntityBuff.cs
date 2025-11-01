@@ -19,13 +19,18 @@ namespace GameLogic.Buff
 
         public EntityBuff(BuffData data)
         {
+            data.ImmunityTo ??= new List<string>{};
+            data.ConflictsWith ??= new List<string>{};
+            data.StackableParams ??= new List<string>{};
+            data.Rules ??= new List<BuffEffectRule>{};
+            
             this.Name = data.BuffName;
             this.Duration = data.Turn;
-            this.BuffType = EntityBuffManager.FromString(data.BuffType);
+            this.BuffType = EntityBuffManager.FromString(data.BuffType?? "Positive");
             this.ImmunityTo = new HashSet<string>(data.ImmunityTo);
             this.ConflictsWith = new HashSet<string>(data.ConflictsWith);
-            this.IsToggle = data.IsToggle;
-            this.IsStackable = data.IsStackable;
+            this.IsToggle = data.IsToggle?? false;
+            this.IsStackable = data.IsStackable?? false;
             this.StackableParams = new List<string>(data.StackableParams);
             this.EffectRules = data.Rules?.Select(r => r.Clone()).ToList() ?? new List<BuffEffectRule>();
         }

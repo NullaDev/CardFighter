@@ -1,0 +1,56 @@
+﻿{
+  "ID": "music_1",
+  "Name": "宫",
+  "TextureName": "Arts/Cards/ru/music_1",
+  "Desc": "获得3点临时护甲，终曲：解除所有负面状态",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        { "Type": "add_armor", "Value": 3 }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "music" }
+      ],
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "movement",
+              "Turn": 2,
+              "IsStackable": true,
+              "StackableParams": ["movement_count"],
+              "Rules": [
+                {
+                  "RuleType": "misc",
+                  "Parameters": { "movement_count": 1 }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { 
+          "Type": "buff_param", 
+          "BuffName": "movement", 
+          "ParamKey": "movement_count", 
+          "Operator": "GreaterOrEqual", 
+          "Value": 4
+        }
+      ],
+      "Processors": [
+        { "Type": "remove_buff", "Buffs": ["movement"] },
+        { "Type": "clear_buff", "BuffType": "negative", "Count": -1 }
+      ]
+    }
+  ]
+}

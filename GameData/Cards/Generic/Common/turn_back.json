@@ -7,13 +7,9 @@
   "IsBuiltinCard": true,
   "Actions": [
     {
-      "Selector": {
-        "Type": "self"
-      },
+      "Selector": { "Type": "self" },
       "Processors": [
-        {
-          "Type": "turn"
-        }
+        { "Type": "turn" }
       ]
     }
   ]

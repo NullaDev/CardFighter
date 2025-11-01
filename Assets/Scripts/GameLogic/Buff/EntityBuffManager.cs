@@ -13,15 +13,15 @@ namespace GameLogic.Buff
             Negative
         }
 
-        public static BuffType FromString(string buffName)
+        public static BuffType FromString(string typeName)
         {
-            if (Enum.TryParse<BuffType>(buffName, true, out var buffType))
+            if (Enum.TryParse<BuffType>(typeName, true, out var buffType))
             {
                 return buffType;
             }
             else
             {
-                throw new ArgumentException($"Invalid BuffType: {buffName}");
+                throw new ArgumentException($"Invalid BuffType: {typeName}");
             }
         }
         

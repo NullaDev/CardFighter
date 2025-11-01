@@ -1,0 +1,7 @@
+﻿{
+  "ID": "movement",
+  "Name": "齐鸣",
+  "TextureName": "Arts/Misc/movement",
+  "EffectText": "连续演奏3次乐章后，下一次奏乐将得到强化。当前层数：{movement_count}。",
+  "ExtraText": "齐声共鸣，心弦相契。"
+}

@@ -49,6 +49,7 @@ namespace Card.Engine
                         "entity_type" => f.ToObject<TypeFilter>(serializer),
                         "condition" => f.ToObject<ConditionFilter>(serializer),
                         "has_buff" => f.ToObject<HasBuffFilter>(serializer),
+                        "buff_param" => f.ToObject<BuffParamFilter>(serializer),
                         "name" => f.ToObject<NameFilter>(serializer),
                         "at_player_cached_pos" => f.ToObject<AtPlayerCachedPosFilter>(serializer),
                         _ => throw new Exception("Unknown filter type: " + type)

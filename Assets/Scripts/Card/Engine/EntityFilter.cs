@@ -113,6 +113,24 @@ namespace Card.Engine
         }
     }
     
+    public class BuffParamFilter : EntityFilter
+    {
+        public string BuffName { get; set; }
+        public string ParamKey { get; set; }
+        public RelationalOperator Operator { get; set; } = RelationalOperator.Equal;
+        public float Value { get; set; }
+
+        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self, FightingControl fc)
+        {
+            return targets
+                .Where(e => e.Buffs
+                    .Where(b => b.Name == BuffName)
+                    .Select(b => b.GetMiscParam<float>(ParamKey, float.NaN))
+                    .Any(v => !float.IsNaN(v) && OperatorUtils.Compare(v, Operator, Value))
+                ).ToList();
+        }
+    }
+    
     public class NameFilter : EntityFilter
     {
         public List<string> MatchNames { get; set; } = new();

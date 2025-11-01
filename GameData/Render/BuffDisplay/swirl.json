@@ -1,0 +1,7 @@
+﻿{
+  "ID": "swirl",
+  "Name": "涡流",
+  "TextureName": "Arts/Cards/ru/music_6",
+  "EffectText": "造成的伤害除以{value}。",
+  "ExtraText": "羽音缭绕，锋芒尽歇。"
+}

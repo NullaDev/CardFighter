@@ -1,0 +1,57 @@
+﻿{
+  "ID": "music_7",
+  "Name": "变宫",
+  "TextureName": "Arts/Cards/ru/music_7",
+  "Desc": "转身并获得2费，终曲：然后前进1格",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        { "Type": "turn" },
+        { "Type": "add_cost", "Value": 2 }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "music" }
+      ],
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "movement",
+              "Turn": 2,
+              "IsStackable": true,
+              "StackableParams": ["movement_count"],
+              "Rules": [
+                {
+                  "RuleType": "misc",
+                  "Parameters": { "movement_count": 1 }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { 
+          "Type": "buff_param", 
+          "BuffName": "movement", 
+          "ParamKey": "movement_count", 
+          "Operator": "GreaterOrEqual", 
+          "Value": 4
+        }
+      ],
+      "Processors": [
+        { "Type": "remove_buff", "Buffs": ["movement"] },
+        { "Type": "move", "Value": 1 }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+﻿{
+  "ID": "music_4",
+  "Name": "变徵",
+  "TextureName": "Arts/Cards/ru/music_4",
+  "Desc": "对前后1格内敌人造成5点伤害，终曲：并且晕眩",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Type": "execute_action",
+      "Action": {
+        "Selector": { "Type": "range", "RangeMin": -1, "RangeMax": 1 },
+        "Filters": [
+          { "Type": "exclude_self" },
+          { "Type": "is_alive" },
+          { "Type": "entity_type", "MatchTypes": ["enemy"] }
+        ],
+        "Processors": [
+          { "Type": "damage", "Value": 5, "Tags": ["melee"] }
+        ]
+      }
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "music" }
+      ],
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "movement",
+              "Turn": 2,
+              "IsStackable": true,
+              "StackableParams": ["movement_count"],
+              "Rules": [
+                {
+                  "RuleType": "misc",
+                  "Parameters": { "movement_count": 1 }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { 
+          "Type": "buff_param", 
+          "BuffName": "movement", 
+          "ParamKey": "movement_count", 
+          "Operator": "GreaterOrEqual", 
+          "Value": 4
+        }
+      ],
+      "Processors": [
+        {
+          "Type": "execute_action",
+          "Action": {
+            "Selector": { "Type": "range", "RangeMin": -1, "RangeMax": 1 },
+            "Filters": [
+              { "Type": "exclude_self" },
+              { "Type": "is_alive" },
+              { "Type": "entity_type", "MatchTypes": ["enemy"] }
+            ],
+            "Processors": [
+              {
+                "Type": "add_buff",
+                "Buffs": [
+                  { "BuffName": "stunned", "BuffType": "Negative", "Turn": 1 }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+﻿{
+  "ID": "music_5",
+  "Name": "徵",
+  "TextureName": "Arts/Cards/ru/music_5",
+  "Desc": "前进1格，沿途造成3点伤害，终曲：伤害+2",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "music" }
+      ],
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "movement",
+              "Turn": 2,
+              "IsStackable": true,
+              "StackableParams": ["movement_count"],
+              "Rules": [
+                {
+                  "RuleType": "misc",
+                  "Parameters": { "movement_count": 1 }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        {
+          "Type": "buff_param",
+          "BuffName": "movement",
+          "ParamKey": "movement_count",
+          "Operator": "LessThan",
+          "Value": 4
+        }
+      ],
+      "Processors": [
+        { "Type": "move_attack", "Value": 1, "Damage": 3 }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        {
+          "Type": "buff_param",
+          "BuffName": "movement",
+          "ParamKey": "movement_count",
+          "Operator": "GreaterOrEqual",
+          "Value": 4
+        }
+      ],
+      "Processors": [
+        { "Type": "remove_buff", "Buffs": ["movement"] },
+        { "Type": "move_attack", "Value": 1, "Damage": 5 }
+      ]
+    }
+  ]
+}
