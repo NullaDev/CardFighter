@@ -286,6 +286,11 @@ namespace GameLogic.Entity
                         BuffName = EntityBuffManager.Chaos,
                         BuffType = "Negative",
                         Turn = 1,
+                        ImmunityTo = new List<string>{},
+                        ConflictsWith = new List<string>{},
+                        IsToggle = false,
+                        IsStackable = false,
+                        StackableParams = new List<string>{},
                         Rules = new List<BuffEffectRule>
                         {
                             new CausedDamageEffectRule
@@ -302,7 +307,13 @@ namespace GameLogic.Entity
                     var buff = new EntityBuff(new BuffData
                     {
                         BuffName = EntityBuffManager.Harmony,
+                        BuffType = "Positive",
                         Turn = 1,
+                        ImmunityTo = new List<string>{},
+                        ConflictsWith = new List<string>{},
+                        IsToggle = false,
+                        IsStackable = false,
+                        StackableParams = new List<string>{},
                         Rules = new List<BuffEffectRule>
                         {
                             new CausedDamageEffectRule
