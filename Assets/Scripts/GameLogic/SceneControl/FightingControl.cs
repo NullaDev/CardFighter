@@ -3,7 +3,8 @@ using System.Linq;
 using Card;
 using GameLogic.Buff;
 using GameLogic.Entity;
-using GameLogic.RogueMap;
+using GameLogic.Map;
+using GameLogic.Runtime;
 using Registry;
 using Render;
 using UnityEngine;
@@ -19,14 +20,15 @@ namespace GameLogic.SceneControl
 
         public void Start()
         {
+            var mapData = MapData.Instance;
             var playerData = PlayerData.Instance;
             
-            if (playerData.CurrentStage == null)
+            if (mapData.CurrentStageConfig == null)
             {
                 throw new Exception("Enter Battle but CurrentStage is null");
             }
             
-            this.BattleField = new BattleField(playerData.CurrentStage, playerData);
+            this.BattleField = new BattleField(mapData.CurrentStageConfig, playerData);
             this.BattleField.SpawnEntitiesAtTurn(0);
             this.FightingData = FightingData.FromPlayerData(playerData);
 
@@ -153,18 +155,20 @@ namespace GameLogic.SceneControl
         
         public void UpdatePlayerData()
         {
+            var mapData = MapData.Instance;
             var playerData = PlayerData.Instance;
             var player = this.BattleField.GetPlayerFromMap();
             playerData.Hp = player.HP;
 
-            var optionName = playerData.CurrentNodeType switch
+            var optionName = mapData.CurrentNodeType switch
             {
-                NodeType.FIGHT => $"normal_fight_bonus_{playerData.CurrentLayerDifficulty/2}",
-                NodeType.ELITE_FIGHT => $"elite_fight_bonus_{playerData.CurrentLayerDifficulty/4}",
+                //TODO 
+                NodeType.FIGHT => $"normal_fight_bonus_{mapData.CurrentLayer/2}",
+                NodeType.ELITE_FIGHT => $"elite_fight_bonus_{mapData.CurrentLayer/4}",
                 NodeType.BOSS => "boss_fight_bonus",
                 _ => ""
             };
-            playerData.OptionBundle = StaticDataManager.OptionDataManager.GetBundle(optionName);
+            MapData.Instance.OptionBundle = StaticDataManager.OptionDataManager.GetBundle(optionName);
         }
     }
 }

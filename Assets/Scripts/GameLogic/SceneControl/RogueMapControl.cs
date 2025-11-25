@@ -1,30 +1,25 @@
-﻿using Render;
+﻿using GameLogic.Map;
+using GameLogic.Runtime;
+using Render;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace GameLogic.RogueMap
+namespace GameLogic.SceneControl
 {
     public class RogueMapControl: MonoBehaviour
     {
         public GameObject render;
-
-        public RogueMap Map;
-
+        
         public void Start()
         {
-            if (RogueMap.GlobalMap == null)
-            {
-                RogueMap.GlobalMap = RogueMap.GenerateRandomMap(14);
-            }
-            Map = RogueMap.GlobalMap;
-
+            MapData.Instance.Initialize();
             Rerender();
         }
 
         private void Rerender()
         {
             var mapRender = this.render.GetComponent<RogueMapRender>();
-            mapRender.RenderRogueMap(this.Map);
+            mapRender.RenderRogueMap(MapData.Instance.CurrentMap);
 
             var uiRender = this.render.GetComponent<RogueMapUIRender>();
             uiRender.Render();

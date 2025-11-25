@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Card;
 using GameLogic;
+using GameLogic.Runtime;
 using GameLogic.SceneControl;
 using JetBrains.Annotations;
 using Registry;

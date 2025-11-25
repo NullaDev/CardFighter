@@ -10,6 +10,7 @@
         public static readonly RecipeDataManager RecipeDataManager = new();
         public static readonly OptionDataManager OptionDataManager = new();
         public static readonly InitialConfigManager InitialConfigManager = new();
+        public static readonly GlobalMapDataManager GlobalMapDataManager = new();
 
         public static void LoadAll()
         {
@@ -21,6 +22,7 @@
             RecipeDataManager.LoadFromFile();
             OptionDataManager.LoadFromFile();
             InitialConfigManager.LoadFromFile();
+            GlobalMapDataManager.LoadFromFile();
             CommonCards.Init();
         }
     }

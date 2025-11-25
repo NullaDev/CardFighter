@@ -1,5 +1,4 @@
-﻿using Registry;
-using Render;
+﻿using Render;
 using UnityEngine;
 
 namespace GameLogic.SceneControl
@@ -10,8 +9,7 @@ namespace GameLogic.SceneControl
 
         private void Awake()
         {
-            var playerData = PlayerData.Instance;
-            render.GetComponent<OptionChooseRender>().Render(playerData);
+            render.GetComponent<OptionChooseRender>().Render();
         }
     }
 }

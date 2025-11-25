@@ -1,5 +1,8 @@
 ﻿using System;
-using GameLogic.RogueMap;
+using GameLogic;
+using GameLogic.Map;
+using GameLogic.Runtime;
+using GameLogic.SceneControl;
 using Registry;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,41 +15,43 @@ namespace Render.Interact
         public MapNode Node;
         public void OnPointerClick(PointerEventData eventData)
         {
-            var mapControl = GameObject.Find("RogueMapControl").GetComponent<RogueMapControl>();
-            mapControl.Map.SetPlayerNode(this.Node);
+            var mapData = MapData.Instance;
 
+            if (!mapData.MoveToNode(Node))
+            {
+                Debug.LogWarning("[NodeInteract] Invalid node click.");
+                return;
+            }
+            
             var mapRender = GameObject.Find("Render").GetComponent<RogueMapRender>();
-            mapRender.RerenderAccordingToPlayerPos(mapControl.Map);
-
-            var playerData = PlayerData.Instance;
-            var stageData = StaticDataManager.StageDataManager;
-            playerData.CurrentNodeType = this.Node.Type;
-            switch (playerData.CurrentNodeType)
+            mapRender.RerenderAccordingToPlayerPos(mapData.CurrentMap);
+            
+            var difficulty = Node.Layer;  // TODO
+            switch (Node.Type)
             {
                 case NodeType.FIGHT:
-                    playerData.CurrentStage = stageData.GetNormalStage(this.Node.LayerDifficulty);
-                    playerData.CurrentLayerDifficulty = this.Node.LayerDifficulty;
+                    mapData.CurrentStageConfig = StaticDataManager.StageDataManager.GetNormalStage(difficulty);
                     SceneManager.LoadScene("Fighting");
                     break;
                 case NodeType.ELITE_FIGHT:
-                    playerData.CurrentStage = stageData.GetEliteStage(this.Node.LayerDifficulty);
-                    playerData.CurrentLayerDifficulty = this.Node.LayerDifficulty;
+                    mapData.CurrentStageConfig = StaticDataManager.StageDataManager.GetEliteStage(difficulty);
                     SceneManager.LoadScene("Fighting");
                     break;
                 case NodeType.BOSS:
-                    playerData.CurrentStage = stageData.GetBossStage();
+                    mapData.CurrentStageConfig = StaticDataManager.StageDataManager.GetBossStage();
                     SceneManager.LoadScene("Fighting");
                     break;
                 case NodeType.EVENT:
-                    playerData.OptionBundle = StaticDataManager.OptionDataManager.GetRandomEventBundle();
+                    mapData.OptionBundle = StaticDataManager.OptionDataManager.GetRandomEventBundle();
                     SceneManager.LoadScene("OptionChoose");
                     break;
                 case NodeType.REST:
-                    playerData.OptionBundle = StaticDataManager.OptionDataManager.GetBundle("rest");
+                    mapData.OptionBundle = StaticDataManager.OptionDataManager.GetBundle("rest");
                     SceneManager.LoadScene("OptionChoose");
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    Debug.LogError("[NodeInteract] Unexpected NodeType");
+                    break;
             }
         }
         

@@ -1,6 +1,6 @@
-﻿using System;
+﻿
 using GameLogic.Option;
-using Registry;
+using GameLogic.Runtime;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -33,8 +33,8 @@ namespace Render
             
             var playerData = PlayerData.Instance;
             this._option.Actions.ForEach(a=>a.Execute(playerData));
-            
-            playerData.OptionBundle = null;
+
+            MapData.Instance.OptionBundle = null;
             SceneManager.LoadScene(this._option.TargetSceneName);
         }
     }

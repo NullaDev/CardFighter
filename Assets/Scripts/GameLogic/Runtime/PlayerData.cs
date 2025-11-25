@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using Card;
+using GameLogic.Map;
 using GameLogic.Option;
-using GameLogic.RogueMap;
 using Item;
 using JetBrains.Annotations;
+using Registry;
 using Registry.Data;
 
-namespace Registry
+namespace GameLogic.Runtime
 {
     // This script manages the player's "in-game" information, such as deck, hp and gold.
     public class PlayerData
@@ -26,12 +27,7 @@ namespace Registry
         public readonly CardOperationsInBattle CardOperations = new();
         public readonly List<HeldItem> HeldItems = new();
         public readonly Random Random = new();
-
-        public NodeType CurrentNodeType = NodeType.FIGHT;
-        public int CurrentLayerDifficulty = 0;
-        [CanBeNull] public StageConfig CurrentStage = null;
-        [CanBeNull] public OptionBundle OptionBundle = null;
-
+        
         public void InitFromConfig(PlayerClass playerClass, PlayerClassConfig config)
         {
             this.PlayerClass = playerClass;

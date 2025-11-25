@@ -1,4 +1,5 @@
-﻿using Registry;
+﻿using GameLogic.Runtime;
+using Registry;
 
 namespace GameLogic.Option
 {

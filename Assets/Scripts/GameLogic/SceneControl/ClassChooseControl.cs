@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using GameLogic.Runtime;
 using Registry;
 using Render;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace GameLogic.SceneControl
             var debug = StaticDataManager.InitialConfigManager.DebugConfig;
             
             var config = StaticDataManager.InitialConfigManager.GetConfigFor(PlayerClass.GENERIC);
+            var mapData = MapData.Instance;
             var playerData = PlayerData.Instance;
             PlayerData.Instance.InitFromConfig(PlayerClass.GENERIC, config);
             playerData.MaxHp = playerData.Hp = 255;
@@ -45,7 +47,7 @@ namespace GameLogic.SceneControl
                 "boss" => stageData.BossStages,
                 _ => stageData.MiscStages,
             };
-            playerData.CurrentStage = stageList.Find(s=>s.ID.Equals(debug.DebugStageID));
+            mapData.CurrentStageConfig = stageList.Find(s=>s.ID.Equals(debug.DebugStageID));
             
             SceneManager.LoadScene("Fighting");
         }

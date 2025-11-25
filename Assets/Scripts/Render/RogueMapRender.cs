@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using GameLogic.RogueMap;
+using GameLogic.Map;
+using GameLogic.Runtime;
 using Render.Interact;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,7 +40,7 @@ namespace Render
             return lineObj;
         }
 
-        public void RenderRogueMap(GameLogic.RogueMap.RogueMap map)
+        public void RenderRogueMap(RogueMap map)
         {
             foreach (var (node, obj) in _listNodes)
             {
@@ -53,7 +54,7 @@ namespace Render
             _listEdges.Clear();
             
             var random = new Random(19260817);
-            foreach (var lineNode in map.AllNodes)
+            foreach (var lineNode in map.Layers)
             {
                 foreach (var node in lineNode)
                 {
@@ -84,7 +85,7 @@ namespace Render
                 }
             }
             
-            foreach (var edge in map.AllEdges)
+            foreach (var edge in map.Edges)
             {
                 var point1 = _listNodes[edge.From].GetComponent<RectTransform>().position;
                 var point2 = _listNodes[edge.To].GetComponent<RectTransform>().position;
@@ -95,20 +96,21 @@ namespace Render
             RerenderAccordingToPlayerPos(map);
         }
 
-        public void RerenderAccordingToPlayerPos(GameLogic.RogueMap.RogueMap map)
+        public void RerenderAccordingToPlayerPos(RogueMap map)
         {
+            var mapData = MapData.Instance;
             foreach (var (node, nodeEntity) in this._listNodes)
             {
                 var bg = nodeEntity.transform.Find("NodeBG").GetComponent<Image>();
-                if (map.PlayerCurrentNode == null)
+                if (mapData.CurrentNode == null)
                 {
                     bg.color = node == map.GetStartNode() ? Color.red : Color.gray;
                 }
-                else if (node == map.PlayerCurrentNode)
+                else if (node == mapData.CurrentNode)
                 {
                     bg.color = Color.red;
                 }
-                else if (map.AllEdges.Any(edge => edge.From == map.PlayerCurrentNode && edge.To == node))
+                else if (map.Edges.Any(edge => edge.From == mapData.CurrentNode && edge.To == node))
                 {
                     bg.color = Color.green;
                 }
