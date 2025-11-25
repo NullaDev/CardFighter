@@ -1,6 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Registry.Data;
+using UnityEngine;
+using Random = System.Random;
 
 namespace GameLogic.Map
 {

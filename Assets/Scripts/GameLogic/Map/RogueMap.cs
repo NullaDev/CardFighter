@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Registry.Data;
+using UnityEngine;
+using Random = System.Random;
 
 namespace GameLogic.Map
 {
@@ -55,8 +57,9 @@ namespace GameLogic.Map
 
         private Dictionary<NodeType, int> GetLayerWeights(int layer)
         {
-            var specific = Config.LayerParams?.FirstOrDefault(lp => lp.Layer == layer);
-            return ParseNodeDict(specific != null ? specific.NodeTypeWeights : Config.DefaultLayerParams);
+            var specific = Config.SpecificLayerParams?.FirstOrDefault(lp => lp.Layer == layer);
+            var nodeWeights = specific?.NodeTypeWeights ?? Config.DefaultLayerParams;
+            return ParseNodeDict(nodeWeights);
         }
 
         private static Dictionary<NodeType, int> ParseNodeDict(Dictionary<string, int> src)
@@ -104,6 +107,10 @@ namespace GameLogic.Map
         
         private int ComputeNodeCountBasedOnPrevious(int layer)
         {
+            var specific = Config.SpecificLayerParams?.FirstOrDefault(lp => lp.Layer == layer);
+            if (specific?.NodeCount > 0)
+                return specific.NodeCount;
+            
             if (layer == 0)
                 return 1;
             

@@ -14,6 +14,7 @@ namespace Registry.Data
     {
         public int Layer;
         public Dictionary<string, int> NodeTypeWeights;
+        public int NodeCount = -1;
     }
     
     public class RogueMapConfig
@@ -26,7 +27,7 @@ namespace Registry.Data
 
         public NodeCountRangeConfig NodeCountRange;
         public Dictionary<string, int> DefaultLayerParams;
-        public List<RogueMapLayerParam> LayerParams;
+        public List<RogueMapLayerParam> SpecificLayerParams;
     }
     
     public class GlobalMapConfig

@@ -34,7 +34,8 @@
         },
         {
           "Layer": 11,
-          "NodeTypeWeights": { "BOSS": 100 }
+          "NodeTypeWeights": { "BOSS": 100 },
+          "NodeCount": 1
         }
       ]
     },
@@ -69,7 +70,8 @@
         },
         {
           "Layer": 14,
-          "NodeTypeWeights": { "BOSS": 100 }
+          "NodeTypeWeights": { "BOSS": 100 },
+          "NodeCount": 1
         }
       ]
     }
