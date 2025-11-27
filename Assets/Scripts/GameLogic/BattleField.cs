@@ -111,7 +111,7 @@ namespace GameLogic
 
             foreach (var mob in mobsToSpawn)
             {
-                if (this.AddEntityToMap(mob.GenEntity(), mob.AppearPos))
+                if (this.AddEntityToMap(mob.GenEntityBasedOnHpModifier(), mob.AppearPos))
                 {
                     _spawnedEntities.Add(mob);
                 }

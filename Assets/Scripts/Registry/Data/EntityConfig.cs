@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using GameLogic;
 using GameLogic.Entity;
+using GameLogic.Runtime;
 
 namespace Registry.Data
 {
@@ -33,14 +33,14 @@ namespace Registry.Data
         public int TurnsPerAction { get; set; } = -1;
         public int InitialActionTick { get; set; } = 0;
 
-        public abstract EntityBase GenEntity();
+        public abstract EntityBase GenEntityBasedOnHpModifier();
     }
 
     public class PassiveEntityConfig : EntityConfig
     {
-        public override EntityBase GenEntity()
+        public override EntityBase GenEntityBasedOnHpModifier()
         {
-            return new PassiveEntity(Hp)
+            return new PassiveEntity((int)(Hp*MapData.Instance.CurrentMapHpModifier))
             {
                 Name = Name,
                 TextureName = "Arts/Entities/" + TextureName,
@@ -54,9 +54,9 @@ namespace Registry.Data
         public string AppearFacing { get; set; } = "auto";
         public string Card { get; set; }
 
-        public override EntityBase GenEntity()
+        public override EntityBase GenEntityBasedOnHpModifier()
         {
-            return new SimpleEnemy(Hp)
+            return new SimpleEnemy((int)(Hp*MapData.Instance.CurrentMapHpModifier))
             {
                 Name = this.Name,
                 TextureName = "Arts/Entities/" + this.TextureName,
@@ -73,9 +73,9 @@ namespace Registry.Data
         public string AppearFacing { get; set; } = "auto";
         public string Card { get; set; }
 
-        public override EntityBase GenEntity()
+        public override EntityBase GenEntityBasedOnHpModifier()
         {
-            return new StationaryEnemy(Hp)
+            return new StationaryEnemy((int)(Hp*MapData.Instance.CurrentMapHpModifier))
             {
                 Name = this.Name,
                 TextureName = "Arts/Entities/" + this.TextureName,
@@ -92,9 +92,9 @@ namespace Registry.Data
         public string AppearFacing { get; set; } = "auto";
         public string Card { get; set; }
 
-        public override EntityBase GenEntity()
+        public override EntityBase GenEntityBasedOnHpModifier()
         {
-            return new StationaryBuffEnemy(Hp)
+            return new StationaryBuffEnemy((int)(Hp*MapData.Instance.CurrentMapHpModifier))
             {
                 Name = this.Name,
                 TextureName = "Arts/Entities/" + this.TextureName,
@@ -111,9 +111,9 @@ namespace Registry.Data
         public string AppearFacing { get; set; } = "auto";
         public string Card { get; set; }
 
-        public override EntityBase GenEntity()
+        public override EntityBase GenEntityBasedOnHpModifier()
         {
-            return new FixedCardEnemy(Hp)
+            return new FixedCardEnemy((int)(Hp*MapData.Instance.CurrentMapHpModifier))
             {
                 Name = this.Name,
                 TextureName = "Arts/Entities/" + this.TextureName,
@@ -130,9 +130,9 @@ namespace Registry.Data
         public string AppearFacing { get; set; } = "auto";
         public List<string> Cards { get; set; } = new();
 
-        public override EntityBase GenEntity()
+        public override EntityBase GenEntityBasedOnHpModifier()
         {
-            return new EliteEnemy(Hp)
+            return new EliteEnemy((int)(Hp*MapData.Instance.CurrentMapHpModifier))
             {
                 Name = this.Name,
                 TextureName = "Arts/Entities/" + this.TextureName,

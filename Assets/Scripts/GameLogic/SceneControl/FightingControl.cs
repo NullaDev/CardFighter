@@ -127,8 +127,7 @@ namespace GameLogic.SceneControl
             }
             if (!enemyRemain && !this.BattleField.AnyIncomingEnemyRemain())
             {
-                UpdatePlayerData();
-                SceneManager.LoadScene("OptionChoose");
+                SettleCurrentMap();
             }
         }
 
@@ -152,14 +151,37 @@ namespace GameLogic.SceneControl
                 }
             }
         }
+
+        public void SettleCurrentMap()
+        {
+            UpdatePlayerData();
+
+            var mapData = MapData.Instance;
+            if (!mapData.HasNextLayer())
+            {
+                if (mapData.HasNextMap())
+                {
+                    mapData.MoveToNextMap();
+                }
+                else
+                {
+                    //TODO all win
+                    return;
+                }
+            }
+            MoveToOptionScene();
+        }
         
         public void UpdatePlayerData()
         {
-            var mapData = MapData.Instance;
             var playerData = PlayerData.Instance;
             var player = this.BattleField.GetPlayerFromMap();
             playerData.Hp = player.HP;
+        }
 
+        public void MoveToOptionScene()
+        {
+            var mapData = MapData.Instance;
             var optionName = mapData.CurrentNodeType switch
             {
                 //TODO 
@@ -169,6 +191,7 @@ namespace GameLogic.SceneControl
                 _ => ""
             };
             MapData.Instance.OptionBundle = StaticDataManager.OptionDataManager.GetBundle(optionName);
+            SceneManager.LoadScene("OptionChoose");
         }
     }
 }

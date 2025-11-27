@@ -9,13 +9,15 @@ namespace GameLogic.Runtime
     public class MapData
     {
         public bool Initialized = false;
-        public static MapData Instance = new MapData();
+        public static MapData Instance = new();
 
         private MapData() {}
 
         public GlobalMap GlobalMap;
         public int CurrentMapIndex = 0;
         public RogueMap CurrentMap => GlobalMap?.Maps?[CurrentMapIndex];
+        public float CurrentMapHpModifier => CurrentMap?.Config.HPMultiplier?? 1f;
+        public float CurrentMapAttackModifier => CurrentMap?.Config.AttackMultiplier?? 1f;
 
         public int CurrentLayer = 0;
         public int CurrentNodeIndex = 0;
@@ -33,7 +35,7 @@ namespace GameLogic.Runtime
             CurrentMapIndex = 0;
             CurrentLayer = 0;
             CurrentNodeIndex = 0;
-            Initialized =  true;
+            Initialized = true;
         }
         
         public bool MoveToNode(MapNode node)
@@ -47,6 +49,19 @@ namespace GameLogic.Runtime
             CurrentLayer = result.layer;
             CurrentNodeIndex = result.idx;
             return true;
+        }
+
+        public bool HasNextLayer() =>
+            (CurrentMap?.Layers != null) && (CurrentLayer + 1 < CurrentMap.Layers.Length);
+
+        public bool HasNextMap() =>
+            (GlobalMap?.Maps != null) && (CurrentMapIndex + 1 < GlobalMap.Maps.Count);
+
+        public void MoveToNextMap()
+        {
+            CurrentMapIndex++;
+            CurrentLayer = 0;
+            CurrentNodeIndex = 0;
         }
     }
 }

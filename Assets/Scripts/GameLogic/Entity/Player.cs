@@ -1,4 +1,6 @@
-﻿namespace GameLogic.Entity
+﻿using GameLogic.Runtime;
+
+namespace GameLogic.Entity
 {
     public class Player: EntityBase
     {
@@ -13,7 +15,8 @@
 
         public override void Hurt(EntityBase source, int value, BattleField battleField)
         {
-            this.HP -= value;
+            var mapData = MapData.Instance;
+            this.HP -= (int)(value * mapData.CurrentMapAttackModifier);
             if (this.HP <= 0)
             {
                 // TODO Lose
