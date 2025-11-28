@@ -18,7 +18,7 @@ namespace Render
         
         public void Render()
         {
-            var mapData = MapData.Instance;
+            var miscData = MiscData.Instance;
             var playerData = PlayerData.Instance;
             
             foreach (var option in _listOptions)
@@ -27,14 +27,14 @@ namespace Render
             }
             _listOptions.Clear();
 
-            if (mapData.OptionBundle == null)
+            if (miscData.OptionBundle == null)
             {
                 throw new Exception("Enter OptionChoose but OptionBundle is null");
             }
             
-            OptionDescription.text = mapData.OptionBundle.Description;
+            OptionDescription.text = miscData.OptionBundle.Description;
             
-            foreach (var option in mapData.OptionBundle.GetValidOptionsAccordingToPlayer(playerData, 3))
+            foreach (var option in miscData.OptionBundle.GetValidOptionsAccordingToPlayer(playerData, 3))
             {
                 var optionButton = GameObject.Instantiate(OptionButtonPrefab, OptionButtonGrid.transform);
                 optionButton.GetComponent<OptionButtonRender>().SetOptionAndRender(option);

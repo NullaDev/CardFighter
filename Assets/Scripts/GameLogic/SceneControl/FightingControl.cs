@@ -190,7 +190,7 @@ namespace GameLogic.SceneControl
                 NodeType.BOSS => "boss_fight_bonus",
                 _ => ""
             };
-            MapData.Instance.OptionBundle = StaticDataManager.OptionDataManager.GetBundle(optionName);
+            MiscData.Instance.OptionBundle = StaticDataManager.OptionDataManager.GetBundle(optionName);
             SceneManager.LoadScene("OptionChoose");
         }
     }

@@ -19,7 +19,7 @@ namespace GameLogic.Map
     public class MapNode
     {
         public NodeType Type;
-        public int Layer;
+        public float Complexity;
         public float PosX;
         public float PosY;
     }
@@ -86,6 +86,21 @@ namespace GameLogic.Map
             return NodeType.FIGHT;
         }
 
+        private float GetComplexity(NodeType nodeType, int layer)
+        {
+            var specific = Config.SpecificLayerParams?.FirstOrDefault(lp => lp.Layer == layer);
+            if (specific?.Complexity > 0)
+                return specific.Complexity;
+            
+            var config = this.Config.Complexity;
+            return nodeType switch
+            {
+                NodeType.FIGHT => config.NormalStart + config.NormalRamp * layer,
+                NodeType.ELITE_FIGHT => config.EliteStart + config.NormalRamp * layer,
+                _ => 0
+            };
+        }
+
         private void GenerateNodes()
         {
             for (var layer = 0; layer < Config.Layers; layer++)
@@ -93,10 +108,11 @@ namespace GameLogic.Map
                 var count = ComputeNodeCountBasedOnPrevious(layer);
                 for (var i = 0; i < count; i++)
                 {
+                    var nodeType = WeightedRandomNodeType(layer);
                     var node = new MapNode
                     {
-                        Layer = layer,
-                        Type = WeightedRandomNodeType(layer),
+                        Complexity = GetComplexity(nodeType, layer),
+                        Type = nodeType,
                         PosX = (i + 1f) / (count + 1f),
                         PosY = (layer + 1f) / (Config.Layers + 1f)
                     };

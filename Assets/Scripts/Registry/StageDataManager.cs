@@ -93,17 +93,17 @@ namespace Registry
             DebugLoadedStageInfo();
         }
 
-        public StageConfig GetNormalStage(int layer)
+        public StageConfig GetNormalStage(float complexity)
         {
-            var difficulty = layer / 2;
-            var listStage = NormalStages[difficulty];
+            var c = Math.Clamp((int)complexity, 0, NormalStages.Count);
+            var listStage = NormalStages[c];
             return listStage[Random.Range(0, listStage.Count)];
         }
         
-        public StageConfig GetEliteStage(int layer)
+        public StageConfig GetEliteStage(float complexity)
         {
-            var difficulty = (layer - 2) / 5;
-            var listStage = EliteStages[difficulty];
+            var c = Math.Clamp((int)complexity, 0, EliteStages.Count);
+            var listStage = EliteStages[c];
             return listStage[Random.Range(0, listStage.Count)];
         }
         

@@ -10,11 +10,20 @@ namespace Registry.Data
         public float Factor;
     }
     
+    public class ComplexityConfig
+    {
+        public float NormalStart = 0f;
+        public float EliteStart = 0f;
+        public float NormalRamp = 0.5f;
+        public float EliteRamp = 0.17f;
+    }
+    
     public class RogueMapLayerParam
     {
         public int Layer;
         public Dictionary<string, int> NodeTypeWeights;
         public int NodeCount = -1;
+        public int Complexity = -1;
     }
     
     public class RogueMapConfig
@@ -26,6 +35,7 @@ namespace Registry.Data
         public float HPMultiplier = 1f;
 
         public NodeCountRangeConfig NodeCountRange;
+        public ComplexityConfig Complexity;
         public Dictionary<string, int> DefaultLayerParams;
         public List<RogueMapLayerParam> SpecificLayerParams;
     }

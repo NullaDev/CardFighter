@@ -2,7 +2,7 @@
   "Maps": [
     {
       "Id": "Chapter1",
-      "Layers": 12,
+      "Layers": 14,
       "AttackMultiplier": 1.0,
       "HPMultiplier": 1.0,
 
@@ -10,6 +10,13 @@
         "Min": 2,
         "Max": 6,
         "Factor": 2
+      },
+
+      "Complexity": {
+        "NormalStart": 0.0,
+        "EliteStart": 0.0,
+        "NormalRamp": 0.5,
+        "EliteRamp": 0.17
       },
 
       "DefaultLayerParams": {
@@ -29,11 +36,11 @@
           "NodeTypeWeights": { "FIGHT": 80, "EVENT": 20 }
         },
         {
-          "Layer": 10,
+          "Layer": 12,
           "NodeTypeWeights": { "REST": 100 }
         },
         {
-          "Layer": 11,
+          "Layer": 13,
           "NodeTypeWeights": { "BOSS": 100 },
           "NodeCount": 1
         }
@@ -42,7 +49,7 @@
 
     {
       "Id": "Chapter2",
-      "Layers": 15,
+      "Layers": 9,
       "AttackMultiplier": 1.3,
       "HPMultiplier": 1.4,
 
@@ -50,6 +57,13 @@
         "Min": 2,
         "Max": 6,
         "Factor": 2
+      },
+
+      "Complexity": {
+        "NormalStart": 2.0,
+        "EliteStart": 0.0,
+        "NormalRamp": 0.34,
+        "EliteRamp": 0.25
       },
 
       "DefaultLayerParams": {
@@ -65,11 +79,11 @@
           "NodeTypeWeights": { "FIGHT": 100 }
         },
         {
-          "Layer": 13,
+          "Layer": 7,
           "NodeTypeWeights": { "REST": 100 }
         },
         {
-          "Layer": 14,
+          "Layer": 8,
           "NodeTypeWeights": { "BOSS": 100 },
           "NodeCount": 1
         }

@@ -34,7 +34,7 @@ namespace Render
             var playerData = PlayerData.Instance;
             this._option.Actions.ForEach(a=>a.Execute(playerData));
 
-            MapData.Instance.OptionBundle = null;
+            MiscData.Instance.OptionBundle = null;
             SceneManager.LoadScene(this._option.TargetSceneName);
         }
     }

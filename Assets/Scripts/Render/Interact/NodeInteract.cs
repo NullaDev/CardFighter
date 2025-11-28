@@ -16,6 +16,7 @@ namespace Render.Interact
         public void OnPointerClick(PointerEventData eventData)
         {
             var mapData = MapData.Instance;
+            var miscData = MiscData.Instance;
 
             if (!mapData.MoveToNode(Node))
             {
@@ -26,15 +27,14 @@ namespace Render.Interact
             var mapRender = GameObject.Find("Render").GetComponent<RogueMapRender>();
             mapRender.RerenderAccordingToPlayerPos(mapData.CurrentMap);
             
-            var difficulty = Node.Layer;  // TODO
             switch (Node.Type)
             {
                 case NodeType.FIGHT:
-                    mapData.CurrentStageConfig = StaticDataManager.StageDataManager.GetNormalStage(difficulty);
+                    mapData.CurrentStageConfig = StaticDataManager.StageDataManager.GetNormalStage(Node.Complexity);
                     SceneManager.LoadScene("Fighting");
                     break;
                 case NodeType.ELITE_FIGHT:
-                    mapData.CurrentStageConfig = StaticDataManager.StageDataManager.GetEliteStage(difficulty);
+                    mapData.CurrentStageConfig = StaticDataManager.StageDataManager.GetEliteStage(Node.Complexity);
                     SceneManager.LoadScene("Fighting");
                     break;
                 case NodeType.BOSS:
@@ -42,11 +42,11 @@ namespace Render.Interact
                     SceneManager.LoadScene("Fighting");
                     break;
                 case NodeType.EVENT:
-                    mapData.OptionBundle = StaticDataManager.OptionDataManager.GetRandomEventBundle();
+                    miscData.OptionBundle = StaticDataManager.OptionDataManager.GetRandomEventBundle();
                     SceneManager.LoadScene("OptionChoose");
                     break;
                 case NodeType.REST:
-                    mapData.OptionBundle = StaticDataManager.OptionDataManager.GetBundle("rest");
+                    miscData.OptionBundle = StaticDataManager.OptionDataManager.GetBundle("rest");
                     SceneManager.LoadScene("OptionChoose");
                     break;
                 default:

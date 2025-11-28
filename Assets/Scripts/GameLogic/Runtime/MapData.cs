@@ -25,7 +25,6 @@ namespace GameLogic.Runtime
         public NodeType CurrentNodeType => CurrentNode?.Type ?? NodeType.FIGHT;
         
         public StageConfig CurrentStageConfig;
-        public OptionBundle OptionBundle = null;
         
         public void Initialize()
         {
