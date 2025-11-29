@@ -1,7 +1,5 @@
 ﻿using System.Linq;
-using GameLogic;
 using GameLogic.Runtime;
-using Registry;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +7,9 @@ namespace Render
 {
     public class RogueMapUIRender : MonoBehaviour
     {
+        public Text HPModiferText;
+        public Text AtkModiferText;
+        
         public Text PlayerHPText;
         public Text HeldCardTypeText;
         public Text HeldCardNumberText;
@@ -16,6 +17,9 @@ namespace Render
 
         public void Render()
         {
+            HPModiferText.text = $"局部血量倍率：x{MapData.Instance.CurrentMapHpModifier:F2}";
+            AtkModiferText.text = $"局部伤害倍率：x{MapData.Instance.CurrentMapAttackModifier:F2}";
+            
             var playerData = PlayerData.Instance;
             var hpText = $"剩余血量：{playerData.Hp}/{playerData.MaxHp}";
             PlayerHPText.text = hpText;

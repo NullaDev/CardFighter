@@ -43,6 +43,7 @@ namespace GameLogic.SceneControl
             var uiRender = this.render.GetComponent<FightingUIRender>();
             uiRender.RenderTurn(this.FightingData.CurrentTurn);
             uiRender.RenderCost(this.FightingData.CurrentCost, this.FightingData.MaxCost);
+            uiRender.RenderModifier(MapData.Instance.CurrentMapAttackModifier);
 
             var mapRender = this.render.GetComponent<BattleFieldRender>();
             mapRender.RenderBuff(this.BattleField);

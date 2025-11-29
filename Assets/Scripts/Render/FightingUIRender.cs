@@ -7,6 +7,7 @@ namespace Render
     {
         public Text turnText;
         public Text costText;
+        public Text dmgModifierText;
 
         public void RenderTurn(int turn)
         {
@@ -16,6 +17,11 @@ namespace Render
         public void RenderCost(int current, int max)
         {
             costText.text = $"费用：{current} / {max}";
+        }
+        
+        public void RenderModifier(float modifier)
+        {
+            dmgModifierText.text = $"伤害：x{{MapData.Instance.CurrentMapAttackModifier:F2";
         }
         
     }
