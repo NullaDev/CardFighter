@@ -1,0 +1,15 @@
+﻿{
+  "SlotCount": 8,
+  "ItemRatio": 0.3,
+  "CardPriceTable": {
+    "do_nothing": 10,
+    "observe": 10,
+    "focus_energy": 20,
+    "block": 20,
+    "suit_up": 20
+  },
+  "ItemPriceTable": {
+    "item_sword": 100,
+    "item_spear": 100
+  }
+}

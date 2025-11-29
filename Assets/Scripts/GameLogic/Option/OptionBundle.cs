@@ -23,7 +23,20 @@ namespace GameLogic.Option
                 .Take(remain)
                 .ToList();
 
-            return guaranteed.Concat(optional).ToList();
+            var optionList = guaranteed.Concat(optional).ToList();
+            if (optionList.Count == 0)
+            {
+                optionList.Add(new Option()
+                {
+                    Id = "empty",
+                    Title = "没有合适选项",
+                    Description = "所以只能什么都不做",
+                    Conditions = new List<OptionCondition>(),
+                    Actions = new List<OptionAction>(),
+                    TargetSceneName = "RogueMap"
+                });
+            }
+            return optionList;
         }
     }
 }

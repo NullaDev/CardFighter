@@ -11,6 +11,7 @@
         public static readonly OptionDataManager OptionDataManager = new();
         public static readonly InitialConfigManager InitialConfigManager = new();
         public static readonly GlobalMapDataManager GlobalMapDataManager = new();
+        public static readonly ShopManager ShopManager = new();
 
         public static void LoadAll()
         {
@@ -23,6 +24,7 @@
             OptionDataManager.LoadFromFile();
             InitialConfigManager.LoadFromFile();
             GlobalMapDataManager.LoadFromFile();
+            ShopManager.LoadFromFile();
             CommonCards.Init();
         }
     }

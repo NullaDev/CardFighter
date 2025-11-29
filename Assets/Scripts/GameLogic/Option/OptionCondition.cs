@@ -1,5 +1,5 @@
-﻿using GameLogic.Runtime;
-using Registry;
+﻿using System.Linq;
+using GameLogic.Runtime;
 
 namespace GameLogic.Option
 {
@@ -8,14 +8,16 @@ namespace GameLogic.Option
         PlayerClass,
         Gold,
         Hp,
-        MaxHp
+        MaxHp,
+        HasCard,
+        HasItem
     }
     
     public class OptionCondition
     {
         public OptionSubject Subject { get; set; }
         public RelationalOperator Operator { get; set; }
-        public string Value { get; set; }
+        public string Value { get; set; } = "";
 
         public bool IsMet(PlayerData playerData)
         {
@@ -24,7 +26,7 @@ namespace GameLogic.Option
                 case OptionSubject.PlayerClass:
                 {
                     var playerClass = playerData.PlayerClass.ToString() ?? "";
-                    return OperatorUtils.Compare(playerClass, Operator, Value ?? "");
+                    return OperatorUtils.Compare(playerClass, Operator, Value);
                 }
 
                 case OptionSubject.Gold:
@@ -35,6 +37,12 @@ namespace GameLogic.Option
 
                 case OptionSubject.MaxHp:
                     return OperatorUtils.Compare(playerData.MaxHp, Operator, ParseNumber(Value));
+                
+                case OptionSubject.HasCard:
+                    return playerData.HeldCards.Keys.Any(c=>c.ID.Equals(Value));
+                
+                case OptionSubject.HasItem:
+                    return playerData.HeldItems.Any(i => i.ID.Equals(Value));
 
                 default:
                     return false;
