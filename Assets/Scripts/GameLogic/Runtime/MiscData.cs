@@ -1,4 +1,5 @@
-﻿using GameLogic.Option;
+﻿using System;
+using GameLogic.Option;
 
 namespace GameLogic.Runtime
 {
@@ -7,6 +8,8 @@ namespace GameLogic.Runtime
         public static MiscData Instance = new();
         private MiscData() {}
         
+        public readonly Random Random = new(Seed:19260817);
+
         public OptionBundle OptionBundle = null;
     }
 }

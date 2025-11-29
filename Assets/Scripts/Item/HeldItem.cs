@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using GameLogic;
 using GameLogic.Runtime;
 using Registry;
 using Registry.Data;
@@ -29,7 +28,7 @@ namespace Item
                 var gained = new List<CardPrototype>();
                 for (var i = 0; i < grantEffect.Count; i++)
                 {
-                    var cardId = grantEffect.IsRandom ? grantEffect.CardIDs[player.Random.Next(grantEffect.CardIDs.Count)] : grantEffect.CardIDs[i % grantEffect.CardIDs.Count];
+                    var cardId = grantEffect.IsRandom ? grantEffect.CardIDs[MiscData.Instance.Random.Next(grantEffect.CardIDs.Count)] : grantEffect.CardIDs[i % grantEffect.CardIDs.Count];
                     gained.Add(StaticDataManager.CardDataManager.Find(cardId));
                 }
 

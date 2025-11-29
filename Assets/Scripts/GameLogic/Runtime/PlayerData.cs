@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Card;
-using GameLogic.Map;
-using GameLogic.Option;
 using Item;
-using JetBrains.Annotations;
 using Registry;
 using Registry.Data;
 
@@ -26,7 +23,6 @@ namespace GameLogic.Runtime
         public readonly Dictionary<CardPrototype, int> HeldCards = new();
         public readonly CardOperationsInBattle CardOperations = new();
         public readonly List<HeldItem> HeldItems = new();
-        public readonly Random Random = new();
         
         public void InitFromConfig(PlayerClass playerClass, PlayerClassConfig config)
         {

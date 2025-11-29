@@ -155,9 +155,12 @@ namespace GameLogic.SceneControl
 
         public void SettleCurrentMap()
         {
-            UpdatePlayerData();
-
             var mapData = MapData.Instance;
+            if (!mapData.Initialized)  // Enter from debug mode
+            {
+                SceneManager.LoadScene("MainMenu");
+                return;
+            }
             if (!mapData.HasNextLayer())
             {
                 if (mapData.HasNextMap())
@@ -166,10 +169,13 @@ namespace GameLogic.SceneControl
                 }
                 else
                 {
-                    //TODO all win
+                    // TODO winning scene
+                    MapData.Instance.Reset(); // this line shouldn't be there
+                    SceneManager.LoadScene("MainMenu");
                     return;
                 }
             }
+            UpdatePlayerData();
             MoveToOptionScene();
         }
         
@@ -185,7 +191,7 @@ namespace GameLogic.SceneControl
             var mapData = MapData.Instance;
             var optionName = mapData.CurrentNodeType switch
             {
-                //TODO 
+                //TODO bonus level
                 NodeType.FIGHT => $"normal_fight_bonus_{mapData.CurrentLayer/2}",
                 NodeType.ELITE_FIGHT => $"elite_fight_bonus_{mapData.CurrentLayer/4}",
                 NodeType.BOSS => "boss_fight_bonus",

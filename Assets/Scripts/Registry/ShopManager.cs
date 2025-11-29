@@ -71,7 +71,7 @@ namespace Registry
             DebugLoadedShopInfo();
         }
         
-        public List<ShopEntry> GetShopEntries(Random rand)
+        public List<ShopEntry> GetShopEntries(Random rand=null)
         {
             rand ??= new Random();
             

@@ -19,7 +19,7 @@ namespace GameLogic.Option
             var remain = Math.Max(0, maxLen - guaranteed.Count);
             var optional = OptionalOptions
                 .Where(o => o.Passes(playerData))
-                .OrderBy(_ => playerData.Random.Next())
+                .OrderBy(_ => MiscData.Instance.Random.Next())
                 .Take(remain)
                 .ToList();
 

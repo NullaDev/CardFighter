@@ -20,7 +20,6 @@ namespace GameLogic.SceneControl
             var debug = StaticDataManager.InitialConfigManager.DebugConfig;
             
             var config = StaticDataManager.InitialConfigManager.GetConfigFor(PlayerClass.GENERIC);
-            var mapData = MapData.Instance;
             var playerData = PlayerData.Instance;
             PlayerData.Instance.InitFromConfig(PlayerClass.GENERIC, config);
             playerData.MaxHp = playerData.Hp = 255;
@@ -46,7 +45,7 @@ namespace GameLogic.SceneControl
                 "boss" => stageData.BossStages,
                 _ => stageData.MiscStages,
             };
-            mapData.CurrentStageConfig = stageList.Find(s=>s.ID.Equals(debug.DebugStageID));
+            MapData.Instance.CurrentStageConfig = stageList.Find(s=>s.ID.Equals(debug.DebugStageID));
             
             SceneManager.LoadScene("Fighting");
         }

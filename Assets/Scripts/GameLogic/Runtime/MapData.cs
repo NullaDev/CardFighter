@@ -62,5 +62,17 @@ namespace GameLogic.Runtime
             CurrentLayer = 0;
             CurrentNodeIndex = 0;
         }
+        
+        public void Reset()
+        {
+            Initialized = false;
+            GlobalMap = null;
+
+            CurrentMapIndex = 0;
+            CurrentLayer = 0;
+            CurrentNodeIndex = 0;
+
+            CurrentStageConfig = null;
+        }
     }
 }
