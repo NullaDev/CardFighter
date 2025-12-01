@@ -1,12 +1,11 @@
-﻿
-using GameLogic.Option;
+﻿using GameLogic.Option;
 using GameLogic.Runtime;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Render
+namespace Render.Component
 {
     public class OptionButtonRender : MonoBehaviour, IPointerClickHandler
     {

@@ -12,7 +12,6 @@ namespace Item
         public string Name { get; set; }
         public string TextureName { get; set; }
         public string EffectText { get; set; }
-        public string ExtraText { get; set; }
         
         public List<HeldItemEffect> Effects { get; set; } = new();
 

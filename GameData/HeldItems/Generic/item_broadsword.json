@@ -3,7 +3,6 @@
   "Name": "刀",
   "TextureName": "Arts/HeldItems/broadsword",
   "EffectText": "获得卡牌“砍你一刀”，且该卡牌在合成时不消耗。",
-  "ExtraText": "",
   "Effects": [
     {
       "EffectType": "grant_card_on_obtain",

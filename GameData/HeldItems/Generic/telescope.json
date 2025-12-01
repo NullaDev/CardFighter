@@ -1,9 +1,8 @@
 ﻿{
-  "ID": "telescope",
+  "ID": "telescope_item",
   "Name": "望远镜",
   "TextureName": "Arts/HeldItems/telescope",
   "EffectText": "入场时获得1回合洞察。",
-  "ExtraText": "",
   "Effects": [
     {
       "EffectType": "starting_buff",

@@ -1,5 +1,6 @@
 ﻿using GameLogic;
 using GameLogic.SceneControl;
+using Render.Component;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

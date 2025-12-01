@@ -5,7 +5,7 @@ using Registry.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Render
+namespace Render.Component
 {
     public class IncomingEntityRender: MonoBehaviour
     {

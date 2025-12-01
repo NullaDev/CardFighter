@@ -3,7 +3,6 @@
   "Name": "剑",
   "TextureName": "Arts/HeldItems/sword",
   "EffectText": "获得卡牌“刺你一剑”，且该卡牌在合成时不消耗。",
-  "ExtraText": "",
   "Effects": [
     {
       "EffectType": "grant_card_on_obtain",

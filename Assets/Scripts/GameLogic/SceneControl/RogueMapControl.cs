@@ -29,6 +29,11 @@ namespace GameLogic.SceneControl
             SceneManager.LoadScene("DeckModify");
         }
         
+        public void ClickItem()
+        {
+            SceneManager.LoadScene("ItemList");
+        }
+        
         public void ClickReturn()
         {
             SceneManager.LoadScene("ClassChoose");

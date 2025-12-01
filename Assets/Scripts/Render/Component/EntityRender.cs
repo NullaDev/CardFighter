@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Render
+namespace Render.Component
 {
     public class EntityRender : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {

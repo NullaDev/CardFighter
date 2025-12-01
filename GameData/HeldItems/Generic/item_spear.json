@@ -3,7 +3,6 @@
   "Name": "枪",
   "TextureName": "Arts/HeldItems/spear",
   "EffectText": "获得卡牌“捅你一枪”，且该卡牌在合成时不消耗。",
-  "ExtraText": "",
   "Effects": [
     {
       "EffectType": "grant_card_on_obtain",

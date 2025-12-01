@@ -44,7 +44,7 @@ namespace GameLogic.SceneControl
             Rerender();
         }
 
-        void Rerender()
+        private void Rerender()
         {
             var cardRender = render.GetComponent<DeckInitialzeRender>();
             cardRender.RenderCards(GetCurrentPageCards());

@@ -3,7 +3,7 @@ using Registry;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Render
+namespace Render.Component
 {
     public class DeckModifyDeckCardRender : MonoBehaviour
     {

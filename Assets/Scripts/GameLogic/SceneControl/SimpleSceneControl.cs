@@ -9,5 +9,10 @@ namespace GameLogic.SceneControl
         {
             SceneManager.LoadScene("MainMenu");
         }
+        
+        public void ReturnToRogueMap()
+        {
+            SceneManager.LoadScene("RogueMap");
+        }
     }
 }

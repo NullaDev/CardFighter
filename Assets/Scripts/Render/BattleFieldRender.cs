@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using GameLogic;
+using Render.Component;
 using UnityEngine;
 
 namespace Render

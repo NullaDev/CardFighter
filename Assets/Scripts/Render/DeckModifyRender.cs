@@ -6,6 +6,7 @@ using GameLogic.SceneControl;
 using JetBrains.Annotations;
 using Registry;
 using Registry.Data;
+using Render.Component;
 using Render.Interact;
 using UnityEngine;
 using UnityEngine.UI;

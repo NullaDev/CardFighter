@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Card;
 using Registry;
+using Render.Component;
 using UnityEngine;
 
 namespace Render
