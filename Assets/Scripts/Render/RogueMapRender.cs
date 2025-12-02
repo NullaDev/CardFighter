@@ -69,6 +69,7 @@ namespace Render
                     {
                         NodeType.FIGHT => "戰",
                         NodeType.ELITE_FIGHT => "驍",
+                        NodeType.SHOP => "商",
                         NodeType.REST => "憩",
                         NodeType.EVENT => "變",
                         NodeType.BOSS => "魁",

@@ -4,7 +4,7 @@ using Render;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GameLogic.SceneControl
+namespace SceneControl
 {
     public class LoadingControl : MonoBehaviour
     {

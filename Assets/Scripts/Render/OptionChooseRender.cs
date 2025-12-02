@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using GameLogic;
 using GameLogic.Runtime;
-using Registry;
 using Render.Component;
 using UnityEngine;
 using UnityEngine.UI;

@@ -4,9 +4,9 @@ using System.Linq;
 using GameLogic;
 using GameLogic.Buff;
 using GameLogic.Entity;
-using GameLogic.SceneControl;
 using Registry;
 using Registry.Data;
+using SceneControl;
 
 namespace Card.Engine
 {

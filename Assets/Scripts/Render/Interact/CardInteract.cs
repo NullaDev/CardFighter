@@ -1,5 +1,5 @@
 ﻿using Card;
-using GameLogic.SceneControl;
+using SceneControl;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

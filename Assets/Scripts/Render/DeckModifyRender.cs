@@ -2,12 +2,12 @@
 using Card;
 using GameLogic;
 using GameLogic.Runtime;
-using GameLogic.SceneControl;
 using JetBrains.Annotations;
 using Registry;
 using Registry.Data;
 using Render.Component;
 using Render.Interact;
+using SceneControl;
 using UnityEngine;
 using UnityEngine.UI;
 

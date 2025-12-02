@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Card;
 using Card.Engine;
-using GameLogic.SceneControl;
 using JetBrains.Annotations;
 using Registry;
 using Registry.Data;
+using SceneControl;
 
 namespace GameLogic.Entity
 {

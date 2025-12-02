@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Card;
-using GameLogic.SceneControl;
 using Registry;
 using Registry.Data;
+using SceneControl;
 
 namespace GameLogic.Entity
 {

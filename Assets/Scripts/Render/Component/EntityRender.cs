@@ -2,7 +2,7 @@ using System;
 using Card;
 using GameLogic.Buff;
 using GameLogic.Entity;
-using GameLogic.SceneControl;
+using SceneControl;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;

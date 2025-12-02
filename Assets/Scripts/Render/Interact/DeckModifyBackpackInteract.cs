@@ -1,7 +1,5 @@
-﻿using GameLogic;
-using GameLogic.SceneControl;
-using Registry;
-using Registry.Data;
+﻿using Registry.Data;
+using SceneControl;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

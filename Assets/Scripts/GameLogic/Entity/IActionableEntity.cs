@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Card;
-using GameLogic.SceneControl;
+using SceneControl;
 
 namespace GameLogic.Entity
 {

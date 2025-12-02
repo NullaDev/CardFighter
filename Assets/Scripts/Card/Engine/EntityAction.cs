@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using GameLogic.Entity;
-using GameLogic.SceneControl;
+using SceneControl;
 
 namespace Card.Engine
 {

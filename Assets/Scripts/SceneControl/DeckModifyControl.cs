@@ -10,7 +10,7 @@ using Render;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace GameLogic.SceneControl
+namespace SceneControl
 {
     public class DeckModifyControl: MonoBehaviour
     {

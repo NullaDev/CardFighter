@@ -1,9 +1,7 @@
-﻿using GameLogic;
-using GameLogic.Runtime;
-using GameLogic.SceneControl;
+﻿using GameLogic.Runtime;
 using JetBrains.Annotations;
-using Registry;
 using Registry.Data;
+using SceneControl;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

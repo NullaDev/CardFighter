@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using GameLogic;
 using GameLogic.Entity;
-using GameLogic.SceneControl;
+using SceneControl;
 
 namespace Card.Engine
 {

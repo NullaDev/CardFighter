@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Registry.Data;
-using UnityEngine;
 using Random = System.Random;
 
 namespace GameLogic.Map
@@ -11,6 +10,7 @@ namespace GameLogic.Map
     {
         FIGHT,
         ELITE_FIGHT,
+        SHOP,
         REST,
         EVENT,
         BOSS

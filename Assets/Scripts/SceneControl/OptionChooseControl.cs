@@ -1,7 +1,7 @@
 ﻿using Render;
 using UnityEngine;
 
-namespace GameLogic.SceneControl
+namespace SceneControl
 {
     public class OptionChooseControl : MonoBehaviour
     {

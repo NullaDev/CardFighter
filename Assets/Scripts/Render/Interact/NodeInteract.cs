@@ -1,8 +1,5 @@
-﻿using System;
-using GameLogic;
-using GameLogic.Map;
+﻿using GameLogic.Map;
 using GameLogic.Runtime;
-using GameLogic.SceneControl;
 using Registry;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -36,6 +33,9 @@ namespace Render.Interact
                 case NodeType.ELITE_FIGHT:
                     mapData.CurrentStageConfig = StaticDataManager.StageDataManager.GetEliteStage(Node.Complexity);
                     SceneManager.LoadScene("Fighting");
+                    break;
+                case NodeType.SHOP:
+                    SceneManager.LoadScene("Shop");
                     break;
                 case NodeType.BOSS:
                     mapData.CurrentStageConfig = StaticDataManager.StageDataManager.GetBossStage();

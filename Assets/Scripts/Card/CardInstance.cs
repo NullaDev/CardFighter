@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using GameLogic.Buff;
 using GameLogic.Entity;
-using GameLogic.SceneControl;
 using Registry.Data;
+using SceneControl;
 
 namespace Card
 {

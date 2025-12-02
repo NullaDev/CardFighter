@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Card;
+using GameLogic;
 using GameLogic.Buff;
 using GameLogic.Entity;
 using GameLogic.Map;
@@ -10,7 +11,7 @@ using Render;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace GameLogic.SceneControl
+namespace SceneControl
 {
     public class FightingControl : MonoBehaviour
     {
