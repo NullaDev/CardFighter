@@ -12,7 +12,7 @@ namespace SceneControl
         {
             var config = StaticDataManager.InitialConfigManager.GetConfigFor(PlayerClass.RU);
             PlayerData.Instance.InitFromConfig(PlayerClass.RU, config);
-            PlayerData.Instance.InGameGold = 1000;
+            // PlayerData.Instance.InGameGold = 1000;
             SceneManager.LoadScene("DeckInitialize");
         }
         

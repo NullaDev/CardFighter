@@ -20,7 +20,7 @@
               "Rules": [
                 { "RuleType": "damage_caused", "Operator": "Add", "Value": 1, "WithCondition": ["face_to_face"] },
                 { "RuleType": "damage_caused", "Operator": "Add", "Value": 1, "WithBuff": ["bound_by_rites"], "WithoutCondition": ["face_to_face"] },
-                { "RuleType": "damage_caused", "Operator": "Multiply", "Value": 0, "WithCondition": ["target_back_to_me"], "WithoutBuff": ["follow_heart", "bound_by_rites"] }
+                { "RuleType": "damage_caused", "Operator": "Multiply", "Value": 0.25, "WithCondition": ["target_back_to_me"], "WithoutBuff": ["follow_heart", "bound_by_rites"] }
               ]
             }
           ]

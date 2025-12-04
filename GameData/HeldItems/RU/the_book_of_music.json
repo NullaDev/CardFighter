@@ -1,0 +1,32 @@
+﻿{
+  "ID": "the_book_of_music",
+  "Name": "乐经",
+  "TextureName": "Arts/HeldItems/book",
+  "EffectText": "将你的“乐”替换为更强力的“君子六艺·乐”，且在开局时获得该状态。",
+  "Effects": [
+    {
+      "EffectType": "starting_buff",
+      "Buffs": [
+        {
+          "BuffName": "music",
+          "BuffType": "Neutral",
+          "Turn": -1,
+          "ConflictsWith": ["rites", "archery", "charioteering", "calligraphy", "mathematics"],
+          "IsToggle": true,
+          "Rules": [
+            {
+              "RuleType": "misc",
+              "Parameters": { "music_positive_value": 2, "music_negative_value": 2 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "EffectType": "replace_card",
+      "ReplacementMap": {
+        "music": "music_advanced"
+      }
+    }
+  ]
+}

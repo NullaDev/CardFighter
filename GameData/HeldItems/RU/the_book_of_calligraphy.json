@@ -1,0 +1,32 @@
+﻿{
+  "ID": "the_book_of_calligraphy",
+  "Name": "仓颉篇",
+  "TextureName": "Arts/HeldItems/book",
+  "EffectText": "将你的“书”替换为更强力的“君子六艺·书”，且在开局时获得该状态。",
+  "Effects": [
+    {
+      "EffectType": "starting_buff",
+      "Buffs": [
+        {
+          "BuffName": "calligraphy",
+          "BuffType": "Neutral",
+          "Turn": -1,
+          "ConflictsWith": ["rites", "music", "archery", "charioteering", "mathematics"],
+          "IsToggle": true,
+          "Rules": [
+            {
+              "RuleType": "misc",
+              "Parameters": { "calligraphy_positive_value": 1, "calligraphy_negative_value": 4 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "EffectType": "replace_card",
+      "ReplacementMap": {
+        "calligraphy": "calligraphy_advanced"
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+﻿{
+  "ID": "charioteering_advanced",
+  "Name": "君子六艺·御",
+  "TextureName": "Arts/Cards/RU/charioteering",
+  "Desc": "切换当前六艺状态至「六艺·御」",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "charioteering",
+              "BuffType": "Neutral",
+              "Turn": -1,
+              "ConflictsWith": ["rites", "music", "archery", "calligraphy", "mathematics"],
+              "IsToggle": true,
+              "Rules": [
+                { "RuleType": "card_cost", "Operator": "Add", "Value": 1, "AffectAllCards": false, "AffectedCardIds": ["u_turn"]},
+                { "RuleType": "damage_caused", "Operator": "Add", "Value": 1, "TargetTags": ["rush"] }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

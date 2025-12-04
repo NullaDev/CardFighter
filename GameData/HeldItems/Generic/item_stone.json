@@ -1,0 +1,18 @@
+﻿{
+  "ID": "item_stone",
+  "Name": "小石头",
+  "TextureName": "Arts/HeldItems/stone",
+  "EffectText": "获得卡牌“投掷”，且该卡牌在合成时不消耗。",
+  "Effects": [
+    {
+      "EffectType": "grant_card_on_obtain",
+      "CardIDs": [ "throw_stone" ],
+      "IsRandom": false,
+      "Count": 1
+    },
+    {
+      "EffectType": "recipe_free_card",
+      "CardIDs": [ "throw_stone" ]
+    }
+  ]
+}

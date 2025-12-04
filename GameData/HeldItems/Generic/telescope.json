@@ -2,12 +2,12 @@
   "ID": "telescope_item",
   "Name": "望远镜",
   "TextureName": "Arts/HeldItems/telescope",
-  "EffectText": "入场时获得1回合洞察。",
+  "EffectText": "入场时获得3回合洞察。",
   "Effects": [
     {
       "EffectType": "starting_buff",
       "Buffs": [
-        { "BuffName": "insight", "Turn": 1 }
+        { "BuffName": "insight", "Turn": 3 }
       ]
     }
   ]

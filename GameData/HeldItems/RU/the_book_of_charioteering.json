@@ -1,0 +1,30 @@
+﻿{
+  "ID": "the_book_of_charioteering",
+  "Name": "车人",
+  "TextureName": "Arts/HeldItems/book",
+  "EffectText": "将你的“御”替换为更强力的“君子六艺·御”，且在开局时获得该状态。",
+  "Effects": [
+    {
+      "EffectType": "starting_buff",
+      "Buffs": [
+        {
+          "BuffName": "charioteering",
+          "BuffType": "Neutral",
+          "Turn": -1,
+          "ConflictsWith": ["rites", "music", "archery", "calligraphy", "mathematics"],
+          "IsToggle": true,
+          "Rules": [
+            { "RuleType": "card_cost", "Operator": "Add", "Value": 1, "AffectAllCards": false, "AffectedCardIds": ["u_turn"]},
+            { "RuleType": "damage_caused", "Operator": "Add", "Value": 1, "TargetTags": ["rush"] }
+          ]
+        }
+      ]
+    },
+    {
+      "EffectType": "replace_card",
+      "ReplacementMap": {
+        "charioteering": "charioteering_advanced"
+      }
+    }
+  ]
+}

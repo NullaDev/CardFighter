@@ -1,18 +1,22 @@
 ﻿{
   "ID": "the_book_of_rites",
   "Name": "礼记",
-  "TextureName": "Arts/HeldItems/the_book_of_rites",
-  "EffectText": "将你的“礼”替换为更强力的“君子六艺·礼”，且在开局时获得之。",
+  "TextureName": "Arts/HeldItems/book",
+  "EffectText": "将你的“礼”替换为更强力的“君子六艺·礼”，且在开局时获得该状态。",
   "Effects": [
     {
       "EffectType": "starting_buff",
       "Buffs": [
         {
           "BuffName": "rites",
+          "BuffType": "Neutral",
           "Turn": -1,
+          "ConflictsWith": ["music", "archery", "charioteering", "calligraphy", "mathematics"],
+          "IsToggle": true,
           "Rules": [
             { "RuleType": "damage_caused", "Operator": "Add", "Value": 2, "WithCondition": ["face_to_face"] },
-            { "RuleType": "damage_caused", "Operator": "Multiply", "Value": 0, "WithoutCondition": ["face_to_face"], "WithoutBuff": ["follow_heart"] }
+            { "RuleType": "damage_caused", "Operator": "Add", "Value": 2, "WithBuff": ["bound_by_rites"], "WithoutCondition": ["face_to_face"] },
+            { "RuleType": "damage_caused", "Operator": "Multiply", "Value": 0, "WithCondition": ["target_back_to_me"], "WithoutBuff": ["follow_heart", "bound_by_rites"] }
           ]
         }
       ]
@@ -20,7 +24,8 @@
     {
       "EffectType": "replace_card",
       "ReplacementMap": {
-        "rites": "rites_advanced"
+        "rites": "rites_advanced",
+        "self_restraint": "self_restraint_advanced"
       }
     }
   ]

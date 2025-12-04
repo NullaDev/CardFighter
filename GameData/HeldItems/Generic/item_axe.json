@@ -1,0 +1,18 @@
+﻿{
+  "ID": "item_axe",
+  "Name": "斧",
+  "TextureName": "Arts/HeldItems/axe",
+  "EffectText": "获得卡牌“砍你一斧”，且该卡牌在合成时不消耗。",
+  "Effects": [
+    {
+      "EffectType": "grant_card_on_obtain",
+      "CardIDs": [ "axe" ],
+      "IsRandom": false,
+      "Count": 1
+    },
+    {
+      "EffectType": "recipe_free_card",
+      "CardIDs": [ "axe" ]
+    }
+  ]
+}

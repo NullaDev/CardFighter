@@ -1,0 +1,32 @@
+﻿{
+  "ID": "music_advanced",
+  "Name": "君子六艺·乐",
+  "TextureName": "Arts/Cards/RU/music",
+  "Desc": "切换当前六艺状态至「六艺·乐」",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "music",
+              "BuffType": "Neutral",
+              "Turn": -1,
+              "ConflictsWith": ["rites", "archery", "charioteering", "calligraphy", "mathematics"],
+              "IsToggle": true,
+              "Rules": [
+                {
+                  "RuleType": "misc",
+                  "Parameters": { "music_positive_value": 2, "music_negative_value": 2 }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

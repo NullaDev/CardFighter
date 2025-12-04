@@ -1,0 +1,30 @@
+﻿{
+  "ID": "mathematics_advanced",
+  "Name": "君子六艺·数",
+  "TextureName": "Arts/Cards/RU/mathematics",
+  "Desc": "切换当前六艺状态至「六艺·数」",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "mathematics",
+              "BuffType": "Neutral",
+              "Turn": -1,
+              "ConflictsWith": ["rites", "music", "archery", "charioteering", "calligraphy"],
+              "IsToggle": true,
+              "Rules": [
+                { "RuleType": "damage_received", "Operator": "Minus", "Value": 2, "WithBuff": ["insight"] },
+                { "RuleType": "damage_received", "Operator": "Add", "Value": 2, "WithoutBuff": ["insight"] }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

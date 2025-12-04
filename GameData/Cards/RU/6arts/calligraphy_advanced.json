@@ -1,0 +1,32 @@
+﻿{
+  "ID": "calligraphy_advanced",
+  "Name": "君子六艺·书",
+  "TextureName": "Arts/Cards/RU/calligraphy",
+  "Desc": "切换当前六艺状态至「六艺·书」",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "calligraphy",
+              "BuffType": "Neutral",
+              "Turn": -1,
+              "ConflictsWith": ["rites", "music", "archery", "charioteering", "mathematics"],
+              "IsToggle": true,
+              "Rules": [
+                {
+                  "RuleType": "misc",
+                  "Parameters": { "calligraphy_positive_value": 1, "calligraphy_negative_value": 4 }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

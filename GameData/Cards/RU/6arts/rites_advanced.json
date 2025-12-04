@@ -1,0 +1,31 @@
+﻿{
+  "ID": "rites_advanced",
+  "Name": "君子六艺·礼",
+  "TextureName": "Arts/Cards/RU/rites",
+  "Desc": "切换当前六艺状态至「六艺·礼」",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "rites",
+              "BuffType": "Neutral",
+              "Turn": -1,
+              "ConflictsWith": ["music", "archery", "charioteering", "calligraphy", "mathematics"],
+              "IsToggle": true,
+              "Rules": [
+                { "RuleType": "damage_caused", "Operator": "Add", "Value": 2, "WithCondition": ["face_to_face"] },
+                { "RuleType": "damage_caused", "Operator": "Add", "Value": 2, "WithBuff": ["bound_by_rites"], "WithoutCondition": ["face_to_face"] },
+                { "RuleType": "damage_caused", "Operator": "Multiply", "Value": 0, "WithCondition": ["target_back_to_me"], "WithoutBuff": ["follow_heart", "bound_by_rites"] }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

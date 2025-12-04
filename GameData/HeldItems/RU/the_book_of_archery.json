@@ -1,0 +1,30 @@
+﻿{
+  "ID": "the_book_of_archery",
+  "Name": "射义",
+  "TextureName": "Arts/HeldItems/book",
+  "EffectText": "将你的“射”替换为更强力的“君子六艺·射”，且在开局时获得该状态。",
+  "Effects": [
+    {
+      "EffectType": "starting_buff",
+      "Buffs": [
+        {
+          "BuffName": "archery",
+          "BuffType": "Neutral",
+          "Turn": -1,
+          "ConflictsWith": ["rites", "music", "charioteering", "calligraphy", "mathematics"],
+          "IsToggle": true,
+          "Rules": [
+            { "RuleType": "damage_caused", "Operator": "Add", "Value": 2, "TargetTags": ["ranged"] },
+            { "RuleType": "damage_caused", "Operator": "Multiply", "Value": 0.5, "TargetTags": ["melee"], "WithoutBuff": ["follow_heart"] }
+          ]
+        }
+      ]
+    },
+    {
+      "EffectType": "replace_card",
+      "ReplacementMap": {
+        "archery": "archery_advanced"
+      }
+    }
+  ]
+}

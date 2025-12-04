@@ -1,0 +1,18 @@
+﻿{
+  "ID": "item_hammer",
+  "Name": "锤子",
+  "TextureName": "Arts/HeldItems/hammer",
+  "EffectText": "获得卡牌“给你一锤”，且该卡牌在合成时不消耗。",
+  "Effects": [
+    {
+      "EffectType": "grant_card_on_obtain",
+      "CardIDs": [ "hammer" ],
+      "IsRandom": false,
+      "Count": 1
+    },
+    {
+      "EffectType": "recipe_free_card",
+      "CardIDs": [ "hammer" ]
+    }
+  ]
+}

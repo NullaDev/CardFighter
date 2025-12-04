@@ -1,6 +1,6 @@
 ﻿{
-  "ID": "self_restraint",
-  "Name": "复礼",
+  "ID": "self_restraint_advanced",
+  "Name": "克己复礼",
   "TextureName": "Arts/Cards/RU/self_restraint",
   "Desc": "获得3点护甲。如果你未处于「礼」状态，还会额外进入该状态",
   "Cost": 1,
@@ -26,9 +26,9 @@
               "ConflictsWith": ["music", "archery", "charioteering", "calligraphy", "mathematics"],
               "IsToggle": true,
               "Rules": [
-                { "RuleType": "damage_caused", "Operator": "Add", "Value": 1, "WithCondition": ["face_to_face"] },
-                { "RuleType": "damage_caused", "Operator": "Add", "Value": 1, "WithBuff": ["bound_by_rites"], "WithoutCondition": ["face_to_face"] },
-                { "RuleType": "damage_caused", "Operator": "Multiply", "Value": 0.25, "WithCondition": ["target_back_to_me"], "WithoutBuff": ["follow_heart", "bound_by_rites"] }
+                { "RuleType": "damage_caused", "Operator": "Add", "Value": 2, "WithCondition": ["face_to_face"] },
+                { "RuleType": "damage_caused", "Operator": "Add", "Value": 2, "WithBuff": ["bound_by_rites"], "WithoutCondition": ["face_to_face"] },
+                { "RuleType": "damage_caused", "Operator": "Multiply", "Value": 0, "WithCondition": ["target_back_to_me"], "WithoutBuff": ["follow_heart", "bound_by_rites"] }
               ]
             }
           ]
