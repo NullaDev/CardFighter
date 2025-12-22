@@ -1,0 +1,60 @@
+﻿{
+  "ID": "proportion",
+  "Name": "衰分",
+  "TextureName": "Arts/Cards/RU/proportion",
+  "Desc": "1回合内受到的伤害减半，处于洞察状态时将这部分伤害反射给攻击者",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "proportion",
+              "BuffType": "Positive",
+              "Turn": 1,
+              "Rules": [
+                { "RuleType": "damage_received", "Operator": "Multiply", "Value": 0.5 }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "insight", "HasBuff": true }
+      ],
+      "Processors": [
+        {
+          "Type": "execute_action",
+          "Action": {
+            "Selector": {
+              "Type": "self"
+            },
+            "Processors": [
+              {
+                "Type": "add_buff",
+                "Buffs": [
+                  {
+                    "BuffName": "counter_attack",
+                    "Turn": 1,
+                    "Rules": [
+                      {
+                        "RuleType": "misc",
+                        "Parameters": { "counter_attack_value_ratio": 0.5 }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

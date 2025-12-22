@@ -97,6 +97,25 @@ namespace Card.Engine
         }
     }
     
+    public class RatioDamageProcessor : EntityProcessor
+    {
+        public bool FromMaxHP { get; set; } = false;
+        public float Ratio { get; set; }
+        public int Limit { get; set; } = -1;
+        public List<string> Tags { get; set; } = new();
+
+        public override void Process(FightingControl fc, EntityBase user, EntityBase target)
+        {
+            var map = fc.BattleField;
+            var damage = FromMaxHP? (int)(target.MaxHP * Ratio) : (int)(target.HP * Ratio);
+            if (Limit >= 0)
+            {
+                damage = Math.Min(damage, Limit);
+            }
+            user.DoDamageTo(target, damage, map, Tags);
+        }
+    }
+    
     public class AddBuffProcessor : EntityProcessor
     {
         public List<BuffData> Buffs { get; set; } = new();

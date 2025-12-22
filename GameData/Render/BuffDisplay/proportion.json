@@ -1,0 +1,7 @@
+﻿{
+  "ID": "proportion",
+  "Name": "衰分",
+  "TextureName": "Arts/Cards/RU/proportion",
+  "EffectText": "受到的伤害乘以{value}。",
+  "ExtraText": "术曰：各置列衰，列衰，相与率也。"
+}

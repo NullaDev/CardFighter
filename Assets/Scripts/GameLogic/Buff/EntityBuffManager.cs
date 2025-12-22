@@ -120,6 +120,8 @@ namespace GameLogic.Buff
         public const string Insight = "insight";
         public const string Stunned = "stunned";
         public const string CounterAttack = "counter_attack";
+            public const string CounterAttackValue1 = "counter_attack_value_constant";
+            public const string CounterAttackValue2 = "counter_attack_value_ratio";
         public const string Initiative = "initiative";
         public const string SuperArmor = "super_armor";
         public const string Rooted = "rooted";

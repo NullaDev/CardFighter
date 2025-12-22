@@ -1,0 +1,52 @@
+﻿{
+  "ID": "pythagorean",
+  "Name": "勾股",
+  "TextureName": "Arts/Cards/RU/pythagorean",
+  "Desc": "对4格内首个目标造成5点伤害，若处于洞察状态则改为对全体目标",
+  "Cost": 3,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "insight", "HasBuff": false }
+      ],
+      "Processors": [
+        {
+          "Type": "execute_action",
+          "Action": {
+            "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 4 },
+            "Filters": [
+              { "Type": "exclude_self" },
+              { "Type": "is_alive" },
+              { "Type": "first_n", "Value": 1 }
+            ],
+            "Processors": [
+              { "Type": "damage", "Value": 5, "Tags": ["ranged"] }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "insight", "HasBuff": true }
+      ],
+      "Processors": [
+        {
+          "Type": "execute_action",
+          "Action": {
+            "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 4 },
+            "Filters": [
+              { "Type": "exclude_self" },
+              { "Type": "is_alive" }
+            ],
+            "Processors": [
+              { "Type": "damage", "Value": 5, "Tags": ["ranged"] }
+            ]
+          }
+        } 
+      ]
+    }
+  ]
+}

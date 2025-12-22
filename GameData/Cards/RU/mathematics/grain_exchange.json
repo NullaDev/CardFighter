@@ -1,0 +1,56 @@
+﻿{
+  "ID": "grain_exchange",
+  "Name": "粟米",
+  "TextureName": "Arts/Cards/RU/grain_exchange",
+  "Desc": "获得等同于场上敌人数量的费用，若处于洞察状态还会获得等量护甲",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "all" },
+      "Filters": [
+        { "Type": "is_alive" },
+        { "Type": "entity_type", "MatchTypes": ["enemy"] }
+      ],
+      "Processors": [
+        {
+          "Type": "execute_action",
+          "Action": {
+            "Selector": { "Type": "player" },
+            "Processors": [
+              { "Type": "add_cost", "Value": 1 }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "insight", "HasBuff": true }
+      ],
+      "Processors": [
+        {
+          "Type": "execute_action",
+          "Action": {
+            "Selector": { "Type": "all" },
+            "Filters": [
+              { "Type": "is_alive" },
+              { "Type": "entity_type", "MatchTypes": ["enemy"] }
+            ],
+            "Processors": [
+              {
+                "Type": "execute_action",
+                "Action": {
+                  "Selector": { "Type": "player" },
+                  "Processors": [
+                    { "Type": "add_armor", "Value": 1 }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -6,18 +6,11 @@
   "Cost": 1,
   "Actions": [
     {
-      "Selector": {
-        "Type": "self"
-      },
+      "Selector": { "Type": "self" },
       "Processors": [
         {
           "Type": "add_buff",
-          "Buffs": [
-            {
-              "BuffName": "insight",
-              "Turn": 5
-            }
-          ]
+          "Buffs": [{ "BuffName": "insight", "Turn": 5 }]
         }
       ]
     }

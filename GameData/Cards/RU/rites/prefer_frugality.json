@@ -2,8 +2,8 @@
   "ID": "prefer_frugality",
   "Name": "宁俭",
   "TextureName": "Arts/Cards/RU/prefer_frugality",
-  "Desc": "回复1点能量。消耗「礼」状态以再回复2点",
-  "Cost": 0,
+  "Desc": "回复3点能量。消耗「礼」状态以再回复2点",
+  "Cost": 1,
   "Actions": [
     {
       "Selector": { "Type": "self" },
@@ -11,7 +11,7 @@
         { "Type": "has_buff", "BuffName": "rites", "HasBuff": false }
       ],
       "Processors": [
-        { "Type": "add_cost", "Value": 1 }
+        { "Type": "add_cost", "Value": 3 }
       ]
     },
     {

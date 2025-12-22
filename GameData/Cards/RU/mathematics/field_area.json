@@ -1,0 +1,51 @@
+﻿{
+  "ID": "field_area",
+  "Name": "方田",
+  "TextureName": "Arts/Cards/RU/field_area",
+  "Desc": "对自身前后1格造成2点伤害，处于洞察状态时伤害+2",
+  "Cost": 1,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "insight", "HasBuff": false }
+      ],
+      "Processors": [
+        {
+          "Type": "execute_action",
+          "Action": {
+            "Selector": { "Type": "range", "RangeMin": -1, "RangeMax": 1 },
+            "Filters": [
+              { "Type": "exclude_self" },
+              { "Type": "is_alive" }
+            ],
+            "Processors": [
+              { "Type": "damage", "Value": 2, "Tags": ["melee"] }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "insight", "HasBuff": true }
+      ],
+      "Processors": [
+        {
+          "Type": "execute_action",
+          "Action": {
+            "Selector": { "Type": "range", "RangeMin": -1, "RangeMax": 1 },
+            "Filters": [
+              { "Type": "exclude_self" },
+              { "Type": "is_alive" }
+            ],
+            "Processors": [
+              { "Type": "damage", "Value": 4, "Tags": ["melee"] }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

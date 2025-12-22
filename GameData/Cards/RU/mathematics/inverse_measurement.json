@@ -1,0 +1,49 @@
+﻿{
+  "ID": "inverse_measurement",
+  "Name": "少广",
+  "TextureName": "Arts/Cards/RU/inverse_measurement",
+  "Desc": "获得9回合洞察，若已经处于洞察状态则改为永久",
+  "Cost": 3,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "insight", "HasBuff": false }
+      ],
+      "Processors": [
+        {
+          "Type": "execute_action",
+          "Action": {
+            "Selector": { "Type": "self" },
+            "Processors": [
+              {
+                "Type": "add_buff",
+                "Buffs": [{ "BuffName": "insight", "Turn": 9 }]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "insight", "HasBuff": true }
+      ],
+      "Processors": [
+        {
+          "Type": "execute_action",
+          "Action": {
+            "Selector": { "Type": "self" },
+            "Processors": [
+              {
+                "Type": "add_buff",
+                "Buffs": [{ "BuffName": "insight", "Turn": -1 }]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

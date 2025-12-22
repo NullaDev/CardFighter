@@ -2,7 +2,7 @@
   "ID": "no_one_stands_tough",
   "Name": "吾未见刚者",
   "TextureName": "Arts/Cards/ru/no_one_stands_tough",
-  "Desc": "对1格内的目标造成6点破甲、破格伤害",
+  "Desc": "对1格内的目标造成8点破甲、破格伤害",
   "Cost": 3,
   "Actions": [
     {
@@ -13,7 +13,7 @@
         { "Type": "first_n", "Value": 1 }
       ],
       "Processors": [
-        { "Type": "damage", "Value": 6, "Tags": ["melee", "unarmed", "break_guard", "break_armor"] }
+        { "Type": "damage", "Value": 8, "Tags": ["melee", "unarmed", "break_guard", "break_armor"] }
       ]
     }
   ]

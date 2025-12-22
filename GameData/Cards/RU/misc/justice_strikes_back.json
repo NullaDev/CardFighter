@@ -2,7 +2,7 @@
   "ID": "justice_strikes_back",
   "Name": "以直报怨",
   "TextureName": "Arts/Cards/ru/justice_strikes_back",
-  "Desc": "对2格内的所有目标，如果之前伤害过你，则造成4点伤害",
+  "Desc": "对2格内的所有目标，如果之前伤害过你，则造成5点伤害",
   "Cost": 2,
   "Actions": [
     {
@@ -15,7 +15,7 @@
       "Processors": [
         {
           "Type": "damage",
-          "Value": 4,
+          "Value": 5,
           "Tags": ["melee", "counter_attack"]
         }
       ]

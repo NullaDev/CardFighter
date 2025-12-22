@@ -136,8 +136,8 @@ namespace GameLogic.Entity
                 }
             }
             
-            value = (int)(multipleModifier * (value + additiveModifier));
-            if (value > 0 && doCauseDamage)
+            var finalValue = (int)(multipleModifier * (value + additiveModifier));
+            if (finalValue > 0 && doCauseDamage)
             {
                 if (damageTags.Contains(DamageTypeNames.BreakArmor))
                 {
@@ -146,12 +146,12 @@ namespace GameLogic.Entity
 
                 if (this.Armor > 0 && !damageTags.Contains(DamageTypeNames.IgnoreArmor))
                 {
-                    var absorbed = Math.Min(this.Armor, value);
+                    var absorbed = Math.Min(this.Armor, finalValue);
                     this.Armor -= absorbed;
-                    value -= absorbed;
+                    finalValue -= absorbed;
                 }
 
-                this.Hurt(source, value, battleField);
+                this.Hurt(source, finalValue, battleField);
 
                 if (this is Player)
                 {
@@ -160,10 +160,14 @@ namespace GameLogic.Entity
 
                 foreach (var rule in this.Buffs.ToList().SelectMany(buff => buff.EffectRules))
                 {
-                    if (rule is MiscEffectRule miscRule && !damageTags.Contains(DamageTypeNames.CounterAttack) &&
-                        miscRule.Parameters.TryGetValue(EntityBuffManager.CounterAttack, out var counterValueObj))
+                    if (rule is MiscEffectRule miscRule && !damageTags.Contains(DamageTypeNames.CounterAttack))
                     {
-                        var counterValue = Convert.ToInt32(counterValueObj);
+                        miscRule.Parameters.TryGetValue(EntityBuffManager.CounterAttackValue1, out var constant);
+                        miscRule.Parameters.TryGetValue(EntityBuffManager.CounterAttackValue2, out var ratio);
+
+                        var constantValue = Convert.ToInt32(constant ?? 0);
+                        var ratioValue = Convert.ToSingle(ratio ?? 0);
+                        var counterValue = (int)(constantValue + ratioValue * value);
                         this.DoDamageTo(source, counterValue, battleField, new List<string> { DamageTypeNames.CounterAttack });
                     }
                 }
@@ -239,7 +243,7 @@ namespace GameLogic.Entity
                     EntityBuffManager.Merge(existing, newBuff);
                     return true;
                 }
-                if (existing.Duration == -1 || newBuff.Duration <= existing.Duration && newBuff.Duration != -1)
+                if (existing.Duration < 0 || newBuff.Duration <= existing.Duration && newBuff.Duration > 0)
                 {
                     return false;
                 }
