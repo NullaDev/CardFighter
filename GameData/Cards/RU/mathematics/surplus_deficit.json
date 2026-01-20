@@ -1,0 +1,52 @@
+﻿{
+  "ID": "surplus_deficit",
+  "Name": "盈不足",
+  "TextureName": "Arts/Cards/RU/surplus_deficit",
+  "Desc": "若生命小于一半，2回合内造成伤害加倍，处于洞察状态时无视限制",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "insight", "HasBuff": false },
+        { "Type": "health_ratio", "Operator": "LessThan", "Value": 0.5 }
+      ],
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "surplus_deficit",
+              "BuffType": "Positive",
+              "Turn": 1,
+              "Rules": [
+                { "RuleType": "damage_caused", "Operator": "Multiply", "Value": 2 }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "insight", "HasBuff": true }
+      ],
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "surplus_deficit",
+              "BuffType": "Positive",
+              "Turn": 1,
+              "Rules": [
+                { "RuleType": "damage_caused", "Operator": "Multiply", "Value": 2 }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

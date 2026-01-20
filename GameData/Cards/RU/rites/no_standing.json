@@ -2,7 +2,7 @@
   "ID": "no_standing",
   "Name": "无以立",
   "TextureName": "Arts/Cards/RU/no_standing",
-  "Desc": "对1格内的目标造成3点伤害。如果其背对你则会先使其转向并晕眩1回合",
+  "Desc": "对1格内的目标造成3点伤害，如果其背对你则会先使其转向并晕眩",
   "Cost": 1,
   "Actions": [
     {

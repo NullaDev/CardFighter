@@ -1,0 +1,7 @@
+﻿{
+  "ID": "equation",
+  "Name": "方程",
+  "TextureName": "Arts/Cards/RU/equation",
+  "EffectText": "受到伤害乘以{value}",
+  "ExtraText": "遍乘直除。"
+}

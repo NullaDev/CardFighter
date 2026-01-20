@@ -1,0 +1,49 @@
+﻿{
+  "ID": "volume_project",
+  "Name": "商功",
+  "TextureName": "Arts/Cards/RU/volume_project",
+  "Desc": "可以格挡1次面朝方向的攻击，若处于洞察状态则无视格挡方向",
+  "Cost": 2,
+  "Actions": [
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "insight", "HasBuff": false }
+      ],
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "block",
+              "Turn": 1,
+              "Rules": [
+                { "RuleType": "block", "RemainingTimes": 1 }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Selector": { "Type": "self" },
+      "Filters": [
+        { "Type": "has_buff", "BuffName": "insight", "HasBuff": true }
+      ],
+      "Processors": [
+        {
+          "Type": "add_buff",
+          "Buffs": [
+            {
+              "BuffName": "block",
+              "Turn": 1,
+              "Rules": [
+                { "RuleType": "block", "RemainingTimes": 1, "FrontOnly": false }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

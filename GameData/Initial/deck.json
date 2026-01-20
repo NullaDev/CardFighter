@@ -96,6 +96,14 @@
     "no_rites_no_speech": 2,
     "no_rites_no_motion": 2,
 
+    "music_1": 3,
+    "music_2": 3,
+    "music_3": 3,
+    "music_4": 3,
+    "music_5": 3,
+    "music_6": 3,
+    "music_7": 3,
+
     "white_arrow": 3,
     "triple_strike": 3,
     "fourfold_strike": 3,
@@ -107,6 +115,16 @@
     "pass_the_regal": 3,
     "crossroad_maneuvering": 3,
     "leftward_pursuit": 3,
+
+    "field_area": 3,
+    "grain_exchange": 3,
+    "proportion": 3,
+    "inverse_measurement": 3,
+    "volume_project": 3,
+    "equitable_allocation": 3,
+    "surplus_deficit": 3,
+    "equation": 3,
+    "pythagorean": 3,
 
     "wise_unconfused": 3,
     "kind_unworried": 3,

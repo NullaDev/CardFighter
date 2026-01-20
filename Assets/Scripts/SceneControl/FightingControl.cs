@@ -114,18 +114,23 @@ namespace SceneControl
             for (var i = 0; i < this.BattleField.Size; i++)
             {
                 var entity = listEntitiesSnapshot[i];
-                if (entity == null || entity.IsDead || entity is Player)
+                if (entity is null or Player)
                     continue;
                 
-                if (entity is Enemy enemy)
+                if (entity is IActionableEntity actionableEntity && !entity.IsDead)
                 {
-                    if (!enemy.HasBuff(EntityBuffManager.Stunned))
-                        enemy.NextTurnCard?.Effects.ForEach(effect=>effect(this, enemy));
-                    if (!enemy.IsDead)
-                        enemyRemain = true;
+                    if (!entity.HasBuff(EntityBuffManager.Stunned))
+                        actionableEntity.NextTurnCard?.Effects.ForEach(effect=>effect(this, entity));
                 }
                 
                 entity.UpdateStatusAndBuffs();
+                if (entity.IsDead)
+                {
+                    this.BattleField.RemoveEntityFromMap(entity);
+                } else if (entity is Enemy)
+                {
+                    enemyRemain = true;
+                }
             }
             if (!enemyRemain && !this.BattleField.AnyIncomingEnemyRemain())
             {

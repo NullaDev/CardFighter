@@ -59,6 +59,17 @@ namespace Card.Engine
         }
     }
     
+    public class HealthRatioFilter : EntityFilter
+    {
+        public RelationalOperator Operator { get; set; }
+        public float Value { get; set; }
+
+        public override List<EntityBase> Apply(List<EntityBase> targets, EntityBase self, FightingControl fc)
+        {
+            return targets.Where(e => OperatorUtils.Compare(e.HP, Operator, (int)(e.MaxHP*Value))).ToList();
+        }
+    }
+    
     public class TypeFilter : EntityFilter
     {
         public List<string> MatchTypes { get; set; } = new();

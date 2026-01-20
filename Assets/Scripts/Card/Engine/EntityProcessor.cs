@@ -213,9 +213,15 @@ namespace Card.Engine
 
     public class KillProcessor : EntityProcessor
     {
+        public bool CanAffectEliteEnemies { get; set; } = false;
+        public bool CanAffectPlayer { get; set; } = false;
         public override void Process(FightingControl fc, EntityBase user, EntityBase target)
         {
-            if (target.IsDead || target is EliteEnemy || target is Player)
+            if (target.IsDead)
+                return;
+            if (target is EliteEnemy && !CanAffectEliteEnemies)
+                return;
+            if (target is Player && !CanAffectPlayer)
                 return;
             target.SetDeadAndRemove(fc.BattleField);
         }

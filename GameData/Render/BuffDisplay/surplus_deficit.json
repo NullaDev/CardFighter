@@ -1,0 +1,7 @@
+﻿{
+  "ID": "surplus_deficit",
+  "Name": "盈不足",
+  "TextureName": "Arts/Cards/RU/surplus_deficit",
+  "EffectText": "造成伤害乘以{value}。",
+  "ExtraText": "以盈补不足，以不足补盈，并盈不足而平分之。"
+}

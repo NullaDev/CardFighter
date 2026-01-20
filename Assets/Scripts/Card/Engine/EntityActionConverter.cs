@@ -46,6 +46,7 @@ namespace Card.Engine
                         "exclude_self" => f.ToObject<ExcludeSelfFilter>(serializer),
                         "is_alive" => f.ToObject<IsAliveFilter>(serializer),
                         "health" => f.ToObject<HealthFilter>(serializer),
+                        "health_ratio" => f.ToObject<HealthRatioFilter>(serializer),
                         "entity_type" => f.ToObject<TypeFilter>(serializer),
                         "condition" => f.ToObject<ConditionFilter>(serializer),
                         "has_buff" => f.ToObject<HasBuffFilter>(serializer),

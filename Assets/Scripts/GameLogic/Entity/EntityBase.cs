@@ -14,6 +14,7 @@ namespace GameLogic.Entity
         public string TextureName = "";
         public int Armor = 0;
         public bool IsDead = false;
+        public int TurnsTillDead = -1;
         public bool DealtDamageToPlayer = false;
         public bool DealtDamageThisTurn = false;
         public List<EntityBuff> Buffs = new();
@@ -255,6 +256,20 @@ namespace GameLogic.Entity
         
         public void UpdateStatusAndBuffs()
         {
+            if (this.IsDead)
+            {
+                return;
+            }
+            
+            if (this.TurnsTillDead > 0)
+            {
+                if (--this.TurnsTillDead == 0)
+                {
+                    this.IsDead = true;
+                    return;
+                }
+            }
+
             this.Buffs = this.Buffs
                 .Select(buff =>
                 {
