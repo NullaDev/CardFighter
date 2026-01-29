@@ -1,6 +1,6 @@
 ﻿{
   "ID": "self_restraint",
-  "Name": "复礼",
+  "Name": "克己复礼",
   "TextureName": "Arts/Cards/RU/self_restraint",
   "Desc": "获得3点护甲。如果你未处于「礼」状态，还会额外进入该状态",
   "Cost": 1,

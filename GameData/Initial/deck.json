@@ -51,7 +51,9 @@
     "meteor_chase": 2,
     "hundred_pace_pierce": 3,
     "stone_probe": 1,
-    "cleave_mount": 3
+    "cleave_mount": 3,
+    "root_and_branch": 3,
+    "seize": 3
   },
   "RU": {
     "rites": 3,

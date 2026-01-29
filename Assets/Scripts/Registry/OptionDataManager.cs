@@ -19,7 +19,6 @@ namespace Registry
         
         public void DebugLoadedOptionInfo()
         {
-            Debug.Log($"[OptionDataManager] Loaded options from: {OptionFolderRoot}");
             var keyCount = OptionMap.Count;
             var optionCount = OptionMap.Sum(kv => kv.Value.GuaranteedOptions.Count + kv.Value.OptionalOptions.Count);
             Debug.Log($"[OptionDataManager] Total option bundles: {keyCount}");

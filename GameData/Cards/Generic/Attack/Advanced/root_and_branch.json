@@ -2,7 +2,7 @@
   "ID": "root_and_branch",
   "Name": "斩草除根",
   "TextureName": "Arts/Cards/Generic/AdvancedAttack/root_and_branch",
-  "Desc": "对1格内的目标，若为血量低于4的敌人则将其处决，否则造成2点破甲伤害",
+  "Desc": "若1格内是血量低于4的敌人，将其处决；否则造成2点破甲伤害",
   "Cost": 2,
   "Actions": [
     {

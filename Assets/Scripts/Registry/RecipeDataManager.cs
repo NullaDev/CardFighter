@@ -14,39 +14,55 @@ namespace Registry
         private bool _hasLoaded = false;
         private readonly List<RecipeTemplate> _recipes = new();
 
-        public static readonly string RecipeFilePath = Path.Combine(Application.dataPath, "../GameData/Recipes/recipe_list.json");
+        public static readonly string RecipeFolderRoot = Path.Combine(Application.dataPath, "../GameData/Recipes");
+        
+        public void DebugLoadedItemInfo()
+        {
+            Debug.Log($"[RecipeDataManager] Loaded recipes: {_recipes.Count}");
+        }
 
         public void LoadFromFile()
         {
             if (_hasLoaded) return;
             _hasLoaded = true;
 
-            if (!File.Exists(RecipeFilePath))
+            if (!Directory.Exists(RecipeFolderRoot))
             {
-                Debug.LogError($"[RecipeDataManager] Recipe JSON file not found in path: {RecipeFilePath}");
+                Debug.LogError($"[RecipeDataManager] recipe folder not found in path: {RecipeFolderRoot}");
                 return;
             }
 
-            try
+            var jsonFiles = Directory.GetFiles(RecipeFolderRoot, "*.json", SearchOption.AllDirectories);
+            if (jsonFiles.Length == 0)
             {
-                var jsonText = File.ReadAllText(RecipeFilePath);
-                var list = JsonConvert.DeserializeObject<List<RecipeTemplate>>(jsonText);
-                if (list != null)
+                Debug.LogWarning($"[RecipeDataManager] No item json files found in {RecipeFolderRoot}");
+                return;
+            }
+
+            foreach (var file in jsonFiles)
+            {
+                try
                 {
-                    _recipes.AddRange(list);
-                    Debug.Log($"[RecipeDataManager] Loaded {_recipes.Count} recipe templates.");
+                    var jsonText = File.ReadAllText(file);
+                    var list = JsonConvert.DeserializeObject<List<RecipeTemplate>>(jsonText);
+                    if (list?.Count > 0)
+                    {
+                        _recipes.AddRange(list);
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"[RecipeDataManager] Recipe file empty or invalid: {file}");
+                    }
                 }
-                else
+                catch (Exception e)
                 {
-                    Debug.LogWarning("[RecipeDataManager] JSON file is empty or invalid.");
+                    Debug.LogError($"[RecipeDataManager] Error loading recipe file: {e.Message}");
                 }
             }
-            catch (Exception e)
-            {
-                Debug.LogError($"[RecipeDataManager] Error loading recipe file: {e.Message}");
-            }
+
+            DebugLoadedItemInfo();
         }
-        
+
         [CanBeNull]
         public RecipeTemplate FindMatch(string slot1Id, string slot2Id)
         {

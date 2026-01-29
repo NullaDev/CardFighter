@@ -112,6 +112,18 @@
     "Priority": 3
   },
   {
+    "Slot1": [ "kick" ],
+    "Slot2": [ "broadsword" ],
+    "Result": "root_and_branch",
+    "Priority": 3
+  },
+  {
+    "Slot1": [ "throw_stone" ],
+    "Slot2": [ "punch" ],
+    "Result": "seize",
+    "Priority": 3
+  },
+  {
     "Slot1": [ "block" ],
     "Slot2": [ "rush" ],
     "Result": "shield_charge",

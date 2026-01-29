@@ -1,0 +1,331 @@
+﻿[
+  {
+    "Slot1": [ "noble" ],
+    "Slot2": [ "seize" ],
+    "Result": "comes_from_afar",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "noble" ],
+    "Slot2": [ "root_and_branch" ],
+    "Result": "flow_like_river",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "noble" ],
+    "Slot2": [ "archery", "calligraphy", "charioteering", "mathematics", "music", "rites"],
+    "Result": "follow_heart",
+    "Priority": 2,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "noble" ],
+    "Slot2": [ "suit_up" ],
+    "Result": "gentleman_upright",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "noble" ],
+    "Slot2": [ "axe", "broadsword", "spear", "sword", "bow" ],
+    "Result": "good_at_tools",
+    "Priority": 2,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "noble" ],
+    "Slot2": [ "armored_and_sharpened" ],
+    "Result": "honest_word",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "noble" ],
+    "Slot2": [ "rush" ],
+    "Result": "leap_over_tiger",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "noble" ],
+    "Slot2": [ "punch_kick" ],
+    "Result": "must_have_teacher",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "noble" ],
+    "Slot2": [ "tiger_descent" ],
+    "Result": "no_one_stands_tough",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "noble" ],
+    "Slot2": [ "turn_back" ],
+    "Result": "noble_abstains_from_kitchen",
+    "Priority": 3,
+    "ConsumeSlot1": false,
+    "ConsumeSlot2": false
+  },
+  {
+    "Slot1": [ "noble" ],
+    "Slot2": [ "punch" ],
+    "Result": "noble_unarmed",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "noble" ],
+    "Slot2": [ "iron_slam" ],
+    "Result": "noble_word",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "noble" ],
+    "Slot2": [ "kick" ],
+    "Result": "not_ashamed_to_ask",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "noble" ],
+    "Slot2": [ "observe" ],
+    "Result": "observe_comfort_zone",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "noble" ],
+    "Slot2": [ "focus_energy" ],
+    "Result": "reflect_on_myself",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "noble" ],
+    "Slot2": [ "lone_spear" ],
+    "Result": "seize_general_rush",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "noble" ],
+    "Slot2": [ "do_nothing" ],
+    "Result": "study_and_practice",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "noble" ],
+    "Slot2": [ "wait_for_weary" ],
+    "Result": "teacher_say",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "noble" ],
+    "Slot2": [ "move" ],
+    "Result": "unshaken",
+    "Priority": 3,
+    "ConsumeSlot1": false,
+    "ConsumeSlot2": false
+  },
+  
+  {
+    "Slot1": [ "rites" ],
+    "Slot2": [ "noble" ],
+    "Result": "bound_by_rites",
+    "Priority": 3,
+    "ConsumeSlot1": false,
+    "ConsumeSlot2": false
+  },
+  {
+    "Slot1": [ "rites" ],
+    "Slot2": [ "root_and_branch" ],
+    "Result": "burial_with_rites",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "rites" ],
+    "Slot2": [ "block" ],
+    "Result": "peace_is_supreme",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "rites" ],
+    "Slot2": [ "move" ],
+    "Result": "no_rites_no_motion",
+    "Priority": 3,
+    "ConsumeSlot1": false,
+    "ConsumeSlot2": false
+  },
+  {
+    "Slot1": [ "rites" ],
+    "Slot2": [ "do_nothing" ],
+    "Result": "no_rites_no_speech",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "rites" ],
+    "Slot2": [ "turn_back" ],
+    "Result": "no_rites_no_vision",
+    "Priority": 3,
+    "ConsumeSlot1": false,
+    "ConsumeSlot2": false
+  },
+  {
+    "Slot1": [ "rites" ],
+    "Slot2": [ "kick" ],
+    "Result": "no_standing",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "rites" ],
+    "Slot2": [ "focus_energy" ],
+    "Result": "prefer_frugality",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "rites" ],
+    "Slot2": [ "suit_up" ],
+    "Result": "self_restraint",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+
+  {
+    "Slot1": [ "music" ],
+    "Slot2": [ "suit_up" ],
+    "Result": "music_1",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "music" ],
+    "Slot2": [ "bow" ],
+    "Result": "music_2",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "music" ],
+    "Slot2": [ "armored_and_sharpened" ],
+    "Result": "music_3",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "music" ],
+    "Slot2": [ "whirlwind_slash" ],
+    "Result": "music_4",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "music" ],
+    "Slot2": [ "rush" ],
+    "Result": "music_5",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "music" ],
+    "Slot2": [ "do_nothing" ],
+    "Result": "music_6",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "music" ],
+    "Slot2": [ "focus_energy" ],
+    "Result": "music_7",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+
+  {
+    "Slot1": [ "archery" ],
+    "Slot2": [ "unseen_fist" ],
+    "Result": "fourfold_strike",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "archery" ],
+    "Slot2": [ "flow_of_time" ],
+    "Result": "rapid_shot",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "archery" ],
+    "Slot2": [ "turn_back" ],
+    "Result": "retreat_strike",
+    "Priority": 3,
+    "ConsumeSlot1": false,
+    "ConsumeSlot2": false
+  },
+  {
+    "Slot1": [ "archery" ],
+    "Slot2": [ "spear" ],
+    "Result": "triple_strike",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "archery" ],
+    "Slot2": [ "piercing_arrow" ],
+    "Result": "white_arrow",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+
+  {
+    "Slot1": [ "charioteering" ],
+    "Slot2": [ "turn_back" ],
+    "Result": "crossroad_maneuvering",
+    "Priority": 3,
+    "ConsumeSlot1": false,
+    "ConsumeSlot2": false
+  },
+  {
+    "Slot1": [ "charioteering" ],
+    "Slot2": [ "move" ],
+    "Result": "harmonized_charioteering",
+    "Priority": 3,
+    "ConsumeSlot1": false,
+    "ConsumeSlot2": false
+  },
+  {
+    "Slot1": [ "charioteering" ],
+    "Slot2": [ "bow" ],
+    "Result": "leftward_pursuit",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "charioteering" ],
+    "Slot2": [ "suit_up" ],
+    "Result": "pass_the_regal",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  },
+  {
+    "Slot1": [ "charioteering" ],
+    "Slot2": [ "rush" ],
+    "Result": "rushing_along_water",
+    "Priority": 3,
+    "ConsumeSlot1": false
+  }
+  
+  
+]

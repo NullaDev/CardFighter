@@ -1,6 +1,6 @@
 ﻿{
   "ID": "seize",
-  "Name": "自远方来",
+  "Name": "擒拿",
   "TextureName": "Arts/Cards/Generic/AdvancedAttack/seize",
   "Desc": "对2格内的首个敌人造成3点伤害并拉到你身边",
   "Cost": 2,
