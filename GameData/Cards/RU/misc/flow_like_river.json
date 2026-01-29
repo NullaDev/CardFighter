@@ -2,7 +2,7 @@
   "ID": "flow_like_river",
   "Name": "逝者如斯夫",
   "TextureName": "Arts/Cards/ru/flow_like_river",
-  "Desc": "对1-2格内血量低于4的敌人处决，否则造成2点伤害",
+  "Desc": "将1-2格内所有血量低于4的敌人处决",
   "Cost": 1,
   "Actions": [
     {
@@ -15,16 +15,6 @@
       ],
       "Processors": [
         { "Type": "kill" }
-      ]
-    },
-    {
-      "Selector": { "Type": "range", "RangeMin": 1, "RangeMax": 2 },
-      "Filters": [
-        { "Type": "exclude_self" },
-        { "Type": "is_alive" }
-      ],
-      "Processors": [
-        { "Type": "damage", "Value": 2, "Tags": ["melee", "unarmed"] }
       ]
     }
   ]

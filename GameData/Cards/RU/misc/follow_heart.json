@@ -2,7 +2,7 @@
   "ID": "follow_heart",
   "Name": "从心所欲",
   "TextureName": "Arts/Cards/ru/follow_heart",
-  "Desc": "7回合内，你的礼、乐、射没有惩罚",
+  "Desc": "7回合内，你的六艺没有惩罚",
   "Cost": 2,
   "Actions": [
     {

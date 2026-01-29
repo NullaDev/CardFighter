@@ -2,7 +2,7 @@
   "ID": "bound_by_rites",
   "Name": "约之以礼",
   "TextureName": "Arts/Cards/RU/bound_by_rites",
-  "Desc": "3回合内，你的攻击总是视为满足「礼」",
+  "Desc": "3回合内，你的攻击总是视为满足「礼」，且伤害额外提高1点",
   "Cost": 1,
   "Actions": [
     {
@@ -11,7 +11,13 @@
         {
           "Type": "add_buff",
           "Buffs": [
-            { "BuffName": "bound_by_rites", "Turn": 3 }
+            { 
+              "BuffName": "bound_by_rites", 
+              "Turn": 3,
+              "Rules": [
+                { "RuleType": "damage_caused", "Operator": "Add", "Value": 1 }
+              ]
+            }
           ]
         }
       ]

@@ -18,11 +18,7 @@
         { "Type": "is_alive" }
       ],
       "Processors": [
-        {
-          "Type": "damage",
-          "Value": 4,
-          "Tags": ["melee", "weapon"]
-        }
+        { "Type": "damage", "Value": 3, "Tags": ["melee", "weapon", "ignore_armor"] }
       ]
     }
   ]

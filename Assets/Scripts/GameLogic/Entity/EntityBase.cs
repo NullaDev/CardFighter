@@ -203,7 +203,7 @@ namespace GameLogic.Entity
             if (Buffs.Any(existing => existing.ImmunityTo.Contains(newBuff.Name)))
                 return false;
             
-            if (this.HasBuff(EntityBuffManager.Calligraphy) && newBuff.BuffType == EntityBuffManager.BuffType.Positive)
+            if (this.HasBuff(EntityBuffManager.Calligraphy) && !this.HasBuff(EntityBuffManager.FollowHeart) && newBuff.BuffType == EntityBuffManager.BuffType.Positive)
             {
                 var calligraphyBuff = this.GetBuff(EntityBuffManager.Calligraphy);
                 var currentPositiveBuffs = Buffs.Count(b => b.BuffType == EntityBuffManager.BuffType.Positive);

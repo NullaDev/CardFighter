@@ -18,7 +18,7 @@
               "ConflictsWith": ["rites", "music", "archery", "calligraphy", "mathematics"],
               "IsToggle": true,
               "Rules": [
-                { "RuleType": "card_cost", "Operator": "Add", "Value": 1, "AffectAllCards": false, "AffectedCardIds": ["u_turn"]}
+                { "RuleType": "card_cost", "Operator": "Add", "Value": 1, "AffectAllCards": false, "AffectedCardIds": ["u_turn"], "WithoutBuff": ["follow_heart"]}
               ]
             }
           ]

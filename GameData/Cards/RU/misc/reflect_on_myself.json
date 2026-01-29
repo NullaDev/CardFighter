@@ -2,16 +2,24 @@
   "ID": "reflect_on_myself",
   "Name": "三省吾身",
   "TextureName": "Arts/Cards/RU/reflect_on_myself",
-  "Desc": "获得永久洞察",
-  "Cost": 3,
+  "Desc": "回复1费，获得1护甲，下回合攻击伤害+1",
+  "Cost": 0,
   "Actions": [
     {
       "Selector": { "Type": "self" },
       "Processors": [
+        { "Type": "add_cost", "Value": 1 },
+        { "Type": "add_armor", "Value": 1 },
         {
           "Type": "add_buff",
           "Buffs": [
-            { "BuffName": "insight", "Turn": -1 }
+            { 
+              "BuffName": "reflect_on_myself",
+              "Turn": 2,
+              "Rules": [
+                { "RuleType": "damage_caused", "Operator": "Add", "Value": 1 }
+              ]
+            }
           ]
         }
       ]

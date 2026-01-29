@@ -19,7 +19,8 @@
               "IsToggle": true,
               "Rules": [
                 { "RuleType": "damage_received", "Operator": "Minus", "Value": 2, "WithBuff": ["insight"] },
-                { "RuleType": "damage_received", "Operator": "Add", "Value": 2, "WithoutBuff": ["insight"] }
+                { "RuleType": "damage_received", "Operator": "Add", "Value": 2, "WithoutBuff": ["insight"] },
+                { "RuleType": "damage_received", "Operator": "Minus", "Value": 2, "WithBuff": ["follow_heart"], "WithoutBuff": ["insight"] }
               ]
             }
           ]
