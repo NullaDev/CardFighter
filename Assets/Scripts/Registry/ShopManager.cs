@@ -1,19 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Newtonsoft.Json;
 using UnityEngine;
 using Random = System.Random;
 
 namespace Registry
 {
+    public class ShopItemData
+    {
+        public int Price = 0;
+        public int Level = 0;
+    }
+    
     public class ShopConfigData
     {
         public int SlotCount { get; set; }
         public float ItemRatio { get; set; }
 
-        public Dictionary<string, int> CardPriceTable { get; set; } = new();
-        public Dictionary<string, int> ItemPriceTable { get; set; } = new();
+        public Dictionary<string, ShopItemData> CardPriceTable { get; set; } = new();
+        public Dictionary<string, ShopItemData> ItemPriceTable { get; set; } = new();
     }
     
     public class ShopEntry
@@ -21,6 +28,7 @@ namespace Registry
         public string Name;
         public bool IsCard;
         public int Price;
+        public int Level;
     }
     
     public class ShopManager
@@ -71,14 +79,14 @@ namespace Registry
             DebugLoadedShopInfo();
         }
         
-        public List<ShopEntry> GetShopEntries(Random rand=null)
+        public List<ShopEntry> GetShopEntries(int level, Random rand = null)
         {
             rand ??= new Random();
-            
             var result = new List<ShopEntry>();
 
-            var cardPool = new List<string>(_config.CardPriceTable.Keys);
-            var itemPool = new List<string>(_config.ItemPriceTable.Keys);
+            var cardPool = (from kv in _config.CardPriceTable where kv.Value.Level <= level select kv.Key).ToList();
+            var itemPool = (from kv in _config.ItemPriceTable where kv.Value.Level <= level select kv.Key).ToList();
+
             for (var i = 0; i < _config.SlotCount; i++)
             {
                 if (rand.NextDouble() < _config.ItemRatio)
@@ -88,11 +96,13 @@ namespace Registry
                     var name = itemPool[index];
                     itemPool.RemoveAt(index);
 
-                    result.Add(new ShopEntry()
+                    var data = _config.ItemPriceTable[name];
+                    result.Add(new ShopEntry
                     {
                         Name = name,
                         IsCard = false,
-                        Price = _config.ItemPriceTable[name]
+                        Price = data.Price,
+                        Level = data.Level
                     });
                 }
                 else
@@ -102,11 +112,13 @@ namespace Registry
                     var name = cardPool[index];
                     cardPool.RemoveAt(index);
 
-                    result.Add(new ShopEntry()
+                    var data = _config.CardPriceTable[name];
+                    result.Add(new ShopEntry
                     {
                         Name = name,
                         IsCard = true,
-                        Price = _config.CardPriceTable[name]
+                        Price = data.Price,
+                        Level = data.Level
                     });
                 }
             }

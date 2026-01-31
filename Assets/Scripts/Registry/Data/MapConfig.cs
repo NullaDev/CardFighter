@@ -18,6 +18,18 @@ namespace Registry.Data
         public float EliteRamp = 0.17f;
     }
     
+    public class BonusLevelConfig
+    {
+        public float NormalStart = 0f;
+        public float EliteStart = 0f;
+        public float ShopStart = 0f;
+        public float EventStart = 0f;
+        public float NormalRamp = 0.17f;
+        public float EliteRamp = 0f;
+        public float ShopRamp = 0.17f;
+        public float EventRamp = 0.17f;
+    }
+    
     public class RogueMapLayerParam
     {
         public int Layer;
@@ -36,6 +48,7 @@ namespace Registry.Data
 
         public NodeCountRangeConfig NodeCountRange;
         public ComplexityConfig Complexity;
+        public BonusLevelConfig BonusLevel;
         public Dictionary<string, int> DefaultLayerParams;
         public List<RogueMapLayerParam> SpecificLayerParams;
     }

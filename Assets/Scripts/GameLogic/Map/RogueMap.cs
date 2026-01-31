@@ -96,7 +96,7 @@ namespace GameLogic.Map
             return nodeType switch
             {
                 NodeType.FIGHT => config.NormalStart + config.NormalRamp * layer,
-                NodeType.ELITE_FIGHT => config.EliteStart + config.NormalRamp * layer,
+                NodeType.ELITE_FIGHT => config.EliteStart + config.EliteRamp * layer,
                 _ => 0
             };
         }

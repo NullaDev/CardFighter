@@ -191,15 +191,26 @@ namespace SceneControl
             var player = this.BattleField.GetPlayerFromMap();
             playerData.Hp = player.HP;
         }
+        
+        public static int GetBonusLevel()
+        {
+            var layer = MapData.Instance.CurrentLayer;
+            var config = MapData.Instance.CurrentMap.Config;
+            return MapData.Instance.CurrentNodeType switch
+            {
+                NodeType.FIGHT => (int)(config.BonusLevel.NormalStart + config.BonusLevel.NormalRamp * layer),
+                NodeType.ELITE_FIGHT => (int)(config.BonusLevel.EliteStart + config.BonusLevel.EliteRamp * layer),
+                _ => 0
+            };
+        }
 
         public void MoveToOptionScene()
         {
             var mapData = MapData.Instance;
             var optionName = mapData.CurrentNodeType switch
             {
-                //TODO bonus level
-                NodeType.FIGHT => $"normal_fight_bonus_{mapData.CurrentLayer/2}",
-                NodeType.ELITE_FIGHT => $"elite_fight_bonus_{mapData.CurrentLayer/4}",
+                NodeType.FIGHT => $"normal_fight_bonus_{GetBonusLevel()}",
+                NodeType.ELITE_FIGHT => $"elite_fight_bonus_{GetBonusLevel()}",
                 NodeType.BOSS => "boss_fight_bonus",
                 _ => ""
             };

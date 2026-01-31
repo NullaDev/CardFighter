@@ -19,6 +19,17 @@
         "EliteRamp": 0.17
       },
 
+      "BonusLevel": {
+        "NormalStart": 0.0,
+        "EliteStart": 0.0,
+        "ShopStart": 0.0,
+        "EventStart": 0.0,
+        "NormalRamp": 0.17,
+        "EliteRamp": 0.0,
+        "ShopRamp": 0.17,
+        "EventRamp": 0.17
+      },
+
       "DefaultLayerParams": {
         "FIGHT": 40,
         "ELITE_FIGHT": 15,
@@ -65,6 +76,17 @@
         "EliteStart": 0.0,
         "NormalRamp": 0.34,
         "EliteRamp": 0.25
+      },
+
+      "BonusLevel": {
+        "NormalStart": 2.0,
+        "EliteStart": 0.0,
+        "ShopStart": 2.0,
+        "EventStart": 2.0,
+        "NormalRamp": 0.17,
+        "EliteRamp": 0.0,
+        "ShopRamp": 0.17,
+        "EventRamp": 0.17
       },
 
       "DefaultLayerParams": {

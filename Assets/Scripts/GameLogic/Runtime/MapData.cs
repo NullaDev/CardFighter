@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using GameLogic.Map;
-using GameLogic.Option;
 using Registry;
 using Registry.Data;
 

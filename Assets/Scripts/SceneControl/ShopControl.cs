@@ -50,9 +50,16 @@ namespace SceneControl
         public GameObject render;
         public List<ShopItem> shopList;
 
+        public static int GetBonusLevel()
+        {
+            var layer = MapData.Instance.CurrentLayer;
+            var config = MapData.Instance.CurrentMap.Config;
+            return (int)(config.BonusLevel.ShopStart + config.BonusLevel.ShopRamp * layer);
+        }
+
         private void Awake()
         {
-            this.shopList = StaticDataManager.ShopManager.GetShopEntries(MiscData.Instance.Random)
+            this.shopList = StaticDataManager.ShopManager.GetShopEntries(GetBonusLevel(), MiscData.Instance.Random)
                 .Select(ShopItem.FromEntry)
                 .ToList();
             Rerender();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using GameLogic.Option;
+using GameLogic.Runtime;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -84,10 +85,33 @@ namespace Registry
         
         public OptionBundle GetRandomEventBundle()
         {
-            var eventKeys = OptionMap.Keys.Where(k => k.StartsWith("event_")).ToList();
-            if (eventKeys.Count == 0)
-                throw new Exception("no event loaded");
-            var randomKey = eventKeys[Random.Range(0, eventKeys.Count)];
+            var layer = MapData.Instance.CurrentLayer;
+            var config = MapData.Instance.CurrentMap.Config;
+            var eventMaxLevel = (int)(config.BonusLevel.EventStart + config.BonusLevel.EventRamp * layer);
+
+            var validEventKeys = new List<string>();
+            foreach (var key in OptionMap.Keys)
+            {
+                if (!key.StartsWith("event_level_"))
+                    continue;
+
+                var parts = key.Split('_');
+                if (parts.Length < 3)
+                    continue;
+
+                if (int.TryParse(parts[2], out var level))
+                {
+                    if (level <= eventMaxLevel)
+                    {
+                        validEventKeys.Add(key);
+                    }
+                }
+            }
+
+            if (validEventKeys.Count == 0)
+                throw new Exception($"no event loaded for max level {eventMaxLevel}");
+
+            var randomKey = validEventKeys[Random.Range(0, validEventKeys.Count)];
             return OptionMap[randomKey];
         }
     }
