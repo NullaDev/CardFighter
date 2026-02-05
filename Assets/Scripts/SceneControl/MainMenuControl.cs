@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using GameLogic.Runtime;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace SceneControl
@@ -8,6 +9,12 @@ namespace SceneControl
         public void StartGame()
         {
             SceneManager.LoadScene("ClassChoose");
+        }
+        
+        public void LoadGame()
+        {
+            MiscData.Instance.InSavingMode = false;
+            SceneManager.LoadScene("SaveLoad");
         }
         
         public void About()

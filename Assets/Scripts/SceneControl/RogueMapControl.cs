@@ -34,9 +34,22 @@ namespace SceneControl
             SceneManager.LoadScene("ItemList");
         }
         
+        public void ClickSave()
+        {
+            MiscData.Instance.InSavingMode = true;
+            SceneManager.LoadScene("SaveLoad");
+        }
+        
+        public void ClickLoad()
+        {
+            MiscData.Instance.InSavingMode = false;
+            SceneManager.LoadScene("SaveLoad");
+        }
+        
         public void ClickReturn()
         {
-            SceneManager.LoadScene("ClassChoose");
+            MapData.Instance.Reset();
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }

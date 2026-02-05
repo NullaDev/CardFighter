@@ -3,7 +3,7 @@ using GameLogic.Buff;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Card.Engine
+namespace GameLogic.Card.Engine
 {
     public class EntityActionConverter : JsonConverter
     {

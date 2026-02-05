@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Item;
+using GameLogic.Item;
 using Newtonsoft.Json;
 using UnityEngine;
 

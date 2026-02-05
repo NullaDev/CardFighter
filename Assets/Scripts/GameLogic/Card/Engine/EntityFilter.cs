@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using GameLogic;
 using GameLogic.Entity;
 using SceneControl;
 
-namespace Card.Engine
+namespace GameLogic.Card.Engine
 {
     public abstract class EntityFilter
     {

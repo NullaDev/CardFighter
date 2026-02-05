@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Registry.Data
 {
@@ -69,6 +70,16 @@ namespace Registry.Data
                 map.DefaultLayerParams ??= new Dictionary<string, int> {{"FIGHT", 100}};
             }
             return cfg;
+        }
+        
+        public string ToJson(bool pretty = true)
+        {
+            var settings = new JsonSerializerSettings
+            {
+                Formatting = pretty ? Formatting.Indented : Formatting.None,
+                NullValueHandling = NullValueHandling.Ignore
+            };
+            return JsonConvert.SerializeObject(this, settings);
         }
     }
 }

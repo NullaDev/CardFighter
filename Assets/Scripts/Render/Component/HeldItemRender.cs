@@ -1,4 +1,4 @@
-﻿using Item;
+﻿using GameLogic.Item;
 using UnityEngine;
 using UnityEngine.UI;
 

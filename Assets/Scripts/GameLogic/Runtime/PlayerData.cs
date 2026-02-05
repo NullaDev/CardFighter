@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Card;
-using Item;
+using GameLogic.Card;
+using GameLogic.Item;
 using Registry;
 using Registry.Data;
 

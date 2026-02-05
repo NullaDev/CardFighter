@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using GameLogic;
 using GameLogic.Buff;
 using GameLogic.Entity;
 using Registry;
 using Registry.Data;
 using SceneControl;
 
-namespace Card.Engine
+namespace GameLogic.Card.Engine
 {
     public abstract class EntityProcessor
     {

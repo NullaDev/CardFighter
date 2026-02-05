@@ -1,4 +1,4 @@
-﻿using Card;
+﻿using GameLogic.Card;
 using SceneControl;
 using UnityEngine;
 using UnityEngine.EventSystems;

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Card.Engine;
+using GameLogic.Card.Engine;
 using Newtonsoft.Json;
 
 namespace Registry.Data

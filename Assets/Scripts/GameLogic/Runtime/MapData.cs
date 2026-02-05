@@ -22,6 +22,8 @@ namespace GameLogic.Runtime
         public int CurrentNodeIndex = 0;
         public MapNode CurrentNode => CurrentMap?.Layers?[CurrentLayer]?[CurrentNodeIndex];
         public NodeType CurrentNodeType => CurrentNode?.Type ?? NodeType.FIGHT;
+        public int ConfirmedLayer = 0;
+        public int ConfirmedNodeIndex = 0;
         
         public StageConfig CurrentStageConfig;
         
@@ -29,7 +31,7 @@ namespace GameLogic.Runtime
         {
             if (Initialized) return;
 
-            GlobalMap = new GlobalMap(StaticDataManager.GlobalMapDataManager.LoadedConfig, 19260817);
+            GlobalMap = new GlobalMap(StaticDataManager.GlobalMapDataManager.LoadedConfig, MiscData.Instance.Seed);
             CurrentMapIndex = 0;
             CurrentLayer = 0;
             CurrentNodeIndex = 0;
@@ -48,6 +50,18 @@ namespace GameLogic.Runtime
             CurrentNodeIndex = result.idx;
             return true;
         }
+        
+        public void CommitCurrentPosition()
+        {
+            ConfirmedLayer = CurrentLayer;
+            ConfirmedNodeIndex = CurrentNodeIndex;
+        }
+        
+        public void RollbackToConfirmedPosition()
+        {
+            CurrentLayer = ConfirmedLayer;
+            CurrentNodeIndex = ConfirmedNodeIndex;
+        }
 
         public bool HasNextLayer() =>
             (CurrentMap?.Layers != null) && (CurrentLayer + 1 < CurrentMap.Layers.Length);
@@ -60,6 +74,7 @@ namespace GameLogic.Runtime
             CurrentMapIndex++;
             CurrentLayer = 0;
             CurrentNodeIndex = 0;
+            CommitCurrentPosition();
         }
         
         public void Reset()
@@ -70,8 +85,16 @@ namespace GameLogic.Runtime
             CurrentMapIndex = 0;
             CurrentLayer = 0;
             CurrentNodeIndex = 0;
+            CommitCurrentPosition();
 
             CurrentStageConfig = null;
+        }
+        
+        public void InitializeFromSave(GlobalMap map)
+        {
+            Reset();
+            GlobalMap = map;
+            Initialized = true;
         }
     }
 }

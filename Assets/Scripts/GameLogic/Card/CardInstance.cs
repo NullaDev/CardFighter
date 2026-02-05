@@ -6,7 +6,7 @@ using GameLogic.Entity;
 using Registry.Data;
 using SceneControl;
 
-namespace Card
+namespace GameLogic.Card
 {
     public class CardInstance
     {

@@ -1,4 +1,4 @@
-﻿using Card;
+﻿using GameLogic.Card;
 using UnityEngine;
 using UnityEngine.UI;
 

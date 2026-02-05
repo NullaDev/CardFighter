@@ -4,7 +4,7 @@ using GameLogic.Runtime;
 using Registry;
 using Registry.Data;
 
-namespace Item
+namespace GameLogic.Item
 {
     public class HeldItem
     {
@@ -27,7 +27,7 @@ namespace Item
                 var gained = new List<CardPrototype>();
                 for (var i = 0; i < grantEffect.Count; i++)
                 {
-                    var cardId = grantEffect.IsRandom ? grantEffect.CardIDs[MiscData.Instance.Random.Next(grantEffect.CardIDs.Count)] : grantEffect.CardIDs[i % grantEffect.CardIDs.Count];
+                    var cardId = grantEffect.IsRandom ? grantEffect.CardIDs[MiscData.Instance.GlobalRandom.Next(grantEffect.CardIDs.Count)] : grantEffect.CardIDs[i % grantEffect.CardIDs.Count];
                     gained.Add(StaticDataManager.CardDataManager.Find(cardId));
                 }
 

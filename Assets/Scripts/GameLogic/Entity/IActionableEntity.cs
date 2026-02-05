@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Card;
+using GameLogic.Card;
 using SceneControl;
 
 namespace GameLogic.Entity

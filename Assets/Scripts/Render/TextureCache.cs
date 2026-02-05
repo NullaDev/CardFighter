@@ -9,9 +9,12 @@ namespace Render
 {
     public static class TextureCache
     {
+        public const bool UseSmallImg = false; // For faster debug
+        
         private static readonly Dictionary<string, Sprite> _spriteCache = new();
 
-        private static readonly string ArtRoot = Path.Combine(Application.dataPath, "../GameData/");
+        private static readonly string ArtFolderName = UseSmallImg ? "../GameDataLight/" : "../GameData/";
+        private static readonly string ArtRoot = Path.Combine(Application.dataPath, ArtFolderName);
 
         private static bool _isPreloading = false;
         

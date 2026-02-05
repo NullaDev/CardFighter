@@ -3,7 +3,7 @@ using GameLogic.Buff;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Item
+namespace GameLogic.Item
 {
     public class HeldItemEffectConverter : JsonConverter
     {

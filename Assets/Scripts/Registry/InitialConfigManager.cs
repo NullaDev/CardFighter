@@ -58,7 +58,7 @@ namespace Registry
                         DebugConfig = parsed;
                     }
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     // ignored
                 }

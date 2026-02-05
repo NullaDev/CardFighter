@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Registry.Data;
 
-namespace Item
+namespace GameLogic.Item
 {
     public abstract class HeldItemEffect
     {

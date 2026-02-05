@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using GameLogic.Runtime;
 using Registry;
 using Render;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace SceneControl
             StaticDataManager.LoadAll();
             await Task.Delay(500);
 
+            MiscData.Instance.InitSeed();
             UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
         }
     }

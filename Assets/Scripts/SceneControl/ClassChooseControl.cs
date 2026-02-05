@@ -50,5 +50,10 @@ namespace SceneControl
             
             SceneManager.LoadScene("Fighting");
         }
+        
+        public void ReturnToMainMenu()
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Item;
+using GameLogic.Item;
 using Render.Component;
 using UnityEngine;
 

@@ -33,6 +33,9 @@ namespace Render.Component
             var playerData = PlayerData.Instance;
             this._option.Actions.ForEach(a=>a.Execute(playerData));
 
+            if (this._option.TargetSceneName == "RogueMap")
+                MapData.Instance.CommitCurrentPosition();
+            
             MiscData.Instance.OptionBundle = null;
             SceneManager.LoadScene(this._option.TargetSceneName);
         }

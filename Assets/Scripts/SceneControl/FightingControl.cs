@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
-using Card;
 using GameLogic;
 using GameLogic.Buff;
+using GameLogic.Card;
 using GameLogic.Entity;
 using GameLogic.Map;
 using GameLogic.Runtime;

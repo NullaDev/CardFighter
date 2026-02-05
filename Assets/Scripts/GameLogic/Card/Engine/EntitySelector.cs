@@ -3,7 +3,7 @@ using System.Linq;
 using GameLogic.Entity;
 using SceneControl;
 
-namespace Card.Engine
+namespace GameLogic.Card.Engine
 {
     public abstract class EntitySelector
     {

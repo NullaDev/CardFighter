@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Card;
-using Card.Engine;
+using GameLogic.Card;
+using GameLogic.Card.Engine;
 using JetBrains.Annotations;
 using Registry;
 using Registry.Data;

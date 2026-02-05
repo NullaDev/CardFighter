@@ -74,3 +74,5 @@ crashlytics-build.properties
 .idea/
 .plastic/
 .vsconfig
+GameDataLight/
+GameData/SaveData

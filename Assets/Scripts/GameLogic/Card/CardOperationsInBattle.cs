@@ -2,7 +2,7 @@
 using Registry;
 using Registry.Data;
 
-namespace Card
+namespace GameLogic.Card
 {
     public class CardOperationsInBattle
     {

@@ -8,8 +8,21 @@ namespace GameLogic.Runtime
         public static MiscData Instance = new();
         private MiscData() {}
         
-        public readonly Random Random = new(Seed:19260817);
+        public int Seed { get; private set; }
+        private Random _random;
+        public Random GlobalRandom
+        {
+            get { return _random ??= new Random(Seed); }
+        }
+        
+        public void InitSeed(int? seed = null)
+        {
+            Seed = seed ?? new Random().Next();
+            _random = null;
+        }
 
         public OptionBundle OptionBundle = null;
+        
+        public bool InSavingMode = false;
     }
 }

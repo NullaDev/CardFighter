@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Card;
+using GameLogic.Card;
 using GameLogic.Entity;
 using Render.Component;
 using Render.Interact;

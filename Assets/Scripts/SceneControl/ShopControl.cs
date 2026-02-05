@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using GameLogic.Item;
 using GameLogic.Runtime;
-using Item;
 using Registry;
 using Registry.Data;
 using Render;
@@ -59,7 +59,7 @@ namespace SceneControl
 
         private void Awake()
         {
-            this.shopList = StaticDataManager.ShopManager.GetShopEntries(GetBonusLevel(), MiscData.Instance.Random)
+            this.shopList = StaticDataManager.ShopManager.GetShopEntries(GetBonusLevel(), MiscData.Instance.GlobalRandom)
                 .Select(ShopItem.FromEntry)
                 .ToList();
             Rerender();
@@ -73,6 +73,7 @@ namespace SceneControl
 
         public void End()
         {
+            MapData.Instance.CommitCurrentPosition();
             SceneManager.LoadScene("RogueMap");
         }
     }

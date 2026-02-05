@@ -80,7 +80,7 @@ namespace GameLogic.Option
 
             for (var i = 0; i < Count; i++)
             {
-                var cardId = Random ? CardIDs[MiscData.Instance.Random.Next(CardIDs.Count)] : CardIDs[i % CardIDs.Count];
+                var cardId = Random ? CardIDs[MiscData.Instance.GlobalRandom.Next(CardIDs.Count)] : CardIDs[i % CardIDs.Count];
                 gained.Add(StaticDataManager.CardDataManager.Find(cardId));
             }
 
@@ -103,7 +103,7 @@ namespace GameLogic.Option
                 return;
             for (var i = 0; i < Count; i++)
             {
-                var itemId = Random ? ItemIDs[MiscData.Instance.Random.Next(ItemIDs.Count)] : ItemIDs[i % ItemIDs.Count];
+                var itemId = Random ? ItemIDs[MiscData.Instance.GlobalRandom.Next(ItemIDs.Count)] : ItemIDs[i % ItemIDs.Count];
                 var item = StaticDataManager.HeldItemDataManager.Find(itemId);
                 item?.PlayerTryObtain(player);
             }
@@ -125,7 +125,7 @@ namespace GameLogic.Option
 
             for (var i = 0; i < Count && flatList.Count > 0; i++)
             {
-                var index = MiscData.Instance.Random.Next(flatList.Count);
+                var index = MiscData.Instance.GlobalRandom.Next(flatList.Count);
                 var card = flatList[index];
                 flatList.RemoveAt(index);
 
@@ -151,7 +151,7 @@ namespace GameLogic.Option
         {
             for (var i = 0; i < Count && player.HeldItems.Count > 0; i++)
             {
-                var index = MiscData.Instance.Random.Next(player.HeldItems.Count);
+                var index = MiscData.Instance.GlobalRandom.Next(player.HeldItems.Count);
                 player.HeldItems.RemoveAt(index);
             }
         }
