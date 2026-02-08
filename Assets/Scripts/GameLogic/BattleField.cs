@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using GameLogic.Buff;
@@ -35,7 +35,21 @@ namespace GameLogic
 
         private void InitializePlayer(PlayerData data, int pos, string direc)
         {
-            var player = new Player(data.Hp, data.MaxHp);
+            var maxHpBonus = 0;
+            var healCurrent = false;
+            foreach (var effect in data.HeldItems.SelectMany(heldItem => heldItem.Effects))
+            {
+                if (effect is MaxHpBonusEffect maxHpEffect)
+                {
+                    maxHpBonus += maxHpEffect.Value;
+                    if (maxHpEffect.HealCurrent) healCurrent = true;
+                }
+            }
+            var effectiveMaxHp = data.MaxHp + maxHpBonus;
+            var effectiveHp = data.Hp + (healCurrent ? maxHpBonus : 0);
+            effectiveHp = Math.Min(effectiveHp, effectiveMaxHp);
+
+            var player = new Player(effectiveHp, effectiveMaxHp);
             player.Facing = direc switch
             {
                 "right" => EntityFacing.Right,
@@ -51,6 +65,10 @@ namespace GameLogic
                     {
                         player.AddOrUpdateBuff(new EntityBuff(buffData));
                     }
+                }
+                else if (effect is StartingArmorEffect armorEffect)
+                {
+                    player.Armor += armorEffect.Value;
                 }
             }
             

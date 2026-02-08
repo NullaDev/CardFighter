@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using GameLogic.Buff;
@@ -24,7 +24,13 @@ namespace GameLogic
         public static FightingData FromPlayerData(PlayerData playerData)
         {
             FightingData fightingData = new();
-            fightingData.CurrentCost = playerData.InitialInGameCost;
+            var initialCostBonus = 0;
+            foreach (var effect in playerData.HeldItems.SelectMany(heldItem => heldItem.Effects))
+            {
+                if (effect is InitialCostBonusEffect costEffect)
+                    initialCostBonus += costEffect.Value;
+            }
+            fightingData.CurrentCost = playerData.InitialInGameCost + initialCostBonus;
             fightingData.MaxCost = playerData.MaxInGameCost;
             
             Dictionary<string, string> replaceMap = new();

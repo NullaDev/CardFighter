@@ -5,6 +5,7 @@ using GameLogic.Buff;
 using GameLogic.Card;
 using GameLogic.Entity;
 using GameLogic.Map;
+using GameLogic.Item;
 using GameLogic.Runtime;
 using Registry;
 using Render;
@@ -190,6 +191,14 @@ namespace SceneControl
             var playerData = PlayerData.Instance;
             var player = this.BattleField.GetPlayerFromMap();
             playerData.Hp = player.HP;
+            var healAfterBattle = 0;
+            foreach (var effect in playerData.HeldItems.SelectMany(heldItem => heldItem.Effects))
+            {
+                if (effect is HealAfterBattleEffect healEffect)
+                    healAfterBattle += healEffect.Value;
+            }
+            if (healAfterBattle > 0)
+                playerData.Hp = Math.Min(playerData.Hp + healAfterBattle, playerData.MaxHp);
         }
         
         public static int GetBonusLevel()

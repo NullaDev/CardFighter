@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using GameLogic.Buff;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -24,6 +24,10 @@ namespace GameLogic.Item
                 "recipe_free_card" => obj.ToObject<RecipeFreeCardEffect>(serializer),
                 "replace_card" => obj.ToObject<ReplaceCardEffect>(serializer),
                 "misc" => obj.ToObject<MiscEffect>(serializer),
+                "max_hp_bonus" => obj.ToObject<MaxHpBonusEffect>(serializer),
+                "initial_cost_bonus" => obj.ToObject<InitialCostBonusEffect>(serializer),
+                "starting_armor" => obj.ToObject<StartingArmorEffect>(serializer),
+                "heal_after_battle" => obj.ToObject<HealAfterBattleEffect>(serializer),
                 _ => throw new Exception("Unknown HeldItemEffect type: " + type)
             };
         }
