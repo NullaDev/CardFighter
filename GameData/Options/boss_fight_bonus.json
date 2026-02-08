@@ -1,0 +1,60 @@
+{
+  "boss_fight_bonus": {
+    "Description": "终战已毕，你获得了重大收获。",
+    "GuaranteedOptions": [
+      {
+        "Id": "bonus_gold",
+        "Title": "获得金币",
+        "Description": "你从强敌老巢中搜得大量财物，获得了80金币。",
+        "Actions": [{ "Type": "gold_change", "Operator": "Add", "Amount": 80 }]
+      },
+      {
+        "Id": "get_random_boss_card",
+        "Title": "获得随机高阶卡",
+        "Description": "此战令你脱胎换骨，随机获得一招高阶技法（包含：劈山、盾冲、横扫千军、金钟护体、磨刀霍霍、铁布衫、蓄势待发、以逸待劳、铁壁冲撞、流星追月）。",
+        "Actions": [{
+          "Type": "card_gain",
+          "CardIDs": ["cleave_mount", "shield_charge", "sweep_all_armies", "golden_bell_shield", "hone_sword", "iron_cloth_armor", "regain_strength", "wait_for_weary", "iron_slam", "meteor_chase"],
+          "Count": 1,
+          "Random": true
+        }]
+      },
+      {
+        "Id": "get_second_boss_card",
+        "Title": "再获一招",
+        "Description": "你回味战局，再悟一招（随机获得：观察、稳如泰山、虚招突刺、锁喉一击、穿云箭、旋风斩之一）。",
+        "Actions": [{
+          "Type": "card_gain",
+          "CardIDs": ["observe", "steady_as_mount", "feint_strike", "throat_strike", "piercing_arrow", "whirlwind_slash"],
+          "Count": 1,
+          "Random": true
+        }]
+      },
+      {
+        "Id": "get_boss_item",
+        "Title": "获得随机兵器",
+        "Description": "你缴获了强敌的兵刃，随机得到一件（剑、刀、枪、弓、斧、锤之一）。",
+        "Actions": [{
+          "Type": "item_gain",
+          "ItemIDs": ["item_sword", "item_broadsword", "item_spear", "item_bow", "item_axe", "item_hammer"],
+          "Count": 1,
+          "Random": true
+        }]
+      }
+    ],
+    "OptionalOptions": [
+      {
+        "Id": "get_ru_boss_card",
+        "Title": "获得随机抡语高阶卡",
+        "Description": "经此一役你对抡语领悟更深，随机悟得高阶心法（包含：六艺进阶、克己复礼·进阶、和而不同、反求诸己、无人可挡、心如止水）。",
+        "Conditions": [{ "Subject": "PlayerClass", "Operator": "Equal", "Value": "RU" }],
+        "Actions": [{
+          "Type": "card_gain",
+          "CardIDs": ["rites_advanced", "archery_advanced", "calligraphy_advanced", "charioteering_advanced", "mathematics_advanced", "music_advanced", "self_restraint_advanced", "peace_is_supreme", "reflect_on_myself", "no_one_stands_tough", "unshaken"],
+          "Count": 1,
+          "Random": true
+        }]
+      }
+    ]
+  }
+}

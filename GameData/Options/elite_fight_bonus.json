@@ -1,0 +1,49 @@
+{
+  "elite_fight_bonus_0": {
+    "Description": "险胜强敌之后，你获得了丰厚的战利品。",
+    "GuaranteedOptions": [
+      {
+        "Id": "bonus_gold",
+        "Title": "获得金币",
+        "Description": "你从强敌身上搜得不少财物，获得了40金币。",
+        "Actions": [{ "Type": "gold_change", "Operator": "Add", "Amount": 40 }]
+      },
+      {
+        "Id": "get_random_elite_card",
+        "Title": "获得随机进阶卡",
+        "Description": "与强敌一战令你领悟颇深，随机获得一招进阶技法（包含：虚招突刺、百步穿杨、盾冲、旋风斩、穿云箭、磨刀霍霍、金钟护体、蓄势待发）。",
+        "Actions": [{
+          "Type": "card_gain",
+          "CardIDs": ["feint_strike", "hundred_pace_pierce", "shield_charge", "whirlwind_slash", "piercing_arrow", "hone_sword", "golden_bell_shield", "regain_strength"],
+          "Count": 1,
+          "Random": true
+        }]
+      },
+      {
+        "Id": "get_random_elite_item",
+        "Title": "获得随机兵器",
+        "Description": "你缴获了敌人的兵刃，随机得到一件（剑、刀、枪、弓、斧、锤之一）。",
+        "Actions": [{
+          "Type": "item_gain",
+          "ItemIDs": ["item_sword", "item_broadsword", "item_spear", "item_bow", "item_axe", "item_hammer"],
+          "Count": 1,
+          "Random": true
+        }]
+      }
+    ],
+    "OptionalOptions": [
+      {
+        "Id": "get_random_ru_elite_card",
+        "Title": "获得随机抡语进阶卡",
+        "Description": "险境之中你对抡语有了新的体悟，随机习得进阶心法（包含：六艺、克己复礼、随心所欲、反求诸己、无人可挡）。",
+        "Conditions": [{ "Subject": "PlayerClass", "Operator": "Equal", "Value": "RU" }],
+        "Actions": [{
+          "Type": "card_gain",
+          "CardIDs": ["rites", "music", "archery", "charioteering", "calligraphy", "mathematics", "self_restraint", "follow_heart", "reflect_on_myself", "no_one_stands_tough"],
+          "Count": 1,
+          "Random": true
+        }]
+      }
+    ]
+  }
+}

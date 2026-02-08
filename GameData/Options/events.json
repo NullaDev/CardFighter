@@ -1,4 +1,4 @@
-﻿{
+{
   "event_level_1_wandering_scholar": {
     "Description": "你遇到了一位流浪的学者，他神色不凡。",
     "GuaranteedOptions": [],
@@ -7,9 +7,7 @@
         "Id": "humble_request",
         "Title": "恭敬求教",
         "Description": "你选择向他请教战斗之道。他笑而不语，赠你一些心得（失去20金币，获得卡牌：观察）。",
-        "Conditions": [
-          { "Subject": "Gold", "Operator": "GreaterOrEqual", "Value": "20" }
-        ],
+        "Conditions": [{ "Subject": "Gold", "Operator": "GreaterOrEqual", "Value": "20" }],
         "Actions": [
           { "Type": "card_gain", "CardIDs": ["observe"], "Count": 1, "Random": false },
           { "Type": "gold_change", "Operator": "Minus", "Amount": 10 }
@@ -19,21 +17,103 @@
         "Id": "accept_trial",
         "Title": "接受试炼",
         "Description": "你挺身而出，准备接受他的试炼。（失去5HP，获得道具：剑）",
-        "Conditions": [
-          { "Subject": "Hp", "Operator": "GreaterThan", "Value": "5" }
-        ],
+        "Conditions": [{ "Subject": "Hp", "Operator": "GreaterThan", "Value": "5" }],
         "Actions": [
           { "Type": "hp_change", "Operator": "Minus", "Amount": 5 },
-          { "Type": "item_gain", "ItemIDs": ["sword"], "Count": 1, "Random": false }
+          { "Type": "item_gain", "ItemIDs": ["item_sword"], "Count": 1, "Random": false }
         ]
       },
       {
         "Id": "turn_away",
         "Title": "转身离去",
         "Description": "你选择默默离去，但似乎有什么重要的东西遗失了（随机失去1张卡牌）。",
+        "Actions": [{ "Type": "card_random_lose", "Count": 1 }]
+      }
+    ]
+  },
+  "event_level_0_road_merchant": {
+    "Description": "你在路边遇到一位小贩，他正在兜售杂物。",
+    "GuaranteedOptions": [],
+    "OptionalOptions": [
+      {
+        "Id": "buy_supplies",
+        "Title": "买点补给",
+        "Description": "你花15金币从小贩处买了一些心得，随机悟得一招基本技法（包含：给你一拳、踢你一脚、投掷、冲撞）。",
+        "Conditions": [{ "Subject": "Gold", "Operator": "GreaterOrEqual", "Value": "15" }],
         "Actions": [
-          { "Type": "card_random_lose", "Count": 1 }
+          { "Type": "gold_change", "Operator": "Minus", "Amount": 15 },
+          { "Type": "card_gain", "CardIDs": ["punch", "kick", "throw_stone", "rush"], "Count": 1, "Random": true }
         ]
+      },
+      {
+        "Id": "leave_without_buying",
+        "Title": "不买离开",
+        "Description": "你摇摇头离开了。",
+        "Actions": []
+      }
+    ]
+  },
+  "event_level_2_hermit": {
+    "Description": "你遇到一位隐居的武者，他目光如炬。",
+    "GuaranteedOptions": [],
+    "OptionalOptions": [
+      {
+        "Id": "ask_advice",
+        "Title": "虚心求教",
+        "Description": "你向他请教武艺。他略加指点，你有所领悟（失去30金币，获得卡牌：观察）。",
+        "Conditions": [{ "Subject": "Gold", "Operator": "GreaterOrEqual", "Value": "30" }],
+        "Actions": [
+          { "Type": "gold_change", "Operator": "Minus", "Amount": 30 },
+          { "Type": "card_gain", "CardIDs": ["observe"], "Count": 1, "Random": false }
+        ]
+      },
+      {
+        "Id": "spar",
+        "Title": "请求切磋",
+        "Description": "你请求与他过招。一番交手后你获益良多，但也受了些伤（失去8HP，获得随机兵器一件）。",
+        "Conditions": [{ "Subject": "Hp", "Operator": "GreaterThan", "Value": "8" }],
+        "Actions": [
+          { "Type": "hp_change", "Operator": "Minus", "Amount": 8 },
+          { "Type": "item_gain", "ItemIDs": ["item_sword", "item_broadsword", "item_spear", "item_bow", "item_axe", "item_hammer"], "Count": 1, "Random": true }
+        ]
+      },
+      {
+        "Id": "take_leave",
+        "Title": "告辞",
+        "Description": "你拱手告辞，却觉心中若有所失（随机失去1张卡牌）。",
+        "Actions": [{ "Type": "card_random_lose", "Count": 1 }]
+      }
+    ]
+  },
+  "event_level_3_sage": {
+    "Description": "你遇到一位深不可测的高人，气度非凡。",
+    "GuaranteedOptions": [],
+    "OptionalOptions": [
+      {
+        "Id": "heavy_payment",
+        "Title": "重金求教",
+        "Description": "你奉上重金求教。高人略加指点，你如醍醐灌顶（失去50金币，随机获得高阶技法：磨刀霍霍、金钟护体、蓄势待发、以逸待劳之一）。",
+        "Conditions": [{ "Subject": "Gold", "Operator": "GreaterOrEqual", "Value": "50" }],
+        "Actions": [
+          { "Type": "gold_change", "Operator": "Minus", "Amount": 50 },
+          { "Type": "card_gain", "CardIDs": ["hone_sword", "golden_bell_shield", "regain_strength", "wait_for_weary"], "Count": 1, "Random": true }
+        ]
+      },
+      {
+        "Id": "wound_for_way",
+        "Title": "以伤换道",
+        "Description": "你愿以伤体换一句点拨。高人叹而应之（失去15HP，获得随机抡语进阶卡或高阶通用卡）。",
+        "Conditions": [{ "Subject": "Hp", "Operator": "GreaterThan", "Value": "15" }],
+        "Actions": [
+          { "Type": "hp_change", "Operator": "Minus", "Amount": 15 },
+          { "Type": "card_gain", "CardIDs": ["reflect_on_myself", "no_one_stands_tough", "follow_heart", "steady_as_mount", "feint_strike", "whirlwind_slash"], "Count": 1, "Random": true }
+        ]
+      },
+      {
+        "Id": "turn_back",
+        "Title": "转身离去",
+        "Description": "你自认机缘未到，转身离去，却似错过了什么（随机失去2张卡牌）。",
+        "Actions": [{ "Type": "card_random_lose", "Count": 2 }]
       }
     ]
   }

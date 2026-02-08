@@ -1,4 +1,4 @@
-﻿{
+{
   "normal_fight_bonus_0": {
     "Description": "战斗结束后，你获得了一些收获。",
     "GuaranteedOptions": [
@@ -92,6 +92,78 @@
             "Random": true
           }
         ]
+      }
+    ]
+  },
+  "normal_fight_bonus_2": {
+    "Description": "战斗结束后，你获得了一些收获。",
+    "GuaranteedOptions": [
+      {
+        "Id": "bonus_gold",
+        "Title": "获得金币",
+        "Description": "你搜刮了敌人遗落的财物，获得了30金币。",
+        "Actions": [{ "Type": "gold_change", "Operator": "Add", "Amount": 30 }]
+      },
+      {
+        "Id": "get_random_advanced_attack_card",
+        "Title": "获得随机进阶攻击卡",
+        "Description": "你从激战中有所领悟，随机习得一招进阶技法（包含：虚招突刺、百步穿杨、铁壁冲撞、流星追月、穿云箭、锁喉一击、猛虎下山、旋风斩）。",
+        "Actions": [{
+          "Type": "card_gain",
+          "CardIDs": ["feint_strike", "hundred_pace_pierce", "iron_slam", "meteor_chase", "piercing_arrow", "throat_strike", "tiger_descent", "whirlwind_slash"],
+          "Count": 1,
+          "Random": true
+        }]
+      }
+    ],
+    "OptionalOptions": [
+      {
+        "Id": "get_random_ru_advanced_card",
+        "Title": "获得随机抡语进阶卡",
+        "Description": "你温故知新，随机悟得一招进阶抡语（包含：随心所欲、君子务本、工欲善其事、以直报怨、来自远方、跃虎、克己复礼、必有我师）。",
+        "Conditions": [{ "Subject": "PlayerClass", "Operator": "Equal", "Value": "RU" }],
+        "Actions": [{
+          "Type": "card_gain",
+          "CardIDs": ["follow_heart", "gentleman_upright", "good_at_tools", "justice_strikes_back", "comes_from_afar", "leap_over_tiger", "self_restraint", "must_have_teacher"],
+          "Count": 1,
+          "Random": true
+        }]
+      }
+    ]
+  },
+  "normal_fight_bonus_3": {
+    "Description": "战斗结束后，你获得了一些收获。",
+    "GuaranteedOptions": [
+      {
+        "Id": "bonus_gold",
+        "Title": "获得金币",
+        "Description": "你搜刮了敌人遗落的财物，获得了40金币。",
+        "Actions": [{ "Type": "gold_change", "Operator": "Add", "Amount": 40 }]
+      },
+      {
+        "Id": "get_random_elite_attack_card",
+        "Title": "获得随机高阶攻击卡",
+        "Description": "你从恶战中领悟精髓，随机获得一招高阶技法（包含：劈山、盾冲、横扫千军、金钟护体、磨刀霍霍、铁布衫、蓄势待发、以逸待劳）。",
+        "Actions": [{
+          "Type": "card_gain",
+          "CardIDs": ["cleave_mount", "shield_charge", "sweep_all_armies", "golden_bell_shield", "hone_sword", "iron_cloth_armor", "regain_strength", "wait_for_weary"],
+          "Count": 1,
+          "Random": true
+        }]
+      }
+    ],
+    "OptionalOptions": [
+      {
+        "Id": "get_random_ru_elite_card",
+        "Title": "获得随机抡语高阶卡",
+        "Description": "你深研抡语，随机悟得高阶心法（包含：礼乐射御书数进阶、克己复礼·进阶、和而不同、反求诸己、无人可挡、心如止水）。",
+        "Conditions": [{ "Subject": "PlayerClass", "Operator": "Equal", "Value": "RU" }],
+        "Actions": [{
+          "Type": "card_gain",
+          "CardIDs": ["rites_advanced", "archery_advanced", "calligraphy_advanced", "charioteering_advanced", "mathematics_advanced", "music_advanced", "self_restraint_advanced", "peace_is_supreme", "reflect_on_myself", "no_one_stands_tough", "unshaken"],
+          "Count": 1,
+          "Random": true
+        }]
       }
     ]
   }
