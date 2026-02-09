@@ -46,11 +46,11 @@
       {
         "Id": "get_ru_boss_card",
         "Title": "获得随机抡语高阶卡",
-        "Description": "经此一役你对抡语领悟更深，随机悟得高阶心法（包含：六艺进阶、克己复礼·进阶、和而不同、反求诸己、无人可挡、心如止水）。",
+        "Description": "经此一役你对抡语领悟更深，随机悟得高阶心法（包含：六艺、克己复礼、和而不同、反求诸己、无人可挡、心如止水）。",
         "Conditions": [{ "Subject": "PlayerClass", "Operator": "Equal", "Value": "RU" }],
         "Actions": [{
           "Type": "card_gain",
-          "CardIDs": ["rites_advanced", "archery_advanced", "calligraphy_advanced", "charioteering_advanced", "mathematics_advanced", "music_advanced", "self_restraint_advanced", "peace_is_supreme", "reflect_on_myself", "no_one_stands_tough", "unshaken"],
+          "CardIDs": ["rites", "archery", "calligraphy", "charioteering", "mathematics", "music", "self_restraint", "peace_is_supreme", "reflect_on_myself", "no_one_stands_tough", "unshaken"],
           "Count": 1,
           "Random": true
         }]
