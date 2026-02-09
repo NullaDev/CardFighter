@@ -1,3 +1,4 @@
+using GameLogic.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +22,7 @@ namespace Render
         
         public void RenderModifier(float modifier)
         {
-            dmgModifierText.text = $"伤害：x{{MapData.Instance.CurrentMapAttackModifier:F2";
+            dmgModifierText.text = $"伤害：x{MapData.Instance.CurrentMapAttackModifier:F2}";
         }
         
     }
